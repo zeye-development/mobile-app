@@ -3,27 +3,25 @@ import {View, Text, StyleSheet, Button} from 'react-native';
 
 export default function Inicio() {
 
-    const _onPressButton = () => {
-        alert('Has dado un click')
-    }
     
     return (
         <View style={style.container}>
-           <Text style={style.text}>Quantic Anality</Text>
+           <Text style={style.text}>Quantic Analytic</Text>
         </View>
     )
 }
 const style = StyleSheet.create({
 
     container: {
-        flex: 4,
-        flexDirection: "row",
+        flex: 2,
+        // flexDirection: "row",
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 120
+        // marginTop: 110,
+        // maxWidth: 350,
     },
     text: {
-        fontSize: 40,
+        fontSize: 35,
         textAlign: 'center',
         color: '#fff',
         padding: 5

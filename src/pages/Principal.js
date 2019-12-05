@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Inicio from '../principal/Inicio';
-import Login from '../principal/Login';
+import Inicio from '../container/principal/Inicio';
+import Login from '../container/principal/Login';
 export default function Principal() {
   return (
     <View style={style.container}>
@@ -15,6 +15,7 @@ export default function Principal() {
 const style = StyleSheet.create({
   container: {
       flex: 1,
-      backgroundColor: 'blue'
+      backgroundColor: '#0097CD' ,
+      padding: 30
   }
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import { Ionicons } from '@expo/vector-icons';
 
 export default function LoginRedes() {
   return (
@@ -8,14 +8,14 @@ export default function LoginRedes() {
 
 
         <View style={styles.viewContainer}>
-             <Text style={styles.google} >G Iniciar con Google</Text>  
+             <Text style={styles.google} ><Ionicons name='logo-googleplus' size={18} color="#00425A" />  Iniciar con Google</Text>  
         </View>
-        <View style={styles.viewContainer}>
-            <Text style={styles.facebook}>F Iniciar con Facebook</Text>
+        <View style={styles.viewContainerF}>
+            <Text style={styles.facebook}><Ionicons name='logo-facebook' size={18} color="#fff" />  Iniciar con Facebook</Text>
         </View>
         
         <View style={{alignItems: 'center', margin: 10}} >
-            <Text style={{fontSize: 20}}>o</Text> 
+            <Text style={{fontSize: 18, color: '#00425A'}}>o</Text> 
         </View>
         
       
@@ -29,22 +29,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 45,
     marginBottom: 10,
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    maxWidth: 350
   },
   google: {
-    color: 'blue',
+    color: '#00425A',
     fontSize: 18,
     paddingVertical: 13,
   },
   viewContainer: {
     borderWidth: 1,
     borderRadius: 15,
-    borderColor: 'blue',
+    borderColor: '#00425A',
+    marginVertical: 5,
+    alignItems: 'center'
+  },
+  viewContainerF: {
+    borderRadius: 15,
+    backgroundColor: '#00425A',
     marginVertical: 5,
     alignItems: 'center'
   },
   facebook: {
-    color: 'blue',
+    color: '#fff',
     fontSize: 18,
     paddingVertical: 13,
   }
