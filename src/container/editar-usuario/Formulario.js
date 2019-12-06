@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   viewContainerInput: {
     borderRadius: 15,
     backgroundColor: '#EBF2F4',
-    width: 170
+    width: 145
   },
   styleButtom: {
     borderRadius: 15,
@@ -92,14 +92,14 @@ const styles = StyleSheet.create({
   viewContainerButtom: {
     borderRadius: 15,
     backgroundColor: '#D9E3E6',
-    width: 170,
+    width: 145,
     padding: 13,
     textAlign: "center",
   },
   viewContainerButtom1: {
     borderRadius: 15,
     backgroundColor: '#01B8E2',
-    width: 170,
+    width: 145,
     padding: 13,
     textAlign: 'center'
   }

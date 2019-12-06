@@ -4,28 +4,13 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function Formulario() {
   return (
-    <View style={styles.container}>
-
-        <View style={styles.viewContainer}>
-             <TextInput style={styles.input} placeholder='Usuario' />
-
-        </View>
+    <View style={styles.container}> 
         <View style={styles.viewContainer}>
             <TextInput placeholder='Email' style={styles.input} />
-        </View>
-
-        <View style={styles.viewContainer}>
-            <TextInput placeholder='Contrasena' style={styles.input} />
-        </View>
-
-        <View style={styles.viewContainer}>
-            <TextInput placeholder='Repite Contrasena' style={styles.input} />
-        </View>
-        
+        </View>     
         <View style={styles.styleButtom} >
-            <Text style={styles.inputButtom}>Registrar <Ionicons name='md-arrow-forward' size={18} color="#fff" /></Text>
+            <Text style={styles.inputButtom}>Continuar  <Ionicons name='md-arrow-forward' size={20} color="#fff" /></Text>
         </View>
-              
     </View>
   )
 }
@@ -38,15 +23,15 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     maxWidth: 350
   },
-  input: {
-    fontSize: 18,
-    paddingVertical: 13,
-    paddingHorizontal: 33
-  },
   inputButtom: {
     fontSize: 18,
     padding: 13,
     color: '#fff'
+  },
+  input: {
+    fontSize: 18,
+    paddingVertical: 13,
+    paddingHorizontal: 33
   },
   viewContainer: {
     borderRadius: 15,
@@ -58,5 +43,12 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     alignItems: 'center',
     backgroundColor: '#0097CD'
-  }
+  },
+  viewContainerCheck: {
+    padding: 13,
+    color: '#EBF2F4',
+    alignItems: 'center',
+    marginTop: 7,
+    marginBottom: 15 
+  } 
 });

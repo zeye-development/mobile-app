@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function LoginRedes() {
+export default function FotoPerfil() {
   return (
     <View style={styles.container}>
         <View style={styles.viewContainer}>
