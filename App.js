@@ -16,8 +16,8 @@ export default function App() {
       {/* <InicioSesion />  */}
       {/* <Registro /> */}
       {/* <NuevoUsuario />  */}
-      {/* <EditarUsuario /> */}
-      <RecuperarPaso1 />
+      <EditarUsuario />
+      {/* <RecuperarPaso1 /> */}
       {/* <RecuperarPaso2 /> */}
     </View>
   );

@@ -22,12 +22,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 10,
-    alignItems: 'stretch',
+    // alignItems: 'stretch',
     maxWidth: 350
   },
   viewContainer: {
     marginVertical: 5,
     alignItems: 'center',
+    justifyContent: 'center',
+    width: 150,
+    height:150,
+    borderRadius: 100
   },
 
 });
