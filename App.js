@@ -8,6 +8,7 @@ import NuevoUsuario from './src/pages/NuevoUsuario';
 import EditarUsuario from './src/pages/EditarUsuario';
 import RecuperarPaso2 from './src/pages/RecuperarPaso2';
 import RecuperarPaso1 from './src/pages/RecuperarPaso1';
+import Captura from './src/pages/Captura';
 
 export default function App() {
   return (
@@ -16,9 +17,10 @@ export default function App() {
       {/* <InicioSesion />  */}
       {/* <Registro /> */}
       {/* <NuevoUsuario />  */}
-      <EditarUsuario />
+      {/* <EditarUsuario /> */}
       {/* <RecuperarPaso1 /> */}
       {/* <RecuperarPaso2 /> */}
+      <Captura />
     </View>
   );
 }
