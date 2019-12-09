@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Feather } from '@expo/vector-icons';
 
 export default function Formulario() {
   return (
@@ -13,7 +13,7 @@ export default function Formulario() {
           <Text style={styles.inputButtom1}>Cargar  <Ionicons name='md-cloud-upload' size={20} color="#00425A" /></Text>
       </View>    
         <View style={styles.styleButtom} >
-            <Text style={styles.inputButtom}><Ionicons name='ios-download'  size={20} color="#fff" />  Guardar</Text>
+            <Text style={styles.inputButtom}><Feather name='download'  size={20} color="#fff" />  Guardar</Text>
         </View>
               
     </View>

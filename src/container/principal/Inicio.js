@@ -6,7 +6,7 @@ export default function Inicio() {
     
     return (
         <View style={style.container}>
-           <Text style={style.text}>Quantic Analytic</Text>
+           <Text style={style.text}>Recognixer</Text>
         </View>
     )
 }
