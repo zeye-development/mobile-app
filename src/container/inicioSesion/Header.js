@@ -3,11 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 
-export default function InicioSesion() {
+export default function InicioSesion(props) {
   return (
     <View style={styles.container}>
 
-        <Text style={styles.icon}> <Ionicons name='md-arrow-back' size={20} color="#00425A" /> </Text> 
+        <Text onPress={ () => props.navigation.goBack() } style={styles.icon}> <Ionicons name='md-arrow-back' size={20} color="#00425A" /> </Text> 
         <Text style={styles.headerText}>Iniciar Sesion</Text>
         <Text>  </Text>
       

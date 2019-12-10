@@ -2,14 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Formulario() {
+export default function Formulario(props) {
   return (
     <View style={styles.container}> 
         <View style={styles.viewContainer}>
             <TextInput placeholder='Email' style={styles.input} />
         </View>     
         <View style={styles.styleButtom} >
-            <Text style={styles.inputButtom}>Continuar  <Ionicons name='md-arrow-forward' size={20} color="#fff" /></Text>
+            <Text onPress={ () => props.navigation.navigate('RecuperarPaso2') } style={styles.inputButtom}>Continuar  <Ionicons name='md-arrow-forward' size={20} color="#fff" /></Text>
         </View>
     </View>
   )

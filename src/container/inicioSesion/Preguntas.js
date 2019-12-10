@@ -2,19 +2,19 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Preguntas() {
+export default function Preguntas(props) {
   return (
     <View style={styles.container}>
 
         <View style={styles.viewContainer}>
-             <Text style={styles.font} >Has olvidado tu contrasena?</Text>  
+             <Text onPress={ () => props.navigation.navigate('RecuperarPaso1') } style={styles.font} >Has olvidado tu contrasena?</Text>  
         </View>
         <View style={styles.viewContainer}>
             <Text style={styles.font1}>Aun no tienes cuenta?</Text>
         </View>
         
         <View style={styles.viewContainer} >
-            <Text style={styles.font2}>Registrate  <Ionicons name='md-arrow-forward' size={16} color="#00425A" /></Text>
+            <Text onPress={ () => props.navigation.navigate('Registro') } style={styles.font2}>Registrate  <Ionicons name='md-arrow-forward' size={16} color="#00425A" /></Text>
         </View>
               
     </View>

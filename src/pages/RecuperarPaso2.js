@@ -5,10 +5,10 @@ import Header from '../container/recuperarPaso2/Header';
 import BodyMensaje from '../container/recuperarPaso2/BodyMensaje';
 import Formulario from '../container/recuperarPaso2/Formulario';
 
-export default function RecuperarPaso2() {
+export default function RecuperarPaso2(props) {
   return (
     <View style={style.container}>
-        <Header />
+        <Header navigation={props.navigation} />
         <BodyMensaje />
         <Formulario />
     </View>

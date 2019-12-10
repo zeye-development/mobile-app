@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ProgressBarAndroid, Text } from 'react-native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 
-export default function ProgreseBar() {
+export default function ProgreseBar(props) {
   return (
     <View style={styles.container}>
         <View style={styles.viewContainer}>
@@ -17,7 +17,7 @@ export default function ProgreseBar() {
           <Text style={{color: '#fff', fontSize: 18, fontWeight: 'bold'}}> <Entypo name='users' size={20} color="#fff" />  200 de 1000 Usuarios</Text>
         </View>
         <View style={styles.styleButtom} >
-            <Text style={styles.inputButtom}><Ionicons name='md-person-add' size={20} color="#0097CD" />  Anadir Usuario </Text>
+            <Text onPress={ () => props.navigation.navigate('NuevoUsuario') } style={styles.inputButtom}><Ionicons name='md-person-add' size={20} color="#0097CD" />  Anadir Usuario </Text>
         </View>
     </View>
   );

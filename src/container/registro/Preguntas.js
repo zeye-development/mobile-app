@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Preguntas() {
+export default function Preguntas(props) {
   return (
     <View style={styles.container}>
 
@@ -11,7 +11,7 @@ export default function Preguntas() {
         </View>
         
         <View style={styles.viewContainer} >
-            <Text style={styles.font2}>Iniciar Sesion  <Ionicons name='md-arrow-forward' size={16} color="#00425A" /></Text>
+            <Text onPress={ () => props.navigation.navigate('InicioSesion') } style={styles.font2}>Iniciar Sesion  <Ionicons name='md-arrow-forward' size={16} color="#00425A" /></Text>
         </View>
               
     </View>

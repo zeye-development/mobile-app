@@ -6,13 +6,13 @@ import LoginRedes from '../container/registro/LoginRedes';
 import Formulario from '../container/registro/Formulario';
 import Preguntas from '../container/registro/Preguntas';
 
-export default function Registro() {
+export default function Registro(props) {
   return (
     <View style={style.container}>
-        <Header />
+        <Header navigation={props.navigation} />
         <LoginRedes />
-        <Formulario />
-        <Preguntas />
+        <Formulario navigation={props.navigation}/>
+        <Preguntas navigation={props.navigation}/>
     </View>
 
   );

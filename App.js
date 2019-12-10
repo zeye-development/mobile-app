@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-// import { StackRouter } from 'react-navigation';
+// import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import Principal from './src/pages/Principal';
 import InicioSesion from "./src/pages/InicioSesion";
@@ -13,33 +14,59 @@ import Captura from './src/pages/Captura';
 import Dashboard from './src/pages/Dashboard';
 
 
-// const AppNavigator = createSwitchNavigator({
-//   Home: { 
-//     screen: Principal,
+const AppNavigator = createStackNavigator({
+  Home: { 
+    screen: Principal,
+  },
+  InicioSesion: { 
+    screen: InicioSesion,
+  },
+  Registro: { 
+    screen: Registro,
+  },
+  NuevoUsuario: { 
+    screen: NuevoUsuario,
+  },
+  EditarUsuario: { 
+    screen: EditarUsuario,
+  },
+  RecuperarPaso1: { 
+    screen: RecuperarPaso1,
+  },
+  RecuperarPaso2: { 
+    screen: RecuperarPaso2,
+  },
+  Captura: { 
+    screen: Captura,
+  },
+  Dashboard: { 
+    screen: Dashboard,
+  },
+}, {
+  headerMode: 'none'
+});
+
+export default createAppContainer(AppNavigator);
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       {/* <Principal / > */}
+//       {/* <InicioSesion />  */}
+//       {/* <Registro /> */} 
+//       {/* <NuevoUsuario />  */}
+//       {/* <EditarUsuario /> */}
+//       {/* <RecuperarPaso1 /> */}
+//       {/* <RecuperarPaso2 /> */}
+//       {/* <Captura /> */}
+//       <Dashboard />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 6,
+//     backgroundColor: '#fff'
 //   },
 // });
-
-// export default createAppContainer(AppNavigator);
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      {/* <Principal / > */}
-      {/* <InicioSesion />  */}
-      {/* <Registro /> */} 
-      {/* <NuevoUsuario />  */}
-      {/* <EditarUsuario /> */}
-      {/* <RecuperarPaso1 /> */}
-      {/* <RecuperarPaso2 /> */}
-      {/* <Captura /> */}
-      <Dashboard />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 6,
-    backgroundColor: '#fff'
-  },
-});

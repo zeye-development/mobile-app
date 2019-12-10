@@ -2,24 +2,33 @@ import React from 'react';
 import {View, StyleSheet, Button, Text} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Login() {
+export default function Login(props) {
 
-    const _onPressButton = () => {
-        alert('has dadp un click')
-    }
-    
+    // console.log(props.navigation)
+    // const _onPressSession = () => {
+    //     navigate('InicioSesion');
+    // }
+    // const _onPressRegiste = () => {
+    //     navigate('Registro');
+    // }
+    // console.log(props);
     return (
         <View style={style.container}>
 
             <View style={style.styleButtonInt}>
-                <Text onPress={_onPressButton} style={style.buttonInit} >Iniciar Sesion</Text>
+                <Text  
+                    onPress={ () => props.navigation.navigate('InicioSesion')  }
+                    style={style.buttonInit} >Iniciar Sesion</Text>
             </View>
             <View style={style.styleButtonReg}>
-                <Text style={style.buttonReg}>Registrarme  <Ionicons name='md-arrow-forward' size={18} color="#0097CD" /> </Text>
+                <Text 
+                    onPress={ () => props.navigation.navigate('Registro') }  
+                    style={style.buttonReg}>Registrarme  <Ionicons name='md-arrow-forward' size={18} color="#0097CD" /> </Text>
             </View>
         </View>
     )
 }
+
 const style = StyleSheet.create({
 
     container: {

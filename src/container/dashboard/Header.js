@@ -3,13 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Feather, Ionicons } from '@expo/vector-icons';
 
 
-export default function Header() {
+export default function Header(props) {
   return (
     <View style={styles.container}>
 
         <Text > <Feather name='settings' size={20} color="#fff" /> </Text> 
         <Text style={styles.headerText}>Dashboard</Text>
-        <Text> <Ionicons name='ios-log-in' size={20} color="#fff" /> </Text>
+        <Text onPress={ () => props.navigation.navigate('InicioSesion') } > <Ionicons name='ios-log-in' size={20} color="#fff" /> </Text>
       
     </View>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 export default function LoginRedes() {
   return (
@@ -11,7 +11,7 @@ export default function LoginRedes() {
              <Text style={styles.google} ><Ionicons name='logo-googleplus' size={18} color="#00425A" />  Iniciar con Google</Text>  
         </View>
         <View style={styles.viewContainerF}>
-            <Text style={styles.facebook}><Ionicons name='logo-facebook' size={18} color="#fff" />  Iniciar con Facebook</Text>
+            <Text style={styles.facebook}><FontAwesome name='facebook' size={20} color="#fff" />  Iniciar con Facebook</Text>
         </View>
         
         <View style={{alignItems: 'center', margin: 10}} >
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   viewContainerF: {
     borderRadius: 15,
-    backgroundColor: '#00425A',
+    backgroundColor: '#3b5998',
     marginVertical: 5,
     alignItems: 'center'
   },

@@ -6,12 +6,12 @@ import ProgreseBar from '../container/dashboard/ProgreseBar';
 import Opciones from '../container/dashboard/Opciones';
 import Perfiles from '../container/dashboard/Perfiles';
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   return (
     <View>
       <View style={styles.containerSuperior}>
-          <Header />
-          <ProgreseBar />
+          <Header navigation={props.navigation}/>
+          <ProgreseBar navigation={props.navigation}/>
           <Opciones />
       </View>
       <View>

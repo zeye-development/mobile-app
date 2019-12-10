@@ -5,11 +5,11 @@ import Header from '../container/nuevo-usuario/Header';
 import FotoPerfil from '../container/nuevo-usuario/FotoPerfil';
 import Formulario from '../container/nuevo-usuario/Formulario';
 
-export default function NuevoUsuario() {
+export default function NuevoUsuario(props) {
   return (
     <View style={style.container}>
-        <Header />
-        <FotoPerfil />
+        <Header navigation={props.navigation} />
+        <FotoPerfil navigation={props.navigation} />
         <Formulario />
     </View>
 

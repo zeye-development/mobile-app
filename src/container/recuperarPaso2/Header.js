@@ -3,13 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 
-export default function Header() {
+export default function Header(props) {
   return (
     <View style={styles.container}>
 
-        <Text> <Ionicons name='md-arrow-back' size={20} color="#00425A" /> </Text> 
+        <Text onPress={ () => props.navigation.goBack() } > <Ionicons name='md-arrow-back' size={20} color="#00425A" /> </Text> 
         <Text style={styles.headerText}>Recuperacion</Text>
-        <Text><Ionicons name='md-close' size={20} color="#00425A" /></Text>
+        <Text onPress={ () => props.navigation.navigate('InicioSesion') } ><Ionicons name='md-close' size={20} color="#00425A" /></Text>
       
     </View>
   );

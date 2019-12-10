@@ -3,11 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Inicio from '../container/principal/Inicio';
 import Login from '../container/principal/Login';
-export default function Principal() {
+export default function Principal(props) {
+  
   return (
     <View style={style.container}>
-      <Inicio />
-      <Login />
+      <Inicio  />
+      <Login navigation={props.navigation}/>
     </View>
 
   );

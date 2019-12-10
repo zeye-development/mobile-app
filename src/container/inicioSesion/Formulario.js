@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Formulario() {
+export default function Formulario(props) {
   return (
     <View style={styles.container}>
 
@@ -15,7 +15,7 @@ export default function Formulario() {
         </View>
         
         <View style={styles.styleButtom} >
-            <Text style={styles.inputButtom}>Iniciar Sesion  <Ionicons name='md-arrow-forward' size={18} color="#fff" /></Text>
+            <Text onPress={ () => props.navigation.navigate('Dashboard') } style={styles.inputButtom}>Iniciar Sesion  <Ionicons name='md-arrow-forward' size={18} color="#fff" /></Text>
         </View>
               
     </View>
