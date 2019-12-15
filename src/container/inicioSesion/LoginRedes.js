@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function LoginRedes() {
   return (
@@ -8,7 +8,10 @@ export default function LoginRedes() {
       <TouchableOpacity>
         <View style={styles.viewContainer}>
           <Text style={styles.google}>
-            <Ionicons name="logo-googleplus" size={18} color="#00425A" />{" "}
+            <Image
+              source={require("../../../assets/google.png")}
+              style={{ width: 18, height: 18 }}
+            />{" "}
             Iniciar con Google
           </Text>
         </View>
