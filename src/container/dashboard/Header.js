@@ -1,16 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Feather, Ionicons } from '@expo/vector-icons';
-
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Feather, Ionicons } from "@expo/vector-icons";
 
 export default function Header(props) {
   return (
     <View style={styles.container}>
+      <TouchableOpacity>
+        <Text style={styles.icon}>
+          {" "}
+          <Feather name="settings" size={20} color="#fff" />{" "}
+        </Text>
+      </TouchableOpacity>
+      <Text style={styles.headerText}>Dashboard</Text>
 
-        <Text > <Feather name='settings' size={20} color="#fff" /> </Text> 
-        <Text style={styles.headerText}>Dashboard</Text>
-        <Text onPress={ () => props.navigation.navigate('InicioSesion') } > <Ionicons name='ios-log-in' size={20} color="#fff" /> </Text>
-      
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("InicioSesion")}
+      >
+        <Text style={styles.icon}>
+          {" "}
+          <Ionicons name="ios-log-in" size={20} color="#fff" />{" "}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -20,16 +30,19 @@ const styles = StyleSheet.create({
     // flex: 1,
     // backgroundColor: '#0097CD',
     maxWidth: 350,
-    flexDirection: 'row',
+    flexDirection: "row",
     // alignItems: 'flex-start',
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     paddingTop: 50,
-    paddingLeft: 30, 
+    paddingLeft: 30,
     paddingRight: 30,
     paddingBottom: 10
   },
   headerText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16
+  },
+  icon: {
+    padding: 6
   }
 });

@@ -1,24 +1,31 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 export default function LoginRedes() {
   return (
     <View style={styles.container}>
-
-
+      <TouchableOpacity>
         <View style={styles.viewContainer}>
-             <Text style={styles.google} ><Ionicons name='logo-googleplus' size={18} color="#00425A" />  Registrate con Google</Text>  
+          <Text style={styles.google}>
+            <Ionicons name="logo-googleplus" size={18} color="#00425A" />{" "}
+            Iniciar con Google
+          </Text>
         </View>
-        <View style={styles.viewContainerF}>
-            <Text style={styles.facebook}><FontAwesome name='facebook' size={20} color="#fff" />  Registrate con Facebook</Text>
-        </View>
-        
-        <View style={{alignItems: 'center', margin: 10}} >
-            <Text style={{fontSize: 18, color: '#00425A'}}>o</Text> 
-        </View>
-        
-      
+      </TouchableOpacity>
+
+      <View style={styles.viewContainerF}>
+        <TouchableOpacity>
+          <Text style={styles.facebook}>
+            <FontAwesome name="facebook" size={20} color="#fff" /> Iniciar con
+            Facebook
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={{ alignItems: "center", margin: 5 }}>
+        <Text style={{ fontSize: 18, color: "#00425A" }}>o</Text>
+      </View>
     </View>
   );
 }
@@ -26,33 +33,35 @@ export default function LoginRedes() {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    alignItems: 'center',
-    marginTop: 35,
+    alignItems: "center",
+    marginTop: 30,
     marginBottom: 10,
-    alignItems: 'stretch',
-    maxWidth: 350
+    alignItems: "stretch",
+    maxWidth: 350,
+    paddingHorizontal: 30
   },
   google: {
-    color: '#00425A',
+    color: "#00425A",
     fontSize: 18,
-    paddingVertical: 13,
+    paddingVertical: 13
   },
   viewContainer: {
     borderWidth: 1,
     borderRadius: 15,
-    borderColor: '#00425A',
+    borderColor: "#00425A",
     marginVertical: 5,
-    alignItems: 'center'
+    alignItems: "center"
   },
   viewContainerF: {
     borderRadius: 15,
-    backgroundColor: '#3b5998',
+    backgroundColor: "#3b5998",
     marginVertical: 5,
-    alignItems: 'center'
+    alignItems: "stretch"
   },
   facebook: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
     paddingVertical: 13,
+    textAlign: "center"
   }
 });

@@ -1,16 +1,19 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Header(props) {
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={() => props.navigation.goBack()}>
+        <Text style={styles.icon}>
+          {" "}
+          <Ionicons name="md-arrow-back" size={20} color="#00425A" />{" "}
+        </Text>
+      </TouchableOpacity>
 
-        <Text onPress={ () => props.navigation.goBack() } style={styles.icon}> <Ionicons name='md-arrow-back' size={20} color="#00425A" /> </Text> 
-        <Text style={styles.headerText}>Nuevo Usuario</Text>
-        <Text>  </Text>
-      
+      <Text style={styles.headerText}>Nuevo Usuario</Text>
+      <Text style={styles.icon}> </Text>
     </View>
   );
 }
@@ -18,19 +21,20 @@ export default function Header(props) {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     maxWidth: 350,
-    flexDirection: 'row',
+    flexDirection: "row",
     // alignItems: 'flex-start',
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     marginTop: 20,
-    marginBottom: 10
+    marginBottom: 10,
+    paddingHorizontal: 30
   },
   headerText: {
-    color: '#00425A',
+    color: "#00425A",
     fontSize: 16
   },
   icon: {
-    //   marginRight: 55
+    padding: 6
   }
 });

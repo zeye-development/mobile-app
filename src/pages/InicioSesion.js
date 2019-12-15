@@ -1,26 +1,27 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
 
-import Header from '../container/inicioSesion/Header';
-import LoginRedes from '../container/inicioSesion/LoginRedes';
-import Formulario from '../container/inicioSesion/Formulario';
-import Preguntas from '../container/inicioSesion/Preguntas';
+import Header from "../container/inicioSesion/Header";
+import LoginRedes from "../container/inicioSesion/LoginRedes";
+import Formulario from "../container/inicioSesion/Formulario";
+import Preguntas from "../container/inicioSesion/Preguntas";
 
-export default function InicioSesion(props) { 
+export default function InicioSesion(props) {
   return (
     <View style={style.container}>
-        <Header navigation={props.navigation}/>
+      <ScrollView>
+        <Header navigation={props.navigation} />
         <LoginRedes />
-        <Formulario navigation={props.navigation}/>
-        <Preguntas navigation={props.navigation}/>
+        <Formulario navigation={props.navigation} />
+        <Preguntas navigation={props.navigation} />
+      </ScrollView>
     </View>
-
   );
 }
 const style = StyleSheet.create({
   container: {
-      flex: 6,
-      backgroundColor: '#fff',
-      padding: 30
+    flex: 6,
+    backgroundColor: "#fff",
+    paddingVertical: 30
   }
 });

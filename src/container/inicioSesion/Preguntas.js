@@ -1,22 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Preguntas(props) {
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("RecuperarPaso1")}
+      >
+        <View style={styles.viewContainer}>
+          <Text style={styles.font}>Has olvidado tu contrasena?</Text>
+        </View>
+      </TouchableOpacity>
+      <View style={styles.viewContainer}>
+        <Text style={styles.font1}>Aun no tienes cuenta?</Text>
+      </View>
 
+      <TouchableOpacity onPress={() => props.navigation.navigate("Registro")}>
         <View style={styles.viewContainer}>
-             <Text onPress={ () => props.navigation.navigate('RecuperarPaso1') } style={styles.font} >Has olvidado tu contrasena?</Text>  
+          <Text style={styles.font2}>
+            Registrate{" "}
+            <Ionicons name="md-arrow-forward" size={16} color="#00425A" />
+          </Text>
         </View>
-        <View style={styles.viewContainer}>
-            <Text style={styles.font1}>Aun no tienes cuenta?</Text>
-        </View>
-        
-        <View style={styles.viewContainer} >
-            <Text onPress={ () => props.navigation.navigate('Registro') } style={styles.font2}>Registrate  <Ionicons name='md-arrow-forward' size={16} color="#00425A" /></Text>
-        </View>
-              
+      </TouchableOpacity>
     </View>
   );
 }
@@ -24,22 +31,23 @@ export default function Preguntas(props) {
 const styles = StyleSheet.create({
   container: {
     maxWidth: 350,
-    alignItems: 'stretch'
+    alignItems: "stretch",
+    paddingHorizontal: 30
   },
   viewContainer: {
-    alignItems: 'center',
-    marginVertical: 7
+    alignItems: "center",
+    padding: 8
   },
   font: {
-    marginBottom: 15, 
-    color: '#01B8E2',
+    marginBottom: 15,
+    color: "#01B8E2",
     fontSize: 16
   },
   font1: {
-    color: '#00425A'
+    color: "#00425A"
   },
   font2: {
-    color: '#00425A',
+    color: "#00425A",
     fontSize: 16
   }
 });
