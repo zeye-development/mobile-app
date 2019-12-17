@@ -32,7 +32,8 @@ export default function Formulario(props) {
   };
   let [getPass, setPass] = useState({
     Pass: "",
-    caracteres: 0
+    caracteres: 0,
+    validator: ""
   });
 
   validarPass = event => {
@@ -41,17 +42,27 @@ export default function Formulario(props) {
     const passLimpio = pass.trim();
     setPass({ ...getPass, caracteres: caracteresPass });
     if (getPass.caracteres >= 6) {
-      setPass({ ...getPass, Pass: passLimpio });
+      setPass({ ...getPass, Pass: passLimpio, validator: true });
+    } else {
+      setPass({ ...getPass, validator: false });
+    }
+  };
+  const [getError, setError] = useState(false);
+  enviarRequest = () => {
+    if (getEmail.validator === true && getPass.validator === true) {
+      props.navigation.navigate("Dashboard");
+    } else {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
     }
   };
   return (
     <View style={styles.container}>
       <View style={styles.viewContainer}>
         <TextInput
-          style={[
-            styles.input,
-            getEmail.validator === false ? styles.error : null
-          ]}
+          style={styles.input}
           onChange={validarEmail}
           placeholder="User"
         />
@@ -64,11 +75,11 @@ export default function Formulario(props) {
           style={styles.input}
         />
       </View>
-
+      {getError ? (
+        <Text style={styles.usuario}>User o Password invalidos</Text>
+      ) : null}
       <View style={styles.styleButtom}>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate("Dashboard")}
-        >
+        <TouchableOpacity onPress={enviarRequest}>
           <Text style={styles.inputButtom}>
             Iniciar Sesion{" "}
             <Ionicons name="md-arrow-forward" size={18} color="#fff" />
@@ -112,9 +123,17 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     backgroundColor: "#0097CD"
   },
-  error: {
-    borderWidth: 2,
-    borderColor: "rgb(204, 0, 0)",
-    borderRadius: 15
+  // error: {
+  //   borderWidth: 2,
+  //   borderColor: "rgb(204, 0, 0)",
+  //   borderRadius: 15
+  // },
+  usuario: {
+    padding: 13,
+    backgroundColor: "red",
+    textAlign: "center",
+    color: "#fff",
+    borderRadius: 15,
+    marginTop: 5
   }
 });

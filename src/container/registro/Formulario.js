@@ -34,7 +34,7 @@ export default function Formulario(props) {
     pass: "",
     repeatPass: "",
     caracteres: 0,
-    iguales: null
+    validator: ""
   });
 
   validarPass = event => {
@@ -44,19 +44,20 @@ export default function Formulario(props) {
     // console.log(event.currentTarget);
     setPass({ caracteres: caracteresPass });
     if (getPass.caracteres >= 6) {
-      if (event.currentTarget == 143) {
-        setPass({ ...getPass, pass: passLimpio });
-      } else {
-        setPass({ ...getPass, repeatPass: passLimpio });
-      }
-
-      if (getPass.pass === getPass.repeatPass) {
-        setPass({ ...getPass, iguales: true });
-      } else {
-        setPass({ ...getPass, iguales: false });
-      }
+      setPass({ ...getPass, pass: passLimpio, validator: true });
     } else if (getPass.caracteres < 6) {
-      setPass({ ...getPass, iguales: false });
+      setPass({ ...getPass, validator: false });
+    }
+  };
+  const [getError, setError] = useState(false);
+  enviarRequest = () => {
+    if (getEmail.validator === true && getPass.validator === true) {
+      props.navigation.navigate("Dashboard");
+    } else {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
     }
   };
   return (
@@ -67,10 +68,7 @@ export default function Formulario(props) {
       <View style={styles.viewContainer}>
         <TextInput
           placeholder="Email"
-          style={[
-            styles.input,
-            getEmail.validator === false ? styles.error : null
-          ]}
+          style={styles.input}
           onChange={validarEmail}
         />
       </View>
@@ -88,18 +86,15 @@ export default function Formulario(props) {
         <TextInput
           placeholder="Repeat Password"
           secureTextEntry={true}
-          style={[
-            styles.input,
-            getPass.iguales === true ? styles.igual : null,
-            getPass.iguales === false ? styles.error : null
-          ]}
+          style={styles.input}
           onChange={validarPass}
         />
       </View>
+      {getError ? (
+        <Text style={styles.usuario}>Ingrese los Datos Correctamente.</Text>
+      ) : null}
       <View style={styles.styleButtom}>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate("InicioSesion")}
-        >
+        <TouchableOpacity onPress={enviarRequest}>
           <Text style={styles.inputButtom}>
             Registrar{" "}
             <Ionicons name="md-arrow-forward" size={18} color="#fff" />
@@ -143,14 +138,22 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     backgroundColor: "#0097CD"
   },
-  error: {
-    borderWidth: 2,
-    borderColor: "rgb(204, 0, 0)",
-    borderRadius: 15
-  },
-  igual: {
-    borderWidth: 2,
-    borderColor: "#00DFAA",
-    borderRadius: 15
+  // error: {
+  //   borderWidth: 2,
+  //   borderColor: "rgb(204, 0, 0)",
+  //   borderRadius: 15
+  // },
+  // igual: {
+  //   borderWidth: 2,
+  //   borderColor: "#00DFAA",
+  //   borderRadius: 15
+  // }
+  usuario: {
+    padding: 13,
+    backgroundColor: "red",
+    textAlign: "center",
+    color: "#fff",
+    borderRadius: 15,
+    marginTop: 5
   }
 });

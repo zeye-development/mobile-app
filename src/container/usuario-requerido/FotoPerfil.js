@@ -1,26 +1,20 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  ImageBackground
-} from "react-native";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function FotoPerfil() {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <View style={styles.viewContainer}>
-          <ImageBackground
-            source={require("../../../assets/perfil.png")}
-            style={styles.imageBackground}
-          >
-            <AntDesign name="plus" size={50} color="#EBF0F2" />
-          </ImageBackground>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.viewContainer}>
+        <Image
+          source={require("../../../assets/perfil.png")}
+          style={styles.imageBackground}
+        />
+      </View>
+      <Text style={styles.usuario}>
+        <Ionicons name="ios-checkmark-circle-outline" size={18} color="#fff" />{" "}
+        Usuario Requerido
+      </Text>
     </View>
   );
 }
@@ -43,7 +37,14 @@ const styles = StyleSheet.create({
     height: 130,
     borderRadius: 100
   },
-
+  usuario: {
+    padding: 13,
+    backgroundColor: "#00DFAA",
+    textAlign: "center",
+    color: "#fff",
+    borderRadius: 15,
+    marginTop: 5
+  },
   imageBackground: {
     width: "100%",
     height: "100%",

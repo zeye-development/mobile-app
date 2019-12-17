@@ -16,7 +16,7 @@ export default function Dashboard(props) {
           <Opciones />
         </View>
         <View>
-          <Perfiles />
+          <Perfiles navigation={props.navigation} />
         </View>
       </ScrollView>
     </View>

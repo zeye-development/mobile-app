@@ -8,6 +8,7 @@ import InicioSesion from "./src/pages/InicioSesion";
 import Registro from "./src/pages/Registro";
 import NuevoUsuario from "./src/pages/NuevoUsuario";
 import EditarUsuario from "./src/pages/EditarUsuario";
+import UsuarioRequerido from "./src/pages/UsuarioRequerido";
 import RecuperarPaso1 from "./src/pages/RecuperarPaso1";
 import RecuperarPaso2 from "./src/pages/RecuperarPaso2";
 import Captura from "./src/pages/Captura";
@@ -30,6 +31,9 @@ const AppNavigator = createStackNavigator(
     },
     EditarUsuario: {
       screen: EditarUsuario
+    },
+    UsuarioRequerido: {
+      screen: UsuarioRequerido
     },
     RecuperarPaso1: {
       screen: RecuperarPaso1
@@ -58,12 +62,12 @@ export default createAppContainer(AppNavigator);
 //       {/* <InicioSesion />  */}
 //       {/* <Registro /> */}
 //       {/* <NuevoUsuario /> */}
-//       {/* <EditarUsuario /> */}
+//       <UsuarioRequerido />
 //       {/* <RecuperarPaso1 /> */}
 //       {/* <RecuperarPaso2 /> */}
 //       {/* <Captura /> */}
 //       {/* <Dashboard /> */}
-//       <Camera />
+//       {/* <Camera /> */}
 //     </View>
 //   );
 // }

@@ -1,9 +1,8 @@
 import React from "react";
 import { View, StyleSheet, FlatList, Text, Image } from "react-native";
-import { Ionicons, Foundation } from "@expo/vector-icons";
 
-// import Perfil from "./Perfil";
-export default function Perfiles() {
+import Perfil from "./Perfil";
+export default function Perfiles(props) {
   const usuarios = [
     {
       nombre: "Jhon Doe",
@@ -93,33 +92,9 @@ export default function Perfiles() {
     <View style={styles.container}>
       <FlatList
         data={usuarios}
-        renderItem={({ item }) => {
-          let { nombre, conectado, edad } = item;
-          return (
-            <View style={styles.containerPerfil}>
-              <View style={styles.containerPerfil}>
-                <View style={styles.img}>
-                  <Image
-                    style={{ width: 50, height: 50 }}
-                    source={require("../../../assets/perfil.png")}
-                  />
-                </View>
-                <View style={{ justifyContent: "center", paddingLeft: 10 }}>
-                  <Text style={styles.textColor}>
-                    {nombre}{" "}
-                    <Foundation name="prohibited" size={16} color="#00425A" />
-                  </Text>
-                  <Text style={styles.textColor}>
-                    {edad} - {conectado}
-                  </Text>
-                </View>
-              </View>
-              <View style={{ justifyContent: "center" }}>
-                <Ionicons name="md-more" size={18} color="#00425A" />
-              </View>
-            </View>
-          );
-        }}
+        renderItem={({ item }) => (
+          <Perfil navigation={props.navigation} usuario={item} />
+        )}
         keyExtractor={item => item.key}
         horizontal={false}
         ItemSeparatorComponent={separador}
@@ -138,7 +113,7 @@ export default function Perfiles() {
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 30,
-    paddingRight: 30,
+    paddingRight: 25,
     paddingTop: 10
   },
   containerPerfil: {
