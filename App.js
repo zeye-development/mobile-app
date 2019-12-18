@@ -68,6 +68,7 @@ export default createAppContainer(AppNavigator);
 //       {/* <Captura /> */}
 //       {/* <Dashboard /> */}
 //       {/* <Camera /> */}
+//       {/* <EditarUsuario /> */}
 //     </View>
 //   );
 // }

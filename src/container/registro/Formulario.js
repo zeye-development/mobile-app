@@ -12,47 +12,45 @@ import { validatorEmail } from "../../helpers/validatorEmail";
 export default function Formulario(props) {
   let [getEmail, setEmail] = useState({
     email: "",
-    caracteres: 0,
-    validator: ""
+    validator: false
   });
 
   validarEmail = event => {
+    // console.log(event);
     const email = event.nativeEvent.text;
     const emailLimpio = email.trim();
     let caracteresEmail = event.nativeEvent.eventCount;
-    setEmail({ caracteres: caracteresEmail });
-    if (getEmail.caracteres >= 10) {
+    if (caracteresEmail >= 13) {
       if (validatorEmail(emailLimpio)) {
+        console.log(getEmail);
         setEmail({ ...getEmail, email: emailLimpio, validator: true });
-      } else {
+      } else if (!validatorEmail(emailLimpio)) {
         setEmail({ ...getEmail, validator: false });
       }
     }
   };
-
   let [getPass, setPass] = useState({
-    pass: "",
-    repeatPass: "",
-    caracteres: 0,
-    validator: ""
+    Pass: "",
+    validator: false
   });
 
   validarPass = event => {
     const pass = event.nativeEvent.text;
     let caracteresPass = event.nativeEvent.eventCount;
     const passLimpio = pass.trim();
-    // console.log(event.currentTarget);
-    setPass({ caracteres: caracteresPass });
-    if (getPass.caracteres >= 6) {
-      setPass({ ...getPass, pass: passLimpio, validator: true });
+    if (caracteresPass >= 5) {
+      // console.log(getPass);
+      setPass({ ...getPass, Pass: passLimpio, validator: true });
     } else if (getPass.caracteres < 6) {
       setPass({ ...getPass, validator: false });
     }
   };
   const [getError, setError] = useState(false);
   enviarRequest = () => {
-    if (getEmail.validator === true && getPass.validator === true) {
-      props.navigation.navigate("Dashboard");
+    // console.log(getEmail.validator);
+    // console.log(getPass.validator);
+    if (getEmail.validator && getPass.validator) {
+      // props.navigation.navigate("Dashboard");
     } else {
       setError(true);
       setTimeout(() => {

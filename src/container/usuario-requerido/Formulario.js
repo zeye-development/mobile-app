@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Formulario() {
+export default function Formulario(props) {
   return (
     <View style={styles.container}>
       <View style={styles.viewContainer}>
@@ -43,7 +43,9 @@ export default function Formulario() {
           </TouchableOpacity>
         </View>
         <View style={styles.viewContainerButtom1}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("EditarUsuario")}
+          >
             <Text
               style={{
                 fontSize: 18,
@@ -52,7 +54,7 @@ export default function Formulario() {
                 textAlign: "center"
               }}
             >
-              <Ionicons name="md-create" size={20} color="#fff" /> Anadir{" "}
+              <Ionicons name="md-create" size={20} color="#fff" /> Editar{" "}
             </Text>
           </TouchableOpacity>
         </View>
@@ -99,14 +101,14 @@ const styles = StyleSheet.create({
   viewContainerButtom: {
     borderRadius: 15,
     backgroundColor: "#D9E3E6",
-    width: 145,
+    width: 140,
     // padding: 6,
     alignItems: "stretch"
   },
   viewContainerButtom1: {
     borderRadius: 15,
     backgroundColor: "#01B8E2",
-    width: 145,
+    width: 140,
     // padding: 6,
     alignItems: "stretch"
   }

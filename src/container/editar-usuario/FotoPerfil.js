@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 
-export default function FotoPerfil() {
+export default function FotoPerfil(props) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => props.navigation.navigate("Captura")}>
         <View style={styles.viewContainer}>
           <ImageBackground
             source={require("../../../assets/perfil.png")}

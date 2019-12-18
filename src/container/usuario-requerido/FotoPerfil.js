@@ -5,11 +5,13 @@ import { Ionicons } from "@expo/vector-icons";
 export default function FotoPerfil() {
   return (
     <View style={styles.container}>
-      <View style={styles.viewContainer}>
-        <Image
-          source={require("../../../assets/perfil.png")}
-          style={styles.imageBackground}
-        />
+      <View style={{ alignItems: "center" }}>
+        <View style={styles.viewContainer}>
+          <Image
+            source={require("../../../assets/perfil.png")}
+            style={styles.imageBackground}
+          />
+        </View>
       </View>
       <Text style={styles.usuario}>
         <Ionicons name="ios-checkmark-circle-outline" size={18} color="#fff" />{" "}
@@ -22,23 +24,24 @@ export default function FotoPerfil() {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    alignItems: "center",
+    // alignItems: "center",
     marginTop: 15,
     marginBottom: 10,
-    // alignItems: 'stretch',
+    alignItems: "stretch",
     maxWidth: 350,
     paddingHorizontal: 30
   },
   viewContainer: {
     marginVertical: 5,
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
     width: 130,
     height: 130,
-    borderRadius: 100
+    borderRadius: 100,
+    textAlign: "center"
   },
   usuario: {
-    padding: 13,
+    paddingVertical: 13,
     backgroundColor: "#00DFAA",
     textAlign: "center",
     color: "#fff",
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
   imageBackground: {
     width: "100%",
     height: "100%",
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "center"
+    // alignItems: "center",
   }
 });

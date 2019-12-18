@@ -23,6 +23,7 @@ const style = StyleSheet.create({
     flex: 6,
     backgroundColor: "#fff",
     // marginHorizontal: 30,
-    paddingVertical: 30
+    paddingVertical: 30,
+    marginLeft: 5
   }
 });

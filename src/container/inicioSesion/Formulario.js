@@ -12,8 +12,7 @@ import { validatorEmail } from "../../helpers/validatorEmail";
 export default function Formulario(props) {
   let [getEmail, setEmail] = useState({
     email: "",
-    caracteres: 0,
-    validator: ""
+    validator: false
   });
 
   validarEmail = event => {
@@ -21,35 +20,36 @@ export default function Formulario(props) {
     const email = event.nativeEvent.text;
     const emailLimpio = email.trim();
     let caracteresEmail = event.nativeEvent.eventCount;
-    setEmail({ ...getEmail, caracteres: caracteresEmail });
-    if (getEmail.caracteres >= 13) {
+    if (caracteresEmail >= 13) {
       if (validatorEmail(emailLimpio)) {
+        console.log(getEmail);
         setEmail({ ...getEmail, email: emailLimpio, validator: true });
-      } else {
+      } else if (!validatorEmail(emailLimpio)) {
         setEmail({ ...getEmail, validator: false });
       }
     }
   };
   let [getPass, setPass] = useState({
     Pass: "",
-    caracteres: 0,
-    validator: ""
+    validator: false
   });
 
   validarPass = event => {
     const pass = event.nativeEvent.text;
     let caracteresPass = event.nativeEvent.eventCount;
     const passLimpio = pass.trim();
-    setPass({ ...getPass, caracteres: caracteresPass });
-    if (getPass.caracteres >= 6) {
+    if (caracteresPass >= 5) {
+      // console.log(getPass);
       setPass({ ...getPass, Pass: passLimpio, validator: true });
-    } else {
+    } else if (getPass.caracteres < 6) {
       setPass({ ...getPass, validator: false });
     }
   };
   const [getError, setError] = useState(false);
   enviarRequest = () => {
-    if (getEmail.validator === true && getPass.validator === true) {
+    // console.log(getEmail.validator);
+    // console.log(getPass.validator);
+    if (getEmail.validator && getPass.validator) {
       props.navigation.navigate("Dashboard");
     } else {
       setError(true);
@@ -123,11 +123,6 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     backgroundColor: "#0097CD"
   },
-  // error: {
-  //   borderWidth: 2,
-  //   borderColor: "rgb(204, 0, 0)",
-  //   borderRadius: 15
-  // },
   usuario: {
     padding: 13,
     backgroundColor: "red",

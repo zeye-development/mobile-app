@@ -6,17 +6,17 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
-export default function Formulario() {
+export default function Formulario(props) {
   return (
     <View style={styles.container}>
       <View style={styles.viewContainerGrup}>
         <View style={styles.viewContainerInput}>
-          <TextInput style={styles.input1} value="keyberth" />
+          <TextInput style={styles.input1} value="Jhon" />
         </View>
         <View style={styles.viewContainerInput}>
-          <TextInput value="Rengel" style={styles.input1} />
+          <TextInput value="Doe" style={styles.input1} />
         </View>
       </View>
       <View style={styles.viewContainer}>
@@ -24,42 +24,31 @@ export default function Formulario() {
       </View>
 
       <View style={styles.viewContainer}>
-        <TextInput value="27143528" style={styles.input} />
+        <TextInput value="15238529" style={styles.input} />
       </View>
 
       <View style={styles.viewContainer}>
         <TextInput value="masculino" style={styles.input} />
       </View>
 
-      <View style={styles.viewContainerGrup}>
-        <View style={styles.viewContainerButtom}>
-          <TouchableOpacity>
-            <Text
-              style={{
-                fontSize: 18,
-                padding: 13,
-                color: "#01B8E2",
-                textAlign: "center"
-              }}
-            >
-              <Ionicons name="md-trash" size={20} color="#01B8E2" /> Eliminar{" "}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.viewContainerButtom1}>
-          <TouchableOpacity>
-            <Text
-              style={{
-                fontSize: 18,
-                padding: 13,
-                color: "#fff",
-                textAlign: "center"
-              }}
-            >
-              <Ionicons name="md-create" size={20} color="#fff" /> Anadir{" "}
-            </Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.viewContainerButtom}>
+        {/* <View style={styles.viewContainerButtom1}> */}
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("Dashboard")}
+        >
+          <Text
+            style={{
+              fontSize: 18,
+              padding: 13,
+              color: "#fff",
+              textAlign: "center"
+            }}
+          >
+            <MaterialIcons name="file-download" size={20} color="#fff" />{" "}
+            Guardar Cambios{" "}
+          </Text>
+        </TouchableOpacity>
+        {/* </View> */}
       </View>
     </View>
   );
@@ -101,33 +90,33 @@ const styles = StyleSheet.create({
   viewContainerInput: {
     borderRadius: 15,
     backgroundColor: "#EBF2F4",
-    width: 145
+    width: 140
   },
-  styleButtom: {
-    borderRadius: 15,
-    marginVertical: 15,
-    alignItems: "center",
-    backgroundColor: "#0097CD"
-  },
-  viewContainerCheck: {
-    padding: 13,
-    color: "#EBF2F4",
-    alignItems: "center",
-    marginTop: 7,
-    marginBottom: 15
-  },
+  // styleButtom: {
+  //   borderRadius: 15,
+  //   marginVertical: 15,
+  //   alignItems: "center",
+  //   backgroundColor: "#0097CD"
+  // },
+  // viewContainerCheck: {
+  //   padding: 13,
+  //   color: "#EBF2F4",
+  //   alignItems: "center",
+  //   marginTop: 7,
+  //   marginBottom: 15
+  // },
   viewContainerButtom: {
     borderRadius: 15,
-    backgroundColor: "#D9E3E6",
-    width: 145,
-    // padding: 6,
-    alignItems: "stretch"
-  },
-  viewContainerButtom1: {
-    borderRadius: 15,
     backgroundColor: "#01B8E2",
-    width: 145,
     // padding: 6,
-    alignItems: "stretch"
+    // alignItems: "stretch"
+    marginTop: 15
   }
+  // viewContainerButtom1: {
+  //   borderRadius: 15,
+  //   backgroundColor: "#01B8E2",
+  //   width: 140,
+  //   // padding: 6,
+  //   alignItems: "stretch"
+  // }
 });

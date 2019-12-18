@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   viewContainerInput: {
     borderRadius: 15,
     backgroundColor: "#EBF2F4",
-    width: 145
+    width: 140
   },
   styleButtom: {
     borderRadius: 15,

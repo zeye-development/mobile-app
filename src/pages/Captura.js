@@ -5,13 +5,13 @@ import Header from "../container/captura/Header";
 import FotoPerfil from "../container/captura/FotoPerfil";
 import Formulario from "../container/captura/Formulario";
 
-export default function Captura() {
+export default function Captura(props) {
   return (
     <View style={style.container}>
       <ScrollView>
-        <Header />
+        <Header navigation={props.navigation} />
         <FotoPerfil />
-        <Formulario />
+        <Formulario navigation={props.navigation} />
       </ScrollView>
     </View>
   );
@@ -19,7 +19,8 @@ export default function Captura() {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff",
-    paddingVertical: 30
+    backgroundColor: "#fff"
+    // paddingVertical: 30,
+    // paddingLeft: 5
   }
 });

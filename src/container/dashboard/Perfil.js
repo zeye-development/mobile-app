@@ -61,9 +61,9 @@ export default function Perfil(props) {
             >
               <Text style={styles.optionButtom}>Perfil</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <Text style={styles.optionButtom}>Eliminar</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       ) : null}
@@ -89,10 +89,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   optionButtom: {
-    paddingHorizontal: 6,
-    paddingVertical: 9,
-    borderBottomWidth: 1,
-    borderColor: "#fff"
+    paddingHorizontal: 12,
+    paddingVertical: 9
+    // borderBottomWidth: 1,
+    // borderColor: "#f2f2f2"
   },
   containerOptionButtom: {
     position: "absolute",
@@ -101,10 +101,18 @@ const styles = StyleSheet.create({
   },
   containerButtom: {
     width: 180,
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#fff",
     borderRadius: 2,
     // borderWidth: 1,
     // borderColor: "#000",
-    shadowOpacity: 2
+    // shadowOpacity: 2
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
   }
 });

@@ -11,7 +11,7 @@ export default function UsuarioRequerido(props) {
       <ScrollView>
         <Header navigation={props.navigation} />
         <FotoPerfil />
-        <Formulario />
+        <Formulario navigation={props.navigation} />
       </ScrollView>
     </View>
   );
@@ -20,6 +20,7 @@ const style = StyleSheet.create({
   container: {
     flex: 6,
     backgroundColor: "#fff",
-    paddingVertical: 30
+    paddingVertical: 30,
+    marginLeft: 5
   }
 });
