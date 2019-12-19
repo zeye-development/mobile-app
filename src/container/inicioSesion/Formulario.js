@@ -46,7 +46,7 @@ export default class Formulario extends Component {
         },
         body: JSON.stringify({
           email:(this.state.email),
-          password:(this.state.pass),
+          password:md5(this.state.pass),
         }),
       });
 
