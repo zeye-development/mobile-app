@@ -13,6 +13,8 @@ import RecuperarPaso1 from "./src/pages/RecuperarPaso1";
 import RecuperarPaso2 from "./src/pages/RecuperarPaso2";
 import Captura from "./src/pages/Captura";
 import Dashboard from "./src/pages/Dashboard";
+import Loading from "./src/pages/Loading";
+
 // import Camera from "./Camera";
 
 const AppNavigator = createStackNavigator(
@@ -46,11 +48,20 @@ const AppNavigator = createStackNavigator(
     },
     Dashboard: {
       screen: Dashboard
+    },
+    Loading:{
+      screen: Loading
     }
   },
   {
-    headerMode: "none"
-  }
+
+    initialRouteName: 'Loading',
+    headerMode:"none",
+    navigationOptions:{
+  
+      headerVisible: false,
+      headerleft:null,
+    }}
 );
 
 export default createAppContainer(AppNavigator);

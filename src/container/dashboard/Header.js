@@ -1,9 +1,30 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, Text, View, TouchableOpacity,AsyncStorage } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 
-export default function Header(props) {
-  return (
+
+export default class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      uri:null,
+     
+    };
+  }
+
+  async logOut(){
+
+    try {
+      await AsyncStorage.clear();
+      this.props.navigation.replace('InicioSesion')
+    } catch (error) {
+      
+    }
+
+
+  }
+  render() {
+    return (
     <View style={styles.container}>
       <TouchableOpacity>
         <Text style={styles.icon}>
@@ -14,7 +35,7 @@ export default function Header(props) {
       <Text style={styles.headerText}>Dashboard</Text>
 
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("InicioSesion")}
+        onPress={()=>{this.logOut()}}
       >
         <Text style={styles.icon}>
           {" "}
@@ -23,7 +44,7 @@ export default function Header(props) {
       </TouchableOpacity>
     </View>
   );
-}
+}}
 
 const styles = StyleSheet.create({
   container: {
