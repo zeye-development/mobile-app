@@ -57,10 +57,12 @@ export default class Formulario extends Component {
       const token= await JSON.stringify(responseJson.token);
       if (responseJson.status === 200){
         await AsyncStorage.setItem('token', token);
+        
         this.props.navigation.replace('Dashboard')
 
       } 
       else {
+        
         Alert.alert('Error','El Correo o la contraseña no son correctos');
       }
     

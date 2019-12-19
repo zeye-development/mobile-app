@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView,KeyboardAvoidingView,SafeAreaView } from "react-native";
 
 import Header from "../container/registro/Header";
 import LoginRedes from "../container/registro/LoginRedes";
@@ -8,14 +8,19 @@ import Preguntas from "../container/registro/Preguntas";
 
 export default function Registro(props) {
   return (
+    <SafeAreaView>
+    <KeyboardAvoidingView  behavior="position" enabled>
+    <ScrollView>
     <View style={style.container}>
-      <ScrollView>
         <Header navigation={props.navigation} />
         <LoginRedes />
         <Formulario navigation={props.navigation} />
         <Preguntas navigation={props.navigation} />
-      </ScrollView>
+      
     </View>
+    </ScrollView>   
+</KeyboardAvoidingView>
+  </SafeAreaView>
   );
 }
 const style = StyleSheet.create({
