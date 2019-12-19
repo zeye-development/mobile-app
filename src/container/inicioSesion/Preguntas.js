@@ -9,11 +9,11 @@ export default function Preguntas(props) {
         onPress={() => props.navigation.navigate("RecuperarPaso1")}
       >
         <View style={styles.viewContainer}>
-          <Text style={styles.font}>Has olvidado tu contrasena?</Text>
+          <Text style={styles.font}>¿Has olvidado tu contraseña?</Text>
         </View>
       </TouchableOpacity>
       <View style={styles.viewContainer}>
-        <Text style={styles.font1}>Aun no tienes cuenta?</Text>
+        <Text style={styles.font1}>¿Aun no tienes cuenta?</Text>
       </View>
 
       <TouchableOpacity onPress={() => props.navigation.navigate("Registro")}>

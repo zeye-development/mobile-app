@@ -6,7 +6,7 @@ export default function Preguntas(props) {
   return (
     <View style={styles.container}>
       <View style={styles.viewContainer}>
-        <Text style={styles.font}>ya tienes cuenta?</Text>
+        <Text style={styles.font}>¿Ya tienes cuenta?</Text>
       </View>
 
       <TouchableOpacity

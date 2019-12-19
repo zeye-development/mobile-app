@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, AsyncStorage} from 'react-native';
+import { View, Image, AsyncStorage, StyleSheet} from 'react-native';
 
 
 
@@ -18,7 +18,7 @@ export default class Loading extends Component {
             if(token){
                 this.props.navigation.replace ('Dashboard');
             }else{
-                this.props.navigation.replace ('InicioSesion');
+                this.props.navigation.replace ('Home');
 
             }
         } catch (error) {
@@ -32,10 +32,15 @@ export default class Loading extends Component {
   render() {
     return (
       <View style={{flex: 1,justifyContent: 'center', alignItems: 'center',}}>
-        <ActivityIndicator size="large" color="#aaf" />
-        <Text> Cargando </Text>
+      <Image source={require('../../assets/quantic.jpg')} resizeMode="contain" style={styles.splash} />
       </View>
     );
   }
 }
 
+const styles = StyleSheet.create({
+  splash:{
+    width:'50%',
+    height:'50%',
+  }
+})

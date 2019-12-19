@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   input1: {
     fontSize: 18,
     paddingVertical: 13,
-    paddingHorizontal: 33,
+    paddingHorizontal: 20,
     marginRight: 13
   },
   inputButtom: {

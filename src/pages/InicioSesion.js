@@ -9,17 +9,16 @@ import Preguntas from "../container/inicioSesion/Preguntas";
 export default function InicioSesion(props) {
   return (
     <SafeAreaView>
-    <KeyboardAvoidingView  behavior="position" enabled>
-    <ScrollView>
-    <View style={style.container}>
-        <Header navigation={props.navigation} />
-        <LoginRedes />
-        <Formulario navigation={props.navigation} />
-        <Preguntas navigation={props.navigation} />
-      
-    </View>
-   </ScrollView>   
-</KeyboardAvoidingView>
+      <KeyboardAvoidingView  behavior="position" enabled>
+        <ScrollView>
+          <View style={style.container}>
+            <Header navigation={props.navigation} />
+            <LoginRedes />
+            <Formulario navigation={props.navigation} />
+            <Preguntas navigation={props.navigation} />
+          </View>
+         </ScrollView>   
+      </KeyboardAvoidingView>
   </SafeAreaView>
   );
 }
