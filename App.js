@@ -13,6 +13,7 @@ import RecuperarPaso1 from "./src/pages/RecuperarPaso1";
 import RecuperarPaso2 from "./src/pages/RecuperarPaso2";
 import Captura from "./src/pages/Captura";
 import Dashboard from "./src/pages/Dashboard";
+import PanelAdmin from "./src/pages/PanelAdmin";
 import Loading from "./src/pages/Loading";
 
 // import Camera from "./Camera";
@@ -49,19 +50,21 @@ const AppNavigator = createStackNavigator(
     Dashboard: {
       screen: Dashboard
     },
-    Loading:{
+    PanelAdmin: {
+      screen: PanelAdmin
+    },
+    Loading: {
       screen: Loading
     }
   },
   {
-
-    initialRouteName: 'Loading',
-    headerMode:"none",
-    navigationOptions:{
-  
+    initialRouteName: "Loading",
+    headerMode: "none",
+    navigationOptions: {
       headerVisible: false,
-      headerleft:null,
-    }}
+      headerleft: null
+    }
+  }
 );
 
 export default createAppContainer(AppNavigator);
@@ -73,13 +76,14 @@ export default createAppContainer(AppNavigator);
 //       {/* <InicioSesion />  */}
 //       {/* <Registro /> */}
 //       {/* <NuevoUsuario /> */}
-//       <UsuarioRequerido />
+//       {/* <UsuarioRequerido /> */}
 //       {/* <RecuperarPaso1 /> */}
 //       {/* <RecuperarPaso2 /> */}
 //       {/* <Captura /> */}
 //       {/* <Dashboard /> */}
 //       {/* <Camera /> */}
 //       {/* <EditarUsuario /> */}
+//       <PanelAdmin />
 //     </View>
 //   );
 // }
