@@ -177,12 +177,13 @@ export default class Formulario extends React.Component{
           whiteBalance={whiteBalance}
           focusDepth={focusDepth}
         />
-
+        
+        <View style={styles.cuadro2}></View>
         <View style={styles.controls}>
           {!photo && (
             <Button
-              title="Take photo"
-              color="#010101"
+              title="Take Picture"
+              color="#0097CD"
               onPress={this._takePictureButtonPressed}
             />
           )}
@@ -211,7 +212,9 @@ const styles = StyleSheet.create({
   containermodal: {
     flex: 1,
     backgroundColor: "black",
-    position: "relative"
+    position: "relative",
+    
+
   },
 
   viewContainer: {
@@ -227,6 +230,17 @@ const styles = StyleSheet.create({
   cuadro:{
     width:'80%',
     height:'80%',
+    borderColor:'white',
+    borderWidth:7,
+    
+    position:'absolute'
+
+  },
+  cuadro2:{
+    marginLeft:'10%',
+    marginTop:'30%',
+    width:'80%',
+    height:'60%',
     borderColor:'white',
     borderWidth:7,
     
