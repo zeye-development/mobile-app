@@ -1,14 +1,54 @@
 import * as React from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
-import * as Permissions from 'expo-permissions';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import * as Permissions from "expo-permissions";
+import { StyleSheet, Text, View, TouchableOpacity, Image,Modal,Button,Platform } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
+import { Camera } from "expo-camera";
+
 
 export default class Formulario extends React.Component{
   state = {
+    modalVisible:false,
+    hasCameraPermission: false,
+    // type: Camera.Constants.Type.front,
+    type: Camera.Constants.Type.back,
+    flashMode: Camera.Constants.FlashMode.on,
+    autoFocus: Camera.Constants.AutoFocus.on,
+    zoom: 0,
+    whiteBalance: Camera.Constants.WhiteBalance.auto,
+    focusDepth: 0,
+    ratio: "4:3",
+  
     image: null,}
-
+    async componentDidMount() {
+      try {
+        const { status } = await Permissions.askAsync(Permissions.CAMERA);
+  
+        this.setState({ hasCameraPermission: status === "granted" });
+  
+        if (status !== "granted") {
+          alert("Hey! You might want to enable Camera in your phone settings.");
+        }
+      } catch (err) {
+        console.log("err", err);
+      }
+  
+      if (Platform.OS === "android") {
+        try {
+          const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+  
+          this.setState({ hasCameraPermission: status === "granted" });
+  
+          if (status !== "granted") {
+            alert("Hey! You might want to enable Camera in your phone settings.");
+          }
+        } catch (err) {
+          console.log("err", err);
+        }
+      }
+    }
+    
     getPermissionAsync = async () => {
       if (Constants.platform.ios) {
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -19,52 +59,141 @@ export default class Formulario extends React.Component{
     }
   
     _pickImage = async () => {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1
-      });
+      const options = { quality: 0.1, base64: true };
+      let result = await ImagePicker.launchImageLibraryAsync(options);
   
       console.log(result);
   
       if (!result.cancelled) {
-        this.setState({ image: result.uri });
+        this.setState({ base64: result.base64 });
+        this.setState({ image: result.uri});
       }
     };
+  
+    
+  
+   
+        
+    
+    handleUploadPhoto = () => {
+      fetch("http://189.213.227.211:8080/person", {
+        method: "POST",
+        body:JSON.stringify({
+        picture:(this.state.base64),
+         }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => response.json())
+        .then(response => {
+          console.log("upload succes", response);
+          alert("Upload success!");
+          this.setState({ uri: null });
+        })
+        .catch(error => {
+          console.log("upload error", error);
+          alert("Upload failed!");
+        });
+    };
+    _takePictureButtonPressed = async () => {
+      if (this._cameraInstance) {
+        // console.log('')
+  
+        //const options = { quality: 0.5, base64: true };
+        const options = { quality: 0.1, base64: true };
+        
+        let result = await this._cameraInstance.takePictureAsync(options);
+        
+        console.log(result);
+  
+      if (!result.cancelled) {
+        this.setState({ base64: result.base64 });
+        this.setState({ image: result.uri});
+        this.setState({modalVisible:!this.state.modalVisible})
+      }
+        
+    }
+      };
+   
+  
   render(){
     let { image } = this.state;
+    
+
+    const {
+      
+      type,
+      flashMode,
+      zoom,
+      whiteBalance,
+      focusDepth,
+      photo
+    } = this.state;
+
+    
  
   return (
     <View style={styles.container}>
+     
        <View style={styles.viewContainer}>
         <Image
-          style={{ width: 220, height: 220, borderRadius:20, backgroundColor:'#aaa'}}
+          style={{ width: 230, height: 230, borderRadius:20, position: 'absolute'}}
           source={{ uri: image }}
         />
+       <View style={styles.cuadro}></View>
+       
       </View>
       <View style={styles.styleButtom}>
-        <TouchableOpacity>
+        <TouchableOpacity  onPress={()=>{this.setState({modalVisible:!this.state.modalVisible})}}>
           <Text style={styles.inputButtom}>
-            Capturar <Ionicons name="ios-camera" size={20} color="#fff" />
-          </Text>
+            Capturar <Ionicons name="ios-camera" size={20} color="#fff" /></Text>
         </TouchableOpacity>
       </View>
       <View style={styles.styleButtom1}>
         <TouchableOpacity  onPress={this._pickImage}>
           <Text style={styles.inputButtom1}>
-            Cargar <Ionicons name="md-cloud-upload" size={20} color="#00425A" />
-          </Text>
+            Cargar <Ionicons name="md-cloud-upload" size={20} color="#00425A" /></Text>
         </TouchableOpacity>
       </View>
       <View style={styles.styleButtom}>
-        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+        <TouchableOpacity onPress={this.handleUploadPhoto}>
           <Text style={styles.inputButtom}>
-            <Feather name="download" size={20} color="#fff" /> Guardar
-          </Text>
+            <Feather name="download" size={20} color="#fff" /> Guardar</Text>
         </TouchableOpacity>
+        <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.state.modalVisible}
+        >
+        
+        <View style={styles.containermodal}>
+        <Camera
+          style={styles.camera}
+          ref={ref => (this._cameraInstance = ref)}
+          type={type}
+          flashMode={flashMode}
+          zoom={zoom}
+          whiteBalance={whiteBalance}
+          focusDepth={focusDepth}
+        />
+
+        <View style={styles.controls}>
+          {!photo && (
+            <Button
+              title="Take photo"
+              color="#010101"
+              onPress={this._takePictureButtonPressed}
+            />
+          )}
+          {/* //previo */}
+          {photo && <Image style={styles.photo} source={photo} />}
+        </View>
+      </View>
+        </Modal>
       </View>
     </View>
+    
   );
 }
 }
@@ -79,6 +208,12 @@ const styles = StyleSheet.create({
    alignItems:'center',
 
   },
+  containermodal: {
+    flex: 1,
+    backgroundColor: "black",
+    position: "relative"
+  },
+
   viewContainer: {
     marginTop: 10,
     marginBottom: 5,
@@ -86,7 +221,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 225,
     height: 225,
-    borderRadius: 25
+    borderRadius: 25,
+    backgroundColor:"#CCE3EB" 
+  },
+  cuadro:{
+    width:'80%',
+    height:'80%',
+    borderColor:'white',
+    borderWidth:7,
+    
+    position:'absolute'
+
   },
   inputButtom: {
     fontSize: 18,
@@ -113,5 +258,28 @@ const styles = StyleSheet.create({
     backgroundColor: "#CCE3EB",
     marginBottom: 45,
     paddingHorizontal:80
+  },
+  camera: {
+    flex: 1
+  },
+
+  controls: {
+    position: "absolute",
+    zIndex: 10,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 100,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  photo: {
+    width: 100,
+    height: 100,
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    top: 0
   }
 });
