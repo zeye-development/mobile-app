@@ -172,7 +172,7 @@ export default class Formulario extends React.Component{
           style={styles.camera}
           ref={ref => (this._cameraInstance = ref)}
           type={type}
-          flashMode={flashMode}
+          
           zoom={zoom}
           whiteBalance={whiteBalance}
           focusDepth={focusDepth}
@@ -274,7 +274,8 @@ const styles = StyleSheet.create({
     paddingHorizontal:80
   },
   camera: {
-    flex: 1
+   height:'100%',
+   width:'130%'
   },
 
   controls: {
