@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,167 +8,153 @@ import {
   AsyncStorage
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import md5 from 'md5';
-
+import md5 from "md5";
 
 export default class Formulario extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading:false,
-      email:null,
-      pass:null,
-      pass_v:null
+      loading: false,
+      email: null,
+      pass: null,
+      pass_v: null
     };
   }
 
-
-  async login(){
-
-    console.log(this.state.email)
-    console.log(this.state.pass)
-    console.log(this.state.pass_v)
-
+  async login() {
+    console.log(this.state.email);
+    console.log(this.state.pass);
+    console.log(this.state.pass_v);
 
     try {
-      let response = await fetch('http://189.213.227.211:8080/user',{
-        method: 'POST',
+      let response = await fetch("http://189.213.227.211:8080/user", {
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'mimeType': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          mimeType: "application/json"
         },
         body: JSON.stringify({
-          email:(this.state.email),
-          password:md5(this.state.pass),
-          password_validate:md5(this.state.pass_v),
-          names:('Argenis'),
-          surnames:('Pe'),
-          license_key:('2eo10n')
-        }),
+          email: this.state.email,
+          password: md5(this.state.pass),
+          password_validate: md5(this.state.pass_v),
+          names: "Keyberth",
+          surnames: "Pe",
+          license_key: "2eo34cm"
+        })
       });
 
-      
       let responseJson = await response.json();
-      console.log(responseJson)
+      console.log(responseJson);
 
-      
-      if (responseJson.status=== 200){
-        
-        this.props.navigation.replace('InicioSesion')
-
+      if (responseJson.status === 200) {
+        this.props.navigation.replace("InicioSesion");
+      } else {
+        Alert.alert("Error", "El Correo o la contraseña no son correctos");
       }
-      else {
-        
-        Alert.alert('Error','El Correo o la contraseña no son correctos');
-      }
-    
     } catch (error) {
-      Alert.alert("Error","Usted no dispone de una conexion a internet");
+      Alert.alert("Error", "Usted no dispone de una conexion a internet");
     }
-
-
-    
   }
 
+  render() {
+    // let [getEmail, setEmail] = useState({
+    //   email: "",
+    //   validator: false
+    // });
 
-    render() {
-  // let [getEmail, setEmail] = useState({
-  //   email: "",
-  //   validator: false
-  // });
+    // validarEmail = event => {
+    //   // console.log(event);
+    //   const email = event.nativeEvent.text;
+    //   const emailLimpio = email.trim();
+    //   let caracteresEmail = event.nativeEvent.eventCount;
+    //   if (caracteresEmail >= 13) {
+    //     if (validatorEmail(emailLimpio)) {
+    //       console.log(getEmail);
+    //       setEmail({ ...getEmail, email: emailLimpio, validator: true });
+    //     } else if (!validatorEmail(emailLimpio)) {
+    //       setEmail({ ...getEmail, validator: false });
+    //     }
+    //   }
+    // };
+    // let [getPass, setPass] = useState({
+    //   Pass: "",
+    //   validator: false
+    // });
 
-  // validarEmail = event => {
-  //   // console.log(event);
-  //   const email = event.nativeEvent.text;
-  //   const emailLimpio = email.trim();
-  //   let caracteresEmail = event.nativeEvent.eventCount;
-  //   if (caracteresEmail >= 13) {
-  //     if (validatorEmail(emailLimpio)) {
-  //       console.log(getEmail);
-  //       setEmail({ ...getEmail, email: emailLimpio, validator: true });
-  //     } else if (!validatorEmail(emailLimpio)) {
-  //       setEmail({ ...getEmail, validator: false });
-  //     }
-  //   }
-  // };
-  // let [getPass, setPass] = useState({
-  //   Pass: "",
-  //   validator: false
-  // });
-
-  // validarPass = event => {
-  //   const pass = event.nativeEvent.text;
-  //   let caracteresPass = event.nativeEvent.eventCount;
-  //   const passLimpio = pass.trim();
-  //   if (caracteresPass >= 5) {
-  //     // console.log(getPass);
-  //     setPass({ ...getPass, Pass: passLimpio, validator: true });
-  //   } else if (getPass.caracteres < 6) {
-  //     setPass({ ...getPass, validator: false });
-  //   }
-  // };
-  // const [getError, setError] = useState(false);
-  // enviarRequest = () => {
-  //   // console.log(getEmail.validator);
-  //   // console.log(getPass.validator);
-  //   if (getEmail.validator && getPass.validator) {
-  //     // props.navigation.navigate("Dashboard");
-  //   } else {
-  //     setError(true);
-  //     setTimeout(() => {
-  //       setError(false);
-  //     }, 3000);
-  //   }
-  // };
-  return (
-    <View style={styles.container}>
-    {/* <View style={styles.viewContainer}>
+    // validarPass = event => {
+    //   const pass = event.nativeEvent.text;
+    //   let caracteresPass = event.nativeEvent.eventCount;
+    //   const passLimpio = pass.trim();
+    //   if (caracteresPass >= 5) {
+    //     // console.log(getPass);
+    //     setPass({ ...getPass, Pass: passLimpio, validator: true });
+    //   } else if (getPass.caracteres < 6) {
+    //     setPass({ ...getPass, validator: false });
+    //   }
+    // };
+    // const [getError, setError] = useState(false);
+    // enviarRequest = () => {
+    //   // console.log(getEmail.validator);
+    //   // console.log(getPass.validator);
+    //   if (getEmail.validator && getPass.validator) {
+    //     // props.navigation.navigate("Dashboard");
+    //   } else {
+    //     setError(true);
+    //     setTimeout(() => {
+    //       setError(false);
+    //     }, 3000);
+    //   }
+    // };
+    return (
+      <View style={styles.container}>
+        {/* <View style={styles.viewContainer}>
       <TextInput style={styles.input} placeholder="User" />
     </View> */}
-    <View style={styles.viewContainer}>
-      <TextInput
-        placeholder="Email"
-        value={this.state.email}
-        onChangeText={email => this.setState({ email })}
-        style={styles.input}
-       
-      />
-    </View>
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Email"
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+            style={styles.input}
+          />
+        </View>
 
-    <View style={styles.viewContainer}>
-      <TextInput
-        placeholder="Password"
-        secureTextEntry={true}
-        value={this.state.pass}
-        onChangeText={pass => this.setState({ pass })}
-        style={styles.input}
-        
-      />
-    </View>
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Password"
+            secureTextEntry={true}
+            value={this.state.pass}
+            onChangeText={pass => this.setState({ pass })}
+            style={styles.input}
+          />
+        </View>
 
-    <View style={styles.viewContainer}>
-      <TextInput
-        placeholder="Repeat Password"
-        secureTextEntry={true}
-        value={this.state.pass_v}
-        onChangeText={pass_v => this.setState({ pass_v })}
-        style={styles.input}
-        
-      />
-    </View>
-    
-    <View style={styles.styleButtom}>
-      <TouchableOpacity onPress={()=>{this.login(this.state.email,this.state.pass,this.state.pass_v)}}>
-        <Text style={styles.inputButtom}>
-          Registrar{" "}
-          <Ionicons name="md-arrow-forward" size={18} color="#fff" />
-        </Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-  );
-}
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Repeat Password"
+            secureTextEntry={true}
+            value={this.state.pass_v}
+            onChangeText={pass_v => this.setState({ pass_v })}
+            style={styles.input}
+          />
+        </View>
+
+        <View style={styles.styleButtom}>
+          <TouchableOpacity
+            onPress={() => {
+              this.login(this.state.email, this.state.pass, this.state.pass_v);
+            }}
+          >
+            <Text style={styles.inputButtom}>
+              Registrar{" "}
+              <Ionicons name="md-arrow-forward" size={18} color="#fff" />
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
 }
 const styles = StyleSheet.create({
   container: {

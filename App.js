@@ -14,6 +14,8 @@ import RecuperarPaso2 from "./src/pages/RecuperarPaso2";
 import Captura from "./src/pages/Captura";
 import Dashboard from "./src/pages/Dashboard";
 import PanelAdmin from "./src/pages/PanelAdmin";
+import Coincidencias from "./src/pages/Coincidencias";
+import CoincidenciaUsuario from "./src/pages/CoincidenciaUsuario";
 import Loading from "./src/pages/Loading";
 
 // import Camera from "./Camera";
@@ -53,6 +55,12 @@ const AppNavigator = createStackNavigator(
     PanelAdmin: {
       screen: PanelAdmin
     },
+    Coincidencias: {
+      screen: Coincidencias
+    },
+    CoincidenciaUsuario: {
+      screen: CoincidenciaUsuario
+    },
     Loading: {
       screen: Loading
     }
@@ -83,7 +91,9 @@ export default createAppContainer(AppNavigator);
 //       {/* <Dashboard /> */}
 //       {/* <Camera /> */}
 //       {/* <EditarUsuario /> */}
-//       <PanelAdmin />
+//       {/* <PanelAdmin /> */}
+//       {/* <Coincidencias /> */}
+//       <CoincidenciaUsuario />
 //     </View>
 //   );
 // }

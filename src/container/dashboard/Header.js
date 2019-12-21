@@ -1,50 +1,62 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity,AsyncStorage } from "react-native";
-import { Feather, Ionicons } from "@expo/vector-icons";
-
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  AsyncStorage
+} from "react-native";
+import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uri:null,
-     
+      uri: null
     };
   }
 
-  async logOut(){
-
+  async logOut() {
     try {
       await AsyncStorage.clear();
-      this.props.navigation.replace('InicioSesion')
-    } catch (error) {
-      
-    }
-
-
+      this.props.navigation.replace("InicioSesion");
+    } catch (error) {}
   }
   render() {
     return (
-    <View style={styles.container}>
-      <TouchableOpacity>
-        <Text style={styles.icon}>
-          {" "}
-          <Feather name="settings" size={20} color="#fff" />{" "}
-        </Text>
-      </TouchableOpacity>
-      <Text style={styles.headerText}>Dashboard</Text>
+      <View style={styles.container}>
+        <View style={{ flexDirection: "row" }}>
+          <TouchableOpacity>
+            <Text style={styles.icon}>
+              {" "}
+              <Feather name="settings" size={20} color="#fff" />{" "}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Captura")}
+          >
+            <Text style={styles.icon}>
+              {" "}
+              <FontAwesome name="camera" size={20} color="#fff" />
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.headerText}>Dashboard</Text>
 
-      <TouchableOpacity
-        onPress={()=>{this.logOut()}}
-      >
-        <Text style={styles.icon}>
-          {" "}
-          <Ionicons name="ios-log-in" size={20} color="#fff" />{" "}
-        </Text>
-      </TouchableOpacity>
-    </View>
-  );
-}}
+        <TouchableOpacity
+          onPress={() => {
+            this.logOut();
+          }}
+        >
+          <Text style={styles.icon}>
+            {"      "}
+            <Ionicons name="ios-log-in" size={20} color="#fff" />{" "}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
