@@ -19,6 +19,7 @@ export default class Formulario extends Component {
     };
   }
   
+
   handleUploadPhoto = () => {
     let parabase64=JSON.stringify(this.props.navigation.getParam('base','base64'))
     let base64=parabase64.replace(/['"]+/g, '')
@@ -54,9 +55,9 @@ export default class Formulario extends Component {
       });
   };
   render() {
+    
     let perfil=JSON.stringify(this.props.navigation.getParam('item','image'))
     let foto=perfil.replace(/['"]+/g, '')
-    
     
   return (
     
@@ -109,13 +110,15 @@ export default class Formulario extends Component {
       </View>
       <View style={styles.viewContainerCheck}>
        
-        <TouchableOpacity onPress={()=>{this.setState({estado:!this.state.estado})}}> 
+        <TouchableOpacity 
+        style={{width:35,height:35, marginTop:10}}
+        onPress={()=>{this.setState({estado:!this.state.estado})}}> 
         {this.state.estado?
            <Ionicons name="md-checkbox-outline" size={25} color="#00425A" />:
            <Ionicons name="md-square-outline" size={25} color="#00425A" />
            }
           </TouchableOpacity>
-          <Text style={{ color: "#00425A", fontSize: 16, marginLeft:5 }}>Anadir a solicitados
+          <Text style={{ color: "#00425A", fontSize: 16, marginLeft:-10 }}>Anadir a solicitados
         </Text>
       </View>
 

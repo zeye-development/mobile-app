@@ -18,6 +18,7 @@ import Coincidencias from "./src/pages/Coincidencias";
 import CoincidenciaUsuario from "./src/pages/CoincidenciaUsuario";
 import Loading from "./src/pages/Loading";
 
+
 // import Camera from "./Camera";
 
 const AppNavigator = createStackNavigator(
@@ -69,7 +70,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Loading",
+    initialRouteName: "Dashboard",
     headerMode: "none",
     navigationOptions: {
       headerVisible: false,

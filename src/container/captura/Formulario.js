@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from "expo-permissions";
-import { StyleSheet, Text, View, TouchableOpacity, Image,Modal,Button,Platform } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image,Modal,Button,Platform, Alert } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
 
@@ -11,6 +11,8 @@ export default class Formulario extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      image:null,
+      base64:null,
  
     modalVisible:false,
     hasCameraPermission: false,
@@ -24,6 +26,7 @@ export default class Formulario extends React.Component{
     ratio: "4:3",
   
   };}
+
     async componentDidMount() {
       try {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -103,15 +106,28 @@ export default class Formulario extends React.Component{
     }
       };
    
+    guardar=()=>{
+      let { image,base64 } = this.state;
+      
+      if(image===null){
+        Alert.alert('ERROR',"EL CAMPO DE IMAGEN ESTA VACIO")
+      }
+      else{
+
+        this.props.navigation.navigate('NuevoUsuario', {
+          item: image, base: base64 })   
+      }
+    }
+   
   
   render(){
-    let { image,base64 } = this.state;
+    let { image} = this.state;
     
 
     const {
       
       type,
-      flashMode,
+      
       zoom,
       whiteBalance,
       focusDepth,
@@ -144,8 +160,7 @@ export default class Formulario extends React.Component{
         </TouchableOpacity>
       </View>
       <View style={styles.styleButtom}>
-        <TouchableOpacity onPress={() =>  this.props.navigation.navigate('NuevoUsuario', {
-              item: image, base: base64 })}>
+        <TouchableOpacity  onPress={this.guardar}>
           <Text style={styles.inputButtom}>
             <Feather name="download" size={20} color="#fff" /> Guardar</Text>
         </TouchableOpacity>
