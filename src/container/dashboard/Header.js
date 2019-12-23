@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
   async logOut() {
     try {
       await AsyncStorage.clear();
-      this.props.navigation.replace("InicioSesion");
+      this.props.navigation.replace("Principal");
     } catch (error) {}
   }
   render() {

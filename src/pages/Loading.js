@@ -18,7 +18,7 @@ export default class Loading extends Component {
             if(token){
                 this.props.navigation.replace ('Dashboard');
             }else{
-                this.props.navigation.replace ('Home');
+                this.props.navigation.replace ('Principal');
 
             }
         } catch (error) {

@@ -9,7 +9,7 @@ import Preguntas from "../container/registro/Preguntas";
 export default function Registro(props) {
   return (
     <SafeAreaView>
-    <KeyboardAvoidingView  behavior="position" enabled>
+    <KeyboardAvoidingView  behavior="height" enabled>
     <ScrollView>
     <View style={style.container}>
         <Header navigation={props.navigation} />

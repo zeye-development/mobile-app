@@ -9,7 +9,7 @@ import Preguntas from "../container/inicioSesion/Preguntas";
 export default function InicioSesion(props) {
   return (
     <SafeAreaView>
-      <KeyboardAvoidingView  behavior="position" enabled>
+      <KeyboardAvoidingView  behavior="height" enabled>
         <ScrollView>
           <View style={style.container}>
             <Header navigation={props.navigation} />

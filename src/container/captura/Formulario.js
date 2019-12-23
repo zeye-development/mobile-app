@@ -8,7 +8,10 @@ import { Camera } from "expo-camera";
 
 
 export default class Formulario extends React.Component{
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
+ 
     modalVisible:false,
     hasCameraPermission: false,
     // type: Camera.Constants.Type.front,
@@ -20,7 +23,7 @@ export default class Formulario extends React.Component{
     focusDepth: 0,
     ratio: "4:3",
   
-    image: null,}
+  };}
     async componentDidMount() {
       try {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -61,13 +64,15 @@ export default class Formulario extends React.Component{
     _pickImage = async () => {
       const options = { quality: 0.1, base64: true };
       let result = await ImagePicker.launchImageLibraryAsync(options);
-  
-      console.log(result);
-  
+      
+     
+     
       if (!result.cancelled) {
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri});
+       
       }
+     
     };
   
     
@@ -75,27 +80,7 @@ export default class Formulario extends React.Component{
    
         
     
-    handleUploadPhoto = () => {
-      fetch("http://189.213.227.211:8080/person", {
-        method: "POST",
-        body:JSON.stringify({
-        picture:(this.state.base64),
-         }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => response.json())
-        .then(response => {
-          console.log("upload succes", response);
-          alert("Upload success!");
-          this.setState({ uri: null });
-        })
-        .catch(error => {
-          console.log("upload error", error);
-          alert("Upload failed!");
-        });
-    };
+   
     _takePictureButtonPressed = async () => {
       if (this._cameraInstance) {
         // console.log('')
@@ -105,12 +90,14 @@ export default class Formulario extends React.Component{
         
         let result = await this._cameraInstance.takePictureAsync(options);
         
-        console.log(result);
-  
+      
+        
       if (!result.cancelled) {
+        
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri});
         this.setState({modalVisible:!this.state.modalVisible})
+      
       }
         
     }
@@ -118,7 +105,7 @@ export default class Formulario extends React.Component{
    
   
   render(){
-    let { image } = this.state;
+    let { image,base64 } = this.state;
     
 
     const {
@@ -131,7 +118,7 @@ export default class Formulario extends React.Component{
       photo
     } = this.state;
 
-    
+  
  
   return (
     <View style={styles.container}>
@@ -157,7 +144,8 @@ export default class Formulario extends React.Component{
         </TouchableOpacity>
       </View>
       <View style={styles.styleButtom}>
-        <TouchableOpacity onPress={this.handleUploadPhoto}>
+        <TouchableOpacity onPress={() =>  this.props.navigation.navigate('NuevoUsuario', {
+              item: image, base: base64 })}>
           <Text style={styles.inputButtom}>
             <Feather name="download" size={20} color="#fff" /> Guardar</Text>
         </TouchableOpacity>

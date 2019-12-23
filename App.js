@@ -22,6 +22,9 @@ import Loading from "./src/pages/Loading";
 
 const AppNavigator = createStackNavigator(
   {
+    Principal:{
+      screen: Principal
+    },
     Home: {
       screen: Principal
     },

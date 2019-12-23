@@ -40,7 +40,7 @@ export default class Formulario extends Component {
           password_validate: md5(this.state.pass_v),
           names: "Keyberth",
           surnames: "Pe",
-          license_key: "2eo34cm"
+          license_key:  str(Math.floor(Math.random() * 10*Math.floor(Math.random() * 10*Math.floor(Math.random() * 10000000000) )))
         })
       });
 
