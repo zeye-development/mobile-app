@@ -58,8 +58,8 @@ export default class Formulario extends Component {
       if (responseJson.status === 200){
         await AsyncStorage.setItem('token', token);
         
-        this.props.navigation.replace('Dashboard')
-
+        this.props.navigation.replace('Loading')
+        
       } 
       else {
         

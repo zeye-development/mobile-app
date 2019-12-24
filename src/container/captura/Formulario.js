@@ -73,9 +73,10 @@ export default class Formulario extends React.Component{
       if (!result.cancelled) {
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri});
-       
+        
+        console.log(this.state.base64)
       }
-     
+      
     };
   
     
@@ -100,7 +101,7 @@ export default class Formulario extends React.Component{
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri});
         this.setState({modalVisible:!this.state.modalVisible})
-      
+        console.log(base64)
       }
         
     }
@@ -115,7 +116,7 @@ export default class Formulario extends React.Component{
       else{
 
         this.props.navigation.navigate('NuevoUsuario', {
-          item: image, base: base64 })   
+          item: image, base: base64})   
       }
     }
    
@@ -169,6 +170,7 @@ export default class Formulario extends React.Component{
         transparent={false}
         visible={this.state.modalVisible}
         >
+        
         
         <View style={styles.containermodal}>
         <Camera

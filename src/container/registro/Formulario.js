@@ -5,7 +5,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  AsyncStorage
+  Alert
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import md5 from "md5";
@@ -27,7 +27,7 @@ export default class Formulario extends Component {
     console.log(this.state.pass_v);
 
     try {
-      let response = await fetch("http://189.213.227.211:8080/user", {
+      let response = await fetch("http://189.213.227.211:8080/register", {
         method: "POST",
         headers: {
           Accept: "application/json",

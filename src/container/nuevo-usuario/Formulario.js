@@ -5,7 +5,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Image
+  Image,
+
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -23,16 +24,17 @@ export default class Formulario extends Component {
   handleUploadPhoto = () => {
     let parabase64=JSON.stringify(this.props.navigation.getParam('base','base64'))
     let base64=parabase64.replace(/['"]+/g, '')
-    fetch("http://189.213.227.211:8080/person", {
+    
+    fetch("http://189.213.227.211:8080/person-query", {
       method: "POST",
       body:JSON.stringify({
-      name:(this.state.name),
-      surname:(this.state.surname),
-      pais:(this.state.pais),
-      id:(this.state.id),
-      sex:(this.state.sex),
+      // names:(this.state.name),
+      // surnames:(this.state.surname),
+      // // // pais:(this.state.pais),
+      // dni:(this.state.id),
+      // sex:(this.state.sex),
       picture:(base64),
-      estado:(this.state.estado)
+      // wanted:(this.state.estado)
        }),
       headers: {
         "Content-Type": "application/json"
@@ -40,14 +42,16 @@ export default class Formulario extends Component {
     })
       .then(response => response.json())
       .then(response => {
+        console.log(parabase64)
         console.log("upload succes", response);
         alert("Upload success!");
         this.setState({ uri: null });
         this.props.navigation.navigate('Dashboard')
+        
       })
       .catch(error => {
         console.log("upload error", error);
-        console.log(base64)
+        
         console.log(this.state.estado)
         
         alert("Upload failed!");
