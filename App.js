@@ -16,6 +16,7 @@ import Dashboard from "./src/pages/Dashboard";
 import PanelAdmin from "./src/pages/PanelAdmin";
 import Coincidencias from "./src/pages/Coincidencias";
 import CoincidenciaUsuario from "./src/pages/CoincidenciaUsuario";
+import BuscarCoincidencia from "./src/pages/BuscarCoincidencia";
 import Loading from "./src/pages/Loading";
 
 
@@ -64,6 +65,9 @@ const AppNavigator = createStackNavigator(
     },
     CoincidenciaUsuario: {
       screen: CoincidenciaUsuario
+    },
+    BuscarCoincidencia:{
+    screen: BuscarCoincidencia
     },
     Loading: {
       screen: Loading

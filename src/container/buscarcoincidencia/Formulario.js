@@ -101,7 +101,7 @@ export default class Formulario extends React.Component{
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri});
         this.setState({modalVisible:!this.state.modalVisible})
-       
+        
       }
         
     }
@@ -115,7 +115,7 @@ export default class Formulario extends React.Component{
       }
       else{
 
-        this.props.navigation.navigate('NuevoUsuario', {
+        this.props.navigation.navigate('Dashboard', {
           item: image, base: base64})   
       }
     }
@@ -161,10 +161,13 @@ export default class Formulario extends React.Component{
         </TouchableOpacity>
       </View>
       <View style={styles.styleButtom}>
-        <TouchableOpacity  onPress={this.guardar}>
+        <TouchableOpacity style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}} 
+        onPress={this.guardar}>
+        <Ionicons name="md-search" size={20} color="white" />
           <Text style={styles.inputButtom}>
-            <Feather name="download" size={20} color="#fff" /> Guardar</Text>
+         Buscar</Text>
         </TouchableOpacity>
+        </View>
         <Modal
         animationType="slide"
         transparent={false}
@@ -197,7 +200,7 @@ export default class Formulario extends React.Component{
         </View>
       </View>
         </Modal>
-      </View>
+     
     </View>
     
   );
@@ -255,15 +258,18 @@ const styles = StyleSheet.create({
   inputButtom: {
     fontSize: 18,
     padding: 13,
-    color: "#fff"
+    color: "#fff",
+    paddingLeft:10
   },
   styleButtom: {
+    
     borderRadius: 15,
     marginTop:30,
     marginVertical: 5,
     alignItems: "center",
     backgroundColor: "#0097CD",
-    paddingHorizontal:70
+    paddingHorizontal:70,
+   
   },
   inputButtom1: {
     fontSize: 18,
@@ -276,7 +282,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#CCE3EB",
     marginBottom: 45,
-    paddingHorizontal:80
+    paddingHorizontal:75
   },
   camera: {
    height:'100%',

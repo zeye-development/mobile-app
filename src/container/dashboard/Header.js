@@ -33,7 +33,7 @@ export default class Dashboard extends Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Captura")}
+            onPress={() => this.props.navigation.navigate("BuscarCoincidencia")}
           >
             <Text style={styles.icon}>
               {" "}
