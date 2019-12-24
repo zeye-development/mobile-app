@@ -25,16 +25,16 @@ export default class Formulario extends Component {
     let parabase64=JSON.stringify(this.props.navigation.getParam('base','base64'))
     let base64=parabase64.replace(/['"]+/g, '')
     
-    fetch("http://189.213.227.211:8080/person-query", {
+    fetch("http://189.213.227.211:8080/register-face", {
       method: "POST",
       body:JSON.stringify({
-      // names:(this.state.name),
-      // surnames:(this.state.surname),
+      names:(this.state.name),
+      surnames:(this.state.surname),
       // // // pais:(this.state.pais),
-      // dni:(this.state.id),
+      dni:(this.state.id),
       // sex:(this.state.sex),
       picture:(base64),
-      // wanted:(this.state.estado)
+      wanted:(this.state.estado)
        }),
       headers: {
         "Content-Type": "application/json"

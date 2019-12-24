@@ -106,7 +106,41 @@ export default class Formulario extends React.Component{
         
     }
       };
-   
+      handleUploadPhoto = () => {
+        
+        
+        fetch("http://189.213.227.211:8080/person-query", {
+          method: "POST",
+          body:JSON.stringify({
+          // names:(this.state.name),
+          // surnames:(this.state.surname),
+          // // // // pais:(this.state.pais),
+          // dni:(this.state.id),
+          // sex:(this.state.sex),
+          picture:(this.state.base64),
+          // wanted:(this.state.estado)
+           }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+          .then(response => response.json())
+          .then(response => {
+            
+            console.log("upload succes", response);
+            alert("Upload success!");
+            this.setState({ uri: null });
+            this.props.navigation.navigate('Dashboard')
+            
+          })
+          .catch(error => {
+            console.log("upload error", error);
+            
+          
+            
+            alert("Upload failed!");
+            this.props.navigation.navigate('Dashboard')
+          });}
     guardar=()=>{
       let { image,base64 } = this.state;
       
@@ -162,7 +196,7 @@ export default class Formulario extends React.Component{
       </View>
       <View style={styles.styleButtom}>
         <TouchableOpacity style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}} 
-        onPress={this.guardar}>
+        onPress={this.handleUploadPhoto}>
         <Ionicons name="md-search" size={20} color="white" />
           <Text style={styles.inputButtom}>
          Buscar</Text>
