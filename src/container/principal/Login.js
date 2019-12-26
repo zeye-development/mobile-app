@@ -1,32 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Login(props) {
-  // console.log(props.navigation)
-  // const _onPressSession = () => {
-  //     navigate('InicioSesion');
-  // }
-  // const _onPressRegiste = () => {
-  //     navigate('Registro');
-  // }
-  // console.log(props);
-
   return (
     <View style={style.container}>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("InicioSesion")}
       >
         <View style={style.styleButtonInt}>
-          <Text style={style.buttonInit}>Iniciar Sesion</Text>
+          <Text style={[style.buttonInit, style.font]}>Iniciar Sesion</Text>
         </View>
       </TouchableOpacity>
 
       <View style={style.styleButtonReg}>
         <TouchableOpacity onPress={() => props.navigation.navigate("Registro")}>
-          <Text style={style.buttonReg}>
+          <Text style={[style.buttonReg, style.font]}>
             Registrarme{" "}
-            <Ionicons name="md-arrow-forward" size={18} color="#0097CD" />{" "}
+            <Ionicons name="md-arrow-forward" size={16} color="#0097CD" />{" "}
           </Text>
         </TouchableOpacity>
       </View>
@@ -43,7 +34,7 @@ const style = StyleSheet.create({
   },
   styleButtonInt: {
     alignItems: "center",
-    marginVertical: 10
+    marginVertical: 8
   },
   styleButtonReg: {
     alignItems: "stretch",
@@ -53,16 +44,19 @@ const style = StyleSheet.create({
     marginBottom: 20
   },
   buttonInit: {
-    fontSize: 18,
+    fontSize: 16,
     paddingVertical: 13,
     paddingHorizontal: 33,
     color: "#fff"
   },
   buttonReg: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: "center",
     paddingVertical: 13,
     paddingHorizontal: 33,
     color: "#0097CD"
+  },
+  font: {
+    fontFamily: "PoppinsRegular"
   }
 });

@@ -8,7 +8,7 @@ export default function Header(props) {
       <TouchableOpacity onPress={() => props.navigation.goBack()}>
         <Text style={styles.icon}>
           {" "}
-          <Ionicons name="md-arrow-back" size={20} color="#fff" />{" "}
+          <Ionicons name="md-arrow-back" size={18} color="#fff" />{" "}
         </Text>
       </TouchableOpacity>
 
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#fff",
-    fontSize: 16
+    fontSize: 14,
+    fontFamily: "PoppinsSemiBold"
   },
   icon: {
     padding: 6

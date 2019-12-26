@@ -38,13 +38,14 @@ export default function Formulario(props) {
         >
           <Text
             style={{
-              fontSize: 18,
+              fontSize: 16,
+              fontFamily: "PoppinsRegular",
               padding: 13,
               color: "#fff",
               textAlign: "center"
             }}
           >
-            <MaterialIcons name="file-download" size={20} color="#fff" />{" "}
+            <MaterialIcons name="file-download" size={18} color="#fff" />{" "}
             Guardar Cambios{" "}
           </Text>
         </TouchableOpacity>
@@ -64,12 +65,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   input: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
     paddingVertical: 13,
     paddingHorizontal: 33
   },
   input1: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
     paddingVertical: 13,
     paddingHorizontal: 33,
     marginRight: 13

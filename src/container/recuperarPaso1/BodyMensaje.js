@@ -6,13 +6,19 @@ export default function BodyMensaje() {
   return (
     <View style={styles.container}>
       <View style={styles.text}>
-        <Text style={{ fontSize: 20, color: "#00425A" }}>Paso 1</Text>
+        <Text
+          style={{ fontSize: 20, color: "#00425A", fontFamily: "PoppinsBold" }}
+        >
+          Paso 1
+        </Text>
       </View>
       <View style={styles.viewContainer}>
         <Ionicons name="md-mail-unread" size={90} color="#fff" />
       </View>
       <View style={styles.text}>
-        <Text style={{ fontSize: 20, color: "#00425A" }}>
+        <Text
+          style={{ fontSize: 20, color: "#00425A", fontFamily: "PoppinsBold" }}
+        >
           Solicitar recuperacion
         </Text>
       </View>
@@ -50,6 +56,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontSize: 16,
-    color: "#00425A"
+    color: "#00425A",
+    fontFamily: "PoppinsRegular"
   }
 });

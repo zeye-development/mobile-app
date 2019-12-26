@@ -20,9 +20,11 @@ export default function ProgreseBar(props) {
         />
       </View>
       <View style={{ alignItems: "center" }}>
-        <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>
+        <Text
+          style={{ color: "#fff", fontSize: 16, fontFamily: "PoppinsSemiBold" }}
+        >
           {" "}
-          <Entypo name="users" size={20} color="#fff" /> 200 de 1000 Usuarios
+          <Entypo name="users" size={18} color="#fff" /> 200 de 1000 Usuarios
         </Text>
       </View>
       <View style={styles.styleButtom}>
@@ -30,7 +32,7 @@ export default function ProgreseBar(props) {
           onPress={() => props.navigation.navigate("NuevoUsuario")}
         >
           <Text style={styles.inputButtom}>
-            <Ionicons name="md-person-add" size={20} color="#0097CD" /> Anadir
+            <Ionicons name="md-person-add" size={18} color="#0097CD" /> Anadir
             Usuario{" "}
           </Text>
         </TouchableOpacity>
@@ -54,10 +56,11 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   inputButtom: {
-    fontSize: 18,
+    fontSize: 16,
     padding: 13,
     color: "#0097CD",
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: "PoppinsRegular"
   },
   styleButtom: {
     borderRadius: 15,

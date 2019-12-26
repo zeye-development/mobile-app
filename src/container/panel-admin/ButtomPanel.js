@@ -19,7 +19,7 @@ export default function ButtomPanel(props) {
               }
             ]}
           >
-            <FontAwesome name="camera" size={14} color="#fff" />
+            <FontAwesome name="camera" size={12} color="#fff" />
             <Text style={[styles.input1, { color: "#fff" }]}> Face Scan</Text>
           </View>
         </TouchableOpacity>
@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   input1: {
-    fontSize: 18,
-    fontWeight: "bold"
+    fontSize: 16,
+    fontFamily: "PoppinsBold"
   },
   viewContainerGrup: {
     flexDirection: "row",

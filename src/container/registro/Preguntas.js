@@ -36,10 +36,12 @@ const styles = StyleSheet.create({
   font: {
     marginBottom: 5,
     color: "#00425A",
-    fontSize: 14
+    fontSize: 14,
+    fontFamily: "PoppinsRegular"
   },
   font2: {
     color: "#00425A",
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: "PoppinsRegular"
   }
 });

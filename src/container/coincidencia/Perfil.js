@@ -17,8 +17,10 @@ export default function Perfil(props) {
             />
           </View>
           <View style={{ justifyContent: "center", paddingLeft: 10 }}>
-            <Text style={styles.textColor}>{nombre} </Text>
-            <Text style={styles.textColor}>
+            <Text style={[styles.textColor, { fontFamily: "PoppinsSemiBold" }]}>
+              {nombre}{" "}
+            </Text>
+            <Text style={[styles.textColor, { fontFamily: "PoppinsRegular" }]}>
               {edad} - {conectado}
             </Text>
           </View>
@@ -41,7 +43,8 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   textColor: {
-    color: "#00425A"
+    color: "#00425A",
+    fontSize: 14
   },
   styleButtom: {
     justifyContent: "center",

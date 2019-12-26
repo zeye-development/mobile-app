@@ -40,7 +40,15 @@ export default class Formulario extends Component {
           password_validate: md5(this.state.pass_v),
           names: "Keyberth",
           surnames: "Pe",
-          license_key:  str(Math.floor(Math.random() * 10*Math.floor(Math.random() * 10*Math.floor(Math.random() * 10000000000) )))
+          license_key: str(
+            Math.floor(
+              Math.random() *
+                10 *
+                Math.floor(
+                  Math.random() * 10 * Math.floor(Math.random() * 10000000000)
+                )
+            )
+          )
         })
       });
 
@@ -166,14 +174,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   input: {
-    fontSize: 18,
+    fontSize: 16,
     paddingVertical: 13,
     paddingHorizontal: 33,
     borderWidth: 2,
-    borderColor: "transparent"
+    borderColor: "transparent",
+    fontFamily: "PoppinsRegular"
   },
   inputButtom: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
     padding: 13,
     color: "#fff",
     textAlign: "center"
@@ -206,5 +216,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     borderRadius: 15,
     marginTop: 5
+  },
+  font: {
+    fontFamily: "PoppinsRegular"
   }
 });

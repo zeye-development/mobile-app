@@ -31,8 +31,14 @@ export default function Formulario() {
         <Text style={styles.input}>Masculino</Text>
       </View>
       <View style={styles.viewContainerCheck}>
-        <Text style={{ color: "#00425A", fontSize: 16 }}>
-          <Ionicons name="md-checkbox-outline" size={18} color="#00425A" />{" "}
+        <Text
+          style={{
+            color: "#00425A",
+            fontSize: 14,
+            fontFamily: "PoppinsSemiBold"
+          }}
+        >
+          <Ionicons name="md-checkbox-outline" size={16} color="#00425A" />{" "}
           Anadir a solicitados
         </Text>
       </View>
@@ -40,7 +46,7 @@ export default function Formulario() {
       <View style={styles.styleButtom}>
         <TouchableOpacity>
           <Text style={styles.inputButtom}>
-            <Ionicons name="md-person-add" size={20} color="#fff" /> Anadir{" "}
+            <Ionicons name="md-person-add" size={18} color="#fff" /> Anadir{" "}
           </Text>
         </TouchableOpacity>
       </View>
@@ -58,18 +64,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   input: {
-    fontSize: 18,
+    fontFamily: "PoppinsRegular",
+    fontSize: 16,
     paddingVertical: 13,
     paddingHorizontal: 33
   },
   input1: {
-    fontSize: 18,
+    fontFamily: "PoppinsRegular",
+    fontSize: 16,
     paddingVertical: 13,
     paddingHorizontal: 33,
     marginRight: 13
   },
   inputButtom: {
-    fontSize: 18,
+    fontFamily: "PoppinsRegular",
+    fontSize: 16,
     padding: 13,
     color: "#fff",
     textAlign: "center"

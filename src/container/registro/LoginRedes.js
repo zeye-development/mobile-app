@@ -27,7 +27,15 @@ export default function LoginRedes() {
       </View>
 
       <View style={{ alignItems: "center", margin: 5 }}>
-        <Text style={{ fontSize: 18, color: "#00425A" }}>o</Text>
+        <Text
+          style={{
+            fontSize: 16,
+            color: "#00425A",
+            fontFamily: "PoppinsRegular"
+          }}
+        >
+          o
+        </Text>
       </View>
     </View>
   );
@@ -45,8 +53,9 @@ const styles = StyleSheet.create({
   },
   google: {
     color: "#00425A",
-    fontSize: 18,
-    paddingVertical: 13
+    fontSize: 16,
+    paddingVertical: 13,
+    fontFamily: "PoppinsRegular"
   },
   viewContainer: {
     borderWidth: 1,
@@ -63,8 +72,9 @@ const styles = StyleSheet.create({
   },
   facebook: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 16,
     paddingVertical: 13,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: "PoppinsRegular"
   }
 });

@@ -65,7 +65,6 @@ export default function Formulario(props) {
         </View>
       </View>
       <View>
-        {/* <Text style={styles.tituloInput}>Change Re-Password</Text> */}
         <View style={[styles.viewContainer, styles.containerInput]}>
           <Ionicons name="md-key" size={18} color="#00425A" />
           <TextInput
@@ -78,7 +77,7 @@ export default function Formulario(props) {
       <View style={styles.styleButtom}>
         <TouchableOpacity>
           <Text style={styles.inputButtom}>
-            <Ionicons name="md-save" size={26} color="#fff" /> Password
+            <Ionicons name="md-save" size={22} color="#fff" /> Password
           </Text>
         </TouchableOpacity>
       </View>
@@ -95,13 +94,15 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   input: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
     paddingVertical: 10,
     paddingHorizontal: 15,
     width: 200
   },
   inputButtom: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
     padding: 13,
     color: "#fff",
     textAlign: "center"
@@ -121,8 +122,8 @@ const styles = StyleSheet.create({
   tituloInput: {
     color: "#00425A",
     marginVertical: 5,
-    fontWeight: "bold",
-    fontSize: 15
+    fontSize: 14,
+    fontFamily: "PoppinsSemiBold"
   },
   usuario: {
     padding: 13,

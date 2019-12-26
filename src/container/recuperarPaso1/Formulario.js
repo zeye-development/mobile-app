@@ -20,7 +20,7 @@ export default function Formulario(props) {
         >
           <Text style={styles.inputButtom}>
             Continuar{" "}
-            <Ionicons name="md-arrow-forward" size={20} color="#fff" />
+            <Ionicons name="md-arrow-forward" size={18} color="#fff" />
           </Text>
         </TouchableOpacity>
       </View>
@@ -38,13 +38,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   inputButtom: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
     padding: 13,
     color: "#fff",
     textAlign: "center"
   },
   input: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
     paddingVertical: 13,
     paddingHorizontal: 33
   },

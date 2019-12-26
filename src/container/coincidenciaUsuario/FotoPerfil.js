@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     color: "#fff",
     borderRadius: 15,
-    marginTop: 5
+    marginTop: 5,
+    fontFamily: "PoppinsRegular"
   }
 });

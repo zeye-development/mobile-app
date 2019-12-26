@@ -18,8 +18,8 @@ export default function PerfilUsuario(props) {
               style={[
                 styles.textColor,
                 {
-                  fontWeight: "bold",
-                  fontSize: 18
+                  fontFamily: "PoppinsBold",
+                  fontSize: 20
                 }
               ]}
             >
@@ -37,7 +37,8 @@ export default function PerfilUsuario(props) {
           <Text
             style={{
               color: "#fff",
-              fontWeight: "bold"
+              fontFamily: "PoppinsRegular",
+              fontSize: 14
             }}
           >
             Upgrade your plan{"  "}
@@ -70,22 +71,25 @@ const styles = StyleSheet.create({
     borderWidth: 2
   },
   textColor: {
-    color: "#fff"
+    color: "#fff",
+    fontSize: 14,
+    fontFamily: "PoppinsRegular"
   },
   plan: {
     backgroundColor: "#00DFAA",
     paddingHorizontal: 6,
     paddingVertical: 3,
-    fontWeight: "bold",
     borderRadius: 5,
     color: "#fff",
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: 12,
+    fontFamily: "PoppinsSemiBold"
   },
   cambioPlan: {
     marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#00425A",
+    backgroundColor: "rgba(255,255,255, 0.1)",
     borderRadius: 5,
     paddingVertical: 3,
     paddingHorizontal: 5

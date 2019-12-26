@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#00425A",
-    fontSize: 16
+    fontSize: 14,
+    fontFamily: "PoppinsSemiBold"
   },
   icon: {
     padding: 6

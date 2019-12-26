@@ -185,19 +185,19 @@ export default class Formulario extends React.Component{
       <View style={styles.styleButtom}>
         <TouchableOpacity  onPress={()=>{this.setState({modalVisible:!this.state.modalVisible})}}>
           <Text style={styles.inputButtom}>
-            Capturar <Ionicons name="ios-camera" size={20} color="#fff" /></Text>
+            Capturar <Ionicons name="ios-camera" size={18} color="#fff" /></Text>
         </TouchableOpacity>
       </View>
       <View style={styles.styleButtom1}>
         <TouchableOpacity  onPress={this._pickImage}>
           <Text style={styles.inputButtom1}>
-            Cargar <Ionicons name="md-cloud-upload" size={20} color="#00425A" /></Text>
+            Cargar <Ionicons name="md-cloud-upload" size={18} color="#00425A" /></Text>
         </TouchableOpacity>
       </View>
       <View style={styles.styleButtom}>
         <TouchableOpacity style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}} 
         onPress={this.handleUploadPhoto}>
-        <Ionicons name="md-search" size={20} color="white" />
+        <Ionicons name="md-search" size={18} color="white" />
           <Text style={styles.inputButtom}>
          Buscar</Text>
         </TouchableOpacity>
@@ -248,15 +248,12 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     maxWidth: 350,
     paddingHorizontal: 30,
-   alignItems:'center',
-
+    alignItems: "center"
   },
   containermodal: {
     flex: 1,
     backgroundColor: "black",
-    position: "relative",
-    
-
+    position: "relative"
   },
 
   viewContainer: {
@@ -267,46 +264,44 @@ const styles = StyleSheet.create({
     width: 225,
     height: 225,
     borderRadius: 25,
-    backgroundColor:"#CCE3EB" 
+    backgroundColor: "#CCE3EB"
   },
-  cuadro:{
-    width:'80%',
-    height:'80%',
-    borderColor:'white',
-    borderWidth:7,
-    
-    position:'absolute'
+  cuadro: {
+    width: "80%",
+    height: "80%",
+    borderColor: "white",
+    borderWidth: 7,
 
+    position: "absolute"
   },
-  cuadro2:{
-    marginLeft:'10%',
-    marginTop:'30%',
-    width:'80%',
-    height:'60%',
-    borderColor:'white',
-    borderWidth:7,
-    
-    position:'absolute'
+  cuadro2: {
+    marginLeft: "10%",
+    marginTop: "30%",
+    width: "80%",
+    height: "60%",
+    borderColor: "white",
+    borderWidth: 7,
 
+    position: "absolute"
   },
   inputButtom: {
-    fontSize: 18,
+    fontFamily: "PoppinsRegular",
+    fontSize: 16,
     padding: 13,
     color: "#fff",
-    paddingLeft:10
+    paddingLeft: 10
   },
   styleButtom: {
-    
     borderRadius: 15,
-    marginTop:30,
+    marginTop: 30,
     marginVertical: 5,
     alignItems: "center",
     backgroundColor: "#0097CD",
-    paddingHorizontal:70,
-   
+    paddingHorizontal: 70
   },
   inputButtom1: {
-    fontSize: 18,
+    fontFamily: "PoppinsRegular",
+    fontSize: 16,
     padding: 13,
     color: "#00425A"
   },
@@ -316,11 +311,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#CCE3EB",
     marginBottom: 45,
-    paddingHorizontal:75
+    paddingHorizontal: 75
   },
   camera: {
-   height:'100%',
-   width:'130%'
+    height: "100%",
+    width: "130%"
   },
 
   controls: {

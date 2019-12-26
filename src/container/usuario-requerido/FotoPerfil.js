@@ -14,7 +14,7 @@ export default function FotoPerfil() {
         </View>
       </View>
       <Text style={styles.usuario}>
-        <Ionicons name="ios-checkmark-circle-outline" size={18} color="#fff" />{" "}
+        <Ionicons name="ios-checkmark-circle-outline" size={16} color="#fff" />{" "}
         Usuario Requerido
       </Text>
     </View>
@@ -46,7 +46,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#fff",
     borderRadius: 15,
-    marginTop: 5
+    marginTop: 5,
+    fontFamily: "PoppinsRegular",
+    fontSize: 14
   },
   imageBackground: {
     width: "100%",

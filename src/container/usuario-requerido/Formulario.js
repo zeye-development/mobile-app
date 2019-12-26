@@ -32,13 +32,14 @@ export default function Formulario(props) {
           <TouchableOpacity>
             <Text
               style={{
-                fontSize: 18,
+                fontSize: 16,
                 padding: 13,
                 color: "#01B8E2",
-                textAlign: "center"
+                textAlign: "center",
+                fontFamily: "PoppinsRegular"
               }}
             >
-              <Ionicons name="md-trash" size={20} color="#01B8E2" /> Eliminar{" "}
+              <Ionicons name="md-trash" size={18} color="#01B8E2" /> Eliminar{" "}
             </Text>
           </TouchableOpacity>
         </View>
@@ -48,13 +49,14 @@ export default function Formulario(props) {
           >
             <Text
               style={{
-                fontSize: 18,
+                fontSize: 16,
                 padding: 13,
                 color: "#fff",
-                textAlign: "center"
+                textAlign: "center",
+                fontFamily: "PoppinsRegular"
               }}
             >
-              <Ionicons name="md-create" size={20} color="#fff" /> Editar{" "}
+              <Ionicons name="md-create" size={18} color="#fff" /> Editar{" "}
             </Text>
           </TouchableOpacity>
         </View>
@@ -73,10 +75,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   input: {
-    fontSize: 18,
+    fontSize: 16,
     paddingVertical: 13,
     // paddingHorizontal: 33,
-    marginRight: 5
+    marginRight: 5,
+    fontFamily: "PoppinsRegular"
   },
   viewContainer: {
     flexDirection: "row",

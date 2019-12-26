@@ -41,13 +41,17 @@ const styles = StyleSheet.create({
   font: {
     marginBottom: 15,
     color: "#01B8E2",
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: "PoppinsRegular"
   },
   font1: {
-    color: "#00425A"
+    color: "#00425A",
+    fontSize: 14,
+    fontFamily: "PoppinsRegular"
   },
   font2: {
     color: "#00425A",
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: "PoppinsRegular"
   }
 });

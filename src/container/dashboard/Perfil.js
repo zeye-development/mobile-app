@@ -29,11 +29,25 @@ export default function Perfil(props) {
             />
           </View>
           <View style={{ justifyContent: "center", paddingLeft: 10 }}>
-            <Text style={styles.textColor}>
+            <Text
+              style={[
+                styles.textColor,
+                {
+                  fontFamily: "PoppinsSemiBold"
+                }
+              ]}
+            >
               {nombre}{" "}
               <Foundation name="prohibited" size={16} color="#00425A" />
             </Text>
-            <Text style={styles.textColor}>
+            <Text
+              style={[
+                styles.textColor,
+                {
+                  fontFamily: "PoppinsRegular"
+                }
+              ]}
+            >
               {edad} - {conectado}
             </Text>
           </View>
@@ -81,7 +95,8 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   textColor: {
-    color: "#00425A"
+    color: "#00425A",
+    fontSize: 14
   },
   styleButtom: {
     justifyContent: "center",
@@ -90,7 +105,9 @@ const styles = StyleSheet.create({
   },
   optionButtom: {
     paddingHorizontal: 12,
-    paddingVertical: 9
+    paddingVertical: 9,
+    fontFamily: "PoppinsRegular",
+    fontSize: 14
     // borderBottomWidth: 1,
     // borderColor: "#f2f2f2"
   },

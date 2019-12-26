@@ -11,7 +11,7 @@ export default function Formulario() {
             Enviado{" "}
             <Ionicons
               name="md-checkmark-circle-outline"
-              size={20}
+              size={18}
               color="#fff"
             />
           </Text>
@@ -19,7 +19,13 @@ export default function Formulario() {
       </View>
       <TouchableOpacity>
         <View style={styles.viewContainerCheck}>
-          <Text style={{ color: "#00425A", fontSize: 16 }}>
+          <Text
+            style={{
+              color: "#00425A",
+              fontSize: 16,
+              fontFamily: "PoppinsRegular"
+            }}
+          >
             Volver a enviar{" "}
             <Ionicons name="md-arrow-forward" size={18} color="#00425A" />{" "}
           </Text>
@@ -39,7 +45,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   inputButtom: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
     padding: 13,
     color: "#fff",
     textAlign: "center"

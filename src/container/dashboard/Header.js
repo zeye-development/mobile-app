@@ -29,7 +29,7 @@ export default class Dashboard extends Component {
           <TouchableOpacity>
             <Text style={styles.icon}>
               {" "}
-              <Feather name="settings" size={20} color="#fff" />{" "}
+              <Feather name="settings" size={18} color="#fff" />{" "}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
           >
             <Text style={styles.icon}>
               {" "}
-              <FontAwesome name="camera" size={20} color="#fff" />
+              <FontAwesome name="camera" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
         </View>
@@ -50,7 +50,7 @@ export default class Dashboard extends Component {
         >
           <Text style={styles.icon}>
             {"      "}
-            <Ionicons name="ios-log-in" size={20} color="#fff" />{" "}
+            <Ionicons name="ios-log-in" size={18} color="#fff" />{" "}
           </Text>
         </TouchableOpacity>
       </View>
@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#fff",
-    fontSize: 16
+    fontSize: 14,
+    fontFamily: "PoppinsSemiBold"
   },
   icon: {
     padding: 6
