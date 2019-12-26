@@ -19,7 +19,11 @@ export default class LoginRedes extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({ modalVisible: !this.state.modalVisible });
+          }}
+        >
           <View style={styles.viewContainer}>
             <Text style={styles.google}>
               <Image
@@ -55,6 +59,8 @@ export default class LoginRedes extends Component {
             o
           </Text>
         </View>
+
+        {/* //////Modal de alerta ===========================*/}
         <Modal
           animationType="none"
           transparent={true}
@@ -65,46 +71,57 @@ export default class LoginRedes extends Component {
               flex: 1,
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "white",
-              opacity: 0.9
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
             }}
           ></View>
 
           <View
             style={{
-              width: "80%",
-              height: "60%",
-              backgroundColor: "white",
-              borderRadius: 20,
-              borderColor: "#0097CD",
-              borderWidth: 10,
+              width: 290,
+              backgroundColor: "#fff",
+              borderRadius: 15,
               position: "absolute",
-              marginTop: "40%",
-              marginLeft: "10%"
+              marginTop: "45%",
+              marginHorizontal: "10%"
             }}
           >
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({ modalVisible: !this.state.modalVisible });
-              }}
-              style={{
-                width: "100%",
-                height: "100%",
-                justifyContent: "center"
-              }}
-            >
+            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
               <Text
                 style={{
-                  fontSize: 30,
-                  color: "#0097CD",
+                  fontSize: 18,
+                  color: "#00425A",
                   textAlign: "center",
                   textShadowRadius: 2,
-                  fontFamily: "sans-serif-medium"
+                  fontFamily: "PoppinsBold"
                 }}
               >
                 Lo sentimos, esta funcion no se encuentra disponible.
               </Text>
-            </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ modalVisible: !this.state.modalVisible });
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 16,
+                    // padding: 13,
+                    color: "#01B8E2",
+                    textAlign: "right",
+                    fontFamily: "PoppinsRegular",
+                    marginTop: 40,
+                    marginHorizontal: 20,
+                    marginBottom: 20
+                  }}
+                >
+                  {" "}
+                  Entendido
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </Modal>
       </View>

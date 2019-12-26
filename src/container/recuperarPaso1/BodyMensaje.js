@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function BodyMensaje() {
   return (
@@ -12,9 +13,14 @@ export default function BodyMensaje() {
           Paso 1
         </Text>
       </View>
-      <View style={styles.viewContainer}>
+      <LinearGradient
+        colors={["#0097CD", "#01B8E2"]}
+        start={[0, 0.8]}
+        end={[0.8, 0.5]}
+        style={styles.viewContainer}
+      >
         <Ionicons name="md-mail-unread" size={90} color="#fff" />
-      </View>
+      </LinearGradient>
       <View style={styles.text}>
         <Text
           style={{ fontSize: 20, color: "#00425A", fontFamily: "PoppinsBold" }}

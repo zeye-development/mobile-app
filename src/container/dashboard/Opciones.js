@@ -61,8 +61,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
-    maxWidth: 350,
-    backgroundColor: "#0097CD"
+    maxWidth: 350
   },
   viewContainerGrup: {
     flexDirection: "row",

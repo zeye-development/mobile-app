@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function FotoPerfil(props) {
   return (
@@ -11,10 +11,13 @@ export default function FotoPerfil(props) {
           style={styles.imageBackground}
         />
       </View>
-      <Text style={styles.usuario}>
-        <Ionicons name="ios-checkmark-circle-outline" size={18} color="#fff" />{" "}
-        Usuario Requerido
-      </Text>
+      <AntDesign name="arrowright" size={32} color="#00425A" />
+      <View style={[styles.viewContainer, styles.solicitado]}>
+        <Image
+          source={require("../../../assets/perfil.png")}
+          style={styles.imageBackground}
+        />
+      </View>
     </View>
   );
 }
@@ -23,18 +26,20 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     alignItems: "center",
+    justifyContent: "space-between",
     marginTop: 10,
     marginBottom: 10,
     // alignItems: "stretch",
     maxWidth: 350,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    flexDirection: "row"
   },
   viewContainer: {
     marginVertical: 5,
     alignItems: "center",
     justifyContent: "center",
-    width: 130,
-    height: 130,
+    width: 110,
+    height: 110,
     borderRadius: 70
   },
   imageBackground: {
@@ -52,5 +57,14 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginTop: 5,
     fontFamily: "PoppinsRegular"
+  },
+  solicitado: {
+    borderColor: "#FE6363",
+    borderWidth: 3
+  },
+
+  noSolicitado: {
+    borderColor: "#00DFAA",
+    borderWidth: 3
   }
 });

@@ -8,57 +8,65 @@ export default function Perfiles(props) {
       nombre: "Jhon Doe",
       edad: "28 Years",
       img: "../../../assets/perfil.png",
-      conectado: "hace 4 min",
-      key: "0"
+      conectado: "15889623",
+      key: "0",
+      solicitado: "si"
     },
     {
       nombre: "Jhon Doe",
       edad: "28 Years",
       img: "../../../assets/perfil.png",
-      conectado: "hace 4 min",
-      key: "1"
+      conectado: "15889623",
+      key: "1",
+      solicitado: "si"
     },
     {
       nombre: "Jhon Doe",
       edad: "28 Years",
       img: "../../../assets/perfil.png",
-      conectado: "hace 4 min",
-      key: "2"
+      conectado: "15889623",
+      key: "2",
+      solicitado: "no"
     },
     {
       nombre: "Jhon Doe",
       edad: "28 Years",
       img: "../../../assets/perfil.png",
-      conectado: "hace 4 min",
-      key: "3"
+      conectado: "15889623",
+      key: "3",
+      solicitado: "no"
     },
     {
       nombre: "Jhon Doe",
       edad: "28 Years",
       img: "../../../assets/perfil.png",
-      conectado: "hace 4 min",
-      key: "4"
+      conectado: "15889623",
+      key: "4",
+      solicitado: "no"
     },
     {
       nombre: "Jhon Doe",
       edad: "28 Years",
       img: "../../../assets/perfil.png",
-      conectado: "hace 4 min",
-      key: "6"
+      conectado: "15889623",
+      key: "6",
+      solicitado: "no"
     },
     {
       nombre: "Jhon Doe",
       edad: "28 Years",
       img: "../../../assets/perfil.png",
-      conectado: "hace 4 min",
-      key: "7"
+      conectado: "15889623",
+      key: "7",
+      solicitado: "no"
     },
     {
       nombre: "Jhon Doe",
       edad: "28 Years",
       img: "../../../assets/perfil.png",
-      conectado: "hace 4 min",
-      key: "8"
+      conectado: "15889623",
+      key: "8",
+      solicitado: "si"
     }
   ];
 

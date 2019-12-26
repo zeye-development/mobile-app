@@ -1,8 +1,9 @@
-import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 
 export default function FotoPerfil() {
+  const [solicitado, setSolicitado] = useState({ solicitado: false });
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -13,10 +14,29 @@ export default function FotoPerfil() {
           />
         </View>
       </View>
-      <Text style={styles.usuario}>
-        <Ionicons name="ios-checkmark-circle-outline" size={16} color="#fff" />{" "}
-        Usuario Requerido
-      </Text>
+      {solicitado.solicitado == false ? (
+        <TouchableOpacity
+          onPress={() => setSolicitado({ ...solicitado, solicitado: true })}
+        >
+          <Text style={[styles.usuario, styles.noSolicitado]}>
+            <Ionicons
+              name="ios-checkmark-circle-outline"
+              size={16}
+              color="#fff"
+            />{" "}
+            Usuario no Requerido
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => setSolicitado({ ...solicitado, solicitado: false })}
+        >
+          <Text style={[styles.usuario, styles.solicitado]}>
+            <AntDesign name="closecircleo" size={16} color="#fff" /> Usuario
+            Requerido
+          </Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -42,7 +62,6 @@ const styles = StyleSheet.create({
   },
   usuario: {
     paddingVertical: 13,
-    backgroundColor: "#00DFAA",
     textAlign: "center",
     color: "#fff",
     borderRadius: 15,
@@ -55,5 +74,12 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center"
     // alignItems: "center",
+  },
+  solicitado: {
+    backgroundColor: "#FE6363"
+  },
+
+  noSolicitado: {
+    backgroundColor: "#00DFAA"
   }
 });

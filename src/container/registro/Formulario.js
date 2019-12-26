@@ -5,10 +5,12 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Alert
+  Alert,
+  Modal
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import md5 from "md5";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -17,7 +19,9 @@ export default class Formulario extends Component {
       loading: false,
       email: null,
       pass: null,
-      pass_v: null
+      pass_v: null,
+      modalVisible: false,
+      mensajeAlert: ""
     };
   }
 
@@ -58,67 +62,25 @@ export default class Formulario extends Component {
       if (responseJson.status === 200) {
         this.props.navigation.replace("InicioSesion");
       } else {
-        Alert.alert("Error", "El Correo o la contraseña no son correctos");
+        // Alert.alert("Error", "El Correo o la contraseña no son correctos");
+
+        this.setState({
+          modalVisible: !this.state.modalVisible,
+          mensajeAlert: "El Correo o la contraseña no son correctos"
+        });
       }
     } catch (error) {
-      Alert.alert("Error", "Usted no dispone de una conexion a internet");
+      // Alert.alert("Error", "Usted no dispone de una conexion a internet");
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "Usted no dispone de una conexion a internet"
+      });
     }
   }
 
   render() {
-    // let [getEmail, setEmail] = useState({
-    //   email: "",
-    //   validator: false
-    // });
-
-    // validarEmail = event => {
-    //   // console.log(event);
-    //   const email = event.nativeEvent.text;
-    //   const emailLimpio = email.trim();
-    //   let caracteresEmail = event.nativeEvent.eventCount;
-    //   if (caracteresEmail >= 13) {
-    //     if (validatorEmail(emailLimpio)) {
-    //       console.log(getEmail);
-    //       setEmail({ ...getEmail, email: emailLimpio, validator: true });
-    //     } else if (!validatorEmail(emailLimpio)) {
-    //       setEmail({ ...getEmail, validator: false });
-    //     }
-    //   }
-    // };
-    // let [getPass, setPass] = useState({
-    //   Pass: "",
-    //   validator: false
-    // });
-
-    // validarPass = event => {
-    //   const pass = event.nativeEvent.text;
-    //   let caracteresPass = event.nativeEvent.eventCount;
-    //   const passLimpio = pass.trim();
-    //   if (caracteresPass >= 5) {
-    //     // console.log(getPass);
-    //     setPass({ ...getPass, Pass: passLimpio, validator: true });
-    //   } else if (getPass.caracteres < 6) {
-    //     setPass({ ...getPass, validator: false });
-    //   }
-    // };
-    // const [getError, setError] = useState(false);
-    // enviarRequest = () => {
-    //   // console.log(getEmail.validator);
-    //   // console.log(getPass.validator);
-    //   if (getEmail.validator && getPass.validator) {
-    //     // props.navigation.navigate("Dashboard");
-    //   } else {
-    //     setError(true);
-    //     setTimeout(() => {
-    //       setError(false);
-    //     }, 3000);
-    //   }
-    // };
     return (
       <View style={styles.container}>
-        {/* <View style={styles.viewContainer}>
-      <TextInput style={styles.input} placeholder="User" />
-    </View> */}
         <View style={styles.viewContainer}>
           <TextInput
             placeholder="Email"
@@ -148,7 +110,12 @@ export default class Formulario extends Component {
           />
         </View>
 
-        <View style={styles.styleButtom}>
+        <LinearGradient
+          colors={["#0097CD", "#01B8E2"]}
+          start={[0, 0.8]}
+          end={[0.8, 0.5]}
+          style={styles.styleButtom}
+        >
           <TouchableOpacity
             onPress={() => {
               this.login(this.state.email, this.state.pass, this.state.pass_v);
@@ -159,7 +126,70 @@ export default class Formulario extends Component {
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
-        </View>
+        </LinearGradient>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalVisible}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              width: 290,
+              backgroundColor: "#fff",
+              borderRadius: 15,
+              position: "absolute",
+              marginTop: "45%",
+              marginHorizontal: "10%"
+            }}
+          >
+            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#00425A",
+                  textAlign: "center",
+                  textShadowRadius: 2,
+                  fontFamily: "PoppinsBold"
+                }}
+              >
+                {this.state.mensajeAlert}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ modalVisible: !this.state.modalVisible });
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 16,
+                    // padding: 13,
+                    color: "#01B8E2",
+                    textAlign: "right",
+                    fontFamily: "PoppinsRegular",
+                    marginTop: 40,
+                    marginHorizontal: 20,
+                    marginBottom: 20
+                  }}
+                >
+                  {" "}
+                  Entendido
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }

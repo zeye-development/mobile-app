@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Formulario(props) {
   return (
@@ -14,18 +15,27 @@ export default function Formulario(props) {
         <Text style={styles.input}>Doe</Text>
       </View>
       <View style={styles.viewContainer}>
-        <Text style={[styles.input, { fontWeight: "bold" }]}>Pais: </Text>
-        <Text style={styles.input}>Venezuela</Text>
-      </View>
-      <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: "bold" }]}>
           Identificacion:{" "}
         </Text>
-        <Text style={styles.input}>15645235</Text>
+        <Text style={styles.input}>15256898</Text>
       </View>
+      <View style={styles.viewContainer}>
+        <Text style={[styles.input, { fontWeight: "bold" }]}>
+          Nacionalidad:{" "}
+        </Text>
+        <Text style={styles.input}>Venezuela</Text>
+      </View>
+
       <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: "bold" }]}>Sexo: </Text>
         <Text style={styles.input}>Masculino</Text>
+      </View>
+      <View style={styles.viewContainer}>
+        <Text style={[styles.input, { fontWeight: "bold" }]}>
+          Fecha de Nacimiento:{" "}
+        </Text>
+        <Text style={styles.input}>24/08/1986</Text>
       </View>
       <View style={styles.viewContainerGrup}>
         <View style={styles.viewContainerButtom}>
@@ -43,7 +53,12 @@ export default function Formulario(props) {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.viewContainerButtom1}>
+        <LinearGradient
+          colors={["#0097CD", "#01B8E2"]}
+          start={[0, 0.8]}
+          end={[0.8, 0.5]}
+          style={styles.viewContainerButtom1}
+        >
           <TouchableOpacity
             onPress={() => props.navigation.navigate("EditarUsuario")}
           >
@@ -59,7 +74,7 @@ export default function Formulario(props) {
               <Ionicons name="md-create" size={18} color="#fff" /> Editar{" "}
             </Text>
           </TouchableOpacity>
-        </View>
+        </LinearGradient>
       </View>
     </View>
   );

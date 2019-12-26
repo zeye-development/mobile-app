@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Formulario(props) {
   return (
@@ -25,9 +26,14 @@ export default function Formulario(props) {
             <TextInput style={styles.input} placeholder="User" />
           </View>
           <TouchableOpacity>
-            <View style={styles.buttomInputRight}>
+            <LinearGradient
+              colors={["#0097CD", "#01B8E2"]}
+              start={[0, 0.8]}
+              end={[0.8, 0.5]}
+              style={styles.buttomInputRight}
+            >
               <Ionicons name="md-save" size={26} color="#fff" />
-            </View>
+            </LinearGradient>
           </TouchableOpacity>
         </View>
       </View>
@@ -46,9 +52,14 @@ export default function Formulario(props) {
             <TextInput placeholder="Email" style={styles.input} />
           </View>
           <TouchableOpacity>
-            <View style={styles.buttomInputRight}>
+            <LinearGradient
+              colors={["#0097CD", "#01B8E2"]}
+              start={[0, 0.8]}
+              end={[0.8, 0.5]}
+              style={styles.buttomInputRight}
+            >
               <Ionicons name="md-save" size={26} color="#fff" />
-            </View>
+            </LinearGradient>
           </TouchableOpacity>
         </View>
       </View>
@@ -74,13 +85,18 @@ export default function Formulario(props) {
           />
         </View>
       </View>
-      <View style={styles.styleButtom}>
+      <LinearGradient
+        colors={["#0097CD", "#01B8E2"]}
+        start={[0, 0.8]}
+        end={[0.8, 0.5]}
+        style={styles.styleButtom}
+      >
         <TouchableOpacity>
           <Text style={styles.inputButtom}>
             <Ionicons name="md-save" size={22} color="#fff" /> Password
           </Text>
         </TouchableOpacity>
-      </View>
+      </LinearGradient>
     </View>
   );
 }

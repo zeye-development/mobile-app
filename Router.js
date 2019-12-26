@@ -89,7 +89,7 @@ import Loading from "./src/pages/Loading";
 export default function Router() {
   return (
     <View style={styles.container}>
-      <Principal />
+      {/* <Principal /> */}
       {/* <InicioSesion /> */}
       {/* <Registro /> */}
       {/* <NuevoUsuario /> */}
@@ -103,7 +103,7 @@ export default function Router() {
       {/* <PanelAdmin /> */}
       {/* <Coincidencias /> */}
       {/* <CoincidenciaUsuario /> */}
-      {/* <BuscarCoincidencia /> */}
+      <BuscarCoincidencia />
     </View>
   );
 }

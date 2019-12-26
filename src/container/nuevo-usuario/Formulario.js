@@ -8,6 +8,7 @@ import {
   Image
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -159,13 +160,18 @@ export default class Formulario extends Component {
           </Text>
         </View>
 
-        <View style={styles.styleButtom}>
+        <LinearGradient
+          colors={["#0097CD", "#01B8E2"]}
+          start={[0, 0.8]}
+          end={[0.8, 0.5]}
+          style={styles.styleButtom}
+        >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
               <Ionicons name="md-person-add" size={16} color="#fff" /> Anadir{" "}
             </Text>
           </TouchableOpacity>
-        </View>
+        </LinearGradient>
       </View>
     );
   }

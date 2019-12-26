@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
+import { LinearGradient} from 'expo-linear-gradient'
 
 export default class Formulario extends React.Component {
   constructor(props) {
@@ -139,7 +140,10 @@ export default class Formulario extends React.Component {
           />
           <View style={styles.cuadro}></View>
         </View>
-        <View style={styles.styleButtom}>
+        <LinearGradient
+        colors={["#0097CD", "#01B8E2"]}
+          start={[0, 0.8]}
+          end={[0.8, 0.5]} style={styles.styleButtom}>
           <TouchableOpacity
             onPress={() => {
               this.setState({ modalVisible: !this.state.modalVisible });
@@ -149,7 +153,7 @@ export default class Formulario extends React.Component {
               Capturar <Ionicons name="ios-camera" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
-        </View>
+        </LinearGradient>
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
@@ -158,7 +162,10 @@ export default class Formulario extends React.Component {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.styleButtom}>
+        <LinearGradient
+        colors={["#0097CD", "#01B8E2"]}
+          start={[0, 0.8]}
+          end={[0.8, 0.5]} style={styles.styleButtom}>
           <TouchableOpacity onPress={this.guardar}>
             <Text style={styles.inputButtom}>
               <Feather name="download" size={18} color="#fff" /> Guardar
@@ -193,7 +200,7 @@ export default class Formulario extends React.Component {
               </View>
             </View>
           </Modal>
-        </View>
+        </LinearGradient>
       </View>
     );
   }
