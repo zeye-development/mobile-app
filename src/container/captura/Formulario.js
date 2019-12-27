@@ -75,7 +75,7 @@ export default class Formulario extends React.Component {
   };
 
   _pickImage = async () => {
-    const options = { quality: 0.1, base64: true };
+    const options = { quality: 0.1, base64: true,allowsEditing:true  };
     let result = await ImagePicker.launchImageLibraryAsync(options);
 
     if (!result.cancelled) {
@@ -128,14 +128,15 @@ export default class Formulario extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.viewContainer}>
+        <View style={styles.viewContainer}
+        >
           <Image
             style={{
               width: 230,
               height: 230,
               borderRadius: 20,
               position: "absolute"
-            }}
+            }} 
             source={{ uri: image }}
           />
           <View style={styles.cuadro}></View>
@@ -172,34 +173,51 @@ export default class Formulario extends React.Component {
             </Text>
           </TouchableOpacity>
           <Modal
-            animationType="slide"
-            transparent={false}
-            visible={this.state.modalVisible}
-          >
-            <View style={styles.containermodal}>
-              <Camera
-                style={styles.camera}
-                ref={ref => (this._cameraInstance = ref)}
-                type={type}
-                zoom={zoom}
-                whiteBalance={whiteBalance}
-                focusDepth={focusDepth}
-              />
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+        >
+          <View style={styles.containermodal}>
+            <Camera
+              style={styles.camera}
+              ref={ref => (this._cameraInstance = ref)}
+              type={type}
+              zoom={zoom}
+              whiteBalance={whiteBalance}
+              focusDepth={focusDepth}
+            />
 
-              <View style={styles.cuadro2}></View>
-              <View style={styles.controls}>
-                {!photo && (
-                  <Button
-                    title="Take Picture"
-                    color="#0097CD"
-                    onPress={this._takePictureButtonPressed}
-                  />
-                )}
-                {/* //previo */}
-                {photo && <Image style={styles.photo} source={photo} />}
-              </View>
+            <View style={styles.cuadro2}></View>
+            <View style={styles.controls}>
+            {!photo && (
+                <TouchableOpacity style={{height:35,width:35,marginLeft:'-20%'}}
+                onPress={() => this.state.estadocamara?
+                
+                this.setState({type: Camera.Constants.Type.front,estadocamara:false}):
+                this.setState({type: Camera.Constants.Type.back,estadocamara:true})}>
+                <Text style={styles.icon}>
+                  {" "}
+                  <Ionicons name="md-reverse-camera" size={35} color="#fff" />{" "}
+                </Text>
+              </TouchableOpacity>
+              )}
+              {!photo && (
+                <TouchableOpacity style={{
+                height:40,width:'30%',backgroundColor:"#fff",alignItems:'center'
+                ,borderRadius:10,justifyContent:'center',marginLeft:'20%' }}
+                onPress={this._takePictureButtonPressed}>
+                <Text style={styles.icon}>
+                  {"TAKE PICTURE "}
+                </Text>
+              </TouchableOpacity>
+              )}
+              
+              
+              {/* //previo */}
+              {photo && <Image style={styles.photo} source={photo} />}
             </View>
-          </Modal>
+          </View>
+        </Modal>
         </LinearGradient>
       </View>
     );
@@ -284,6 +302,7 @@ const styles = StyleSheet.create({
 
   controls: {
     position: "absolute",
+    flexDirection:'row',
     zIndex: 10,
     bottom: 0,
     left: 0,
@@ -300,5 +319,11 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     top: 0
+  },
+  icon:{
+    fontSize:15,
+    color:'black',
+    fontWeight:'bold',
+    fontFamily:"PoppinsSemiBold"
   }
 });

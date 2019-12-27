@@ -33,7 +33,7 @@ export default class Formulario extends React.Component {
       whiteBalance: Camera.Constants.WhiteBalance.auto,
       focusDepth: 0,
       ratio: "4:3",
-      
+      estadocamara:true
     };
   }
 
@@ -75,7 +75,7 @@ export default class Formulario extends React.Component {
   };
 
   _pickImage = async () => {
-    const options = { quality: 0.1, base64: true };
+    const options = { quality: 0.1, base64: true,allowsEditing:true };
     let result = await ImagePicker.launchImageLibraryAsync(options);
 
     if (!result.cancelled) {
@@ -250,13 +250,30 @@ export default class Formulario extends React.Component {
 
             <View style={styles.cuadro2}></View>
             <View style={styles.controls}>
-              {!photo && (
-                <Button
-                  title="Take Picture"
-                  color="#0097CD"
-                  onPress={this._takePictureButtonPressed}
-                />
+            {!photo && (
+                <TouchableOpacity style={{height:35,width:35,marginLeft:'-20%'}}
+                onPress={() => this.state.estadocamara?
+                
+                this.setState({type: Camera.Constants.Type.front,estadocamara:false}):
+                this.setState({type: Camera.Constants.Type.back,estadocamara:true})}>
+                <Text style={styles.icon}>
+                  {" "}
+                  <Ionicons name="md-reverse-camera" size={35} color="#fff" />{" "}
+                </Text>
+              </TouchableOpacity>
               )}
+              {!photo && (
+                <TouchableOpacity style={{
+                height:40,width:'30%',backgroundColor:"#fff",alignItems:'center'
+                ,borderRadius:10,justifyContent:'center',marginLeft:'20%' }}
+                onPress={this._takePictureButtonPressed}>
+                <Text style={styles.icon}>
+                  {"TAKE PICTURE "}
+                </Text>
+              </TouchableOpacity>
+              )}
+              
+              
               {/* //previo */}
               {photo && <Image style={styles.photo} source={photo} />}
             </View>
@@ -346,13 +363,15 @@ const styles = StyleSheet.create({
 
   controls: {
     position: "absolute",
+    flexDirection:'row',
     zIndex: 10,
     bottom: 0,
     left: 0,
     right: 0,
     height: 100,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    
   },
 
   photo: {
@@ -362,5 +381,11 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     top: 0
+  },
+  icon:{
+    fontSize:15,
+    color:'black',
+    fontWeight:'bold',
+    fontFamily:"PoppinsSemiBold"
   }
 });
