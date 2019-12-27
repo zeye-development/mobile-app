@@ -31,11 +31,13 @@ export default class Formulario extends Component {
       body: JSON.stringify({
         names: this.state.name,
         surnames: this.state.surname,
-        // // // pais:(this.state.pais),
+        nationality:(this.state.pais),
         dni: this.state.id,
-        // sex:(this.state.sex),
+        sex:(this.state.sex),
         picture: base64,
-        wanted: this.state.estado
+        wanted: this.state.estado,
+        birth: this.state.fecha
+      
       }),
       headers: {
         "Content-Type": "application/json"
@@ -91,16 +93,16 @@ export default class Formulario extends Component {
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.viewContainerGrup}>
-          <View style={styles.viewContainerInput}>
+        
+          <View style={styles.viewContainer}>
             <TextInput
               style={styles.input1}
-              placeholder="Nombre"
+              placeholder="Nombres"
               value={this.name}
               onChangeText={name => this.setState({ name })}
             />
           </View>
-          <View style={styles.viewContainerInput}>
+          <View style={styles.viewContainer}>
             <TextInput
               placeholder="Apellido"
               value={this.surname}
@@ -108,7 +110,8 @@ export default class Formulario extends Component {
               style={styles.input1}
             />
           </View>
-        </View>
+         
+        
         <View style={styles.viewContainer}>
           <TextInput
             placeholder="Pais"
@@ -135,9 +138,18 @@ export default class Formulario extends Component {
             style={styles.input}
           />
         </View>
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Fecha de Nacimiento"
+            keyboardType='email-address'
+            value={this.fecha}
+            onChangeText={fecha => this.setState({ fecha })}
+            style={styles.input}
+          />
+        </View>
         <View style={styles.viewContainerCheck}>
           <TouchableOpacity
-            style={{ width: 35, height: 35, marginTop: 10 }}
+            style={{ width: 35, height: 35, marginTop: 14 }}
             onPress={() => {
               this.setState({ estado: !this.state.estado });
             }}

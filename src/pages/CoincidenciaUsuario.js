@@ -11,7 +11,7 @@ export default function CoincidenciaUsuario(props) {
       <ScrollView>
         <Header navigation={props.navigation} />
         <FotoPerfil navigation={props.navigation} />
-        <Formulario />
+        <Formulario navigation={props.navigation} />
       </ScrollView>
     </View>
   );

@@ -23,7 +23,6 @@ export default class Formulario extends React.Component {
     this.state = {
       image: null,
       base64: null,
-
       modalVisible: false,
       hasCameraPermission: false,
       // type: Camera.Constants.Type.front,
@@ -33,7 +32,8 @@ export default class Formulario extends React.Component {
       zoom: 0,
       whiteBalance: Camera.Constants.WhiteBalance.auto,
       focusDepth: 0,
-      ratio: "4:3"
+      ratio: "4:3",
+      
     };
   }
 
@@ -119,15 +119,37 @@ export default class Formulario extends React.Component {
       .then(response => response.json())
       .then(response => {
         console.log("upload succes", response);
-        alert("Upload success!");
+        
         this.setState({ uri: null });
-        this.props.navigation.navigate("Dashboard");
+        response.people.forEach(element =>this.setState({id:element._id}))
+            response.people.forEach(element =>this.setState({face:element.current_face}))
+            response.people.forEach(element =>this.setState({name:element.names}))
+            response.people.forEach(element =>this.setState({surname:element.surnames}))
+            response.people.forEach(element =>this.setState({rface:element.registered_face}))
+            response.people.forEach(element =>this.setState({wanted:element.wanted}))
+            response.people.forEach(element =>this.setState({nationality:element.nationality}))
+            response.people.forEach(element =>this.setState({sex:element.sex}))
+            response.people.forEach(element =>this.setState({birth:element.birth}))
+            console.log(this.state.id)
+            console.log(this.state.face)
+            console.log(this.state.name)
+            
+            if(this.state.rface===null){
+            Alert.alert("ERROR","no se encontraron coincidencias")}
+            else{
+            this.props.navigation.navigate('CoincidenciaUsuario',
+            {id:this.state.id,name:this.state.name,face:this.state.face,
+              surnames:this.state.surname,rface:this.state.rface,wanted:this.state.wanted,
+            nationality:this.state.nationality,sex:this.state.sex,birth:this.state.birth })
+       
+            }
+          
       })
       .catch(error => {
         console.log("upload error", error);
 
-        alert("Upload failed!");
-        this.props.navigation.navigate("Dashboard");
+        Alert.alert("ERROR","No se encontraron coincidencias");
+        
       });
   };
   guardar = () => {
