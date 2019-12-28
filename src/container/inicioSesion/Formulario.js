@@ -7,12 +7,16 @@ import {
   TouchableOpacity,
   Alert,
   AsyncStorage,
-  Modal
+  Modal,
+  Button,
+  Image,
+  TouchableHighlight,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 // import { validatorEmail } from "../../helpers/validatorEmail";
 import md5 from "md5";
 import { LinearGradient } from "expo-linear-gradient";
+import * as LocalAuthentication from 'expo-local-authentication';
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -22,7 +26,11 @@ export default class Formulario extends Component {
       email: null,
       pass: null,
       modalVisible: false,
-      mensajeAlert: ""
+      mensajeAlert: "",
+      authenticated: false,
+      modalVisible3: true,
+      modalVisible2: true,
+      failedCount: 0,
     };
   }
 
@@ -83,6 +91,28 @@ export default class Formulario extends Component {
       });
     }
   }
+  scanFingerPrint = async () => {
+    try {
+      let results = await LocalAuthentication.authenticateAsync();
+      if (results.success) {
+        
+        this.setState({
+          modalVisible2: !this.state.modalVisible2,
+         
+          failedCotunt: 0,
+          
+        });this.props.navigation.navigate("Dashboard")
+      } else {
+        this.setState({
+          failedCount: this.state.failedCount + 1,
+          
+        });
+        console.log(this.state.failedCount)}
+    } catch (e) {
+      console.log(e);
+    }
+    
+  };
 
   render() {
     return (
@@ -122,7 +152,30 @@ export default class Formulario extends Component {
             </Text>
           </TouchableOpacity>
         </LinearGradient>
-
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.modalVisible2}
+          onShow={this.scanFingerPrint}>
+          <View style={styles.modal}>
+            <View style={styles.innerContainer}>
+              <Text style={{fontSize:15, fontFamily:"PoppinsRegular",margin:10}}>Iniciar Sesion con Huella</Text>
+              <Ionicons name="md-finger-print" size={40} color="#0097CD"></Ionicons>
+              {this.state.failedCount > 0 && (
+                <Text style={{ color: 'red', fontSize: 14 }}>
+                  Fallo la Autenticacion, intente nuevamente.
+                </Text>
+              )}
+              <TouchableHighlight
+                onPress={async () => {
+                
+                  this.setState({modalVisible2:!this.state.modalVisible2});
+                }}>
+                <Text style={{ color: 'red', fontSize: 16, marginTop:10 }}>Cancel</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
         <Modal
           animationType="none"
           transparent={true}
@@ -234,5 +287,19 @@ const styles = StyleSheet.create({
   },
   font: {
     fontFamily: "PoppinsRegular"
-  }
+  },
+  modal: {
+    flex: 1,
+    marginTop: '90%',
+    backgroundColor: '#E5E5E5',
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity:0.9
+  },
+  innerContainer: {
+    marginTop: '30%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

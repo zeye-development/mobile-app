@@ -4,15 +4,19 @@ import {
   Text,
   View,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+ 
 } from "react-native";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
+
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uri: null
+      uri: null,
+      
+ 
     };
   }
 
@@ -22,6 +26,12 @@ export default class Dashboard extends Component {
       this.props.navigation.replace("Principal");
     } catch (error) {}
   }
+ 
+
+ 
+
+  
+
   render() {
     return (
       <View style={styles.container}>
@@ -53,6 +63,7 @@ export default class Dashboard extends Component {
             <Ionicons name="ios-log-in" size={18} color="#fff" />{" "}
           </Text>
         </TouchableOpacity>
+        
       </View>
     );
   }
@@ -78,5 +89,19 @@ const styles = StyleSheet.create({
   },
   icon: {
     padding: 6
-  }
+  },
+  container1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    
+    padding: 8,
+  },
+  
+ 
+  text: {
+    alignSelf: 'center',
+    fontSize: 22,
+    paddingTop: 20,
+  },
 });
