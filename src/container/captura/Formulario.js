@@ -115,7 +115,7 @@ export default class Formulario extends React.Component {
   };
 
   render() {
-    let { image } = this.state;
+    let { image,modalVisible } = this.state;
 
     const {
       type,
@@ -128,23 +128,47 @@ export default class Formulario extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.viewContainer}
-        >
+        <View style={styles.viewContainer}>
           <Image
             style={{
-              width: 230,
-              height: 230,
-              borderRadius: 20,
+              width: '100%',
+              height: '100%',
+              resizeMode:"stretch",
+              marginRight:'-10%',
+              
+              
               position: "absolute"
-            }} 
+            }}
             source={{ uri: image }}
           />
+          <View style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}> 
+          <View style={{height:'85%',width:'50%',justifyContent:'center'}}>
+          
+          <View style={styles.cuadro}></View>
+          <View style={styles.cuadro}></View>
           <View style={styles.cuadro}></View>
         </View>
+        <View style={{height:'85%',width:'50%',justifyContent:'center',marginLeft:'15%'}}>
+          
+          <View style={{width: "35%",height: "35%",borderColor: "white",borderTopWidth:10, borderLeftWidth:10}}></View>
+          <View style={{width: "35%",height: "30%"}}></View>
+          <View style={{width: "35%",height: "35%",borderColor: "white",borderBottomWidth:10, borderLeftWidth:10}}></View>
+        </View>
+        <View style={{height:'85%',width:'50%',justifyContent:'center'}}>
+          
+          <View style={{width: "35%",height: "35%",borderColor: "white",borderTopWidth:10, borderRightWidth:10}}></View>
+          <View style={{width: "30%",height: "30%"}}></View>
+          <View style={{width: "35%",height: "35%",borderColor: "white",borderBottomWidth:10, borderRightWidth:10}}></View>
+        </View>
+        </View>
+        </View>
+       
         <LinearGradient
-        colors={["#0097CD", "#01B8E2"]}
+          colors={["#0097CD", "#01B8E2"]}
           start={[0, 0.8]}
-          end={[0.8, 0.5]} style={styles.styleButtom}>
+          end={[0.8, 0.5]}
+          style={styles.styleButtom}
+        >
           <TouchableOpacity
             onPress={() => {
               this.setState({ modalVisible: !this.state.modalVisible });
@@ -164,20 +188,30 @@ export default class Formulario extends React.Component {
           </TouchableOpacity>
         </View>
         <LinearGradient
-        colors={["#0097CD", "#01B8E2"]}
+          colors={["#0097CD", "#01B8E2"]}
           start={[0, 0.8]}
-          end={[0.8, 0.5]} style={styles.styleButtom}>
-          <TouchableOpacity onPress={this.guardar}>
-            <Text style={styles.inputButtom}>
-              <Feather name="download" size={18} color="#fff" /> Guardar
-            </Text>
+          end={[0.8, 0.5]}
+          style={styles.styleButtom}
+        >
+          <TouchableOpacity
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+            onPress={this.guardar}
+          >
+            <Ionicons name="md-download" size={18} color="white" />
+            <Text style={styles.inputButtom}>Guardar</Text>
           </TouchableOpacity>
-          <Modal
+        </LinearGradient>
+        <Modal
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
         >
           <View style={styles.containermodal}>
+            
             <Camera
               style={styles.camera}
               ref={ref => (this._cameraInstance = ref)}
@@ -187,10 +221,50 @@ export default class Formulario extends React.Component {
               focusDepth={focusDepth}
             />
 
-            <View style={styles.cuadro2}></View>
+        <View style={styles.cuadro2}>
+        
+          <View style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}> 
+          
+        <View style={{height:'85%',width:'50%',justifyContent:'center',marginLeft:'80%',marginTop:'15%'}}>
+          
+          <View style={{width: "35%",height: "45%",borderColor: "white",borderTopWidth:10, borderLeftWidth:10}}></View>
+          <View style={{width: "35%",height: "30%"}}></View>
+          <View style={{width: "35%",height: "45%",borderColor: "white",borderBottomWidth:10, borderLeftWidth:10}}></View>
+        </View>
+        <View style={{height:'85%',width:'50%',justifyContent:'center',marginLeft:'20%',marginTop:'15%'}}>
+          
+          <View style={{width: "35%",height: "45%",borderColor: "white",borderTopWidth:10, borderRightWidth:10}}></View>
+          <View style={{width: "30%",height: "30%"}}></View>
+          <View style={{width: "35%",height: "45%",borderColor: "white",borderBottomWidth:10, borderRightWidth:10}}></View>
+        </View>
+        </View>
+        </View>
             <View style={styles.controls}>
             {!photo && (
-                <TouchableOpacity style={{height:35,width:35,marginLeft:'-20%'}}
+                <TouchableOpacity style={{height:35,width:35}}
+                onPress={() => {
+                  this.setState({ modalVisible: !this.state.modalVisible });
+                }}>
+               
+                <Text style={styles.icon}>
+                  {" "}
+                  <Ionicons name="md-arrow-round-back" size={35} color="#fff" />{" "}
+                </Text>
+              </TouchableOpacity>
+              )}
+              
+              {!photo && (
+                <TouchableOpacity style={{
+                height:40,width:'30%',backgroundColor:"#fff",alignItems:'center'
+                ,borderRadius:10,justifyContent:'center',marginLeft:'15%' }}
+                onPress={this._takePictureButtonPressed}>
+                <Text style={styles.icon}>
+                  {"TAKE PICTURE "}
+                </Text>
+              </TouchableOpacity>
+              )}
+              {!photo && (
+                <TouchableOpacity style={{height:35,width:35,marginLeft:'15%'}}
                 onPress={() => this.state.estadocamara?
                 
                 this.setState({type: Camera.Constants.Type.front,estadocamara:false}):
@@ -201,24 +275,12 @@ export default class Formulario extends React.Component {
                 </Text>
               </TouchableOpacity>
               )}
-              {!photo && (
-                <TouchableOpacity style={{
-                height:40,width:'30%',backgroundColor:"#fff",alignItems:'center'
-                ,borderRadius:10,justifyContent:'center',marginLeft:'20%' }}
-                onPress={this._takePictureButtonPressed}>
-                <Text style={styles.icon}>
-                  {"TAKE PICTURE "}
-                </Text>
-              </TouchableOpacity>
-              )}
               
               
-              {/* //previo */}
-              {photo && <Image style={styles.photo} source={photo} />}
+              
             </View>
           </View>
         </Modal>
-        </LinearGradient>
       </View>
     );
   }
@@ -262,8 +324,8 @@ const styles = StyleSheet.create({
     marginTop: "30%",
     width: "80%",
     height: "60%",
-    borderColor: "white",
-    borderWidth: 7,
+    
+    alignItems:'center',
 
     position: "absolute"
   },
@@ -297,7 +359,7 @@ const styles = StyleSheet.create({
   },
   camera: {
     height: "100%",
-    width: "130%"
+    width: "100%"
   },
 
   controls: {

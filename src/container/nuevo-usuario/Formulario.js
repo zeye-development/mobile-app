@@ -5,18 +5,24 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Image
+  Image,
+  Picker
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import DatePicker from 'react-native-datepicker'
+
 
 export default class Formulario extends Component {
   constructor(props) {
     super(props);
     this.state = {
       foto: false,
-      base64: this.state,
-      estado: true
+      base64: null,
+      estado: true,
+      isDateTimePickerVisible:false,
+      sex:'Male',
+      nationality:'VE'
     };
   }
 
@@ -31,12 +37,12 @@ export default class Formulario extends Component {
       body: JSON.stringify({
         names: this.state.name,
         surnames: this.state.surname,
-        nationality:(this.state.pais),
+        nationality:(this.state.nationality),
         dni: this.state.id,
-        sex:(this.state.sex),
+        sex:this.state.sex,
         picture: base64,
         wanted: this.state.estado,
-        birth: this.state.fecha
+        birth: this.state.birth
       
       }),
       headers: {
@@ -45,7 +51,8 @@ export default class Formulario extends Component {
     })
       .then(response => response.json())
       .then(response => {
-        console.log(parabase64);
+        console.log(this.state.sex);
+        console.log(this.state.sex)
         console.log("upload succes", response);
         alert("Upload success!");
         this.setState({ uri: null });
@@ -59,6 +66,19 @@ export default class Formulario extends Component {
         alert("Upload failed!");
         this.props.navigation.navigate("Dashboard");
       });
+ 
+  };
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  };
+
+  handleDatePicked = date => {
+    console.log("A date has been picked: ", date);
+    this.hideDateTimePicker();
   };
   render() {
     let perfil = JSON.stringify(
@@ -110,18 +130,7 @@ export default class Formulario extends Component {
               style={styles.input1}
             />
           </View>
-         
-        
-        <View style={styles.viewContainer}>
-          <TextInput
-            placeholder="Pais"
-            value={this.pais}
-            onChangeText={pais => this.setState({ pais })}
-            style={styles.input}
-          />
-        </View>
-
-        <View style={styles.viewContainer}>
+          <View style={styles.viewContainer}>
           <TextInput
             placeholder="Identidad"
             value={this.id}
@@ -129,24 +138,51 @@ export default class Formulario extends Component {
             style={styles.input}
           />
         </View>
+          <Text style={{fontSize: 15,color: "black",
+          textAlign: "center",fontFamily: "PoppinsRegular",margin:5,}}> Selecionar Pais</Text>
+          <View style={styles.containerpicker}>
+        <Picker 
+        selectedValue={this.state.nationality}
+        onValueChange={(itemValue) => this.setState({nationality: itemValue})}
+        style={[styles.picker]} itemStyle={styles.pickerItem}>
+          <Picker.Item label="Venezuela" value="VE" />
+          <Picker.Item label="Colombia" value="CO" />
+          <Picker.Item label="Brasil" value="BR" />
+          <Picker.Item label="Estados Unidos" value="US" />
+        </Picker>
+        
+      </View>
+      
 
-        <View style={styles.viewContainer}>
-          <TextInput
-            placeholder="Sexo"
-            value={this.sex}
-            onChangeText={sex => this.setState({ sex })}
-            style={styles.input}
-          />
-        </View>
-        <View style={styles.viewContainer}>
-          <TextInput
-            placeholder="Fecha de Nacimiento"
-            keyboardType='email-address'
-            value={this.fecha}
-            onChangeText={fecha => this.setState({ fecha })}
-            style={styles.input}
-          />
-        </View>
+        <Text style={{fontSize: 15,color: "black",
+          textAlign: "center",fontFamily: "PoppinsRegular",margin:5,}}> Selecionar Sexo</Text>
+          <View style={styles.containerpicker}>
+        <Picker 
+        selectedValue={this.state.sex}
+        onValueChange={(Value) => this.setState({sex: Value})}
+        style={[styles.picker]} itemStyle={styles.pickerItem}>
+          <Picker.Item label="Masculino" value="Male" />
+          <Picker.Item label="Femenino" value="Female" />
+          
+        </Picker>
+        
+      </View>
+      <Text style={{fontSize: 15,color: "black",
+          textAlign: "center",fontFamily: "PoppinsRegular",margin:5,}}> Fecha de Nacimiento</Text>
+      <DatePicker
+        style={{width: '100%', height:40,marginTop:6}}
+        date={this.state.birth}
+        mode="date"
+        placeholder="Fecha de Nacimiento"
+        format="DD-MM-YYYY"
+        minDate="01-05-1920"
+        maxDate="01-10-2025"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+     
+        
+        onDateChange={(date) => {this.setState({birth: date})}}
+      />
         <View style={styles.viewContainerCheck}>
           <TouchableOpacity
             style={{ width: 35, height: 35, marginTop: 14 }}
@@ -250,5 +286,27 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 7,
     marginBottom: 15
-  }
+  },
+  containerpicker: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius:15,
+    backgroundColor: '#EBF2F4',
+    marginBottom:5,
+  },
+  
+  picker: {
+    width: '100%',
+    height: 50,
+    marginLeft:'2%',
+    color: 'black',
+    
+    
+    alignItems:'center'
+  },
+  
+  
+  
+ 
 });

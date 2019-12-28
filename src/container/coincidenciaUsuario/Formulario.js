@@ -26,7 +26,25 @@ export default class Formulario extends React.Component{
       names = names.replace(/[^a-z0-9,\s]/gi, '').replace(/[_\s]/g, '-');
       
       var cname = names.split(',');
-      let name= cname[0]+' '+cname[1]
+      let name
+      longitud=cname.length
+      console.log(longitud)
+      if (longitud===1){
+        name= cname[0]
+      }
+      if (longitud===2){
+        name= cname[0]+' '+cname[1]
+      }
+      if (longitud===3){
+        name= cname[0]+' '+cname[1]+' '+cname[2]
+      }
+      if (longitud===4){
+        name= cname[0]+' '+cname[1]+' '+cname[2]+' '+cname[3]
+      }
+      if (longitud===5){
+        name= cname[0]+' '+cname[1]+' '+cname[2]+' '+cname[4]
+      }
+      
       
 
       let surnames=JSON.stringify(this.props.navigation.getParam("surnames", "surname"))
@@ -34,7 +52,27 @@ export default class Formulario extends React.Component{
       sur = surnames.replace(/[^a-z0-9,\s]/gi, '').replace(/[_\s]/g, '-');
       
       var surname = sur.split(',');
-       surname= surname[0]+' '+surname[1]
+      logitud1=surname.length
+
+      if(longitud===1){
+        surname=surname[0]
+      }
+      if(longitud===2){
+        surname=surname[0]+' '+surname[1]
+      }
+      
+      if(longitud===3){
+        surname=surname[0]+' '+surname[1]+' '+surname[2]
+      }
+      
+      if(longitud===4){
+        surname=surname[0]+' '+surname[1]+' '+surname[2]+' '+surname[3]
+      }
+      
+      if(longitud===5){
+        surname=surname[0]+' '+surname[1]+' '+surname[2]+' '+surname[3]+' '+surname[4]
+      }
+      
       
       
       console.log(name)
