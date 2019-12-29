@@ -6,7 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  Picker
+  Picker, 
+  Modal
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -20,6 +21,8 @@ export default class Formulario extends Component {
       foto: false,
       base64: null,
       estado: true,
+      modalVisibleAlert: false,
+      mensajeAlert: "",
       isDateTimePickerVisible:false,
       sex:'Male',
       nationality:'VE'
@@ -27,6 +30,15 @@ export default class Formulario extends Component {
   }
 
   handleUploadPhoto = () => {
+    // let { foto, base64 } = this.state;
+
+    if (this.state.foto === null || this.state.base64 === null) {
+      this.setState({
+        modalVisibleAlert: !this.state.modalVisibleAlert,
+        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+      });
+      return;
+    }
     let parabase64 = JSON.stringify(
       this.props.navigation.getParam("base", "base64")
     );
@@ -220,6 +232,70 @@ export default class Formulario extends Component {
             </Text>
           </TouchableOpacity>
         </LinearGradient>
+{/* modal aLert ================ */}
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalVisibleAlert}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              width: 290,
+              backgroundColor: "#fff",
+              borderRadius: 15,
+              position: "absolute",
+              marginTop: "45%",
+              marginHorizontal: "10%"
+            }}
+          >
+            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#00425A",
+                  textAlign: "center",
+                  textShadowRadius: 2,
+                  fontFamily: "PoppinsBold"
+                }}
+              >
+                {this.state.mensajeAlert}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ modalVisibleAlert: !this.state.modalVisibleAlert });
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 16,
+                    // padding: 13,
+                    color: "#01B8E2",
+                    textAlign: "right",
+                    fontFamily: "PoppinsRegular",
+                    marginTop: 40,
+                    marginHorizontal: 20,
+                    marginBottom: 20
+                  }}
+                >
+                  {" "}
+                  Entendido
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }

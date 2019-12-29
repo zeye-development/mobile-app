@@ -9,9 +9,8 @@ import {
   TouchableOpacity,
   Image,
   Modal,
-  Button,
   Platform,
-  Alert
+  
 } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
@@ -25,6 +24,10 @@ export default class Formulario extends React.Component {
       base64: null,
       modalVisible: false,
       hasCameraPermission: false,
+      // buttomBuscar: false,
+
+      modalVisibleAlert: false,
+      mensajeAlert: "",
       // type: Camera.Constants.Type.front,
       type: Camera.Constants.Type.back,
       flashMode: Camera.Constants.FlashMode.on,
@@ -44,7 +47,12 @@ export default class Formulario extends React.Component {
       this.setState({ hasCameraPermission: status === "granted" });
 
       if (status !== "granted") {
-        alert("Hey! You might want to enable Camera in your phone settings.");
+        
+        // alert("Hey! You might want to enable Camera in your phone settings.");
+        this.setState({
+          mensajeAlert: "Es posible que desee habilitar la cámara en la configuración de su teléfono",
+          modalVisibleAlert: true
+        })
       }
     } catch (err) {
       console.log("err", err);
@@ -57,7 +65,11 @@ export default class Formulario extends React.Component {
         this.setState({ hasCameraPermission: status === "granted" });
 
         if (status !== "granted") {
-          alert("Hey! You might want to enable Camera in your phone settings.");
+          // alert("Hey! You might want to enable Camera in your phone settings.");
+          this.setState({
+            mensajeAlert: "Es posible que desee habilitar la cámara en la configuración de su teléfono",
+            modalVisibleAlert: true
+          })
         }
       } catch (err) {
         console.log("err", err);
@@ -69,7 +81,11 @@ export default class Formulario extends React.Component {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
+        // alert("Sorry, we need camera roll permissions to make this work!");
+        this.setState({
+          modalVisibleAlert: !this.state.modalVisibleAlert,
+          mensajeAlert: "Se necesitan los permisos de la cámara para que funcione"
+        });
       }
     }
   };
@@ -101,6 +117,17 @@ export default class Formulario extends React.Component {
     }
   };
   handleUploadPhoto = () => {
+    // this.guardar();
+    let { image, base64 } = this.state;
+
+    if (image === null || base64 === null) {
+      // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
+      this.setState({
+        modalVisibleAlert: !this.state.modalVisibleAlert,
+        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+      });
+      return;
+    }
     fetch("http://189.213.227.211:8080/person-query", {
       method: "POST",
       body: JSON.stringify({
@@ -134,8 +161,13 @@ export default class Formulario extends React.Component {
             console.log(this.state.face)
             console.log(this.state.name)
             
-            if(this.state.rface===null){
-            Alert.alert("ERROR","no se encontraron coincidencias")}
+        if (this.state.rface === null) {
+          this.setState({
+            modalVisibleAlert: !this.state.modalVisibleAlert,
+            mensajeAlert: "No se encontraron coincidencias en la base de datos"
+          });
+          // Alert.alert("ERROR", "no se encontraron coincidencias")
+        }
             else{
             this.props.navigation.navigate('CoincidenciaUsuario',
             {id:this.state.id,name:this.state.name,face:this.state.face,
@@ -148,23 +180,14 @@ export default class Formulario extends React.Component {
       .catch(error => {
         console.log("upload error", error);
 
-        Alert.alert("ERROR","No se encontraron coincidencias");
+        // Alert.alert("ERROR","No se encontraron coincidencias");
+        this.setState({
+          modalVisibleAlert: !this.state.modalVisibleAlert,
+          mensajeAlert: "No se encontraron coincidencias en la base de datos"
+        });
         
       });
   };
-  guardar = () => {
-    let { image, base64 } = this.state;
-
-    if (image === null) {
-      Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
-    } else {
-      this.props.navigation.navigate("Dashboard", {
-        item: image,
-        base: base64
-      });
-    }
-  };
-
   render() {
     let { image } = this.state;
 
@@ -238,6 +261,7 @@ export default class Formulario extends React.Component {
             </Text>
           </TouchableOpacity>
         </View>
+        
         <LinearGradient
           colors={["#0097CD", "#01B8E2"]}
           start={[0, 0.8]}
@@ -256,6 +280,7 @@ export default class Formulario extends React.Component {
             <Text style={styles.inputButtom}>Buscar</Text>
           </TouchableOpacity>
         </LinearGradient>
+        {/* modal camera ================= */}
         <Modal
           animationType="slide"
           transparent={false}
@@ -333,6 +358,70 @@ export default class Formulario extends React.Component {
               
               
               
+            </View>
+          </View>
+        </Modal>
+        {/* modal Alert ================= */}
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalVisibleAlert}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              width: 290,
+              backgroundColor: "#fff",
+              borderRadius: 15,
+              position: "absolute",
+              marginTop: "45%",
+              marginHorizontal: "10%"
+            }}
+          >
+            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#00425A",
+                  textAlign: "center",
+                  textShadowRadius: 2,
+                  fontFamily: "PoppinsBold"
+                }}
+              >
+                {this.state.mensajeAlert}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ modalVisibleAlert: !this.state.modalVisibleAlert });
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 16,
+                    // padding: 13,
+                    color: "#01B8E2",
+                    textAlign: "right",
+                    fontFamily: "PoppinsRegular",
+                    marginTop: 40,
+                    marginHorizontal: 20,
+                    marginBottom: 20
+                  }}
+                >
+                  {" "}
+                  Entendido
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>

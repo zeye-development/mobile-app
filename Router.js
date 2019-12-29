@@ -92,7 +92,7 @@ export default createAppContainer(AppNavigator);
 //       {/* <Principal /> */}
 //       {/* <InicioSesion /> */}
 //       {/* <Registro /> */}
-//       {/* <NuevoUsuario /> */}
+//       <NuevoUsuario />
 //       {/* <UsuarioRequerido /> */}
 //       {/* <RecuperarPaso1 /> */}
 //       {/* <RecuperarPaso2 /> */}
@@ -103,7 +103,7 @@ export default createAppContainer(AppNavigator);
 //       {/* <PanelAdmin /> */}
 //       {/* <Coincidencias /> */}
 //       {/* <CoincidenciaUsuario /> */}
-//       <BuscarCoincidencia />
+//       {/* <BuscarCoincidencia /> */}
 //     </View>
 //   );
 // }

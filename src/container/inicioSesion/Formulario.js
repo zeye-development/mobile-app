@@ -10,13 +10,13 @@ import {
   Modal,
   Button,
   Image,
-  TouchableHighlight,
+  TouchableHighlight
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 // import { validatorEmail } from "../../helpers/validatorEmail";
 import md5 from "md5";
 import { LinearGradient } from "expo-linear-gradient";
-import * as LocalAuthentication from 'expo-local-authentication';
+import * as LocalAuthentication from "expo-local-authentication";
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -30,29 +30,29 @@ export default class Formulario extends Component {
       authenticated: false,
       modalVisible3: true,
       modalVisible2: true,
-      failedCount: 0,
+      failedCount: 0
     };
   }
 
-  async login() {
-    if (!this.state.email) {
+  async login(email, pass) {
+    // console.log(email);
+    // console.log(pass);
+    if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El correo es Requerido para iniciar Sesion"
+        mensajeAlert: "El Usuario es requerido para iniciar Sesion"
       });
       return;
     }
-    if (!this.state.pass) {
+    if (!pass) {
       // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El contraseña es Requerido para iniciar Sesion"
+        mensajeAlert: "El Contraseña es requerido para iniciar Sesion"
       });
       return;
     }
-    console.log(this.state.email);
-    console.log(this.state.pass);
 
     try {
       let response = await fetch("http://189.213.227.211:8080/login", {
@@ -63,8 +63,8 @@ export default class Formulario extends Component {
           mimeType: "application/json"
         },
         body: JSON.stringify({
-          email: this.state.email,
-          password: md5(this.state.pass)
+          email: email,
+          password: md5(pass)
         })
       });
 
@@ -80,7 +80,7 @@ export default class Formulario extends Component {
         // Alert.alert("Error", "El Correo o la contraseña no son correctos");
         this.setState({
           modalVisible: !this.state.modalVisible,
-          mensajeAlert: "El Correo o la contraseña no son correctos"
+          mensajeAlert: "El Usuario o la Contraseña no son correctos"
         });
       }
     } catch (error) {
@@ -95,23 +95,21 @@ export default class Formulario extends Component {
     try {
       let results = await LocalAuthentication.authenticateAsync();
       if (results.success) {
-        
         this.setState({
           modalVisible2: !this.state.modalVisible2,
-         
-          failedCotunt: 0,
-          
-        });this.props.navigation.navigate("Dashboard")
+
+          failedCotunt: 0
+        });
+        this.props.navigation.navigate("Dashboard");
       } else {
         this.setState({
-          failedCount: this.state.failedCount + 1,
-          
+          failedCount: this.state.failedCount + 1
         });
-        console.log(this.state.failedCount)}
+        console.log(this.state.failedCount);
+      }
     } catch (e) {
       console.log(e);
     }
-    
   };
 
   render() {
@@ -156,22 +154,37 @@ export default class Formulario extends Component {
           animationType="slide"
           transparent={true}
           visible={this.state.modalVisible2}
-          onShow={this.scanFingerPrint}>
+          onShow={this.scanFingerPrint}
+        >
           <View style={styles.modal}>
             <View style={styles.innerContainer}>
-              <Text style={{fontSize:15, fontFamily:"PoppinsRegular",margin:10}}>Iniciar Sesion con Huella</Text>
-              <Ionicons name="md-finger-print" size={40} color="#0097CD"></Ionicons>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontFamily: "PoppinsRegular",
+                  margin: 10
+                }}
+              >
+                Iniciar Sesion con Huella
+              </Text>
+              <Ionicons
+                name="md-finger-print"
+                size={40}
+                color="#0097CD"
+              ></Ionicons>
               {this.state.failedCount > 0 && (
-                <Text style={{ color: 'red', fontSize: 14 }}>
+                <Text style={{ color: "red", fontSize: 14 }}>
                   Fallo la Autenticacion, intente nuevamente.
                 </Text>
               )}
               <TouchableHighlight
                 onPress={async () => {
-                
-                  this.setState({modalVisible2:!this.state.modalVisible2});
-                }}>
-                <Text style={{ color: 'red', fontSize: 16, marginTop:10 }}>Cancel</Text>
+                  this.setState({ modalVisible2: !this.state.modalVisible2 });
+                }}
+              >
+                <Text style={{ color: "red", fontSize: 16, marginTop: 10 }}>
+                  Cancel
+                </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -290,16 +303,16 @@ const styles = StyleSheet.create({
   },
   modal: {
     flex: 1,
-    marginTop: '90%',
-    backgroundColor: '#E5E5E5',
-    justifyContent: 'center',
-    alignItems: 'center',
-    opacity:0.9
+    marginTop: "90%",
+    backgroundColor: "#E5E5E5",
+    justifyContent: "center",
+    alignItems: "center",
+    opacity: 0.9
   },
   innerContainer: {
-    marginTop: '30%',
+    marginTop: "30%",
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });

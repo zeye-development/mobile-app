@@ -9,9 +9,7 @@ import {
   TouchableOpacity,
   Image,
   Modal,
-  Button,
   Platform,
-  Alert
 } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
@@ -23,7 +21,8 @@ export default class Formulario extends React.Component {
     this.state = {
       image: null,
       base64: null,
-
+      modalVisibleAlert: false,
+      mensajeAlert: "",
       modalVisible: false,
       hasCameraPermission: false,
       // type: Camera.Constants.Type.front,
@@ -44,7 +43,11 @@ export default class Formulario extends React.Component {
       this.setState({ hasCameraPermission: status === "granted" });
 
       if (status !== "granted") {
-        alert("Hey! You might want to enable Camera in your phone settings.");
+        // alert("Hey! You might want to enable Camera in your phone settings.");
+        this.setState({
+          mensajeAlert: "Es posible que desee habilitar la cámara en la configuración de su teléfono",
+          modalVisibleAlert: true
+        })
       }
     } catch (err) {
       console.log("err", err);
@@ -57,7 +60,11 @@ export default class Formulario extends React.Component {
         this.setState({ hasCameraPermission: status === "granted" });
 
         if (status !== "granted") {
-          alert("Hey! You might want to enable Camera in your phone settings.");
+          // alert("Hey! You might want to enable Camera in your phone settings.");
+          this.setState({
+            mensajeAlert: "Es posible que desee habilitar la cámara en la configuración de su teléfono",
+            modalVisibleAlert: true
+          })
         }
       } catch (err) {
         console.log("err", err);
@@ -69,7 +76,11 @@ export default class Formulario extends React.Component {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
+        // alert("Sorry, we need camera roll permissions to make this work!");
+        this.setState({
+          mensajeAlert: "Se necesitan los permisos de la cámara para que funcione",
+          modalVisibleAlert: true
+        })
       }
     }
   };
@@ -105,7 +116,11 @@ export default class Formulario extends React.Component {
     let { image, base64 } = this.state;
 
     if (image === null) {
-      Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
+      // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
+      this.setState({
+        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO",
+        modalVisibleAlert: true
+      })
     } else {
       this.props.navigation.navigate("NuevoUsuario", {
         item: image,
@@ -205,6 +220,7 @@ export default class Formulario extends React.Component {
             <Text style={styles.inputButtom}>Guardar</Text>
           </TouchableOpacity>
         </LinearGradient>
+        {/* modal camera ========= */}
         <Modal
           animationType="slide"
           transparent={false}
@@ -278,6 +294,70 @@ export default class Formulario extends React.Component {
               
               
               
+            </View>
+          </View>
+        </Modal>
+        {/* modal alert============= */}
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalVisibleAlert}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              width: 290,
+              backgroundColor: "#fff",
+              borderRadius: 15,
+              position: "absolute",
+              marginTop: "45%",
+              marginHorizontal: "10%"
+            }}
+          >
+            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#00425A",
+                  textAlign: "center",
+                  textShadowRadius: 2,
+                  fontFamily: "PoppinsBold"
+                }}
+              >
+                {this.state.mensajeAlert}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ modalVisibleAlert: !this.state.modalVisibleAlert });
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 16,
+                    // padding: 13,
+                    color: "#01B8E2",
+                    textAlign: "right",
+                    fontFamily: "PoppinsRegular",
+                    marginTop: 40,
+                    marginHorizontal: 20,
+                    marginBottom: 20
+                  }}
+                >
+                  {" "}
+                  Entendido
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>
