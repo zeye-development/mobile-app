@@ -18,7 +18,7 @@ export default class Formulario extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      foto: false,
+      foto: null,
       base64: null,
       estado: true,
       modalVisibleAlert: false,
@@ -97,17 +97,20 @@ export default class Formulario extends Component {
       this.props.navigation.getParam("item", "image")
     );
     let foto = perfil.replace(/['"]+/g, "");
+   
 
     return (
       <View style={styles.container}>
         <View
           style={{
+            flexDirection:'row',
             width: "100%",
             height: 100,
             justifyContent: "center",
             alignItems: "center",
             marginTop: 20,
-            marginBottom: 20
+            marginBottom: 20,
+            
           }}
         >
           <TouchableOpacity
@@ -115,15 +118,26 @@ export default class Formulario extends Component {
             style={{
               width: 120,
               height: 120,
-              backgroundColor: "#abc",
-              borderRadius: 100
+              backgroundColor: "#EBF2F4",
+              borderRadius: 100,
+              position:'absolute'
             }}
           >
             <Image
-              source={{ uri: foto }}
-              style={{ width: 120, height: 120, borderRadius: 100 }}
-            />
+            
+            source={{ uri: foto }}
+            style={{ width: 120, height: 120, borderRadius: 100 }}/>
+
+            
+                  
           </TouchableOpacity>
+         
+          <View style={{backgroundColor:'#01B8D2', height:'45%', width:'16%',
+          marginLeft:'30%',marginTop:'20%',borderRadius:30,alignItems:'center'}}>
+          <View style={{marginTop:'20%'}}> 
+         <Ionicons name="md-camera" size={25} color="white"  /></View> 
+          </View>
+          
         </View>
         
           <View style={styles.viewContainer}>
@@ -136,7 +150,7 @@ export default class Formulario extends Component {
           </View>
           <View style={styles.viewContainer}>
             <TextInput
-              placeholder="Apellido"
+              placeholder="Apellidos"
               value={this.surname}
               onChangeText={surname => this.setState({ surname })}
               style={styles.input1}
@@ -197,15 +211,15 @@ export default class Formulario extends Component {
       />
         <View style={styles.viewContainerCheck}>
           <TouchableOpacity
-            style={{ width: 35, height: 35, marginTop: 14 }}
+            style={{ width: 45, height: 45, marginTop: 15, marginRight:-10 }}
             onPress={() => {
               this.setState({ estado: !this.state.estado });
             }}
           >
             {this.state.estado ? (
-              <Ionicons name="md-checkbox-outline" size={18} color="#00425A" />
+              <Ionicons name="md-checkbox-outline" size={25} color="#00425A" />
             ) : (
-              <Ionicons name="md-square-outline" size={18} color="#00425A" />
+              <Ionicons name="md-square-outline" size={25} color="#00425A" />
             )}
           </TouchableOpacity>
           <Text

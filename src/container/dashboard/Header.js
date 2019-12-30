@@ -60,7 +60,7 @@ export default class Dashboard extends Component {
         >
           <Text style={styles.icon}>
             {"      "}
-            <Ionicons name="ios-log-in" size={18} color="#fff" />{" "}
+            <Ionicons name="ios-log-in" size={25} color="#fff" />{" "}
           </Text>
         </TouchableOpacity>
         
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     padding: 6
+    
   },
   container1: {
     flex: 1,
