@@ -10,6 +10,7 @@ import {
   Image,
   Modal,
   Platform,
+  AsyncStorage
 } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
@@ -70,6 +71,12 @@ export default class Formulario extends React.Component {
         console.log("err", err);
       }
     }
+   
+      let token= await AsyncStorage.getItem('token');
+      console.log(token)
+    
+        let toke = token.replace(/['"]+/g, "");
+        this.setState({token:toke})
   }
 
   getPermissionAsync = async () => {
@@ -122,7 +129,7 @@ export default class Formulario extends React.Component {
         modalVisibleAlert: true
       })
     } else {
-      this.props.navigation.navigate("NuevoUsuario", {
+      this.props.navigation.replace("NuevoUsuario", {
         item: image,
         base: base64
       });

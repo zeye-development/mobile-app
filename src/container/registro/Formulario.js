@@ -29,9 +29,20 @@ export default class Formulario extends Component {
     console.log(this.state.email);
     console.log(this.state.pass);
     console.log(this.state.pass_v);
-
+   const licence=(
+        Math.floor(
+          Math.random() *
+            1000 *
+            Math.floor(
+              Math.random() * 100 * Math.floor(Math.random() * 10000000000*1458102)
+            )
+        )
+      )
+      var licenceS = licence.toString();
+      let lic = licenceS.replace(/['"]+/g, "");
+     console.log(licenceS)
     try {
-      let response = await fetch("http://189.213.227.211:8080/register", {
+      let response = await fetch("http://189.213.227.211:8080/user", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -44,15 +55,8 @@ export default class Formulario extends Component {
           password_validate: md5(this.state.pass_v),
           names: "Keyberth",
           surnames: "Pe",
-          license_key: str(
-            Math.floor(
-              Math.random() *
-                10 *
-                Math.floor(
-                  Math.random() * 10 * Math.floor(Math.random() * 10000000000)
-                )
-            )
-          )
+          license_key:lic
+          
         })
       });
 

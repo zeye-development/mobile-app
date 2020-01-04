@@ -7,14 +7,15 @@ import {
   TouchableOpacity,
   Image,
   Picker, 
-  Modal
+  Modal,
+  AsyncStorage
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import DatePicker from 'react-native-datepicker'
 
 
-export default class Formulario extends Component {
+export default class Formulario extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,11 +29,27 @@ export default class Formulario extends Component {
       nationality:'VE'
     };
   }
+   async componentDidMount () { 
+
+    let token= await AsyncStorage.getItem('token');
+    console.log(token)
+  
+      let toke = token.replace(/['"]+/g, "");
+      this.setState({token:toke})
+    let perfil = JSON.stringify(
+      this.props.navigation.getParam("item", "image")
+    );
+    
+    let pfoto = perfil.replace(/['"]+/g, "");
+    console.log(pfoto)
+   
+    this.setState({foto:pfoto})
+  }
 
   handleUploadPhoto = () => {
     // let { foto, base64 } = this.state;
-
-    if (this.state.foto === null || this.state.base64 === null) {
+    console.log(this.state.foto)
+    if (this.state.foto === null ) {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
         mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
@@ -58,7 +75,8 @@ export default class Formulario extends Component {
       
       }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        key:this.state.token
       }
     })
       .then(response => response.json())
@@ -93,12 +111,7 @@ export default class Formulario extends Component {
     this.hideDateTimePicker();
   };
   render() {
-    let perfil = JSON.stringify(
-      this.props.navigation.getParam("item", "image")
-    );
-    let foto = perfil.replace(/['"]+/g, "");
    
-
     return (
       <View style={styles.container}>
         <View
@@ -125,7 +138,7 @@ export default class Formulario extends Component {
           >
             <Image
             
-            source={{ uri: foto }}
+            source={{ uri: this.state.foto }}
             style={{ width: 120, height: 120, borderRadius: 100 }}/>
 
             

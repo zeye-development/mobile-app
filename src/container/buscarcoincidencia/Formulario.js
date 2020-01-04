@@ -10,7 +10,7 @@ import {
   Image,
   Modal,
   Platform,
-  
+  AsyncStorage
 } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
@@ -75,6 +75,12 @@ export default class Formulario extends React.Component {
         console.log("err", err);
       }
     }
+    let token= await AsyncStorage.getItem('token');
+    console.log(token)
+  
+      let toke = token.replace(/['"]+/g, "");
+      this.setState({token:toke})
+
   }
 
   getPermissionAsync = async () => {
@@ -140,7 +146,8 @@ export default class Formulario extends React.Component {
         // wanted:(this.state.estado)
       }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+         key:this.state.token
       }
     })
       .then(response => response.json())
@@ -148,7 +155,7 @@ export default class Formulario extends React.Component {
         console.log("upload succes", response);
         
         this.setState({ uri: null });
-        response.people.forEach(element =>this.setState({id:element._id}))
+            response.people.forEach(element =>this.setState({id:element._id}))
             response.people.forEach(element =>this.setState({face:element.current_face}))
             response.people.forEach(element =>this.setState({name:element.names}))
             response.people.forEach(element =>this.setState({surname:element.surnames}))
