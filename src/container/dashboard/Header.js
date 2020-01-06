@@ -36,12 +36,7 @@ export default class Dashboard extends Component {
     return (
       <View style={styles.container}>
         <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity>
-            <Text style={styles.icon}>
-              {" "}
-              <Feather name="settings" size={18} color="#fff" />{" "}
-            </Text>
-          </TouchableOpacity>
+         
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("BuscarCoincidencia")}
           >
@@ -76,7 +71,7 @@ const styles = StyleSheet.create({
     maxWidth: 350,
     flexDirection: "row",
     // alignItems: 'flex-start',
-    justifyContent: "space-between",
+    justifyContent: "center",
     paddingTop: 50,
     paddingLeft: 30,
     paddingRight: 30,
@@ -88,7 +83,8 @@ const styles = StyleSheet.create({
     fontFamily: "PoppinsSemiBold"
   },
   icon: {
-    padding: 6
+    paddingHorizontal: '25%',
+
     
   },
   container1: {

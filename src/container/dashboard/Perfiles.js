@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, FlatList, Text, Image } from "react-native";
-
 import Perfil from "./Perfil";
+import PerfilSolicitado from "./PerfilSolicitado"
 export default function Perfiles(props) {
   const usuarios = [
     {
@@ -90,7 +90,24 @@ export default function Perfiles(props) {
   };
   return (
     <View style={styles.container}>
+    {this.True?(
       <FlatList
+        data={usuarios}
+        renderItem={({ item }) => (
+          <PerfilSolicitado navigation={props.navigation} usuario={item} />
+        )}
+        keyExtractor={item => item.key}
+        horizontal={false}
+        ItemSeparatorComponent={separador}
+        ListEmptyComponent={
+          <Text
+            style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
+          >
+            No hay usuarios
+          </Text>
+        }
+      />):(
+        <FlatList
         data={usuarios}
         renderItem={({ item }) => (
           <Perfil navigation={props.navigation} usuario={item} />
@@ -106,6 +123,7 @@ export default function Perfiles(props) {
           </Text>
         }
       />
+      )}
     </View>
   );
 }
@@ -125,6 +143,6 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   textColor: {
-    color: "#00425A"
+    color: "#E1868F"
   }
 });
