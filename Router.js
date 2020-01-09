@@ -20,6 +20,7 @@ import Coincidencias from "./src/pages/Coincidencias";
 import CoincidenciaUsuario from "./src/pages/CoincidenciaUsuario";
 import BuscarCoincidencia from "./src/pages/BuscarCoincidencia";
 import Loading from "./src/pages/Loading";
+import Galeria from "./src/pages/Galeria";
 
 import Camera from "./Camera";
 
@@ -72,6 +73,9 @@ const AppNavigator = createStackNavigator(
     },
     Loading: {
       screen: Loading
+    },
+    Galeria: {
+      screen: Galeria
     }
   },
   {

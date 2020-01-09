@@ -5,7 +5,7 @@ import Header from "../container/dashboard/Header";
 import ProgreseBar from "../container/dashboard/ProgreseBar";
 import Opciones from "../container/dashboard/Opciones";
 import Perfiles from "../container/dashboard/Perfiles";
-import { LinearGradient } from "expo-linear-gradient";push
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Dashboard(props) {
   return (
@@ -19,7 +19,7 @@ export default function Dashboard(props) {
         >
           <Header navigation={props.navigation} />
           <ProgreseBar navigation={props.navigation} />
-          <Opciones  navigation={props.navigation}/>
+          <Opciones navigation={props.navigation} />
         </LinearGradient>
         <View>
           <Perfiles navigation={props.navigation} />

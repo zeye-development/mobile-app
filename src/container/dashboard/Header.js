@@ -4,19 +4,15 @@ import {
   Text,
   View,
   TouchableOpacity,
-  AsyncStorage,
- 
+  AsyncStorage
 } from "react-native";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
-
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uri: null,
-      
- 
+      uri: null
     };
   }
 
@@ -26,23 +22,25 @@ export default class Dashboard extends Component {
       this.props.navigation.replace("Principal");
     } catch (error) {}
   }
- 
-
- 
-
-  
 
   render() {
     return (
       <View style={styles.container}>
         <View style={{ flexDirection: "row" }}>
-         
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("PanelAdmin")}
+          >
+            <Text style={styles.icon}>
+              {" "}
+              <Feather name="settings" size={18} color="#fff" />{" "}
+            </Text>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("BuscarCoincidencia")}
           >
             <Text style={styles.icon}>
               {" "}
-              <FontAwesome name="camera" size={18} color="#fff" />
+              <FontAwesome name="search" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
         </View>
@@ -55,10 +53,9 @@ export default class Dashboard extends Component {
         >
           <Text style={styles.icon}>
             {"      "}
-            <Ionicons name="ios-log-in" size={25} color="#fff" />{" "}
+            <Ionicons name="ios-log-in" size={20} color="#fff" />{" "}
           </Text>
         </TouchableOpacity>
-        
       </View>
     );
   }
@@ -66,12 +63,9 @@ export default class Dashboard extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: '#0097CD',
     maxWidth: 350,
     flexDirection: "row",
-    // alignItems: 'flex-start',
-    justifyContent: "center",
+    justifyContent: "space-between",
     paddingTop: 50,
     paddingLeft: 30,
     paddingRight: 30,
@@ -83,22 +77,19 @@ const styles = StyleSheet.create({
     fontFamily: "PoppinsSemiBold"
   },
   icon: {
-    paddingHorizontal: '25%',
-
-    
+    padding: 6
   },
   container1: {
     flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    
-    padding: 8,
+    justifyContent: "center",
+    alignContent: "center",
+
+    padding: 8
   },
-  
- 
+
   text: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 22,
-    paddingTop: 20,
-  },
+    paddingTop: 20
+  }
 });

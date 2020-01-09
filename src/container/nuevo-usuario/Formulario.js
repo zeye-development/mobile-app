@@ -6,16 +6,15 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  Picker, 
+  Picker,
   Modal,
   AsyncStorage
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import DatePicker from 'react-native-datepicker'
+import DatePicker from "react-native-datepicker";
 
-
-export default class Formulario extends React.Component {
+export default class Formulario extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,65 +23,82 @@ export default class Formulario extends React.Component {
       estado: true,
       modalVisibleAlert: false,
       mensajeAlert: "",
-      isDateTimePickerVisible:false,
-      sex:'Male',
-      nationality:'VE'
+      isDateTimePickerVisible: false,
+      sex: "Male",
+      nationality: "VE",
+      mainFoto: null,
+      imagenes: []
     };
   }
-   async componentDidMount () { 
+  async componentDidMount() {
+    // console.log(this.props.navigation.getParam("mainFoto"));
+    // let token = await AsyncStorage.getItem("token");
+    // console.log(token);
 
-    let token= await AsyncStorage.getItem('token');
-    console.log(token)
-  
-      let toke = token.replace(/['"]+/g, "");
-      this.setState({token:toke})
-    let perfil = JSON.stringify(
-      this.props.navigation.getParam("item", "image")
-    );
-    
+    // let toke = token.replace(/['"]+/g, "");
+    // this.setState({ token: toke });
+    let perfil = JSON.stringify(this.props.navigation.getParam("item"));
+    console.log(perfil);
     let pfoto = perfil.replace(/['"]+/g, "");
-    console.log(pfoto)
-   
-    this.setState({foto:pfoto})
+    console.log(pfoto);
+
+    // this.setState({ foto: pfoto });
+    let parabase64 = JSON.stringify(this.props.navigation.getParam("base"));
+    let base64 = parabase64.replace(/['"]+/g, "");
+    //guardar fotos en cache
+    //aun no me funciona esto que hago
+    if (this.props.navigation.getParam("mainFoto")) {
+      let dataPrincipal = {
+        foto: pfoto,
+        base64: base64
+      };
+      await AsyncStorage.setItem(
+        "dataPrincipal",
+        JSON.stringify(dataPrincipal)
+      );
+    }
+    const cache = await AsyncStorage.getItem("dataPrincipal");
+    let cache1 = JSON.parse(cache);
+    this.setState({ mainFoto: cache1, foto: cache1.foto });
+    console.log(cache1.foto);
   }
 
   handleUploadPhoto = () => {
     // let { foto, base64 } = this.state;
-    console.log(this.state.foto)
-    if (this.state.foto === null ) {
+
+    if (this.state.foto === null) {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
         mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
       });
       return;
     }
-    let parabase64 = JSON.stringify(
-      this.props.navigation.getParam("base", "base64")
-    );
-    let base64 = parabase64.replace(/['"]+/g, "");
+    // let parabase64 = JSON.stringify(
+    //   this.props.navigation.getParam("base", "base64")
+    // );
+    // let base64 = parabase64.replace(/['"]+/g, "");
 
     fetch("http://189.213.227.211:8080/register-face", {
       method: "POST",
       body: JSON.stringify({
         names: this.state.name,
         surnames: this.state.surname,
-        nationality:(this.state.nationality),
+        nationality: this.state.nationality,
         dni: this.state.id,
-        sex:this.state.sex,
+        sex: this.state.sex,
         picture: base64,
         wanted: this.state.estado,
         birth: this.state.birth
-      
       }),
       headers: {
         "Content-Type": "application/json",
-        key:this.state.token
+        key: this.state.token
       }
     })
       .then(response => response.json())
       .then(response => {
         console.log(this.state.sex);
-        console.log(this.state.sex)
+        console.log(this.state.sex);
         console.log("upload succes", response);
         alert("Upload success!");
         this.setState({ uri: null });
@@ -96,7 +112,6 @@ export default class Formulario extends React.Component {
         alert("Upload failed!");
         this.props.navigation.navigate("Dashboard");
       });
- 
   };
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
@@ -111,120 +126,212 @@ export default class Formulario extends React.Component {
     this.hideDateTimePicker();
   };
   render() {
-   
     return (
       <View style={styles.container}>
         <View
           style={{
-            flexDirection:'row',
+            flexDirection: "row",
             width: "100%",
             height: 100,
             justifyContent: "center",
             alignItems: "center",
             marginTop: 20,
-            marginBottom: 20,
-            
+            marginBottom: 20
           }}
         >
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Captura")}
+            onPress={() =>
+              this.props.navigation.replace("Captura", { mainFoto: true })
+            }
             style={{
               width: 120,
               height: 120,
               backgroundColor: "#EBF2F4",
               borderRadius: 100,
-              position:'absolute'
+              position: "absolute"
             }}
           >
             <Image
-            
-            source={{ uri: this.state.foto }}
-            style={{ width: 120, height: 120, borderRadius: 100 }}/>
-
-            
-                  
+              source={{ uri: this.state.foto }}
+              style={{ width: 120, height: 120, borderRadius: 100 }}
+            />
           </TouchableOpacity>
-         
-          <View style={{backgroundColor:'#01B8D2', height:'45%', width:'16%',
-          marginLeft:'30%',marginTop:'20%',borderRadius:30,alignItems:'center'}}>
-          <View style={{marginTop:'20%'}}> 
-         <Ionicons name="md-camera" size={25} color="white"  /></View> 
+
+          <View
+            style={{
+              backgroundColor: "#01B8D2",
+              height: "45%",
+              width: "16%",
+              marginLeft: "30%",
+              marginTop: "20%",
+              borderRadius: 30,
+              alignItems: "center"
+            }}
+          >
+            <View style={{ marginTop: "20%" }}>
+              <Ionicons name="md-camera" size={25} color="white" />
+            </View>
           </View>
-          
         </View>
-        
-          <View style={styles.viewContainer}>
-            <TextInput
-              style={styles.input1}
-              placeholder="Nombres"
-              value={this.name}
-              onChangeText={name => this.setState({ name })}
-            />
+
+        {/* ==================subida muntiples de imagenes ============== */}
+        <View style={{ alignItems: "center" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              maxWidth: 350,
+              flexWrap: "wrap"
+            }}
+          >
+            {this.state.imagenes.length >= 0
+              ? this.state.imagenes.map(item => (
+                  <TouchableOpacity
+                    // onPress={() => this.props.navigation.navigate("Captura")}
+                    key={item.key}
+                    style={[
+                      styles.imagenesSubir,
+                      {
+                        borderRadius: 10,
+                        backgroundColor: "#000",
+                        marginBottom: 5
+                      }
+                    ]}
+                  >
+                    <Entypo name="user" size={32} color="white" />
+                  </TouchableOpacity>
+                ))
+              : null}
+
+            <TouchableOpacity
+              // onPress={() => this.props.navigation.navigate("Captura")}
+              onPress={() => {
+                this.props.navigation.replace("Captura", { mainFoto: false });
+                this.setState({
+                  imagenes: [...this.state.imagenes, { key: 1 }]
+                });
+              }}
+              style={[styles.imagenesSubir, { borderRadius: 25 }]}
+            >
+              <AntDesign name="plus" size={32} color="white" />
+            </TouchableOpacity>
           </View>
-          <View style={styles.viewContainer}>
-            <TextInput
-              placeholder="Apellidos"
-              value={this.surname}
-              onChangeText={surname => this.setState({ surname })}
-              style={styles.input1}
-            />
-          </View>
-          <View style={styles.viewContainer}>
+          <Text
+            style={{
+              margin: 5,
+              fontFamily: "PoppinsSemiBold",
+              fontSize: 12
+            }}
+          >
+            Debe seleccionar un minimo de 3 imagenes
+          </Text>
+        </View>
+
+        {/* ========================================================== */}
+        <View style={styles.viewContainer}>
+          <TextInput
+            style={styles.input1}
+            placeholder="Nombres"
+            value={this.name}
+            onChangeText={name => this.setState({ name })}
+          />
+        </View>
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Apellidos"
+            value={this.surname}
+            onChangeText={surname => this.setState({ surname })}
+            style={styles.input1}
+          />
+        </View>
+        <View style={styles.viewContainer}>
           <TextInput
             placeholder="Identidad"
             value={this.id}
             onChangeText={id => this.setState({ id })}
-            style={styles.input}
+            style={styles.input1}
           />
         </View>
-          <Text style={{fontSize: 15,color: "black",
-          textAlign: "center",fontFamily: "PoppinsRegular",margin:5,}}> Selecionar Pais</Text>
-          <View style={styles.containerpicker}>
-        <Picker 
-        selectedValue={this.state.nationality}
-        onValueChange={(itemValue) => this.setState({nationality: itemValue})}
-        style={[styles.picker]} itemStyle={styles.pickerItem}>
-          <Picker.Item label="Venezuela" value="VE" />
-          <Picker.Item label="Colombia" value="CO" />
-          <Picker.Item label="Brasil" value="BR" />
-          <Picker.Item label="Estados Unidos" value="US" />
-        </Picker>
-        
-      </View>
-      
+        <Text
+          style={{
+            fontSize: 15,
+            color: "black",
+            textAlign: "center",
+            fontFamily: "PoppinsRegular",
+            margin: 5
+          }}
+        >
+          {" "}
+          Selecionar Pais
+        </Text>
+        <View style={styles.containerpicker}>
+          <Picker
+            selectedValue={this.state.nationality}
+            onValueChange={itemValue =>
+              this.setState({ nationality: itemValue })
+            }
+            style={[styles.picker]}
+            itemStyle={styles.pickerItem}
+          >
+            <Picker.Item label="Venezuela" value="VE" />
+            <Picker.Item label="Colombia" value="CO" />
+            <Picker.Item label="Brasil" value="BR" />
+            <Picker.Item label="Estados Unidos" value="US" />
+          </Picker>
+        </View>
 
-        <Text style={{fontSize: 15,color: "black",
-          textAlign: "center",fontFamily: "PoppinsRegular",margin:5,}}> Selecionar Sexo</Text>
-          <View style={styles.containerpicker}>
-        <Picker 
-        selectedValue={this.state.sex}
-        onValueChange={(Value) => this.setState({sex: Value})}
-        style={[styles.picker]} itemStyle={styles.pickerItem}>
-          <Picker.Item label="Masculino" value="Male" />
-          <Picker.Item label="Femenino" value="Female" />
-          
-        </Picker>
-        
-      </View>
-      <Text style={{fontSize: 15,color: "black",
-          textAlign: "center",fontFamily: "PoppinsRegular",margin:5,}}> Fecha de Nacimiento</Text>
-      <DatePicker
-        style={{width: '100%', height:40,marginTop:6}}
-        date={this.state.birth}
-        mode="date"
-        placeholder="Fecha de Nacimiento"
-        format="DD-MM-YYYY"
-        minDate="01-05-1920"
-        maxDate="01-10-2025"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-     
-        
-        onDateChange={(date) => {this.setState({birth: date})}}
-      />
+        <Text
+          style={{
+            fontSize: 15,
+            color: "black",
+            textAlign: "center",
+            fontFamily: "PoppinsRegular",
+            margin: 5
+          }}
+        >
+          {" "}
+          Selecionar Sexo
+        </Text>
+        <View style={styles.containerpicker}>
+          <Picker
+            selectedValue={this.state.sex}
+            onValueChange={Value => this.setState({ sex: Value })}
+            style={[styles.picker]}
+            itemStyle={styles.pickerItem}
+          >
+            <Picker.Item label="Masculino" value="Male" />
+            <Picker.Item label="Femenino" value="Female" />
+          </Picker>
+        </View>
+        <Text
+          style={{
+            fontSize: 15,
+            color: "black",
+            textAlign: "center",
+            fontFamily: "PoppinsRegular",
+            margin: 5
+          }}
+        >
+          {" "}
+          Fecha de Nacimiento
+        </Text>
+        <DatePicker
+          style={{ width: "100%", height: 40, marginTop: 6 }}
+          // style={styles.input1}
+          date={this.state.birth}
+          mode="date"
+          placeholder="Fecha de Nacimiento"
+          format="DD-MM-YYYY"
+          minDate="01-05-1920"
+          maxDate="01-10-2025"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          onDateChange={date => {
+            this.setState({ birth: date });
+          }}
+        />
         <View style={styles.viewContainerCheck}>
           <TouchableOpacity
-            style={{ width: 45, height: 45, marginTop: 15, marginRight:-10 }}
+            style={{ width: 45, height: 45, marginTop: 15, marginRight: -10 }}
             onPress={() => {
               this.setState({ estado: !this.state.estado });
             }}
@@ -259,7 +366,7 @@ export default class Formulario extends React.Component {
             </Text>
           </TouchableOpacity>
         </LinearGradient>
-{/* modal aLert ================ */}
+        {/* modal aLert ================ */}
         <Modal
           animationType="none"
           transparent={true}
@@ -301,7 +408,9 @@ export default class Formulario extends React.Component {
             <View>
               <TouchableOpacity
                 onPress={() => {
-                  this.setState({ modalVisibleAlert: !this.state.modalVisibleAlert });
+                  this.setState({
+                    modalVisibleAlert: !this.state.modalVisibleAlert
+                  });
                 }}
               >
                 <Text
@@ -392,24 +501,28 @@ const styles = StyleSheet.create({
   },
   containerpicker: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius:15,
-    backgroundColor: '#EBF2F4',
-    marginBottom:5,
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 15,
+    backgroundColor: "#EBF2F4",
+    marginBottom: 5
   },
-  
+
   picker: {
-    width: '100%',
+    width: "100%",
     height: 50,
-    marginLeft:'2%',
-    color: 'black',
-    
-    
-    alignItems:'center'
+    marginLeft: "2%",
+    color: "black",
+
+    alignItems: "center"
   },
-  
-  
-  
- 
+  imagenesSubir: {
+    width: 50,
+    marginHorizontal: 3,
+    height: 50,
+    backgroundColor: "#EBF2F4",
+    // borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });

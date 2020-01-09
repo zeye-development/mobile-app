@@ -12,7 +12,7 @@ import {
   Platform,
   AsyncStorage
 } from "react-native";
-import { Ionicons, Feather } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
 import { LinearGradient} from 'expo-linear-gradient'
 
@@ -28,17 +28,19 @@ export default class Formulario extends React.Component {
       hasCameraPermission: false,
       // type: Camera.Constants.Type.front,
       type: Camera.Constants.Type.back,
-      flashMode: Camera.Constants.FlashMode.on,
+      flashMode: Camera.Constants.FlashMode.off,
       autoFocus: Camera.Constants.AutoFocus.on,
       zoom: 0,
       whiteBalance: Camera.Constants.WhiteBalance.auto,
       focusDepth: 0,
-      ratio: "4:3"
+      ratio: "4:3",
     };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
+   
     try {
+      
       const { status } = await Permissions.askAsync(Permissions.CAMERA);
 
       this.setState({ hasCameraPermission: status === "granted" });
@@ -131,7 +133,8 @@ export default class Formulario extends React.Component {
     } else {
       this.props.navigation.replace("NuevoUsuario", {
         item: image,
-        base: base64
+        base: base64,
+        mainFoto: this.props.navigation.getParam("mainFoto")
       });
     }
   };
@@ -233,8 +236,15 @@ export default class Formulario extends React.Component {
           transparent={false}
           visible={this.state.modalVisible}
         >
+          
           <View style={styles.containermodal}>
-            
+          
+            <TouchableOpacity onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
+              <Text style={[styles.icon, {padding: 6, marginLeft: 30, marginTop: 20}]}>
+                {" "}
+                <Ionicons name="md-arrow-back" size={35} color="#fff" />{" "}
+              </Text>
+            </TouchableOpacity>
             <Camera
               style={styles.camera}
               ref={ref => (this._cameraInstance = ref)}
@@ -242,8 +252,9 @@ export default class Formulario extends React.Component {
               zoom={zoom}
               whiteBalance={whiteBalance}
               focusDepth={focusDepth}
+              flashMode={this.state.flashMode}
             />
-
+            
         <View style={styles.cuadro2}>
         
           <View style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}> 
@@ -266,13 +277,31 @@ export default class Formulario extends React.Component {
             {!photo && (
                 <TouchableOpacity style={{height:35,width:35}}
                 onPress={() => {
-                  this.setState({ modalVisible: !this.state.modalVisible });
+                  
+                  this.state.flashMode ?
+                    this.setState({ flashMode: Camera.Constants.FlashMode.off })
+                    :
+                    this.setState({ flashMode: Camera.Constants.FlashMode.on })
+                    ;
+
                 }}>
                
-                <Text style={styles.icon}>
-                  {" "}
-                  <Ionicons name="md-arrow-round-back" size={35} color="#fff" />{" "}
-                </Text>
+                  {
+                    // this.setState({ modalVisible: !this.state.modalVisible });
+                    this.state.flashMode ?
+                      <Text style={styles.icon}>
+                        {" "}
+                        <MaterialIcons name="flash-auto" size={35} color="#fff" />{" "}
+                      </Text>
+                      :
+                      <Text style={styles.icon}>
+                        {" "}
+                        <MaterialIcons name="flash-off" size={35} color="#fff" />{" "}
+                      </Text>
+                    
+
+                }
+                
               </TouchableOpacity>
               )}
               
