@@ -34,11 +34,9 @@ export default class Formulario extends Component {
   }
 
   async login(email, pass) {
-    email = 'lewis@gmail.com'
     email=email.toLowerCase() 
      console.log(email)
     // console.log(pass);
-    pass='123456'
 
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");

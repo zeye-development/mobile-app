@@ -40,12 +40,12 @@ export default class Dashboard extends React.Component {
           <Opciones navigation={this.props.navigation}
           CambiarEstado={(estado)=>{this.setState({estado:estado})}} />
         </LinearGradient>
-        {this.state.lg?       
+            
          <View>
          <Perfiles navigation={this.props.navigation}
            estado={this.state.estado}/>
-           </View>:<View style={{ paddingLeft: 30,paddingRight: 25,paddingTop: 10}}>
-        </View>}
+          </View>
+        
       </ScrollView>
     </View>
   );
