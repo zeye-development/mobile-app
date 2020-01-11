@@ -79,7 +79,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Dashboard",
+    initialRouteName: "Principal",
     headerMode: "none",
     navigationOptions: {
       headerVisible: false,

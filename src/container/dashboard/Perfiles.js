@@ -7,37 +7,25 @@ export default class Perfiles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}}
-
-
-  async componentDidMount () {
-    let token= await AsyncStorage.getItem('token');
-    console.log(token)
+ componentDidMount=()=>{
+  let pface=JSON.stringify(this.props.navigation.getParam( "item", "url"))
+  let face = pface.replace(/['"]+/g, "");
   
-    let toke = token.replace(/['"]+/g, "");
-    this.setState({token:toke})
-    fetch('http://189.213.227.211:8443/known_person', {
-         method: 'GET', 
-         headers: {
-          "Content-Type": "application/json",
-          key: this.state.token,
-          all:'yes'
-        },
-    
-        })
-      .then((response) => response.json())
-      .then((responseJson) => {
-         console.log(responseJson);
-         this.setState({
-            data: responseJson
-         })
-       
-         responseJson.data.forEach(element =>this.setState({id:element._id}))
-         console.log(this.state.id)
-      })
-      .catch((error) => {
-         console.error(error);
-      });
-    }
+  this.setState({url:face})
+  let name=JSON.stringify(this.props.navigation.getParam( "name", "names"))
+     name = name.replace(/['"]+/g, "");
+      this.setState({name:name})
+      console.log(name)
+      let surname=JSON.stringify(this.props.navigation.getParam( "surname", "surname"))
+      surname = surname.replace(/['"]+/g, "");
+      this.setState({surname:surname})
+      console.log(surname)
+      let id=JSON.stringify(this.props.navigation.getParam( "id", "id"))
+      id = id.replace(/['"]+/g, "");
+      this.setState({id:id})
+      console.log(surname)
+  
+      }
   separador = () => {
     return (
       <View
@@ -51,77 +39,16 @@ export default class Perfiles extends React.Component {
     );
   };
   render(){
-    const usuarios = [
+  img=this.state.url
+  nombre=this.state.name+this.state.surname
+  edad=this.state.id
+    let usuarios = [
       {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
+        nombre,
+        edad,
+        img,
         key: "0"
       },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "1"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "2"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "3"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "4"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "6"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "7"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "8"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "9"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/perfil.png",
-        conectado: "hace 4 min",
-        key: "10"
-      }
     ];
   return (
     <View style={styles.container}>

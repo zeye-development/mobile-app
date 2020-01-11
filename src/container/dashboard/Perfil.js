@@ -1,31 +1,40 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
+import React from "react";
+import { View, StyleSheet, Image, Text, TouchableOpacity} from "react-native";
 import { Ionicons, Foundation } from "@expo/vector-icons";
 
-export default function Perfil(props) {
-  let { nombre, conectado, edad } = props.usuario;
-  const [getOnclick, setOnClick] = useState({
-    click: false
-  });
-  const OnClickTrue = () => {
-    if (getOnclick.click) {
-      setOnClick({
-        click: false
-      });
-    } else if (!getOnclick.click) {
-      setOnClick({
-        click: true
-      });
+
+export default class Perfil extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      click:false
+    }}
+  componentDidMount=()=>{
+    let rface=JSON.stringify(this.props.navigation.getParam( "item", "url"))
+      let oface = rface.replace(/['"]+/g, "");
+      this.setState({url2:oface})
+      console.log(oface)
+    
     }
-  };
+  OnClickTrue = () => {
+  if (this.state.click) {
+   
+     this.setState({click:false})
+    };
+   if(!this.state.click) {
+    this.setState({click:true})
+    };
+}
+render(){
+  let {nombre, conectado, edad } = this.props.usuario;
   return (
     <View>
       <View style={styles.container}>
         <View style={styles.container}>
           <View style={styles.img}>
             <Image
-              style={{ width: 50, height: 50 }}
-              source={require("../../../assets/perfil.png")}
+              style={{ width: 50, height: 50, borderRadius:100 }}
+              source={{uri:this.state.url2}}
             />
           </View>
           <View style={{ justifyContent: "center", paddingLeft: 10 }}>
@@ -42,36 +51,37 @@ export default function Perfil(props) {
             </Text>
             <Text
               style={[
-                styles.textColor,
+                styles.textColor2,
                 {
                   fontFamily: "PoppinsRegular"
                 }
               ]}
             >
-              {edad} - {conectado}
+            {" "}{edad}
+  
             </Text>
           </View>
         </View>
 
-        {!getOnclick.click ? (
-          <TouchableOpacity onPress={OnClickTrue}>
+        {!this.state.click ? (
+          <TouchableOpacity onPress={this.OnClickTrue}>
             <View style={styles.styleButtom}>
               <Ionicons name="md-more" size={18} color="#00425A" />
             </View>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={OnClickTrue}>
+          <TouchableOpacity onPress={this.OnClickTrue}>
             <View style={styles.styleButtom}>
               <Ionicons name="md-close" size={18} color="#00425A" />
             </View>
           </TouchableOpacity>
         )}
       </View>
-      {getOnclick.click ? (
+      {this.state.click ? (
         <View style={styles.containerOptionButtom}>
           <View style={styles.containerButtom}>
             <TouchableOpacity
-              onPress={() => props.navigation.navigate("UsuarioRequerido")}
+              onPress={() => this.props.navigation.navigate("UsuarioRequerido")}
             >
               <Text style={styles.optionButtom}>Perfil</Text>
             </TouchableOpacity>
@@ -84,7 +94,7 @@ export default function Perfil(props) {
     </View>
   );
 }
-
+}
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -97,6 +107,10 @@ const styles = StyleSheet.create({
   textColor: {
     color: "#00425A",
     fontSize: 14
+  },
+  textColor2: {
+    color: "#00425A",
+    fontSize: 15
   },
   styleButtom: {
     justifyContent: "center",

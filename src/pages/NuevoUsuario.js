@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, ScrollView, View,SafeAreaView,KeyboardAvoidingView } from "react-native";
 
 import Header from "../container/nuevo-usuario/Header";
-
 import Formulario from "../container/nuevo-usuario/Formulario";
 
 export default function NuevoUsuario(props) {
