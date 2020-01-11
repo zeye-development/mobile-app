@@ -12,6 +12,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import md5 from "md5";
 import { LinearGradient } from "expo-linear-gradient";
+import { validatorEmail } from "../../helpers/validatorEmail";
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -24,14 +25,97 @@ export default class Formulario extends Component {
       modalVisible: false,
       modalVisible2: false,
       mensajeAlert: "",
-      modalLoading: false
+      modalLoading: false,
+      error: false,
+      msjError: ""
     };
   }
 
   async login() {
+    const { email, pass, pass_v } = this.state;
     console.log(this.state.email);
     console.log(this.state.pass);
     console.log(this.state.pass_v);
+    if (!email) {
+      // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "El Usuario es requerido para iniciar Sesion"
+      });
+      return;
+    } else if (email) {
+      if (!validatorEmail(email)) {
+        this.setState({
+          error: true,
+          msjError: "Introduzca un email valido"
+        });
+        setTimeout(() => {
+          this.setState({
+            error: false,
+            msjError: ""
+          });
+        }, 2000);
+        return;
+      }
+    }
+    if (!pass) {
+      // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "El Contraseña es requerido para iniciar Sesion"
+      });
+      return;
+    } else if (pass) {
+      if (pass.length < 6) {
+        this.setState({
+          error: true,
+          msjError: "La contrasena debe ser mayor a 6 caracteres"
+        });
+        setTimeout(() => {
+          this.setState({
+            error: false,
+            msjError: ""
+          });
+        }, 2000);
+        return;
+      }
+    }
+    if (!pass_v) {
+      // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "El Contraseña es requerido para iniciar Sesion"
+      });
+      return;
+    } else if (pass_v) {
+      if (pass_v.length < 6) {
+        this.setState({
+          error: true,
+          msjError: "La contrasena debe ser mayor a 6 caracteres"
+        });
+        setTimeout(() => {
+          this.setState({
+            error: false,
+            msjError: ""
+          });
+        }, 2000);
+        return;
+      }
+    }
+    if (pass_v != pass) {
+      this.setState({
+        error: true,
+        msjError: "Las contrasenas no coinciden"
+      });
+      setTimeout(() => {
+        this.setState({
+          error: false,
+          msjError: ""
+        });
+      }, 2000);
+      return;
+    }
+
     const licence = Math.floor(
       Math.random() *
         1000 *
@@ -44,6 +128,7 @@ export default class Formulario extends Component {
     var licenceS = licence.toString();
     let lic = licenceS.replace(/['"]+/g, "");
     console.log(licenceS);
+
     try {
       this.setState({ modalLoading: true });
       let response = await fetch("http://189.213.227.211:8443/user", {
@@ -98,7 +183,10 @@ export default class Formulario extends Component {
           <TextInput
             placeholder="Email"
             value={this.state.email}
-            onChangeText={email => this.setState({ email })}
+            onChangeText={item => {
+              const email = item.trim();
+              this.setState({ email });
+            }}
             style={styles.input}
           />
         </View>
@@ -108,7 +196,10 @@ export default class Formulario extends Component {
             placeholder="Password"
             secureTextEntry={true}
             value={this.state.pass}
-            onChangeText={pass => this.setState({ pass })}
+            onChangeText={item => {
+              const pass = item.trim();
+              this.setState({ pass });
+            }}
             style={styles.input}
           />
         </View>
@@ -118,10 +209,20 @@ export default class Formulario extends Component {
             placeholder="Repeat Password"
             secureTextEntry={true}
             value={this.state.pass_v}
-            onChangeText={pass_v => this.setState({ pass_v })}
+            onChangeText={item => {
+              const pass_v = item.trim();
+              this.setState({ pass_v });
+            }}
             style={styles.input}
           />
         </View>
+        {this.state.error ? (
+          <View style={styles.error}>
+            <Text style={[styles.font, { color: "#fff" }]}>
+              {this.state.msjError}
+            </Text>
+          </View>
+        ) : null}
 
         <LinearGradient
           colors={["#0097CD", "#01B8E2"]}
@@ -338,16 +439,13 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     backgroundColor: "#0097CD"
   },
-  // error: {
-  //   borderWidth: 2,
-  //   borderColor: "rgb(204, 0, 0)",
-  //   borderRadius: 15
-  // },
-  // igual: {
-  //   borderWidth: 2,
-  //   borderColor: "#00DFAA",
-  //   borderRadius: 15
-  // }
+  error: {
+    borderRadius: 15,
+    backgroundColor: "#FE6363",
+    alignItems: "center",
+    padding: 10,
+    marginVertical: 5
+  },
   usuario: {
     padding: 13,
     backgroundColor: "red",

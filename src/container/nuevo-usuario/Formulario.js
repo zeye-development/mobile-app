@@ -27,7 +27,11 @@ export default class Formulario extends Component {
       sex: "Male",
       nationality: "VE",
       mainFoto: null,
-      imagenes: []
+      birth: "",
+      names: "",
+      surnames: "",
+      imagenes: [],
+      id: ""
     };
   }
   async componentDidMount() {
@@ -37,40 +41,66 @@ export default class Formulario extends Component {
 
     let toke = token.replace(/['"]+/g, "");
     this.setState({ token: toke });
-    let perfil = JSON.stringify(this.props.navigation.getParam("item", 'image'));
+    let perfil = JSON.stringify(
+      this.props.navigation.getParam("item", "image")
+    );
     console.log(perfil);
     let pfoto = perfil.replace(/['"]+/g, "");
-    console.log(pfoto);
+    console.log("fotot", pfoto);
 
     this.setState({ foto: pfoto });
-    let parabase64 = JSON.stringify(this.props.navigation.getParam("base", 'base64'));
+    let parabase64 = JSON.stringify(
+      this.props.navigation.getParam("base", "base64")
+    );
     let base64 = parabase64.replace(/['"]+/g, "");
-    this.setState({base64:base64})
-  //   //guardar fotos en cache
-  //   //aun no me funciona esto que hago
-  //   if (this.props.navigation.getParam("mainFoto")) {
-  //     let dataPrincipal = {
-  //       foto: pfoto,
-  //       base64: base64
-  //     };
-  //     await AsyncStorage.setItem(
-  //       "dataPrincipal",
-  //       JSON.stringify(dataPrincipal)
-  //     );
-  //   }
-  //   const cache = await AsyncStorage.getItem("dataPrincipal");
-  //   let cache1 = JSON.parse(cache);
-  //   this.setState({ mainFoto: cache1, foto: cache1.foto });
-  //   console.log(cache1.foto);
+    this.setState({ base64: base64 });
+    //   //guardar fotos en cache
+    //   //aun no me funciona esto que hago
+    //   if (this.props.navigation.getParam("mainFoto")) {
+    //     let dataPrincipal = {
+    //       foto: pfoto,
+    //       base64: base64
+    //     };
+    //     await AsyncStorage.setItem(
+    //       "dataPrincipal",
+    //       JSON.stringify(dataPrincipal)
+    //     );
+    //   }
+    //   const cache = await AsyncStorage.getItem("dataPrincipal");
+    //   let cache1 = JSON.parse(cache);
+    //   this.setState({ mainFoto: cache1, foto: cache1.foto });
+    //   console.log(cache1.foto);
   }
 
   handleUploadPhoto = () => {
     // let { foto, base64 } = this.state;
-    console.log(this.state.estado)
-    if (this.state.foto === null) {
+    console.log(this.state.estado);
+    console.log(this.state.foto);
+    if (this.state.foto === "image") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
         mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+      });
+      return;
+    }
+    if (this.state.names === "") {
+      this.setState({
+        modalVisibleAlert: !this.state.modalVisibleAlert,
+        mensajeAlert: "El campo Nombre no puede estar vacio"
+      });
+      return;
+    }
+    if (this.state.surnames === "") {
+      this.setState({
+        modalVisibleAlert: !this.state.modalVisibleAlert,
+        mensajeAlert: "El campo Apellido no puede estar vacio"
+      });
+      return;
+    }
+    if (this.state.birth === "") {
+      this.setState({
+        modalVisibleAlert: !this.state.modalVisibleAlert,
+        mensajeAlert: "Por favor ingrese una fecha"
       });
       return;
     }
@@ -79,6 +109,7 @@ export default class Formulario extends Component {
     // );
     // let base64 = parabase64.replace(/['"]+/g, "");
 
+    // if (this.state.foto != null) {
     fetch("http://189.213.227.211:8443/register-face", {
       method: "POST",
       body: JSON.stringify({
@@ -105,8 +136,10 @@ export default class Formulario extends Component {
           modalVisibleAlert: true,
           mensajeAlert: "Usuario Registrado Exitosamente"
         });
-        this.setState({ uri: null });
-        this.props.navigation.navigate("Dashboard");
+        setTimeout(() => {
+          this.setState({ uri: null });
+          this.props.navigation.navigate("Dashboard");
+        }, 1000);
       })
       .catch(error => {
         console.log("upload error", error);
@@ -115,6 +148,7 @@ export default class Formulario extends Component {
 
         alert("Upload failed!");
       });
+    // }
   };
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
@@ -277,7 +311,6 @@ export default class Formulario extends Component {
           >
             <Picker.Item label="Venezuela" value="VE" />
             <Picker.Item label="Bolivia" value="BO" />
-            
           </Picker>
         </View>
 

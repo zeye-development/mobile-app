@@ -14,7 +14,7 @@ import {
   ActivityIndicator
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-// import { validatorEmail } from "../../helpers/validatorEmail";
+import { validatorEmail } from "../../helpers/validatorEmail";
 import md5 from "md5";
 import { LinearGradient } from "expo-linear-gradient";
 import * as LocalAuthentication from "expo-local-authentication";
@@ -27,14 +27,16 @@ export default class Formulario extends Component {
       email: null,
       pass: null,
       modalVisible: false,
-      modalLoading: false
+      modalLoading: false,
+      error: false,
+      msjError: ""
     };
   }
 
   async login(email, pass) {
     // console.log(email);
     // console.log(pass);
-    
+
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
@@ -42,6 +44,20 @@ export default class Formulario extends Component {
         mensajeAlert: "El Usuario es requerido para iniciar Sesion"
       });
       return;
+    } else if (email) {
+      if (!validatorEmail(email)) {
+        this.setState({
+          error: true,
+          msjError: "Introduzca un email valido"
+        });
+        setTimeout(() => {
+          this.setState({
+            error: false,
+            msjError: ""
+          });
+        }, 2000);
+        return;
+      }
     }
     if (!pass) {
       // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
@@ -101,7 +117,12 @@ export default class Formulario extends Component {
             style={[styles.input, styles.font]}
             placeholder="User"
             value={this.state.email}
-            onChangeText={email => this.setState({ email })}
+            onChangeText={item => {
+              // console.log("email:  ", item);
+              const email = item.trim();
+              // console.log("email despues:", item);
+              this.setState({ email });
+            }}
           />
         </View>
         <View style={styles.viewContainer}>
@@ -109,11 +130,20 @@ export default class Formulario extends Component {
             secureTextEntry={true}
             placeholder="Password"
             value={this.state.pass}
-            onChangeText={pass => this.setState({ pass })}
+            onChangeText={item => {
+              const pass = item.trim();
+              this.setState({ pass });
+            }}
             style={styles.input}
           />
         </View>
-
+        {this.state.error ? (
+          <View style={styles.error}>
+            <Text style={[styles.font, { color: "#fff" }]}>
+              {this.state.msjError}
+            </Text>
+          </View>
+        ) : null}
         <LinearGradient
           colors={["#0097CD", "#01B8E2"]}
           start={[0, 0.8]}
@@ -285,5 +315,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
+  },
+  error: {
+    borderRadius: 15,
+    backgroundColor: "#FE6363",
+    alignItems: "center",
+    padding: 10,
+    marginVertical: 5
   }
 });
