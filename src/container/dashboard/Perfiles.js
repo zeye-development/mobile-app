@@ -6,7 +6,11 @@ import PerfilSolicitado from "./PerfilSolicitado"
 export default class Perfiles extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}}
+    this.state = {
+      users: this.props.navigation.state.params.users
+    }
+    console.log(props)
+  }
  componentDidMount=()=>{
   let pface=JSON.stringify(this.props.navigation.getParam( "item", "url"))
   let face = pface.replace(/['"]+/g, "");
@@ -70,7 +74,7 @@ export default class Perfiles extends React.Component {
         }
       />):(
         <FlatList
-        data={usuarios}
+        data={this.state.users}
         renderItem={({ item }) => (
           <Perfil navigation={this.props.navigation} usuario={item} />
         )}

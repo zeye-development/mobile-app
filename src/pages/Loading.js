@@ -29,8 +29,12 @@ export default class Loading extends Component {
            this.setState({
               data: responseJson
            })
-         
+           console.log('holis')
+           console.log(responseJson.data)
+
            responseJson.data.forEach(element =>this.setState({names:element.names}))
+           this.setState({users: responseJson.data})
+
            let names=this.state.names
           longitud=names.length
          console.log(longitud)
@@ -87,7 +91,7 @@ export default class Loading extends Component {
         responseJson.data.forEach(element =>this.setState({id:element._id}))
         if(token){
         this.props.navigation.replace("Dashboard", {item:this.state.url, name:this.state.names
-        , surname:this.state.surname,id:this.state.id})}
+        , surname:this.state.surname,id:this.state.id, users: this.state.users})}
         else{
         this.props.navigation.replace('InicioSesion')
         }
