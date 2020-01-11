@@ -27,7 +27,7 @@ export default class Perfil extends React.Component {
 }
 render(){
   let {_id, names, surnames, images, birth_date } = this.props.usuario;
-  console.log(this.props.usuario)
+  // console.log(this.props.usuario)
   return (
     <View>
       <View style={styles.container}>

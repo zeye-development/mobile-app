@@ -29,8 +29,8 @@ export default class Loading extends Component {
            this.setState({
               data: responseJson
            })
-           console.log('holis')
-           console.log(responseJson.data)
+          //  console.log('holis')
+          //  console.log(responseJson.data)
 
            responseJson.data.forEach(element =>this.setState({names:element.names}))
            this.setState({users: responseJson.data})
