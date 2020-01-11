@@ -31,6 +31,8 @@ export default class Loading extends Component {
            })
           //  console.log('holis')
           //  console.log(responseJson.data)
+          console.log('AAAAAAAAAAAAAAAA')
+          console.log(responseJson.data.length)
           if(responseJson.data.length!=0){
            responseJson.data.forEach(element =>this.setState({names:element.names}))
            this.setState({users: responseJson.data})

@@ -16,7 +16,7 @@ export default class ProgreseBar extends React.Component {
     };
   }
   componentDidMount=()=>{
-    let cant=JSON.stringify(this.props.navigation.getParam( "cant", "cantidad"))
+    let cant=JSON.stringify(this.props.navigation.getParam( "long", "long"))
     cant = cant.replace(/['"]+/g, "");
     if(cant!='cantidad')
     this.setState({cant:cant})
