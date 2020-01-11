@@ -66,7 +66,7 @@ export default class Formulario extends Component {
 
   handleUploadPhoto = () => {
     // let { foto, base64 } = this.state;
-
+    console.log(this.state.estado)
     if (this.state.foto === null) {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
@@ -352,7 +352,7 @@ export default class Formulario extends Component {
               fontFamily: "PoppinsSemiBold"
             }}
           >
-            Anadir a solicitados
+            Anadir a solicitadoss
           </Text>
         </View>
 

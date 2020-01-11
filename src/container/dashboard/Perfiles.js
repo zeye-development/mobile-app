@@ -54,11 +54,15 @@ export default class Perfiles extends React.Component {
         key: "0"
       },
     ];
+  
+  const wantedTrue = this.state.users.filter(user => user.wanted == true )
+  // console.log(wantedTrue)
+
   return (
     <View style={styles.container}>
     {this.True?(
       <FlatList
-        data={usuarios}
+        data={this.state.users}
         renderItem={({ item }) => (
           <PerfilSolicitado navigation={props.navigation} usuario={item} />
         )}
