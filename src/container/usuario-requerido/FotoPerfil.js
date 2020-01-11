@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
-export default function FotoPerfil() {
+export default function FotoPerfil(props) {
   const [solicitado, setSolicitado] = useState({ solicitado: false });
+
+  let imagen = props.imagen;
+  console.log('photo')  
+  console.log(props)
+
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
         <View style={styles.viewContainer}>
           <Image
-            source={require("../../../assets/perfil.png")}
+            // source={require("../../../assets/perfil.png")}
+            source={{uri:`http://189.213.227.211:8443/file=${imagen[0]}`}}
             style={styles.imageBackground}
           />
         </View>
