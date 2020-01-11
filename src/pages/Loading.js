@@ -31,7 +31,7 @@ export default class Loading extends Component {
            })
           //  console.log('holis')
           //  console.log(responseJson.data)
-
+          if(responseJson.data.length!=0){
            responseJson.data.forEach(element =>this.setState({names:element.names}))
            this.setState({users: responseJson.data})
 
@@ -96,11 +96,19 @@ export default class Loading extends Component {
           
         }
         if(token){
+          long=responseJson.data.length
         this.props.navigation.replace("Dashboard", {item:this.state.url, name:this.state.names
-        , surname:this.state.surname,id:this.state.id, users: this.state.users, cant:cantidad})}
+        , surname:this.state.surname,id:this.state.id, users: this.state.users, long:long})}
         else{
-        this.props.navigation.replace('InicioSesion')
-        }
+          this.props.navigation.replace('InicioSesion')
+          }
+          
+      
+      }
+      else{
+        this.props.navigation.replace("Dashboard")
+      }
+        
         
         })
         .catch((error) => {

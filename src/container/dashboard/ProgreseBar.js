@@ -11,13 +11,14 @@ import { Ionicons, Entypo } from "@expo/vector-icons";
 export default class ProgreseBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      cant:0
+    };
   }
   componentDidMount=()=>{
     let cant=JSON.stringify(this.props.navigation.getParam( "cant", "cantidad"))
-    console.log('AQUI ESTA!!!!!!!!!')
-    console.log(cant)
-    console.log('AQUI ESTA!!!!!!!!!')
+    cant = cant.replace(/['"]+/g, "");
+    if(cant!='cantidad')
     this.setState({cant:cant})
   }
   render(){

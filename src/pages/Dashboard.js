@@ -12,8 +12,15 @@ export default class Dashboard extends React.Component {
     super(props);
     this.state = {};
   }
+  componentDidMount=()=>{
+    let long=JSON.stringify(this.props.navigation.getParam( "long", "long"))
+    this.setState({long:long})
+      console.log('AQUI ESTA!!!!!')
+      console.log(long)
+      console.log('AQUI ESTA!!!!!')
+  }
   render(){
-    console.log(this.state.estado)
+    
   return (
     <View>
       <ScrollView>
@@ -28,10 +35,12 @@ export default class Dashboard extends React.Component {
           <Opciones navigation={this.props.navigation}
           CambiarEstado={(estado)=>{this.setState({estado:estado})}} />
         </LinearGradient>
+        {this.state.long===0?       
         <View>
+         
           <Perfiles navigation={this.props.navigation}
-          estado={this.state.estado} />
-        </View>
+           estado={this.state.estado}/></View>:<View style={{ paddingLeft: 30,paddingRight: 25,paddingTop: 10}}>
+        </View>}
       </ScrollView>
     </View>
   );
