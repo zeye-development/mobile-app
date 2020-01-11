@@ -31,11 +31,11 @@ export default class Formulario extends Component {
     };
   }
 
-  async login() {
-    const { email, pass, pass_v } = this.state;
-    console.log(this.state.email);
-    console.log(this.state.pass);
-    console.log(this.state.pass_v);
+  async login(email, pass, pass_v) {
+ 
+    email=email.toLowerCase()
+    console.log(email)
+    
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
@@ -139,9 +139,9 @@ export default class Formulario extends Component {
           mimeType: "application/json"
         },
         body: JSON.stringify({
-          email: this.state.email,
-          password: md5(this.state.pass),
-          password_validate: md5(this.state.pass_v),
+          email: email,
+          password: md5(pass),
+          password_validate: md5(pass_v),
           names: "Keyberth",
           surnames: "Pe",
           license_key: lic

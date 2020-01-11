@@ -10,14 +10,19 @@ import { LinearGradient } from "expo-linear-gradient";
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      lg:false
+    };
+  
   }
   componentDidMount=()=>{
-    let long=JSON.stringify(this.props.navigation.getParam( "long", "long"))
-    this.setState({long:long})
+    let long=JSON.stringify(this.props.navigation.getParam( "len", "len"))
+    this.setState({lg:long})
       console.log('AQUI ESTA!!!!!')
+      console.log(this.state.lg)
       console.log(long)
-      console.log('AQUI ESTA!!!!!')
+          console.log('AQUI ESTA!!!!!')
+     
   }
   render(){
     
@@ -35,10 +40,11 @@ export default class Dashboard extends React.Component {
           <Opciones navigation={this.props.navigation}
           CambiarEstado={(estado)=>{this.setState({estado:estado})}} />
         </LinearGradient>
-        {this.state.long===0?       
-        <View>
+        {this.state.lg?       
+         <View>
          <Perfiles navigation={this.props.navigation}
-           estado={this.state.estado}/></View>:<View style={{ paddingLeft: 30,paddingRight: 25,paddingTop: 10}}>
+           estado={this.state.estado}/>
+           </View>:<View style={{ paddingLeft: 30,paddingRight: 25,paddingTop: 10}}>
         </View>}
       </ScrollView>
     </View>

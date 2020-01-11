@@ -34,7 +34,8 @@ export default class Formulario extends Component {
   }
 
   async login(email, pass) {
-    // console.log(email);
+     email=email.toLowerCase() 
+     console.log(email)
     // console.log(pass);
 
     if (!email) {
@@ -78,7 +79,7 @@ export default class Formulario extends Component {
           mimeType: "application/json"
         },
         body: JSON.stringify({
-          email: email,
+          email: email ,
           password: md5(pass)
         })
       });
@@ -120,6 +121,8 @@ export default class Formulario extends Component {
             onChangeText={item => {
               // console.log("email:  ", item);
               const email = item.trim();
+              
+              
               // console.log("email despues:", item);
               this.setState({ email });
             }}

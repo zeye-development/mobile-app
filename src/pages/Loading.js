@@ -90,17 +90,10 @@ export default class Loading extends Component {
         console.log(faces)
         const url = 'http://189.213.227.211:8443/file=' + faces
         this.setState({url:url})
-
-        if(responseJson.data != undefined) {
-          responseJson.data.forEach(element =>this.setState({id:element._id}))
-          cantidad=responseJson.persons_length
-          console.log(cantidad)
-          
-        }
         if(token){
-          long=responseJson.data.length
-        this.props.navigation.replace("Dashboard", {item:this.state.url, name:this.state.names
-        , surname:this.state.surname,id:this.state.id, users: this.state.users, long:long})}
+          this.setState({len:true})
+          this.props.navigation.replace("Dashboard", {item:this.state.url, name:this.state.names
+        , surname:this.state.surname,id:this.state.id, users: this.state.users, cantidad:cantidad, len:this.state.len})}
         else{
           this.props.navigation.replace('InicioSesion')
           }
@@ -108,7 +101,9 @@ export default class Loading extends Component {
       
       }
       else{
-        this.props.navigation.replace("Dashboard")
+        this.setState({len:false})
+        
+        this.props.navigation.replace("Dashboard",{len:this.state.len})
       }
         
         
