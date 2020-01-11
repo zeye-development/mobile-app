@@ -10,7 +10,8 @@ import {
   Modal,
   Button,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  ActivityIndicator
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 // import { validatorEmail } from "../../helpers/validatorEmail";
@@ -26,16 +27,15 @@ export default class Formulario extends Component {
       email: null,
       pass: null,
       modalVisible: false,
-      
-     
+      modalLoading: false
     };
   }
 
   async login(email, pass) {
     // console.log(email);
     // console.log(pass);
-    email= 'lewis@gmail.com'
-    pass='123456'
+    email = "lewis@gmail.com";
+    pass = "123456";
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
@@ -54,6 +54,7 @@ export default class Formulario extends Component {
     }
 
     try {
+      this.setState({ modalLoading: true });
       let response = await fetch("http://189.213.227.211:8443/login", {
         method: "POST",
         headers: {
@@ -73,11 +74,12 @@ export default class Formulario extends Component {
       const token = await JSON.stringify(responseJson.token);
       if (responseJson.status === 200) {
         await AsyncStorage.setItem("token", token);
-
-        this.props.navigation.replace("Loading", {token:token});
+        this.setState({ modalLoading: false });
+        this.props.navigation.replace("Loading", { token: token });
       } else {
         // Alert.alert("Error", "El Correo o la contraseña no son correctos");
         this.setState({
+          modalLoading: false,
           modalVisible: !this.state.modalVisible,
           mensajeAlert: "El Usuario o la Contraseña no son correctos"
         });
@@ -85,12 +87,13 @@ export default class Formulario extends Component {
     } catch (error) {
       // Alert.alert("Error", "Usted no dispone de una conexion a internet");
       this.setState({
+        modalLoading: false,
         modalVisible: !this.state.modalVisible,
         mensajeAlert: "Usted no dispone de una conexion a internet"
       });
     }
   }
- 
+
   render() {
     return (
       <View style={styles.container}>
@@ -129,6 +132,35 @@ export default class Formulario extends Component {
             </Text>
           </TouchableOpacity>
         </LinearGradient>
+        {/* ============================modalLoading======= */}
+
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalLoading}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "45%"
+            }}
+          >
+            {this.state.modalLoading ? (
+              <ActivityIndicator size={30} color="#fff" />
+            ) : null}
+          </View>
+        </Modal>
         <Modal
           animationType="none"
           transparent={true}

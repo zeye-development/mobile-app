@@ -7,8 +7,8 @@ export default class Perfiles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // users: this.props.navigation.state.params.users,
-      // usersWantedFalse: this.props.navigation.state.params.users.filter(user => user.wanted == false )
+      users: this.props.navigation.state.params.users,
+      usersWantedFalse: this.props.navigation.state.params.users.filter(user => user.wanted == false )
     }
     console.log(props)
   }

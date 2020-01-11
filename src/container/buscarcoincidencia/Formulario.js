@@ -10,9 +10,10 @@ import {
   Image,
   Modal,
   Platform,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from "react-native";
-import { Ionicons, Feather } from "@expo/vector-icons";
+import { Ionicons, Feather, MaterialIcons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -27,13 +28,14 @@ export default class Formulario extends React.Component {
       modalVisibleAlert: false,
       mensajeAlert: "",
       type: Camera.Constants.Type.back,
-      flashMode: Camera.Constants.FlashMode.on,
+      flashMode: Camera.Constants.FlashMode.off,
       autoFocus: Camera.Constants.AutoFocus.on,
       zoom: 0,
       whiteBalance: Camera.Constants.WhiteBalance.auto,
       focusDepth: 0,
       ratio: "4:3",
-      estadocamara:true
+      estadocamara: true,
+      modalLoading: false
     };
   }
 
@@ -128,6 +130,7 @@ export default class Formulario extends React.Component {
       });
       return;
     }
+    this.setState({modalLoading: true})
     fetch("http://189.213.227.211:8443/person-query", {
       method: "POST",
       body: JSON.stringify({
@@ -158,11 +161,13 @@ export default class Formulario extends React.Component {
             
         if (this.state.rface === null) {
           this.setState({
+            modalLoading: false,
             modalVisibleAlert: !this.state.modalVisibleAlert,
             mensajeAlert: "No se encontraron coincidencias en la base de datos"
           });
         }
-            else{
+        else {
+          this.setState({modalLoading:false})
             this.props.navigation.navigate('CoincidenciaUsuario',
             {id:this.state.id,name:this.state.name,face:this.state.face,
             surnames:this.state.surname,rface:this.state.rface,wanted:this.state.wanted,
@@ -174,6 +179,7 @@ export default class Formulario extends React.Component {
 
         // Alert.alert("ERROR","No se encontraron coincidencias");
         this.setState({
+          modalLoading: false,
           modalVisibleAlert: !this.state.modalVisibleAlert,
           mensajeAlert: "No se encontraron coincidencias en la base de datos"
         });
@@ -272,6 +278,36 @@ export default class Formulario extends React.Component {
             <Text style={styles.inputButtom}>Buscar</Text>
           </TouchableOpacity>
         </LinearGradient>
+        {/* ============================modalLoading======= */}
+
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalLoading}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "45%"
+            }}
+          >
+            {this.state.modalLoading ? (
+              <ActivityIndicator size={30} color="#fff" />
+            ) : null}
+          </View>
+        </Modal>
+
         {/* modal camera ================= */}
         <Modal
           animationType="slide"
@@ -279,6 +315,12 @@ export default class Formulario extends React.Component {
           visible={this.state.modalVisible}
         >
           <View style={styles.containermodal}>
+            <TouchableOpacity onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
+              <Text style={[styles.icon, { padding: 6, marginLeft: 30, marginTop: 20 }]}>
+                {" "}
+                <Ionicons name="md-arrow-back" size={35} color="#fff" />{" "}
+              </Text>
+            </TouchableOpacity>
             <Camera
               style={styles.camera}
               ref={ref => (this._cameraInstance = ref)}
@@ -307,19 +349,38 @@ export default class Formulario extends React.Component {
         </View>
         </View>
             <View style={styles.controls}>
-            <View style={styles.controls}>
-            {!photo && (
-                <TouchableOpacity style={{height:35,width:35}}
-                onPress={() => {
-                  this.setState({ modalVisible: !this.state.modalVisible });
-                }}>
-               
-                <Text style={styles.icon}>
-                  {" "}
-                  <Ionicons name="md-arrow-round-back" size={35} color="#fff" />{" "}
-                </Text>
-              </TouchableOpacity>
-              )}
+              <View style={styles.controls}>
+                {!photo && (
+                  <TouchableOpacity style={{ height: 35, width: 35 }}
+                    onPress={() => {
+
+                      this.state.flashMode ?
+                        this.setState({ flashMode: Camera.Constants.FlashMode.off })
+                        :
+                        this.setState({ flashMode: Camera.Constants.FlashMode.on })
+                        ;
+
+                    }}>
+
+                    {
+                      // this.setState({ modalVisible: !this.state.modalVisible });
+                      this.state.flashMode ?
+                        <Text style={styles.icon}>
+                          {" "}
+                          <MaterialIcons name="flash-auto" size={35} color="#fff" />{" "}
+                        </Text>
+                        :
+                        <Text style={styles.icon}>
+                          {" "}
+                          <MaterialIcons name="flash-off" size={35} color="#fff" />{" "}
+                        </Text>
+
+
+                    }
+
+                  </TouchableOpacity>
+                )}
+           
               
               {!photo && (
                 <TouchableOpacity style={{

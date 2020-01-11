@@ -6,7 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
-  Modal
+  Modal,
+  ActivityIndicator
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import md5 from "md5";
@@ -22,7 +23,8 @@ export default class Formulario extends Component {
       pass_v: null,
       modalVisible: false,
       modalVisible2: false,
-      mensajeAlert: ""
+      mensajeAlert: "",
+      modalLoading: false
     };
   }
 
@@ -30,19 +32,20 @@ export default class Formulario extends Component {
     console.log(this.state.email);
     console.log(this.state.pass);
     console.log(this.state.pass_v);
-   const licence=(
+    const licence = Math.floor(
+      Math.random() *
+        1000 *
         Math.floor(
           Math.random() *
-            1000 *
-            Math.floor(
-              Math.random() * 100 * Math.floor(Math.random() * 10000000000*1458102)
-            )
+            100 *
+            Math.floor(Math.random() * 10000000000 * 1458102)
         )
-      )
-      var licenceS = licence.toString();
-      let lic = licenceS.replace(/['"]+/g, "");
-     console.log(licenceS)
+    );
+    var licenceS = licence.toString();
+    let lic = licenceS.replace(/['"]+/g, "");
+    console.log(licenceS);
     try {
+      this.setState({ modalLoading: true });
       let response = await fetch("http://189.213.227.211:8443/user", {
         method: "POST",
         headers: {
@@ -56,8 +59,7 @@ export default class Formulario extends Component {
           password_validate: md5(this.state.pass_v),
           names: "Keyberth",
           surnames: "Pe",
-          license_key:lic
-          
+          license_key: lic
         })
       });
 
@@ -65,15 +67,16 @@ export default class Formulario extends Component {
       console.log(responseJson);
 
       if (responseJson.status === 200) {
-          this.setState({
-            modalVisible2:!this.state.modalVisible2,
-            mensajeAlert: "El Registro se Completo de Manera Exitosa!"
-          });
-          
+        this.setState({
+          modalLoading: false,
+          modalVisible2: !this.state.modalVisible2,
+          mensajeAlert: "El Registro se Completo de Manera Exitosa!"
+        });
       } else {
         // Alert.alert("Error", "El Correo o la contraseña no son correctos");
 
         this.setState({
+          modalLoading: false,
           modalVisible: !this.state.modalVisible,
           mensajeAlert: "Este correo ya se encuentra registrado"
         });
@@ -81,6 +84,7 @@ export default class Formulario extends Component {
     } catch (error) {
       // Alert.alert("Error", "Usted no dispone de una conexion a internet");
       this.setState({
+        modalLoading: false,
         modalVisible: !this.state.modalVisible,
         mensajeAlert: "Usted no dispone de una conexion a internet"
       });
@@ -136,6 +140,35 @@ export default class Formulario extends Component {
             </Text>
           </TouchableOpacity>
         </LinearGradient>
+        {/* ============================modalLoading======= */}
+
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalLoading}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "45%"
+            }}
+          >
+            {this.state.modalLoading ? (
+              <ActivityIndicator size={30} color="#fff" />
+            ) : null}
+          </View>
+        </Modal>
         <Modal
           animationType="none"
           transparent={true}
@@ -180,7 +213,10 @@ export default class Formulario extends Component {
                   this.setState({ modalVisible: !this.state.modalVisible });
                 }}
               >
-                <Text onPress={()=>{this.props.navigation.replace("InicioSesion")}}
+                <Text
+                  onPress={() => {
+                    this.props.navigation.replace("InicioSesion");
+                  }}
                   style={{
                     fontSize: 16,
                     // padding: 13,
