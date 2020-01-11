@@ -51,33 +51,34 @@ export default class Formulario extends React.Component{
       console.log(surnames)
       sur = surnames.replace(/[^a-z0-9,\s]/gi, '').replace(/[_\s]/g, '-');
       
-      var surname = sur.split(',');
-      logitud1=surname.length
+      var surnam = sur.split(',');
+      logitud1=surnam.length
+     
 
-      if(longitud===1){
-        surname=surname[0]
+      if(logitud1===1){
+        surname=surnam[0]
       }
       if(longitud===2){
-        surname=surname[0]+' '+surname[1]
+        surname=surnam[0]+' '+surnam[1]
       }
       
       if(longitud===3){
-        surname=surname[0]+' '+surname[1]+' '+surname[2]
+        surname=surnam[0]+' '+surnam[1]+' '+surnam[2]
       }
       
       if(longitud===4){
-        surname=surname[0]+' '+surname[1]+' '+surname[2]+' '+surname[3]
+        surname=surnam[0]+' '+surnam[1]+' '+surnam[2]+' '+surnam[3]
       }
       
       if(longitud===5){
-        surname=surname[0]+' '+surname[1]+' '+surname[2]+' '+surname[3]+' '+surname[4]
+        surname=surnam[0]+' '+surnam[1]+' '+surnam[2]+' '+surnam[3]+' '+surnam[4]
       }
       
       
       
       console.log(name)
       this.setState({name:name})
-      this.setState({surname:surname})
+      this.setState({surname:sur})
       let wanted=JSON.stringify(this.props.navigation.getParam("wanted","wanted"))
       if (wanted==='false'){
         this.setState({wanted:"No"})
