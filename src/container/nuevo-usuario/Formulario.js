@@ -138,7 +138,7 @@ export default class Formulario extends Component {
         });
         setTimeout(() => {
           this.setState({ uri: null });
-          this.props.navigation.navigate("Dashboard");
+          this.props.navigation.replace("Loading");
         }, 1000);
       })
       .catch(error => {

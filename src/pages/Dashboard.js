@@ -35,7 +35,7 @@ export default class Dashboard extends React.Component {
           <Opciones navigation={this.props.navigation}
           CambiarEstado={(estado)=>{this.setState({estado:estado})}} />
         </LinearGradient>
-        {this.state.long!=0?       
+        {this.state.long===0?       
         <View>
          <Perfiles navigation={this.props.navigation}
            estado={this.state.estado}/></View>:<View style={{ paddingLeft: 30,paddingRight: 25,paddingTop: 10}}>
