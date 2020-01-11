@@ -91,10 +91,11 @@ export default class Loading extends Component {
         const url = 'http://189.213.227.211:8443/file=' + faces
         this.setState({url:url})
         responseJson.data.forEach(element =>this.setState({id:element._id}))
+        cantidad=responseJson.persons_length
         if(token){
           this.setState({len:true})
           this.props.navigation.replace("Dashboard", {item:this.state.url, name:this.state.names
-        , surname:this.state.surname,id:this.state.id, users: this.state.users, len:this.state.len})}
+        , surname:this.state.surname,id:this.state.id, users: this.state.users, len:this.state.len, cantidad:cantidad})}
         else{
           this.props.navigation.replace('InicioSesion')
           }
