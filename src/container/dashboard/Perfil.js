@@ -26,8 +26,7 @@ export default class Perfil extends React.Component {
     };
 }
 render(){
-  let {names, surnames, images, birth_date } = this.props.usuario;
-  console.log(this.props.usuario.names)
+  let {_id, names, surnames, images, birth_date } = this.props.usuario;
   console.log(this.props.usuario)
   return (
     <View>
@@ -36,7 +35,7 @@ render(){
           <View style={styles.img}>
             <Image
               style={{ width: 50, height: 50, borderRadius:100 }}
-              source={{uri:this.state.url2}}
+              source={{uri:`http://189.213.227.211:8443/file=${images[0]}`}}
             />
           </View>
           <View style={{ justifyContent: "center", paddingLeft: 10 }}>
@@ -49,7 +48,7 @@ render(){
               ]}
             >
               {names[0]}{" "} {surnames[0]}
-              <Foundation name="prohibited" size={16} color="#00425A" />
+              {/* <Foundation name="prohibited" size={16} color="#00425A" /> */}
             </Text>
             <Text
               style={[
@@ -59,7 +58,7 @@ render(){
                 }
               ]}
             >
-            {" "}{edad} {birth_date}
+            {" "}{_id} {birth_date}
   
             </Text>
           </View>
