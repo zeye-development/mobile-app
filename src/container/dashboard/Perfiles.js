@@ -7,8 +7,8 @@ export default class Perfiles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: this.props.navigation.state.params.users,
-      usersWantedFalse: this.props.navigation.state.params.users.filter(user => user.wanted == false )
+      users: [],
+      usersWantedFalse: []
     }
     console.log(props)
   }
@@ -30,10 +30,16 @@ export default class Perfiles extends React.Component {
       this.setState({id:id})
       console.log(surname)
 
-      let usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
+      let usersWantedFalse= [];
+      let users = [];
+      if(this.props.navigation.state.params.users) {
+        users= this.props.navigation.state.params.users;
+        usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
+      }
+
 
       this.setState({
-        users: this.props.navigation.state.params.users,
+        users,
         usersWantedFalse
       })
 

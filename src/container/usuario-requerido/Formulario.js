@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function Formulario(props) {
-  // console.log('profile')
+  console.log('profile')
   // console.log(props.navigation.state.params.user)
   let { _id, names, surnames, images, nationality, sex, birth_date } = props.navigation.state.params.user;
 
