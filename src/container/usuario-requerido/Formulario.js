@@ -41,7 +41,8 @@ export default function Formulario(props) {
         </Text>
         <Text style={styles.input}>{birth_date}</Text>
       </View>
-      <View style={styles.viewContainerGrup}>
+
+      {/* <View style={styles.viewContainerGrup}>
         <View style={styles.viewContainerButtom}>
           <TouchableOpacity>
             <Text
@@ -79,7 +80,8 @@ export default function Formulario(props) {
             </Text>
           </TouchableOpacity>
         </LinearGradient>
-      </View>
+      </View> */}
+      
     </View>
   );
 }
