@@ -2,30 +2,36 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, ProgressBarAndroid } from "react-native";
 import { Entypo, Foundation } from "@expo/vector-icons";
 
-export default function Opciones() {
-  let [Barra, setBarra] = useState(0);
-  let [BarraP, setBarraP] = useState(1);
-  let [True, setTrue] = useState(false);
+export default class Opciones extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {estado:false, Barra:0, BarraP:1};
+  }
 
-  let Barra1 = () => {
-    setBarra((Barra = 1));
-    setBarraP((BarraP = 0));
-    setTrue((True = true));
+  Barra1 = () => {
+    this.setState({Barra : 1});
+    this.setState({BarraP : 0});
+    this.setState({estado : true});
+    this.props.CambiarEstado((true))
   };
+  
+   Barra2 = () => {
+    this.setState({Barra : 0});
+    this.setState({BarraP : 1});
+    this.setState({estado : false});
+    this.props.CambiarEstado((false))
+  };
+  render(){
 
-  let Barra2 = () => {
-    setBarra((Barra = 0));
-    setBarraP((BarraP = 1));
-    setTrue((True = false));
-  };
+
   return (
     <View style={styles.container}>
       <View style={styles.viewContainerGrup}>
         <View style={styles.viewContainerInput}>
           <View style={{ alignItems: "center" }}>
-            {True ? (
+            {this.state.estado ? (
               <Text
-                onPress={Barra1}
+                onPress={this.Barra1}
                 style={{
                   color: "rgb(255, 255, 255)",
                   alignContent: "center",
@@ -42,7 +48,7 @@ export default function Opciones() {
               </Text>
             ) : (
               <Text
-                onPress={Barra1}
+                onPress={this.Barra1}
                 style={{
                   color: "rgba(255, 255, 255, 0.5)",
                   alignContent: "center",
@@ -64,15 +70,15 @@ export default function Opciones() {
             styleAttr="Horizontal"
             indeterminate={false}
             color="#fff"
-            progress={Barra}
+            progress={this.state.Barra}
           />
         </View>
 
         <View style={styles.viewContainerInput}>
           <View style={{ alignItems: "center" }}>
-            {True ? (
+            {this.state.estado ? (
               <Text
-                onPress={Barra2}
+                onPress={this.Barra2}
                 style={{
                   color: "rgba(255, 255, 255, 0.5)",
                   alignContent: "center",
@@ -89,7 +95,7 @@ export default function Opciones() {
               </Text>
             ) : (
               <Text
-                onPress={Barra2}
+                onPress={this.Barra2}
                 style={{
                   color: "rgb(255, 255, 255)",
                   alignContent: "center",
@@ -107,13 +113,13 @@ export default function Opciones() {
             styleAttr="Horizontal"
             indeterminate={false}
             color="rgb(255, 255, 255)"
-            progress={BarraP}
+            progress={this.state.BarraP}
           />
         </View>
       </View>
     </View>
   );
-}
+}}
 
 const styles = StyleSheet.create({
   container: {

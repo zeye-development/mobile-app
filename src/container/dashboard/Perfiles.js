@@ -65,15 +65,15 @@ export default class Perfiles extends React.Component {
   
   return (
     <View style={styles.container}>
-    {this.True?(
+    {this.props.estado?(
       <FlatList
         data={this.state.usersWantedFalse}
         renderItem={({ item }) => (
-          <PerfilSolicitado navigation={props.navigation} usuario={item} />
+          <PerfilSolicitado navigation={this.props.navigation} usuario={item} />
         )}
         keyExtractor={item => item.key}
         horizontal={false}
-        ItemSeparatorComponent={separador}
+        ItemSeparatorComponent={this.separador}
         ListEmptyComponent={
           <Text
             style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}

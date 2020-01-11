@@ -7,7 +7,13 @@ import Opciones from "../container/dashboard/Opciones";
 import Perfiles from "../container/dashboard/Perfiles";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function Dashboard(props) {
+export default class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render(){
+    console.log(this.state.estado)
   return (
     <View>
       <ScrollView>
@@ -17,17 +23,19 @@ export default function Dashboard(props) {
           end={[0.8, 0.5]}
           style={styles.containerSuperior}
         >
-          <Header navigation={props.navigation} />
-          <ProgreseBar navigation={props.navigation} />
-          <Opciones navigation={props.navigation} />
+          <Header navigation={this.props.navigation} />
+          <ProgreseBar navigation={this.props.navigation} />
+          <Opciones navigation={this.props.navigation}
+          CambiarEstado={(estado)=>{this.setState({estado:estado})}} />
         </LinearGradient>
         <View>
-          <Perfiles navigation={props.navigation} />
+          <Perfiles navigation={this.props.navigation}
+          estado={this.state.estado} />
         </View>
       </ScrollView>
     </View>
   );
-}
+}}
 const styles = StyleSheet.create({
   containerSuperior: {
     // backgroundColor: "#0097CD",
