@@ -41,7 +41,7 @@ export default class ProgreseBar extends React.Component {
       </View>
       <View style={styles.styleButtom}>
         <TouchableOpacity
-          onPress={() => props.navigation.navigate("NuevoUsuario")}
+          onPress={() => this.props.navigation.navigate("NuevoUsuario")}
         >
           <Text style={styles.inputButtom}>
             <Ionicons name="md-person-add" size={18} color="#0097CD" /> Anadir

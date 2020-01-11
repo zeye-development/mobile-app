@@ -178,7 +178,7 @@ export default class Formulario extends Component {
         </View>
 
         {/* ==================subida muntiples de imagenes ============== */}
-        <View style={{ alignItems: "center" }}>
+        {/* <View style={{ alignItems: "center" }}>
           <View
             style={{
               flexDirection: "row",
@@ -227,7 +227,7 @@ export default class Formulario extends Component {
           >
             Debe seleccionar un minimo de 3 imagenes
           </Text>
-        </View>
+        </View> */}
 
         {/* ========================================================== */}
         <View style={styles.viewContainer}>
