@@ -28,8 +28,8 @@ export default class Formulario extends Component {
       nationality: "VE",
       mainFoto: null,
       birth: "",
-      names: "",
-      surnames: "",
+      name: "",
+      surname: "",
       imagenes: [],
       id: ""
     };
@@ -83,14 +83,14 @@ export default class Formulario extends Component {
       });
       return;
     }
-    if (this.state.names === "") {
+    if (this.state.name === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
         mensajeAlert: "El campo Nombre no puede estar vacio"
       });
       return;
     }
-    if (this.state.surnames === "") {
+    if (this.state.surname === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
         mensajeAlert: "El campo Apellido no puede estar vacio"
