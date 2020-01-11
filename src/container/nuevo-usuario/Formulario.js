@@ -32,35 +32,36 @@ export default class Formulario extends Component {
   }
   async componentDidMount() {
     // console.log(this.props.navigation.getParam("mainFoto"));
-    // let token = await AsyncStorage.getItem("token");
-    // console.log(token);
+    let token = await AsyncStorage.getItem("token");
+    console.log(token);
 
-    // let toke = token.replace(/['"]+/g, "");
-    // this.setState({ token: toke });
-    let perfil = JSON.stringify(this.props.navigation.getParam("item"));
+    let toke = token.replace(/['"]+/g, "");
+    this.setState({ token: toke });
+    let perfil = JSON.stringify(this.props.navigation.getParam("item", 'image'));
     console.log(perfil);
     let pfoto = perfil.replace(/['"]+/g, "");
     console.log(pfoto);
 
-    // this.setState({ foto: pfoto });
-    let parabase64 = JSON.stringify(this.props.navigation.getParam("base"));
+    this.setState({ foto: pfoto });
+    let parabase64 = JSON.stringify(this.props.navigation.getParam("base", 'base64'));
     let base64 = parabase64.replace(/['"]+/g, "");
-    //guardar fotos en cache
-    //aun no me funciona esto que hago
-    if (this.props.navigation.getParam("mainFoto")) {
-      let dataPrincipal = {
-        foto: pfoto,
-        base64: base64
-      };
-      await AsyncStorage.setItem(
-        "dataPrincipal",
-        JSON.stringify(dataPrincipal)
-      );
-    }
-    const cache = await AsyncStorage.getItem("dataPrincipal");
-    let cache1 = JSON.parse(cache);
-    this.setState({ mainFoto: cache1, foto: cache1.foto });
-    console.log(cache1.foto);
+    this.setState({base64:base64})
+  //   //guardar fotos en cache
+  //   //aun no me funciona esto que hago
+  //   if (this.props.navigation.getParam("mainFoto")) {
+  //     let dataPrincipal = {
+  //       foto: pfoto,
+  //       base64: base64
+  //     };
+  //     await AsyncStorage.setItem(
+  //       "dataPrincipal",
+  //       JSON.stringify(dataPrincipal)
+  //     );
+  //   }
+  //   const cache = await AsyncStorage.getItem("dataPrincipal");
+  //   let cache1 = JSON.parse(cache);
+  //   this.setState({ mainFoto: cache1, foto: cache1.foto });
+  //   console.log(cache1.foto);
   }
 
   handleUploadPhoto = () => {
@@ -78,7 +79,7 @@ export default class Formulario extends Component {
     // );
     // let base64 = parabase64.replace(/['"]+/g, "");
 
-    fetch("http://189.213.227.211:8080/register-face", {
+    fetch("http://189.213.227.211:8443/register-face", {
       method: "POST",
       body: JSON.stringify({
         names: this.state.name,
@@ -86,7 +87,7 @@ export default class Formulario extends Component {
         nationality: this.state.nationality,
         dni: this.state.id,
         sex: this.state.sex,
-        picture: base64,
+        picture: this.state.base64,
         wanted: this.state.estado,
         birth: this.state.birth
       }),
@@ -100,7 +101,10 @@ export default class Formulario extends Component {
         console.log(this.state.sex);
         console.log(this.state.sex);
         console.log("upload succes", response);
-        alert("Upload success!");
+        this.setState({
+          modalVisibleAlert: true,
+          mensajeAlert: "Usuario Registrado Exitosamente"
+        });
         this.setState({ uri: null });
         this.props.navigation.navigate("Dashboard");
       })
@@ -110,7 +114,6 @@ export default class Formulario extends Component {
         console.log(this.state.estado);
 
         alert("Upload failed!");
-        this.props.navigation.navigate("Dashboard");
       });
   };
   showDateTimePicker = () => {
@@ -273,9 +276,8 @@ export default class Formulario extends Component {
             itemStyle={styles.pickerItem}
           >
             <Picker.Item label="Venezuela" value="VE" />
-            <Picker.Item label="Colombia" value="CO" />
-            <Picker.Item label="Brasil" value="BR" />
-            <Picker.Item label="Estados Unidos" value="US" />
+            <Picker.Item label="Bolivia" value="BO" />
+            
           </Picker>
         </View>
 

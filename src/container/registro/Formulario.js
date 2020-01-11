@@ -21,6 +21,7 @@ export default class Formulario extends Component {
       pass: null,
       pass_v: null,
       modalVisible: false,
+      modalVisible2: false,
       mensajeAlert: ""
     };
   }
@@ -42,7 +43,7 @@ export default class Formulario extends Component {
       let lic = licenceS.replace(/['"]+/g, "");
      console.log(licenceS)
     try {
-      let response = await fetch("http://189.213.227.211:8080/user", {
+      let response = await fetch("http://189.213.227.211:8443/user", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -64,13 +65,17 @@ export default class Formulario extends Component {
       console.log(responseJson);
 
       if (responseJson.status === 200) {
-        this.props.navigation.replace("InicioSesion");
+          this.setState({
+            modalVisible2:!this.state.modalVisible2,
+            mensajeAlert: "El Registro se Completo de Manera Exitosa!"
+          });
+          
       } else {
         // Alert.alert("Error", "El Correo o la contraseña no son correctos");
 
         this.setState({
           modalVisible: !this.state.modalVisible,
-          mensajeAlert: "El Correo o la contraseña no son correctos"
+          mensajeAlert: "Este correo ya se encuentra registrado"
         });
       }
     } catch (error) {
@@ -175,7 +180,7 @@ export default class Formulario extends Component {
                   this.setState({ modalVisible: !this.state.modalVisible });
                 }}
               >
-                <Text
+                <Text onPress={()=>{this.props.navigation.replace("InicioSesion")}}
                   style={{
                     fontSize: 16,
                     // padding: 13,
@@ -189,6 +194,70 @@ export default class Formulario extends Component {
                 >
                   {" "}
                   Entendido
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalVisible2}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              width: 290,
+              backgroundColor: "#fff",
+              borderRadius: 15,
+              position: "absolute",
+              marginTop: "45%",
+              marginHorizontal: "10%"
+            }}
+          >
+            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#00425A",
+                  textAlign: "center",
+                  textShadowRadius: 2,
+                  fontFamily: "PoppinsBold"
+                }}
+              >
+                {this.state.mensajeAlert}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ modalVisible2: !this.state.modalVisible2 });
+                  this.props.navigation.replace("InicioSesion");
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 16,
+                    // padding: 13,
+                    color: "#01B8E2",
+                    textAlign: "right",
+                    fontFamily: "PoppinsRegular",
+                    marginTop: 40,
+                    marginHorizontal: 20,
+                    marginBottom: 20
+                  }}
+                >
+                  {" "}
+                  Iniciar Sesion
                 </Text>
               </TouchableOpacity>
             </View>

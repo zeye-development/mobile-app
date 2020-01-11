@@ -13,12 +13,12 @@ export default class Formulario extends React.Component{
       
       let pface=JSON.stringify(this.props.navigation.getParam( "face", "face"))
       let face = pface.replace(/['"]+/g, "");
-      const url = 'http://189.213.227.211:8080/file=' + face
+      const url = 'http://189.213.227.211:8443/file=' + face
       console.log(face)
-      let prface=JSON.stringify(this.props.navigation.getParam( "rface", "rface"))
+      let prface=JSON.stringify(this.props.navigation.getParam("rface", "rface"))
       let rface = prface.replace(/['"]+/g, "");
-      const url2 = 'http://189.213.227.211:8080/file=' + rface
-      console.log(face)
+      const url2 = 'http://189.213.227.211:8443/file=' + rface
+      console.log(rface)
       this.setState({url:url})
       this.setState({url2:url2})
       let wanted=JSON.stringify(this.props.navigation.getParam("wanted","wanted"))

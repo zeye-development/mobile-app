@@ -24,11 +24,8 @@ export default class Formulario extends React.Component {
       base64: null,
       modalVisible: false,
       hasCameraPermission: false,
-      // buttomBuscar: false,
-
       modalVisibleAlert: false,
       mensajeAlert: "",
-      // type: Camera.Constants.Type.front,
       type: Camera.Constants.Type.back,
       flashMode: Camera.Constants.FlashMode.on,
       autoFocus: Camera.Constants.AutoFocus.on,
@@ -47,8 +44,6 @@ export default class Formulario extends React.Component {
       this.setState({ hasCameraPermission: status === "granted" });
 
       if (status !== "granted") {
-        
-        // alert("Hey! You might want to enable Camera in your phone settings.");
         this.setState({
           mensajeAlert: "Es posible que desee habilitar la cámara en la configuración de su teléfono",
           modalVisibleAlert: true
@@ -65,7 +60,6 @@ export default class Formulario extends React.Component {
         this.setState({ hasCameraPermission: status === "granted" });
 
         if (status !== "granted") {
-          // alert("Hey! You might want to enable Camera in your phone settings.");
           this.setState({
             mensajeAlert: "Es posible que desee habilitar la cámara en la configuración de su teléfono",
             modalVisibleAlert: true
@@ -134,17 +128,10 @@ export default class Formulario extends React.Component {
       });
       return;
     }
-    fetch("http://189.213.227.211:8080/person-query", {
+    fetch("http://189.213.227.211:8443/person-query", {
       method: "POST",
       body: JSON.stringify({
-        // names:(this.state.name),
-        // surnames:(this.state.surname),
-        // // // // pais:(this.state.pais),
-        // dni:(this.state.id),
-        // sex:(this.state.sex),
-        picture: this.state.base64
-        // wanted:(this.state.estado)
-      }),
+        picture: this.state.base64}),
       headers: {
         "Content-Type": "application/json",
          key:this.state.token
@@ -153,6 +140,7 @@ export default class Formulario extends React.Component {
       .then(response => response.json())
       .then(response => {
         console.log("upload succes", response);
+        console.log(response)
         
         this.setState({ uri: null });
             response.people.forEach(element =>this.setState({id:element._id}))
@@ -173,15 +161,12 @@ export default class Formulario extends React.Component {
             modalVisibleAlert: !this.state.modalVisibleAlert,
             mensajeAlert: "No se encontraron coincidencias en la base de datos"
           });
-          // Alert.alert("ERROR", "no se encontraron coincidencias")
         }
             else{
             this.props.navigation.navigate('CoincidenciaUsuario',
             {id:this.state.id,name:this.state.name,face:this.state.face,
-              surnames:this.state.surname,rface:this.state.rface,wanted:this.state.wanted,
-            nationality:this.state.nationality,sex:this.state.sex,birth:this.state.birth })
-       
-            }
+            surnames:this.state.surname,rface:this.state.rface,wanted:this.state.wanted,
+            nationality:this.state.nationality,sex:this.state.sex,birth:this.state.birth })}
           
       })
       .catch(error => {
