@@ -78,7 +78,7 @@ export default class Perfiles extends React.Component {
         renderItem={({ item }) => (
           <Perfil navigation={this.props.navigation} usuario={item} />
         )}
-        keyExtractor={item => item.key}
+        keyExtractor={item => item._id}
         horizontal={false}
         ItemSeparatorComponent={this.separador}
         ListEmptyComponent={

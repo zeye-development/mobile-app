@@ -26,7 +26,9 @@ export default class Perfil extends React.Component {
     };
 }
 render(){
-  let {nombre, conectado, edad } = this.props.usuario;
+  let {names, surnames, images, birth_date } = this.props.usuario;
+  console.log(this.props.usuario.names)
+  console.log(this.props.usuario)
   return (
     <View>
       <View style={styles.container}>
@@ -46,7 +48,7 @@ render(){
                 }
               ]}
             >
-              {nombre}{" "}
+              {names[0]}{" "} {surnames[0]}
               <Foundation name="prohibited" size={16} color="#00425A" />
             </Text>
             <Text
@@ -57,7 +59,7 @@ render(){
                 }
               ]}
             >
-            {" "}{edad}
+            {" "}{edad} {birth_date}
   
             </Text>
           </View>
