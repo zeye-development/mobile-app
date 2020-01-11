@@ -34,6 +34,7 @@ export default class Formulario extends Component {
   async login(email, pass) {
     // console.log(email);
     // console.log(pass);
+    
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({

@@ -88,7 +88,10 @@ export default class Loading extends Component {
         console.log(faces)
         const url = 'http://189.213.227.211:8443/file=' + faces
         this.setState({url:url})
-        responseJson.data.forEach(element =>this.setState({id:element._id}))
+
+        if(responseJson.data != undefined) {
+          responseJson.data.forEach(element =>this.setState({id:element._id}))
+        }
         if(token){
         this.props.navigation.replace("Dashboard", {item:this.state.url, name:this.state.names
         , surname:this.state.surname,id:this.state.id, users: this.state.users})}
