@@ -30,7 +30,7 @@ export default class Perfiles extends React.Component {
       this.setState({id:id})
       console.log(surname)
 
-      let usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == false )
+      let usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
 
       this.setState({
         users: this.props.navigation.state.params.users,
@@ -71,7 +71,7 @@ export default class Perfiles extends React.Component {
         renderItem={({ item }) => (
           <PerfilSolicitado navigation={this.props.navigation} usuario={item} />
         )}
-        keyExtractor={item => item.key}
+        keyExtractor={item => item._id}
         horizontal={false}
         ItemSeparatorComponent={this.separador}
         ListEmptyComponent={
@@ -85,7 +85,7 @@ export default class Perfiles extends React.Component {
         <FlatList
         data={this.state.users}
         renderItem={({ item }) => (
-          <Perfil navigation={this.props.navigation} usuario={item} />
+        <Perfil navigation={this.props.navigation} usuario={item} />
         )}
         keyExtractor={item => item._id}
         horizontal={false}

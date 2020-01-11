@@ -91,10 +91,13 @@ export default class Loading extends Component {
 
         if(responseJson.data != undefined) {
           responseJson.data.forEach(element =>this.setState({id:element._id}))
+          cantidad=responseJson.persons_length
+          console.log(cantidad)
+          
         }
         if(token){
         this.props.navigation.replace("Dashboard", {item:this.state.url, name:this.state.names
-        , surname:this.state.surname,id:this.state.id, users: this.state.users})}
+        , surname:this.state.surname,id:this.state.id, users: this.state.users, cant:cantidad})}
         else{
         this.props.navigation.replace('InicioSesion')
         }

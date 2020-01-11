@@ -8,7 +8,19 @@ import {
 } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
-export default function ProgreseBar(props) {
+export default class ProgreseBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  componentDidMount=()=>{
+    let cant=JSON.stringify(this.props.navigation.getParam( "cant", "cantidad"))
+    console.log('AQUI ESTA!!!!!!!!!')
+    console.log(cant)
+    console.log('AQUI ESTA!!!!!!!!!')
+    this.setState({cant:cant})
+  }
+  render(){
   return (
     <View style={styles.container}>
       <View style={styles.viewContainer}>
@@ -16,7 +28,7 @@ export default function ProgreseBar(props) {
           styleAttr="Horizontal"
           indeterminate={false}
           color="#00DFAA"
-          progress={0.25}
+          progress={1}
         />
       </View>
       <View style={{ alignItems: "center" }}>
@@ -24,7 +36,7 @@ export default function ProgreseBar(props) {
           style={{ color: "#fff", fontSize: 16, fontFamily: "PoppinsSemiBold" }}
         >
           {" "}
-          <Entypo name="users" size={18} color="#fff" /> 200 de 1000 Usuarios
+          <Entypo name="users" size={18} color="#fff" />{" "} {this.state.cant} de 1000 Usuarios
         </Text>
       </View>
       <View style={styles.styleButtom}>
@@ -39,7 +51,7 @@ export default function ProgreseBar(props) {
       </View>
     </View>
   );
-}
+}}
 
 const styles = StyleSheet.create({
   container: {
