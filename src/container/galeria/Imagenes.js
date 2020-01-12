@@ -161,7 +161,7 @@ export default class Imagenes extends React.Component {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-    maxWidth: 350,
+    maxWidth: 450,
     paddingHorizontal: 30,
     flexDirection: "row",
     flexWrap: "wrap"

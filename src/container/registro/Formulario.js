@@ -32,10 +32,9 @@ export default class Formulario extends Component {
   }
 
   async login(email, pass, pass_v) {
- 
-    email=email.toLowerCase()
-    console.log(email)
-    
+    email = email.toLowerCase();
+    console.log(email);
+
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
@@ -410,7 +409,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     marginBottom: 10,
     alignItems: "stretch",
-    maxWidth: 350,
+    maxWidth: 450,
     paddingHorizontal: 30
   },
   input: {

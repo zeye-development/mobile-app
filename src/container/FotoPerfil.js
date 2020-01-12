@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginBottom: 5,
     // alignItems: 'stretch',
-    maxWidth: 350,
+    maxWidth: 450,
     paddingHorizontal: 30
   },
   viewContainer: {

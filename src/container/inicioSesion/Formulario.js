@@ -34,7 +34,6 @@ export default class Formulario extends Component {
   }
 
   async login(email, pass) {
-
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
@@ -66,8 +65,8 @@ export default class Formulario extends Component {
       return;
     }
 
-    email = email.toLowerCase()
-    
+    email = email.toLowerCase();
+
     try {
       this.setState({ modalLoading: true });
       let response = await fetch("http://189.213.227.211:8443/login", {
@@ -78,7 +77,7 @@ export default class Formulario extends Component {
           mimeType: "application/json"
         },
         body: JSON.stringify({
-          email: email ,
+          email: email,
           password: md5(pass)
         })
       });
@@ -120,8 +119,7 @@ export default class Formulario extends Component {
             onChangeText={item => {
               // console.log("email:  ", item);
               const email = item.trim();
-              
-              
+
               // console.log("email despues:", item);
               this.setState({ email });
             }}
@@ -266,7 +264,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
     alignItems: "stretch",
-    maxWidth: 350,
+    maxWidth: 450,
     paddingHorizontal: 30
   },
   input: {

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     // backgroundColor: '#0097CD',
-    maxWidth: 350,
+    maxWidth: 450,
     flexDirection: "row",
     // alignItems: 'flex-start',
     justifyContent: "space-between",

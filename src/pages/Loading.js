@@ -30,7 +30,6 @@ export default class Loading extends Component {
 
           console.log("AAAAAAAAAAAAAAAA");
           if (responseJson.data.length != 0) {
-
             this.setState({ users: responseJson.data });
 
             responseJson.data.forEach(element =>
@@ -83,7 +82,7 @@ export default class Loading extends Component {
 
 const styles = StyleSheet.create({
   splash: {
-    width: "50%",
-    height: "50%"
+    width: "45%",
+    height: "45%"
   }
 });

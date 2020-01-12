@@ -6,8 +6,8 @@ export default function FotoPerfil(props) {
   const [solicitado, setSolicitado] = useState({ solicitado: false });
 
   let imagen = props.imagen;
-  console.log('photo')  
-  console.log(props)
+  console.log("photo");
+  console.log(props);
 
   return (
     <View style={styles.container}>
@@ -15,7 +15,7 @@ export default function FotoPerfil(props) {
         <View style={styles.viewContainer}>
           <Image
             // source={require("../../../assets/perfil.png")}
-            source={{uri:`http://189.213.227.211:8443/file=${imagen[0]}`}}
+            source={{ uri: `http://189.213.227.211:8443/file=${imagen[0]}` }}
             style={styles.imageBackground}
           />
         </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 10,
     alignItems: "stretch",
-    maxWidth: 350,
+    maxWidth: 450,
     paddingHorizontal: 30
   },
   viewContainer: {

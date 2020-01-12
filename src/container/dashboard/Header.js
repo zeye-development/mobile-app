@@ -63,7 +63,7 @@ export default class Dashboard extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    maxWidth: 350,
+    maxWidth: 450,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingTop: 50,

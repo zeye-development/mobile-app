@@ -30,7 +30,7 @@ export default function Preguntas(props) {
 
 const styles = StyleSheet.create({
   container: {
-    maxWidth: 350,
+    maxWidth: 450,
     alignItems: "stretch",
     paddingHorizontal: 30
   },

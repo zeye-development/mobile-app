@@ -12,47 +12,54 @@ export default class ProgreseBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cant:0
+      cant: 0
     };
   }
-  componentDidMount=()=>{
-    let cant=JSON.stringify(this.props.navigation.getParam( "cantidad", "cantidad"))
+  componentDidMount = () => {
+    let cant = JSON.stringify(
+      this.props.navigation.getParam("cantidad", "cantidad")
+    );
     cant = cant.replace(/['"]+/g, "");
-    if(cant!='cantidad')
-    this.setState({cant:cant})
-  }
-  render(){
-  return (
-    <View style={styles.container}>
-      <View style={styles.viewContainer}>
-        <ProgressBarAndroid
-          styleAttr="Horizontal"
-          indeterminate={false}
-          color="#00DFAA"
-          progress={1}
-        />
-      </View>
-      <View style={{ alignItems: "center" }}>
-        <Text
-          style={{ color: "#fff", fontSize: 16, fontFamily: "PoppinsSemiBold" }}
-        >
-          {" "}
-          <Entypo name="users" size={18} color="#fff" />{" "} {this.state.cant} de 1000 Usuarios
-        </Text>
-      </View>
-      <View style={styles.styleButtom}>
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("NuevoUsuario")}
-        >
-          <Text style={styles.inputButtom}>
-            <Ionicons name="md-person-add" size={18} color="#0097CD" /> Añadir
-            Usuario{" "}
+    if (cant != "cantidad") this.setState({ cant: cant });
+  };
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.viewContainer}>
+          <ProgressBarAndroid
+            styleAttr="Horizontal"
+            indeterminate={false}
+            color="#00DFAA"
+            progress={1}
+          />
+        </View>
+        <View style={{ alignItems: "center" }}>
+          <Text
+            style={{
+              color: "#fff",
+              fontSize: 16,
+              fontFamily: "PoppinsSemiBold"
+            }}
+          >
+            {" "}
+            <Entypo name="users" size={18} color="#fff" /> {this.state.cant} de
+            1000 Usuarios
           </Text>
-        </TouchableOpacity>
+        </View>
+        <View style={styles.styleButtom}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("NuevoUsuario")}
+          >
+            <Text style={styles.inputButtom}>
+              <Ionicons name="md-person-add" size={18} color="#0097CD" /> Añadir
+              Usuario{" "}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  );
-}}
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -63,7 +70,7 @@ const styles = StyleSheet.create({
     paddingRight: 35,
     marginBottom: 10,
     alignItems: "stretch",
-    maxWidth: 350
+    maxWidth: 450
   },
   viewContainer: {
     paddingBottom: 20

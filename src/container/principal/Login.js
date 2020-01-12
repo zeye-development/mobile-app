@@ -30,7 +30,7 @@ const style = StyleSheet.create({
     // alignItems: 'center',
     // marginBottom: 20,
     alignItems: "stretch",
-    maxWidth: 350
+    maxWidth: 450
   },
   styleButtonInt: {
     alignItems: "center",

@@ -488,7 +488,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
     alignItems: "stretch",
-    maxWidth: 350,
+    maxWidth: 450,
     paddingHorizontal: 30,
     alignItems: "center"
   },

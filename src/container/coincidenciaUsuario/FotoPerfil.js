@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     // alignItems: "stretch",
-    maxWidth: 350,
+    maxWidth: 450,
     paddingHorizontal: 30,
     flexDirection: "row"
   },
