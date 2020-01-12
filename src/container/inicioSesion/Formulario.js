@@ -34,9 +34,6 @@ export default class Formulario extends Component {
   }
 
   async login(email, pass) {
-    email=email.toLowerCase() 
-     console.log(email)
-    // console.log(pass);
 
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
@@ -69,6 +66,8 @@ export default class Formulario extends Component {
       return;
     }
 
+    email = email.toLowerCase()
+    
     try {
       this.setState({ modalLoading: true });
       let response = await fetch("http://189.213.227.211:8443/login", {

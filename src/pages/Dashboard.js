@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 
 import Header from "../container/dashboard/Header";
@@ -7,7 +7,7 @@ import Opciones from "../container/dashboard/Opciones";
 import Perfiles from "../container/dashboard/Perfiles";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default class Dashboard extends React.Component {
+export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
