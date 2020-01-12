@@ -69,7 +69,7 @@ export default class Formulario extends Component {
       if (pass.length < 6) {
         this.setState({
           error: true,
-          msjError: "La contrasena debe ser mayor a 6 caracteres"
+          msjError: "La Contraseña debe ser mayor a 6 caracteres"
         });
         setTimeout(() => {
           this.setState({
@@ -91,7 +91,7 @@ export default class Formulario extends Component {
       if (pass_v.length < 6) {
         this.setState({
           error: true,
-          msjError: "La contrasena debe ser mayor a 6 caracteres"
+          msjError: "La Contraseña debe ser mayor a 6 caracteres"
         });
         setTimeout(() => {
           this.setState({
@@ -105,7 +105,7 @@ export default class Formulario extends Component {
     if (pass_v != pass) {
       this.setState({
         error: true,
-        msjError: "Las contrasenas no coinciden"
+        msjError: "Las Contraseñas no coinciden"
       });
       setTimeout(() => {
         this.setState({

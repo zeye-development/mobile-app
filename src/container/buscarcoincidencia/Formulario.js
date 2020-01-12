@@ -392,7 +392,7 @@ export default class Formulario extends React.Component {
                 </Text>
               </TouchableOpacity>
               )}
-              {!photo && (
+              {!photo && (  
                 <TouchableOpacity style={{height:35,width:35,marginLeft:'15%'}}
                 onPress={() => this.state.estadocamara?
                 

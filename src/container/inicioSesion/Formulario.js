@@ -64,7 +64,7 @@ export default class Formulario extends Component {
       // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Contraseña es requerido para iniciar Sesion"
+        mensajeAlert: "LA Contraseña es requerida para Iniciar Sesion"
       });
       return;
     }

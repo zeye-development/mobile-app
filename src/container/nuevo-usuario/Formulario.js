@@ -298,7 +298,7 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Selecionar Pais
+          Seleccionar Pais
         </Text>
         <View style={styles.containerpicker}>
           <Picker
@@ -324,7 +324,7 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Selecionar Sexo
+          Seleccionar Sexo
         </Text>
         <View style={styles.containerpicker}>
           <Picker
@@ -385,7 +385,7 @@ export default class Formulario extends Component {
               fontFamily: "PoppinsSemiBold"
             }}
           >
-            Anadir a solicitadoss
+            Añadir a solicitados
           </Text>
         </View>
 
@@ -397,7 +397,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={16} color="#fff" /> Anadir{" "}
+              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
             </Text>
           </TouchableOpacity>
         </LinearGradient>
