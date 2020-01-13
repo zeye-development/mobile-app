@@ -22,6 +22,7 @@ export default function InicioSesion(props) {
   </SafeAreaView>
   );
 }
+
 const style = StyleSheet.create({
   container: {
     flex: 6,

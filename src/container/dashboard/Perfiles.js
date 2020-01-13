@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { View, StyleSheet, FlatList, Text, Image, AsyncStorage } from "react-native";
 import Perfil from "./Perfil";
 import PerfilSolicitado from "./PerfilSolicitado"
 
-export default class Perfiles extends React.Component {
+export default class Perfiles extends Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
       usersWantedFalse: []
     }
+    console.log('Profiles')
     console.log(props)
   }
+  
  componentDidMount=()=>{
   let pface=JSON.stringify(this.props.navigation.getParam( "item", "url"))
   let face = pface.replace(/['"]+/g, "");
@@ -33,10 +35,9 @@ export default class Perfiles extends React.Component {
       let usersWantedFalse= [];
       let users = [];
       if(this.props.navigation.state.params.users) {
-        users= this.props.navigation.state.params.users;
+        users = this.props.navigation.state.params.users;
         usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
       }
-
 
       this.setState({
         users,
@@ -44,31 +45,18 @@ export default class Perfiles extends React.Component {
       })
 
       }
-  separador = () => {
-    return (
-      <View
-        style={{
-          height: 1,
-          width: "100%",
-          backgroundColor: "#f2f2f2",
-          marginVertical: 10
-        }}
-      ></View>
-    );
-  };
+  separador = () =>
+    <View
+      style={{
+        height: 1,
+        width: "100%",
+        backgroundColor: "#f2f2f2",
+        marginVertical: 10
+      }}
+    ></View>
+
   render(){
-  img=this.state.url
-  nombre=this.state.name+this.state.surname
-  edad=this.state.id
-    let usuarios = [
-      {
-        nombre,
-        edad,
-        img,
-        key: "0"
-      },
-    ];
-  
+
   return (
     <View style={styles.container}>
     {this.props.estado?(
