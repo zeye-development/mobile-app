@@ -27,8 +27,6 @@ export default function Login(props) {
 
 const style = StyleSheet.create({
   container: {
-    // alignItems: 'center',
-    // marginBottom: 20,
     alignItems: "stretch",
     maxWidth: 450
   },

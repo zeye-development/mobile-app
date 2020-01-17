@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet, Image, Text, TouchableOpacity} from "react-native";
 import { Ionicons, Foundation } from "@expo/vector-icons";
 
-
 export default class Perfil extends React.Component {
   constructor(props) {
     super(props);
@@ -86,9 +85,11 @@ render(){
             >
               <Text style={styles.optionButtom}>Perfil</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity>
-              <Text style={styles.optionButtom}>Eliminar</Text>
-            </TouchableOpacity> */}
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Galeria')}
+              >
+              <Text style={styles.optionButtom}>Galería</Text>
+            </TouchableOpacity>
           </View>
         </View>
       ) : null}
@@ -123,8 +124,6 @@ const styles = StyleSheet.create({
     paddingVertical: 9,
     fontFamily: "PoppinsRegular",
     fontSize: 14
-    // borderBottomWidth: 1,
-    // borderColor: "#f2f2f2"
   },
   containerOptionButtom: {
     position: "absolute",
@@ -132,6 +131,7 @@ const styles = StyleSheet.create({
     top: 0
   },
   containerButtom: {
+    height: 90,
     width: 180,
     backgroundColor: "#fff",
     borderRadius: 2,

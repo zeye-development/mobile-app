@@ -5,24 +5,21 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 export default function FotoPerfil(props) {
   const [solicitado, setSolicitado] = useState({ solicitado: false });
 
-  let imagen = props.imagen;
-  console.log("photo");
-  console.log(props);
+  let { imagen, wanted } = props;
 
   return (
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
         <View style={styles.viewContainer}>
           <Image
-            // source={require("../../../assets/perfil.png")}
             source={{ uri: `http://189.213.227.211:8443/file=${imagen[0]}` }}
             style={styles.imageBackground}
           />
         </View>
       </View>
-      {solicitado.solicitado == false ? (
+      {wanted == false ? (
         <TouchableOpacity
-          onPress={() => setSolicitado({ ...solicitado, solicitado: true })}
+          onPress={() => setSolicitado({ solicitado: true })}
         >
           <Text style={[styles.usuario, styles.noSolicitado]}>
             <Ionicons
@@ -35,7 +32,7 @@ export default function FotoPerfil(props) {
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
-          onPress={() => setSolicitado({ ...solicitado, solicitado: false })}
+          onPress={() => setSolicitado({ solicitado: false })}
         >
           <Text style={[styles.usuario, styles.solicitado]}>
             <AntDesign name="closecircleo" size={16} color="#fff" /> Usuario
@@ -49,8 +46,6 @@ export default function FotoPerfil(props) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // alignItems: "center",
     marginTop: 15,
     marginBottom: 10,
     alignItems: "stretch",
@@ -59,7 +54,6 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     marginVertical: 5,
-    // alignItems: "center",
     justifyContent: "center",
     width: 130,
     height: 130,
@@ -79,12 +73,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     justifyContent: "center"
-    // alignItems: "center",
   },
   solicitado: {
     backgroundColor: "#FE6363"
   },
-
   noSolicitado: {
     backgroundColor: "#00DFAA"
   }

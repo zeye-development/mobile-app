@@ -6,16 +6,15 @@ import FotoPerfil from "../container/usuario-requerido/FotoPerfil";
 import Formulario from "../container/usuario-requerido/Formulario";
 
 export default function UsuarioRequerido(props) {
-  // const text = props.navigation.getParams('user',{});
-  console.log('required')
+  console.log('PAGE USUARIO REQUERIDO')
   console.log(props.navigation.state.params.user)
-  
+  let { images: imagen, wanted } = props.navigation.state.params.user;
 
   return (
     <View style={style.container}>
       <ScrollView>
         <Header navigation={props.navigation} />
-        <FotoPerfil imagen={props.navigation.state.params.user.images} />
+        <FotoPerfil imagen={imagen} wanted={wanted} />
         <Formulario navigation={props.navigation} />
       </ScrollView>
     </View>

@@ -34,6 +34,9 @@ export default class Formulario extends Component {
   }
 
   async login(email, pass) {
+    email = 'lewis@gmail.com'
+    pass = '123456'
+
     if (!email) {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
@@ -60,7 +63,7 @@ export default class Formulario extends Component {
       // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "LA Contraseña es requerida para Iniciar Sesion"
+        mensajeAlert: "La Contraseña es requerida para Iniciar Sesion"
       });
       return;
     }
@@ -151,9 +154,7 @@ export default class Formulario extends Component {
           style={styles.styleButtom}
         >
           <TouchableOpacity
-            onPress={() => {
-              this.login(this.state.email, this.state.pass);
-            }}
+            onPress={() => { this.login(this.state.email, this.state.pass); }}
           >
             <Text style={[styles.inputButtom, styles.font]}>
               Iniciar Sesion{" "}

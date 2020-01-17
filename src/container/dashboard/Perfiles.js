@@ -79,7 +79,7 @@ export default class Perfiles extends Component {
         <FlatList
         data={this.state.users}
         renderItem={({ item }) => (
-        <Perfil navigation={this.props.navigation} usuario={item} />
+          <Perfil navigation={this.props.navigation} usuario={item} />
         )}
         keyExtractor={item => item._id}
         horizontal={false}

@@ -20,7 +20,5 @@ const style = StyleSheet.create({
   container: {
     flex: 6,
     backgroundColor: "#fff"
-    // paddingVertical: 30,
-    // paddingLeft: 5
   }
 });

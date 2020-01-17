@@ -17,11 +17,11 @@ export default function Principal(props) {
     </LinearGradient>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#01B8E2",
     padding: 30
-    // paddingLeft: 5
   }
 });

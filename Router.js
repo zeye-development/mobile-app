@@ -89,32 +89,3 @@ const AppNavigator = createStackNavigator(
 );
 
 export default createAppContainer(AppNavigator);
-
-// export default function Router() {
-//   return (
-//     <View style={styles.container}>
-//       {/* <Principal /> */}
-//       {/* <InicioSesion /> */}
-//       {/* <Registro /> */}
-//       <NuevoUsuario />
-//       {/* <UsuarioRequerido /> */}
-//       {/* <RecuperarPaso1 /> */}
-//       {/* <RecuperarPaso2 /> */}
-//       {/* <Captura /> */}
-//       {/* <Dashboard /> */}
-//       {/* <Camera /> */}
-//       {/* <EditarUsuario /> */}
-//       {/* <PanelAdmin /> */}
-//       {/* <Coincidencias /> */}
-//       {/* <CoincidenciaUsuario /> */}
-//       {/* <BuscarCoincidencia /> */}
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 6,
-//     backgroundColor: "#fff"
-//   }
-// });

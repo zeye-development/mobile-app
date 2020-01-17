@@ -20,11 +20,8 @@ export default function Inicio() {
 const style = StyleSheet.create({
   container: {
     flex: 2,
-    // flexDirection: "row",
     justifyContent: "center",
     alignItems: "center"
-    // marginTop: 110,
-    // maxWidth: 350,
   },
   text: {
     fontSize: 32,

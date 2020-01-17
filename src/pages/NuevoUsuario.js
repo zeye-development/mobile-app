@@ -11,8 +11,7 @@ export default function NuevoUsuario(props) {
         <ScrollView>
           <View style={style.container}>
             <Header navigation={props.navigation} />
-           
-          <Formulario navigation={props.navigation}/>
+            <Formulario navigation={props.navigation} />
           </View>
         </ScrollView>   
       </KeyboardAvoidingView>
