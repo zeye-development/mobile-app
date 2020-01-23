@@ -29,16 +29,25 @@ export default class Formulario extends Component {
       name: "",
       surname: "",
       imagenes: [],
-      id: ""
+      id: "",
+      token: ""
     };
   }
   async componentDidMount() {
-    // console.log(this.props.navigation.getParam("mainFoto"));
+    console.log(this.props.navigation.getParam("mainFoto"));
     let token = await AsyncStorage.getItem("token");
+
     console.log(token);
 
+    let { id: _id } = this.props;
+    console.log('id: camera', _id)
+
     let toke = token.replace(/['"]+/g, "");
-    this.setState({ token: toke });
+    this.setState({ 
+      token: toke,
+      id: _id
+    });
+    
     let perfil = JSON.stringify(
       this.props.navigation.getParam("item", "image")
     );
@@ -58,65 +67,77 @@ export default class Formulario extends Component {
     // let { foto, base64 } = this.state;
     console.log(this.state.estado);
     console.log(this.state.foto);
-    if (this.state.foto === "image") {
-      this.setState({
-        modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
-      });
-      return;
-    }
-    if (this.state.name === "") {
-      this.setState({
-        modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Nombre no puede estar vacio"
-      });
-      return;
-    }
-    if (this.state.surname === "") {
-      this.setState({
-        modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Apellido no puede estar vacio"
-      });
-      return;
-    }
-    if (this.state.birth === "") {
-      this.setState({
-        modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Por favor ingrese una fecha"
-      });
-      return;
-    }
+    // if (this.state.foto === "image") {
+    //   this.setState({
+    //     modalVisibleAlert: !this.state.modalVisibleAlert,
+    //     mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+    //   });
+    //   return;
+    // }
+    // if (this.state.name === "") {
+    //   this.setState({
+    //     modalVisibleAlert: !this.state.modalVisibleAlert,
+    //     mensajeAlert: "El campo Nombre no puede estar vacio"
+    //   });
+    //   return;
+    // }
+    // if (this.state.surname === "") {
+    //   this.setState({
+    //     modalVisibleAlert: !this.state.modalVisibleAlert,
+    //     mensajeAlert: "El campo Apellido no puede estar vacio"
+    //   });
+    //   return;
+    // }
+    // if (this.state.birth === "") {
+    //   this.setState({
+    //     modalVisibleAlert: !this.state.modalVisibleAlert,
+    //     mensajeAlert: "Por favor ingrese una fecha"
+    //   });
+    //   return;
+    // }
     // let parabase64 = JSON.stringify(
     //   this.props.navigation.getParam("base", "base64")
     // );
     // let base64 = parabase64.replace(/['"]+/g, "");
 
-    // if (this.state.foto != null) {
-    fetch("http://189.213.227.211:8443/register-face", {
-      method: "POST",
-      body: JSON.stringify({
-        names: this.state.name,
-        surnames: this.state.surname,
-        nationality: this.state.nationality,
-        dni: this.state.id,
-        sex: this.state.sex,
-        picture: this.state.base64,
-        wanted: this.state.estado,
-        birth: this.state.birth
-      }),
+    if (this.state.foto != null) {
+    // fetch("http://189.213.227.211:8443/register-face", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     names: this.state.name,
+    //     surnames: this.state.surname,
+    //     nationality: this.state.nationality,
+    //     dni: this.state.id,
+    //     sex: this.state.sex,
+    //     picture: this.state.base64,
+    //     wanted: this.state.estado,
+    //     birth: this.state.birth
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     : this.state.token
+    //   }
+    // })
+    console.log('venezuela')
+    console.log(this.props.id)
+    fetch("http://189.213.227.211:8443/person-query", {
+      method: "DELETE",
+      // body: JSON.stringify({
+      //   picture: this.state.base64,
+      //   dni: this.props.id
+      // }),
       headers: {
         "Content-Type": "application/json",
-        key: this.state.token
+        dni: this.props.id,
+        key:this.state.token,
       }
-    })
+    })    
       .then(response => response.json())
       .then(response => {
-        console.log(this.state.sex);
-        console.log(this.state.sex);
         console.log("upload succes", response);
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Usuario Registrado Exitosamente"
+          mensajeAlert: "Foto añadida a la galleria"
         });
         setTimeout(() => {
           this.setState({ uri: null });
@@ -124,13 +145,16 @@ export default class Formulario extends Component {
         }, 1000);
       })
       .catch(error => {
-        console.log("upload error", error);
+        console.log("upload error picture:", error);
+        // console.log(this.state.estado);
 
-        console.log(this.state.estado);
-
-        alert("Upload failed!");
+        this.setState({
+          modalVisibleAlert: true,
+          mensajeAlert: "Ocurrió un error al añadir la foto"
+        });        
+        // alert("Upload failed!");
       });
-    // }
+    }
   };
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
@@ -158,7 +182,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity
             onPress={() =>
-              this.props.navigation.replace("Captura", { mainFoto: true })
+              this.props.navigation.replace("Captura", { id: this.state.id, mainFoto: true })
             }
             style={{
               width: 120,

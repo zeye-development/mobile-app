@@ -1,20 +1,23 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import styled from 'styled-components/native';
 
 export default function Imagen(props) {
+  
+  let { url } = props;
+
   return (
-    <View style={styles.img}>
-      <Image
-        style={{ width: 90, height: 90 }}
-        source={require("../../../assets/captura.png")}
-      />
-    </View>
+    <ContainerImagen>
+      <Img source={{uri:`http://189.213.227.211:8443/file=${url}`}}></Img>
+    </ContainerImagen>
   );
 }
 
-const styles = StyleSheet.create({
-  img: {
-    margin: 3,
-    borderRadius: 10
-  }
-});
+const ContainerImagen = styled.View`
+  margin: 3px;
+  border-radius: 15px;
+`
+const Img = styled.Image`
+  width: 90px; 
+  height: 90px;
+  border-radius: 10px; 
+`

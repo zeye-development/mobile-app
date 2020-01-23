@@ -38,7 +38,8 @@ export default class Formulario extends React.Component {
   }
 
   async componentWillMount() {
-   
+    console.log('negial')
+    // console.log(this.props.navigation.state.params.id)
     try {
       
       const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -130,12 +131,19 @@ export default class Formulario extends React.Component {
         mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO",
         modalVisibleAlert: true
       })
-    } else {
+    } else if(this.props.navigation.state.params.id) {
+      this.props.navigation.replace("Galeria", {
+        item: image,
+        base: base64,
+        mainFoto: this.props.navigation.getParam("mainFoto"),
+        id: this.props.navigation.state.params.id
+      });
+    }else {
       this.props.navigation.replace("NuevoUsuario", {
         item: image,
         base: base64,
-        mainFoto: this.props.navigation.getParam("mainFoto")
-      });
+        mainFoto: this.props.navigation.getParam("mainFoto"),
+      });      
     }
   };
 

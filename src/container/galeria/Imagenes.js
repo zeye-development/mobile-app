@@ -1,91 +1,35 @@
 import * as React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Dimensions } from "react-native";
 import Imagen from "./Imagen";
+import styled from 'styled-components/native';
 
 export default class Imagenes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisibleAlert: false,
-      mensajeAlert: ""
+      modalVisibleAlert: true,
+      mensajeAlert: "",
+      images: []
     };
   }
 
+  componentDidMount(){
+    let { images } = this.props.navigation.state.params;
+    this.setState({ images });
+  }
+
   render() {
-    const usuarios = [
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/captura.png",
-        conectado: "15889623",
-        key: "0",
-        solicitado: "si"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/captura.png",
-        conectado: "15889623",
-        key: "1",
-        solicitado: "si"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/captura.png",
-        conectado: "15889623",
-        key: "2",
-        solicitado: "no"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/captura.png",
-        conectado: "15889623",
-        key: "3",
-        solicitado: "no"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/captura.png",
-        conectado: "15889623",
-        key: "4",
-        solicitado: "no"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/captura.png",
-        conectado: "15889623",
-        key: "6",
-        solicitado: "no"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/captura.png",
-        conectado: "15889623",
-        key: "7",
-        solicitado: "no"
-      },
-      {
-        nombre: "Jhon Doe",
-        edad: "28 Years",
-        img: "../../../assets/captura.png",
-        conectado: "15889623",
-        key: "8",
-        solicitado: "si"
-      }
-    ];
+
+    if(this.state.images == []) return;
 
     return (
-      <View style={styles.container}>
-        {usuarios.map(item => (
+      <Container style={styles.container}>
+        {this.state.images.map((url, key) => (
           <Imagen
             navigation={this.props.navigation}
-            key={item.key}
-            usuario={item}
+            key={key}
+            url={url}
+            style={styles.imagen}
           />
         ))}
         {/* modal alert============= */}
@@ -124,7 +68,7 @@ export default class Imagenes extends React.Component {
                   fontFamily: "PoppinsBold"
                 }}
               >
-                {this.state.mensajeAlert}
+                {this.state.mensajeAlert} - holis
               </Text>
             </View>
             <View>
@@ -138,7 +82,6 @@ export default class Imagenes extends React.Component {
                 <Text
                   style={{
                     fontSize: 16,
-                    // padding: 13,
                     color: "#01B8E2",
                     textAlign: "right",
                     fontFamily: "PoppinsRegular",
@@ -154,16 +97,32 @@ export default class Imagenes extends React.Component {
             </View>
           </View>
         </Modal>
-      </View>
+      </Container>
     );
   }
 }
+
+const Container = styled.View`
+`;
+
+let { width } = Dimensions.get('window');
+width -= 30;
+let widthImagen = width / 3;
+
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
     maxWidth: 450,
-    paddingHorizontal: 30,
+    display: "flex",
+    flex: 1,
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    justifyContent: "center"
+  },
+  imagen: {
+    width: widthImagen,
+    borderWidth: 2,
+    borderColor: "peru",
+    flex: 1,
   }
 });

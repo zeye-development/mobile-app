@@ -23,19 +23,19 @@ export default class Loading extends Component {
       })
         .then(response => response.json())
         .then(responseJson => {
-          console.log(responseJson);
+          // console.log(responseJson);
           this.setState({
             data: responseJson
           });
 
-          console.log("AAAAAAAAAAAAAAAA");
+          // console.log("AAAAAAAAAAAAAAAA");
           if (responseJson.data.length != 0) {
             this.setState({ users: responseJson.data });
 
             responseJson.data.forEach(element =>
               this.setState({ image: element.images })
             );
-            console.log(this.state.image);
+            // console.log(this.state.image);
             let face = this.state.image;
             let faces = face[0];
             faces = faces.replace(/['"]+/g, "");

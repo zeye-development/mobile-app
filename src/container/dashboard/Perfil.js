@@ -26,7 +26,7 @@ export default class Perfil extends React.Component {
 }
 render(){
   let {_id, names, surnames, images, birth_date } = this.props.usuario;
-  // console.log(this.props.usuario)
+
   return (
     <View>
       <View style={styles.container}>
@@ -86,7 +86,7 @@ render(){
               <Text style={styles.optionButtom}>Perfil</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Galeria')}
+              onPress={() => this.props.navigation.navigate('Galeria', {id: _id, images})}
               >
               <Text style={styles.optionButtom}>Galería</Text>
             </TouchableOpacity>

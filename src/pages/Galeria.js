@@ -6,12 +6,16 @@ import Camera from "../container/galeria/Camera";
 import Imagenes from "../container/galeria/Imagenes";
 
 export default function Galeria(props) {
+  console.log('Gallery')
+  let { id, images } = props.navigation.state.params;
+  console.log(props.navigation.state.params)
+
   return (
     <View style={style.container}>
       <ScrollView>
         <Header navigation={props.navigation} />
-        <Camera navigation={props.navigation} />
-        <Imagenes navigation={props.navigation} />
+        <Camera navigation={props.navigation} id={ id } />
+        <Imagenes navigation={props.navigation} images={images} />
       </ScrollView>
     </View>
   );

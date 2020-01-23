@@ -10,8 +10,8 @@ export default class Perfiles extends Component {
       users: [],
       usersWantedFalse: []
     }
-    console.log('Profiles')
-    console.log(props)
+    // console.log('Profiles')
+    // console.log(props)
   }
   
  componentDidMount=()=>{
