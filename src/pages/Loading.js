@@ -28,37 +28,24 @@ export default class Loading extends Component {
             data: responseJson
           });
 
-          // console.log("AAAAAAAAAAAAAAAA");
           if (responseJson.data.length != 0) {
             this.setState({ users: responseJson.data });
 
-            responseJson.data.forEach(element =>
-              this.setState({ image: element.images })
-            );
-            // console.log(this.state.image);
-            let face = this.state.image;
-            let faces = face[0];
-            faces = faces.replace(/['"]+/g, "");
-            console.log(faces);
-            const url = "http://189.213.227.211:8443/file=" + faces;
-            this.setState({ url: url });
+            // let faces = face[0];
+            // faces = faces.replace(/['"]+/g, "");
 
             cantidad = responseJson.persons_length;
+
             if (token) {
-              this.setState({ len: true });
               this.props.navigation.replace("Dashboard", {
-                item: this.state.url,
                 users: this.state.users,
-                len: this.state.len,
                 cantidad: cantidad
               });
             } else {
               this.props.navigation.replace("InicioSesion");
             }
           } else {
-            this.setState({ len: false });
-
-            this.props.navigation.replace("Dashboard", { len: this.state.len });
+            this.props.navigation.replace("Dashboard");
           }
         })
         .catch(error => {

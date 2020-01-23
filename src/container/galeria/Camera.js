@@ -18,17 +18,9 @@ export default class Formulario extends Component {
     this.state = {
       foto: null,
       base64: null,
-      estado: true,
       modalVisibleAlert: false,
       mensajeAlert: "",
-      isDateTimePickerVisible: false,
-      sex: "Male",
-      nationality: "VE",
       mainFoto: null,
-      birth: "",
-      name: "",
-      surname: "",
-      imagenes: [],
       id: "",
       token: ""
     };
@@ -36,8 +28,6 @@ export default class Formulario extends Component {
   async componentDidMount() {
     console.log(this.props.navigation.getParam("mainFoto"));
     let token = await AsyncStorage.getItem("token");
-
-    console.log(token);
 
     let { id: _id } = this.props;
     console.log('id: camera', _id)
@@ -48,76 +38,22 @@ export default class Formulario extends Component {
       id: _id
     });
     
-    let perfil = JSON.stringify(
-      this.props.navigation.getParam("item", "image")
-    );
+    let perfil = JSON.stringify(this.props.navigation.getParam("item", "image"));
     console.log(perfil);
     let pfoto = perfil.replace(/['"]+/g, "");
     console.log("fotot", pfoto);
 
     this.setState({ foto: pfoto });
-    let parabase64 = JSON.stringify(
-      this.props.navigation.getParam("base", "base64")
-    );
+    let parabase64 = JSON.stringify(this.props.navigation.getParam("base", "base64"));
     let base64 = parabase64.replace(/['"]+/g, "");
     this.setState({ base64: base64 });
   }
 
   handleUploadPhoto = () => {
-    // let { foto, base64 } = this.state;
-    console.log(this.state.estado);
+    let { foto, base64 } = this.state;
     console.log(this.state.foto);
-    // if (this.state.foto === "image") {
-    //   this.setState({
-    //     modalVisibleAlert: !this.state.modalVisibleAlert,
-    //     mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
-    //   });
-    //   return;
-    // }
-    // if (this.state.name === "") {
-    //   this.setState({
-    //     modalVisibleAlert: !this.state.modalVisibleAlert,
-    //     mensajeAlert: "El campo Nombre no puede estar vacio"
-    //   });
-    //   return;
-    // }
-    // if (this.state.surname === "") {
-    //   this.setState({
-    //     modalVisibleAlert: !this.state.modalVisibleAlert,
-    //     mensajeAlert: "El campo Apellido no puede estar vacio"
-    //   });
-    //   return;
-    // }
-    // if (this.state.birth === "") {
-    //   this.setState({
-    //     modalVisibleAlert: !this.state.modalVisibleAlert,
-    //     mensajeAlert: "Por favor ingrese una fecha"
-    //   });
-    //   return;
-    // }
-    // let parabase64 = JSON.stringify(
-    //   this.props.navigation.getParam("base", "base64")
-    // );
-    // let base64 = parabase64.replace(/['"]+/g, "");
 
     if (this.state.foto != null) {
-    // fetch("http://189.213.227.211:8443/register-face", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     names: this.state.name,
-    //     surnames: this.state.surname,
-    //     nationality: this.state.nationality,
-    //     dni: this.state.id,
-    //     sex: this.state.sex,
-    //     picture: this.state.base64,
-    //     wanted: this.state.estado,
-    //     birth: this.state.birth
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     : this.state.token
-    //   }
-    // })
     console.log('venezuela')
     console.log(this.props.id)
     fetch("http://189.213.227.211:8443/person-query", {
@@ -129,7 +65,6 @@ export default class Formulario extends Component {
       headers: {
         "Content-Type": "application/json",
         dni: this.props.id,
-        key:this.state.token,
       }
     })    
       .then(response => response.json())
@@ -146,7 +81,6 @@ export default class Formulario extends Component {
       })
       .catch(error => {
         console.log("upload error picture:", error);
-        // console.log(this.state.estado);
 
         this.setState({
           modalVisibleAlert: true,
@@ -156,18 +90,7 @@ export default class Formulario extends Component {
       });
     }
   };
-  showDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: true });
-  };
 
-  hideDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: false });
-  };
-
-  handleDatePicked = date => {
-    console.log("A date has been picked: ", date);
-    this.hideDateTimePicker();
-  };
   render() {
     return (
       <Container>

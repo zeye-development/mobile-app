@@ -10,42 +10,22 @@ export default class Perfiles extends Component {
       users: [],
       usersWantedFalse: []
     }
-    // console.log('Profiles')
-    // console.log(props)
   }
   
- componentDidMount=()=>{
-  let pface=JSON.stringify(this.props.navigation.getParam( "item", "url"))
-  let face = pface.replace(/['"]+/g, "");
-  
-  this.setState({url:face})
-  let name=JSON.stringify(this.props.navigation.getParam( "name", "names"))
-     name = name.replace(/['"]+/g, "");
-      this.setState({name:name})
-      console.log(name)
-      let surname=JSON.stringify(this.props.navigation.getParam( "surname", "surname"))
-      surname = surname.replace(/['"]+/g, "");
-      this.setState({surname:surname})
-      console.log(surname)
-      let id=JSON.stringify(this.props.navigation.getParam( "id", "id"))
-      id = id.replace(/['"]+/g, "");
-      this.setState({id:id})
-      console.log(surname)
+ componentDidMount() {
+    let usersWantedFalse= [];
+    let users = [];
+    if(this.props.navigation.state.params.users) {
+      users = this.props.navigation.state.params.users;
+      usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
+    }
+    this.setState({
+      users,
+      usersWantedFalse
+    })
+  }
 
-      let usersWantedFalse= [];
-      let users = [];
-      if(this.props.navigation.state.params.users) {
-        users = this.props.navigation.state.params.users;
-        usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
-      }
-
-      this.setState({
-        users,
-        usersWantedFalse
-      })
-
-      }
-  separador = () =>
+  separator = () =>
     <View
       style={{
         height: 1,
@@ -67,7 +47,7 @@ export default class Perfiles extends Component {
         )}
         keyExtractor={item => item._id}
         horizontal={false}
-        ItemSeparatorComponent={this.separador}
+        ItemSeparatorComponent={this.separator}
         ListEmptyComponent={
           <Text
             style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
@@ -83,7 +63,7 @@ export default class Perfiles extends Component {
         )}
         keyExtractor={item => item._id}
         horizontal={false}
-        ItemSeparatorComponent={this.separador}
+        ItemSeparatorComponent={this.separator}
         ListEmptyComponent={
           <Text
             style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}

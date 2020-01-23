@@ -10,19 +10,8 @@ import { LinearGradient } from "expo-linear-gradient";
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      lg: false
-    };
+    this.state = {};
   }
-
-  componentDidMount = () => {
-    let long = JSON.stringify(this.props.navigation.getParam("len", "len"));
-    this.setState({ lg: long });
-    console.log("AQUI ESTA!!!!!");
-    console.log(this.state.lg);
-    console.log(long);
-    console.log("AQUI ESTA!!!!!");
-  };
 
   render() {
     return (

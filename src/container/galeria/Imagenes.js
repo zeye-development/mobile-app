@@ -7,7 +7,7 @@ export default class Imagenes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisibleAlert: true,
+      modalVisibleAlert: false,
       mensajeAlert: "",
       images: []
     };
