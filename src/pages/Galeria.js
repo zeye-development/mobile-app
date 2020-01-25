@@ -13,7 +13,7 @@ export default function Galeria(props) {
     <View style={style.container}>
       <ScrollView>
         <Header navigation={props.navigation} />
-        <Camera navigation={props.navigation} id={ id } />
+        <Camera navigation={props.navigation} id={ id } images={images} />
         <Imagenes navigation={props.navigation} images={images} />
       </ScrollView>
     </View>

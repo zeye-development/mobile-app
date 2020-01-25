@@ -22,20 +22,23 @@ export default class Formulario extends Component {
       mensajeAlert: "",
       mainFoto: null,
       id: "",
-      token: ""
+      token: "",
+      images: []
     };
   }
   async componentDidMount() {
     console.log(this.props.navigation.getParam("mainFoto"));
     let token = await AsyncStorage.getItem("token");
 
-    let { id: _id } = this.props;
+    let { id: _id, images } = this.props;
+    // console.log(this.props.navigation.state.params.images)
     console.log('id: camera', _id)
 
     let toke = token.replace(/['"]+/g, "");
     this.setState({ 
       token: toke,
-      id: _id
+      id: _id,
+      images
     });
     
     let perfil = JSON.stringify(this.props.navigation.getParam("item", "image"));
@@ -57,11 +60,11 @@ export default class Formulario extends Component {
     console.log('venezuela')
     console.log(this.props.id)
     fetch("http://189.213.227.211:8443/person-query", {
-      method: "DELETE",
-      // body: JSON.stringify({
-      //   picture: this.state.base64,
-      //   dni: this.props.id
-      // }),
+      method: "PUT",
+      body: JSON.stringify({
+        picture: this.state.base64,
+        dni: this.props.id
+      }),
       headers: {
         "Content-Type": "application/json",
         dni: this.props.id,
@@ -105,7 +108,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity
             onPress={() =>
-              this.props.navigation.replace("Captura", { id: this.state.id, mainFoto: true })
+              this.props.navigation.replace("Captura", { id: this.state.id, images: this.state.images, mainFoto: true })
             }
             style={{
               width: 120,
