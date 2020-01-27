@@ -482,7 +482,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 80
   },
   camera: {
-    height: "100%",
+    height: "120%",
     width: "100%"
   },
 

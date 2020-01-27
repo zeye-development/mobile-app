@@ -156,7 +156,7 @@ export default class Formulario extends Component {
             onPress={() => { this.login(this.state.email, this.state.pass); }}
           >
             <Text style={[styles.inputButtom, styles.font]}>
-              Iniciar Sesion{" "}
+              Login{" "}
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>

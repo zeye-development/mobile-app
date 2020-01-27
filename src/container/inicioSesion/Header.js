@@ -12,7 +12,7 @@ export default function InicioSesion(props) {
         </Text>
       </TouchableOpacity>
 
-      <Text style={styles.headerText}>Iniciar Sesion</Text>
+      <Text style={styles.headerText}>Login</Text>
       <Text style={styles.icon}> </Text>
     </View>
   );
