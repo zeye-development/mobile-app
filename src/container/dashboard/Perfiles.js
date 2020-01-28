@@ -68,7 +68,7 @@ export default class Perfiles extends Component {
           <Text
             style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
           >
-            No hay usuarios
+            not users yet
           </Text>
         }
       />

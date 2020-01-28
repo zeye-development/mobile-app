@@ -76,7 +76,7 @@ export default class Formulario extends Component {
         console.log("upload succes", response);
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Foto añadida a la galleria"
+          mensajeAlert: "upload picture succes"
         });
         setTimeout(() => {
           this.setState({ uri: null });
@@ -88,7 +88,7 @@ export default class Formulario extends Component {
 
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Ocurrió un error al añadir la foto"
+          mensajeAlert: "upload picture failed"
         });        
         // alert("Upload failed!");
       });
@@ -150,7 +150,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
+              <Ionicons name="md-person-add" size={16} color="#fff" /> Add{" "}
             </Text>
           </TouchableOpacity>
         </LinearGradient>
