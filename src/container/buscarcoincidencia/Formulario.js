@@ -126,7 +126,7 @@ export default class Formulario extends React.Component {
       // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+        mensajeAlert: "Image field is empty"
       });
       return;
     }
@@ -163,7 +163,7 @@ export default class Formulario extends React.Component {
           this.setState({
             modalLoading: false,
             modalVisibleAlert: !this.state.modalVisibleAlert,
-            mensajeAlert: "No se encontraron coincidencias en la base de datos"
+            mensajeAlert: 'Not found matches'
           });
         }
         else {
@@ -181,7 +181,7 @@ export default class Formulario extends React.Component {
         this.setState({
           modalLoading: false,
           modalVisibleAlert: !this.state.modalVisibleAlert,
-          mensajeAlert: "No se encontraron coincidencias en la base de datos"
+          mensajeAlert: "Not found matches"
         });
         
       });
@@ -207,8 +207,6 @@ export default class Formulario extends React.Component {
               height: '100%',
               resizeMode:"stretch",
               marginRight:'-10%',
-              
-              
               position: "absolute"
             }}
             source={{ uri: image }}
@@ -558,7 +556,7 @@ const styles = StyleSheet.create({
   },
   camera: {
     height: "100%",
-    width: "100%"
+    width: "130%"
   },
 
   controls: {

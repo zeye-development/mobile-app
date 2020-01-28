@@ -12,7 +12,9 @@ export default class ProgreseBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cant: 0
+      cant: 0,
+      max:100,
+      bar:0
     };
   }
   componentDidMount = () => {
@@ -21,6 +23,8 @@ export default class ProgreseBar extends React.Component {
     );
     cant = cant.replace(/['"]+/g, "");
     if (cant != "cantidad") this.setState({ cant: cant });
+    console.log(cant)
+    this.setState({bar: (cant/this.state.max)})
   };
   render() {
     return (
@@ -30,7 +34,7 @@ export default class ProgreseBar extends React.Component {
             styleAttr="Horizontal"
             indeterminate={false}
             color="#00DFAA"
-            progress={1}
+            progress={this.state.bar}
           />
         </View>
         <View style={{ alignItems: "center" }}>
@@ -42,7 +46,7 @@ export default class ProgreseBar extends React.Component {
             }}
           >
             {" "}
-            <Entypo name="users" size={18} color="#fff" /> {this.state.cant} of 1000 Users
+            <Entypo name="users" size={18} color="#fff" /> {this.state.cant} of {this.state.max} Users
           </Text>
         </View>
         <View style={styles.styleButtom}>

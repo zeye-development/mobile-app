@@ -25,7 +25,7 @@ export default class Formulario extends Component {
       mensajeAlert: "",
       isDateTimePickerVisible: false,
       sex: "Male",
-      nationality: "VE",
+      nationality: "US",
       mainFoto: null,
       birth: "",
       name: "",
@@ -79,28 +79,28 @@ export default class Formulario extends Component {
     if (this.state.foto === "image") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+        mensajeAlert: "Image field can't be empty"
       });
       return;
     }
     if (this.state.name === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Nombre no puede estar vacio"
+        mensajeAlert: "Name field can't be empty"
       });
       return;
     }
     if (this.state.surname === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Apellido no puede estar vacio"
+        mensajeAlert: "Surname field can't be empty"
       });
       return;
     }
     if (this.state.birth === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Por favor ingrese una fecha"
+        mensajeAlert: "Please enter a Birth Date"
       });
       return;
     }
@@ -134,7 +134,7 @@ export default class Formulario extends Component {
         console.log("upload succes", response);
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Usuario Registrado Exitosamente"
+          mensajeAlert: "Success register!"
         });
         setTimeout(() => {
           this.setState({ uri: null });
@@ -267,14 +267,14 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             style={styles.input1}
-            placeholder="Nombres"
+            placeholder="Names"
             value={this.name}
             onChangeText={name => this.setState({ name })}
           />
         </View>
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Apellidos"
+            placeholder="Surnames"
             value={this.surname}
             onChangeText={surname => this.setState({ surname })}
             style={styles.input1}
@@ -282,7 +282,7 @@ export default class Formulario extends Component {
         </View>
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Identidad"
+            placeholder="ID"
             value={this.id}
             onChangeText={id => this.setState({ id })}
             style={styles.input1}
@@ -298,7 +298,7 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Seleccionar Pais
+          Select Country
         </Text>
         <View style={styles.containerpicker}>
           <Picker
@@ -309,6 +309,7 @@ export default class Formulario extends Component {
             style={[styles.picker]}
             itemStyle={styles.pickerItem}
           >
+            <Picker.Item label="United States" value="US" />
             <Picker.Item label="Venezuela" value="VE" />
             <Picker.Item label="Bolivia" value="BO" />
           </Picker>
@@ -324,7 +325,7 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Seleccionar Sexo
+          Select Sex
         </Text>
         <View style={styles.containerpicker}>
           <Picker
@@ -333,8 +334,8 @@ export default class Formulario extends Component {
             style={[styles.picker]}
             itemStyle={styles.pickerItem}
           >
-            <Picker.Item label="Masculino" value="Male" />
-            <Picker.Item label="Femenino" value="Female" />
+            <Picker.Item label="Male" value="Male" />
+            <Picker.Item label="Female" value="Female" />
           </Picker>
         </View>
         <Text
@@ -347,14 +348,14 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Fecha de Nacimiento
+          Birth Date
         </Text>
         <DatePicker
           style={{ width: "100%", height: 40, marginTop: 6 }}
           // style={styles.input1}
           date={this.state.birth}
           mode="date"
-          placeholder="Fecha de Nacimiento"
+          placeholder="Birth Date"
           format="DD-MM-YYYY"
           minDate="01-05-1920"
           maxDate="01-10-2025"
@@ -385,7 +386,7 @@ export default class Formulario extends Component {
               fontFamily: "PoppinsSemiBold"
             }}
           >
-            Añadir a solicitados
+            Add to request
           </Text>
         </View>
 
@@ -397,7 +398,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
+              <Ionicons name="md-person-add" size={16} color="#fff" /> Add{" "}
             </Text>
           </TouchableOpacity>
         </LinearGradient>
