@@ -96,7 +96,7 @@ export default class LoginRedes extends Component {
                   fontFamily: "PoppinsBold"
                 }}
               >
-                Lo sentimos, esta funcion no se encuentra disponible.
+                We are sorry, this function is not avilable.
               </Text>
             </View>
             <View>
@@ -118,7 +118,7 @@ export default class LoginRedes extends Component {
                   }}
                 >
                   {" "}
-                  Entendido
+                  Ok
                 </Text>
               </TouchableOpacity>
             </View>

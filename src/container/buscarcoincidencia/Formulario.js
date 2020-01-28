@@ -247,14 +247,14 @@ export default class Formulario extends React.Component {
             }}
           >
             <Text style={styles.inputButtom}>
-              Capturar <Ionicons name="ios-camera" size={18} color="#fff" />
+              Take a Picture <Ionicons name="ios-camera" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
         </LinearGradient>
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
-              Cargar{" "}
+              Upload{" "}
               <Ionicons name="md-cloud-upload" size={18} color="#00425A" />
             </Text>
           </TouchableOpacity>
@@ -275,7 +275,7 @@ export default class Formulario extends React.Component {
             onPress={this.handleUploadPhoto}
           >
             <Ionicons name="md-search" size={18} color="white" />
-            <Text style={styles.inputButtom}>Buscar</Text>
+            <Text style={styles.inputButtom}>Search</Text>
           </TouchableOpacity>
         </LinearGradient>
         {/* ============================modalLoading======= */}
@@ -472,7 +472,7 @@ export default class Formulario extends React.Component {
                   }}
                 >
                   {" "}
-                  Entendido
+                  Ok
                 </Text>
               </TouchableOpacity>
             </View>

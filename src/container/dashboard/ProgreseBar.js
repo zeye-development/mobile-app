@@ -42,8 +42,7 @@ export default class ProgreseBar extends React.Component {
             }}
           >
             {" "}
-            <Entypo name="users" size={18} color="#fff" /> {this.state.cant} de
-            1000 Usuarios
+            <Entypo name="users" size={18} color="#fff" /> {this.state.cant} of 1000 Users
           </Text>
         </View>
         <View style={styles.styleButtom}>
@@ -51,8 +50,8 @@ export default class ProgreseBar extends React.Component {
             onPress={() => this.props.navigation.navigate("NuevoUsuario")}
           >
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={18} color="#0097CD" /> Añadir
-              Usuario{" "}
+              <Ionicons name="md-person-add" size={18} color="#0097CD" /> Add
+              User{" "}
             </Text>
           </TouchableOpacity>
         </View>

@@ -13,7 +13,7 @@ export default function Preguntas(props) {
         </View>
       </TouchableOpacity>
       <View style={styles.viewContainer}>
-        <Text style={styles.font1}>¿Aun no tienes cuenta?</Text>
+        <Text style={styles.font1}>¿Do you still whitout account?</Text>
       </View>
 
       <TouchableOpacity onPress={() => props.navigation.navigate("Registro")}>
