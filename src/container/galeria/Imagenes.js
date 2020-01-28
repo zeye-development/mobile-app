@@ -19,8 +19,8 @@ export default class Imagenes extends React.Component {
   }
 
   render() {
-
-    if(this.state.images == []) return;
+    console.log(this.props.navigation.state.params)
+    if(!this.state.images.length) return false;
 
     return (
       <Container style={styles.container}>

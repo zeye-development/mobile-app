@@ -136,7 +136,8 @@ export default class Formulario extends React.Component {
         item: image,
         base: base64,
         mainFoto: this.props.navigation.getParam("mainFoto"),
-        id: this.props.navigation.state.params.id
+        id: this.props.navigation.state.params.id,
+        images: this.props.navigation.state.params.images
       });
     }else {
       this.props.navigation.replace("NuevoUsuario", {
