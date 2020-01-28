@@ -68,6 +68,7 @@ export default class Formulario extends Component {
       headers: {
         "Content-Type": "application/json",
         dni: this.props.id,
+        key:this.state.token,
       }
     })    
       .then(response => response.json())
