@@ -22,9 +22,9 @@ export default class ProgreseBar extends React.Component {
       this.props.navigation.getParam("cantidad", "cantidad")
     );
     cant = cant.replace(/['"]+/g, "");
-    if (cant != "cantidad") this.setState({ cant: cant });
+    if (cant != "cantidad") {this.setState({ cant: cant });
     console.log(cant)
-    this.setState({bar: (cant/this.state.max)})
+    this.setState({bar: (cant/this.state.max)})}
   };
   render() {
     return (

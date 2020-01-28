@@ -8,7 +8,8 @@ import {
   Image,
   Picker,
   Modal,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from "react-native";
 import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -31,7 +32,8 @@ export default class Formulario extends Component {
       name: "",
       surname: "",
       imagenes: [],
-      id: ""
+      id: "",
+      modalLoading: false
     };
   }
   async componentDidMount() {
@@ -110,6 +112,7 @@ export default class Formulario extends Component {
     // let base64 = parabase64.replace(/['"]+/g, "");
 
     // if (this.state.foto != null) {
+      this.setState({modalLoading:!this.state.modalLoading})
     fetch("http://189.213.227.211:8443/register-face", {
       method: "POST",
       body: JSON.stringify({
@@ -134,7 +137,9 @@ export default class Formulario extends Component {
         console.log("upload succes", response);
         this.setState({
           modalVisibleAlert: true,
+          modalLoading:!this.state.modalLoading,
           mensajeAlert: "Success register!"
+          
         });
         setTimeout(() => {
           this.setState({ uri: null });
@@ -144,7 +149,7 @@ export default class Formulario extends Component {
       .catch(error => {
         console.log("upload error", error);
 
-        console.log(this.state.estado);
+        this.setState({modalLoading:!this.state.modalLoading})
 
         alert("Upload failed!");
       });
@@ -462,10 +467,37 @@ export default class Formulario extends Component {
                   }}
                 >
                   {" "}
-                  Entendido
+                  Ok
                 </Text>
               </TouchableOpacity>
             </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalLoading}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "45%"
+            }}
+          >
+            {this.state.modalLoading ? (
+              <ActivityIndicator size={30} color="#fff" />
+            ) : null}
           </View>
         </Modal>
       </View>
