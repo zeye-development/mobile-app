@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Mobile App - Zeye",
-    "slug": "mobile-app-zeye",
+    "name": "Recognaixer",
+    "slug": "Recognaixer",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -13,7 +13,7 @@
     "orientation": "portrait",
     "icon": "./assets/quantic.png",
     "splash": {
-      "image": "./assets/quantic.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
