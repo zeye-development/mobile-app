@@ -120,6 +120,7 @@ export default class Formulario extends React.Component {
   };
   handleUploadPhoto = () => {
     // this.guardar();
+    try{
     let { image, base64 } = this.state;
 
     if (image === null || base64 === null) {
@@ -184,7 +185,14 @@ export default class Formulario extends React.Component {
           mensajeAlert: "No se encontraron coincidencias en la base de datos"
         });
         
-      });
+      });}
+    catch{
+      this.setState({
+        modalLoading: false,
+        modalVisibleAlert: !this.state.modalVisibleAlert,
+        mensajeAlert: "Ocurrio un error inesperado, intentelo de nuevo"
+    })
+  }
   };
   render() {
     let { image } = this.state;

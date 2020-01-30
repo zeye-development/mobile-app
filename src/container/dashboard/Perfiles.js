@@ -13,17 +13,21 @@ export default class Perfiles extends Component {
   }
   
  componentDidMount() {
-    let usersWantedFalse= [];
-    let users = [];
-    if(this.props.navigation.state.params.users) {
-      users = this.props.navigation.state.params.users;
-      usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
-    }
-    this.setState({
-      users,
-      usersWantedFalse
-    })
+  let usersWantedFalse= [];
+  let users = [];
+  let cant = JSON.stringify(
+    this.props.navigation.getParam("cantidad", "cantidad")
+  );
+  cant = cant.replace(/['"]+/g, "");
+  if(cant!='cantidad') {
+    users = this.props.navigation.state.params.users;
+    usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
   }
+  this.setState({
+    users,
+    usersWantedFalse
+  })
+}
 
   separator = () =>
     <View

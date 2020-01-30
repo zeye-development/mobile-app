@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 export default class Formulario extends React.Component{
@@ -10,7 +10,7 @@ export default class Formulario extends React.Component{
 
     }}
     componentDidMount=()=>{
-      
+      try{
       let pface=JSON.stringify(this.props.navigation.getParam( "face", "face"))
       let face = pface.replace(/['"]+/g, "");
       const url = 'http://189.213.227.211:8443/file=' + face
@@ -26,6 +26,10 @@ export default class Formulario extends React.Component{
     this.setState({wanted:false})
     else {
       this.setState({wanted:true})
+    }}
+    catch{
+      this.props.navigation.navigate("BuscarCoincidencia")
+      Alert.alert("Ocurrio un error inesperado")
     }
       }
   render(){

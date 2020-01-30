@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 
 export default class Formulario extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ export default class Formulario extends React.Component {
     };
   }
   componentDidMount = () => {
+    try{
     let pid = JSON.stringify(this.props.navigation.getParam("id", "id"));
     let id = pid.replace(/['"]+/g, "");
     this.setState({ id: id });
@@ -113,6 +114,11 @@ export default class Formulario extends React.Component {
     );
     birth = birth.replace(/['"]+/g, "");
     this.setState({ birth: birth });
+    }
+    catch{
+      this.props.navigation.replace("BuscarCoincidencia")
+      Alert.alert('Error', 'Ocurrio un error inesperado')
+    }
   };
   render() {
     let { id, name, surname, wanted, nacionality, sex, birth } = this.state;
