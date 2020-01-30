@@ -42,7 +42,7 @@ export default class Opciones extends React.Component {
                     size={18}
                     color="rgb(255, 255, 255)"
                   />{" "}
-                    Requested
+                  Solicitados
                 </Text>
               ) : (
                 <Text
@@ -59,7 +59,7 @@ export default class Opciones extends React.Component {
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
                   />{" "}
-                  Requested
+                  Solicitados
                 </Text>
               )}
             </View>
@@ -89,7 +89,7 @@ export default class Opciones extends React.Component {
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
                   />{" "}
-                  Users
+                  Usuarios
                 </Text>
               ) : (
                 <Text
@@ -102,7 +102,7 @@ export default class Opciones extends React.Component {
                   }}
                 >
                   <Entypo name="users" size={18} color="rgb(255, 255, 255)" />{" "}
-                  Users
+                  Usuarios
                 </Text>
               )}
             </View>

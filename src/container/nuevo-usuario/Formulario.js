@@ -8,8 +8,7 @@ import {
   Image,
   Picker,
   Modal,
-  AsyncStorage,
-  ActivityIndicator
+  AsyncStorage
 } from "react-native";
 import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -26,14 +25,13 @@ export default class Formulario extends Component {
       mensajeAlert: "",
       isDateTimePickerVisible: false,
       sex: "Male",
-      nationality: "US",
+      nationality: "VE",
       mainFoto: null,
       birth: "",
       name: "",
       surname: "",
       imagenes: [],
-      id: "",
-      modalLoading: false
+      id: ""
     };
   }
   async componentDidMount() {
@@ -81,28 +79,28 @@ export default class Formulario extends Component {
     if (this.state.foto === "image") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Image field can't be empty"
+        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
       });
       return;
     }
     if (this.state.name === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Name field can't be empty"
+        mensajeAlert: "El campo Nombre no puede estar vacio"
       });
       return;
     }
     if (this.state.surname === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Surname field can't be empty"
+        mensajeAlert: "El campo Apellido no puede estar vacio"
       });
       return;
     }
     if (this.state.birth === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Please enter a Birth Date"
+        mensajeAlert: "Por favor ingrese una fecha"
       });
       return;
     }
@@ -112,7 +110,6 @@ export default class Formulario extends Component {
     // let base64 = parabase64.replace(/['"]+/g, "");
 
     // if (this.state.foto != null) {
-      this.setState({modalLoading:!this.state.modalLoading})
     fetch("http://189.213.227.211:8443/register-face", {
       method: "POST",
       body: JSON.stringify({
@@ -137,9 +134,7 @@ export default class Formulario extends Component {
         console.log("upload succes", response);
         this.setState({
           modalVisibleAlert: true,
-          modalLoading:!this.state.modalLoading,
-          mensajeAlert: "Success register!"
-          
+          mensajeAlert: "Usuario Registrado Exitosamente"
         });
         setTimeout(() => {
           this.setState({ uri: null });
@@ -149,7 +144,7 @@ export default class Formulario extends Component {
       .catch(error => {
         console.log("upload error", error);
 
-        this.setState({modalLoading:!this.state.modalLoading})
+        console.log(this.state.estado);
 
         alert("Upload failed!");
       });
@@ -272,14 +267,14 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             style={styles.input1}
-            placeholder="Names"
+            placeholder="Nombres"
             value={this.name}
             onChangeText={name => this.setState({ name })}
           />
         </View>
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Surnames"
+            placeholder="Apellidos"
             value={this.surname}
             onChangeText={surname => this.setState({ surname })}
             style={styles.input1}
@@ -287,7 +282,7 @@ export default class Formulario extends Component {
         </View>
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="ID"
+            placeholder="Identidad"
             value={this.id}
             onChangeText={id => this.setState({ id })}
             style={styles.input1}
@@ -303,7 +298,7 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Select Country
+          Seleccionar Pais
         </Text>
         <View style={styles.containerpicker}>
           <Picker
@@ -314,7 +309,6 @@ export default class Formulario extends Component {
             style={[styles.picker]}
             itemStyle={styles.pickerItem}
           >
-            <Picker.Item label="United States" value="US" />
             <Picker.Item label="Venezuela" value="VE" />
             <Picker.Item label="Bolivia" value="BO" />
           </Picker>
@@ -330,7 +324,7 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Select Sex
+          Seleccionar Sexo
         </Text>
         <View style={styles.containerpicker}>
           <Picker
@@ -339,8 +333,8 @@ export default class Formulario extends Component {
             style={[styles.picker]}
             itemStyle={styles.pickerItem}
           >
-            <Picker.Item label="Male" value="Male" />
-            <Picker.Item label="Female" value="Female" />
+            <Picker.Item label="Masculino" value="Male" />
+            <Picker.Item label="Femenino" value="Female" />
           </Picker>
         </View>
         <Text
@@ -353,14 +347,14 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Birth Date
+          Fecha de Nacimiento
         </Text>
         <DatePicker
           style={{ width: "100%", height: 40, marginTop: 6 }}
           // style={styles.input1}
           date={this.state.birth}
           mode="date"
-          placeholder="Birth Date"
+          placeholder="Fecha de Nacimiento"
           format="DD-MM-YYYY"
           minDate="01-05-1920"
           maxDate="01-10-2025"
@@ -391,7 +385,7 @@ export default class Formulario extends Component {
               fontFamily: "PoppinsSemiBold"
             }}
           >
-            Add to request
+            Añadir a solicitados
           </Text>
         </View>
 
@@ -403,7 +397,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={16} color="#fff" /> Add{" "}
+              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
             </Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -467,37 +461,10 @@ export default class Formulario extends Component {
                   }}
                 >
                   {" "}
-                  Ok
+                  Entendido
                 </Text>
               </TouchableOpacity>
             </View>
-          </View>
-        </Modal>
-        <Modal
-          animationType="none"
-          transparent={true}
-          visible={this.state.modalLoading}
-        >
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
-            }}
-          ></View>
-
-          <View
-            style={{
-              position: "absolute",
-              top: "45%",
-              left: "45%"
-            }}
-          >
-            {this.state.modalLoading ? (
-              <ActivityIndicator size={30} color="#fff" />
-            ) : null}
           </View>
         </Modal>
       </View>
