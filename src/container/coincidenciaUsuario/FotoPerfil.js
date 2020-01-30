@@ -29,7 +29,7 @@ export default class Formulario extends React.Component{
     }}
     catch{
       this.props.navigation.replace("BuscarCoincidencia")
-      Alert.alert('Error', 'Inespected Error')
+      Alert.alert('Error', 'Unespected Error')
     }
       }
   render(){
