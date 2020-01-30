@@ -9,14 +9,14 @@ export default function Login(props) {
         onPress={() => props.navigation.navigate("InicioSesion")}
       >
         <View style={style.styleButtonInt}>
-          <Text style={[style.buttonInit, style.font]}>Iniciar Sesion</Text>
+          <Text style={[style.buttonInit, style.font]}>Login</Text>
         </View>
       </TouchableOpacity>
 
       <View style={style.styleButtonReg}>
         <TouchableOpacity onPress={() => props.navigation.navigate("Registro")}>
           <Text style={[style.buttonReg, style.font]}>
-            Registrarme{" "}
+            Sign in{" "}
             <Ionicons name="md-arrow-forward" size={16} color="#0097CD" />{" "}
           </Text>
         </TouchableOpacity>

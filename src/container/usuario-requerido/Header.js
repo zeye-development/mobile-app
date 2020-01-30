@@ -12,7 +12,7 @@ export default function Header(props) {
         </Text>
       </TouchableOpacity>
 
-      <Text style={styles.headerText}>Perfil Usuario</Text>
+      <Text style={styles.headerText}>User Perfil</Text>
       <Text style={styles.icon}> </Text>
     </View>
   );

@@ -88,7 +88,7 @@ render(){
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('Galeria', {id: _id, images})}
               >
-              <Text style={styles.optionButtom}>Galería</Text>
+              <Text style={styles.optionButtom}>Gallery</Text>
             </TouchableOpacity>
           </View>
         </View>

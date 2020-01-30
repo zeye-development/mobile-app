@@ -127,7 +127,7 @@ export default class Formulario extends React.Component {
       // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+        mensajeAlert: "Image field is empty"
       });
       return;
     }
@@ -164,7 +164,7 @@ export default class Formulario extends React.Component {
           this.setState({
             modalLoading: false,
             modalVisibleAlert: !this.state.modalVisibleAlert,
-            mensajeAlert: "No se encontraron coincidencias en la base de datos"
+            mensajeAlert: 'Not found matches'
           });
         }
         else {
@@ -182,7 +182,7 @@ export default class Formulario extends React.Component {
         this.setState({
           modalLoading: false,
           modalVisibleAlert: !this.state.modalVisibleAlert,
-          mensajeAlert: "No se encontraron coincidencias en la base de datos"
+          mensajeAlert: "Not found matches"
         });
         
       });}
@@ -215,8 +215,6 @@ export default class Formulario extends React.Component {
               height: '100%',
               resizeMode:"stretch",
               marginRight:'-10%',
-              
-              
               position: "absolute"
             }}
             source={{ uri: image }}
@@ -255,14 +253,14 @@ export default class Formulario extends React.Component {
             }}
           >
             <Text style={styles.inputButtom}>
-              Capturar <Ionicons name="ios-camera" size={18} color="#fff" />
+              Take a Picture <Ionicons name="ios-camera" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
         </LinearGradient>
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
-              Cargar{" "}
+              Upload{" "}
               <Ionicons name="md-cloud-upload" size={18} color="#00425A" />
             </Text>
           </TouchableOpacity>
@@ -283,7 +281,7 @@ export default class Formulario extends React.Component {
             onPress={this.handleUploadPhoto}
           >
             <Ionicons name="md-search" size={18} color="white" />
-            <Text style={styles.inputButtom}>Buscar</Text>
+            <Text style={styles.inputButtom}>Search</Text>
           </TouchableOpacity>
         </LinearGradient>
         {/* ============================modalLoading======= */}
@@ -480,7 +478,7 @@ export default class Formulario extends React.Component {
                   }}
                 >
                   {" "}
-                  Entendido
+                  Ok
                 </Text>
               </TouchableOpacity>
             </View>
@@ -566,7 +564,7 @@ const styles = StyleSheet.create({
   },
   camera: {
     height: "100%",
-    width: "100%"
+    width: "130%"
   },
 
   controls: {

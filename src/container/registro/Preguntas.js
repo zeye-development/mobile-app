@@ -6,7 +6,7 @@ export default function Preguntas(props) {
   return (
     <View style={styles.container}>
       <View style={styles.viewContainer}>
-        <Text style={styles.font}>¿Ya tienes cuenta?</Text>
+        <Text style={styles.font}>¿Do you have account?</Text>
       </View>
 
       <TouchableOpacity
@@ -14,7 +14,7 @@ export default function Preguntas(props) {
       >
         <View style={styles.viewContainer}>
           <Text style={styles.font2}>
-            Iniciar Sesion{" "}
+            Login{" "}
             <Ionicons name="md-arrow-forward" size={16} color="#00425A" />
           </Text>
         </View>

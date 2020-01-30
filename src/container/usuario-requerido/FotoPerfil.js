@@ -26,8 +26,8 @@ export default function FotoPerfil(props) {
               name="ios-checkmark-circle-outline"
               size={16}
               color="#fff"
-            />{" "}
-            Usuario no Requerido
+            />{" "}  
+          unsolicited user
           </Text>
         </TouchableOpacity>
       ) : (
@@ -35,8 +35,8 @@ export default function FotoPerfil(props) {
           onPress={() => setSolicitado({ solicitado: false })}
         >
           <Text style={[styles.usuario, styles.solicitado]}>
-            <AntDesign name="closecircleo" size={16} color="#fff" /> Usuario
-            Requerido
+            <AntDesign name="closecircleo" size={16} color="#fff" />
+          Solicited user
           </Text>
         </TouchableOpacity>
       )}
