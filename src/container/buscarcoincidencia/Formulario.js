@@ -11,7 +11,8 @@ import {
   Modal,
   Platform,
   AsyncStorage,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from "react-native";
 import { Ionicons, Feather, MaterialIcons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
@@ -119,6 +120,7 @@ export default class Formulario extends React.Component {
     }
   };
   handleUploadPhoto = () => {
+    try{
     // this.guardar();
     let { image, base64 } = this.state;
 
@@ -184,7 +186,10 @@ export default class Formulario extends React.Component {
           mensajeAlert: "Not found matches"
         });
         
-      });
+      });}
+      catch{
+        Alert.alert('Error', 'Inespected Error')
+      }
   };
   render() {
     let { image } = this.state;
