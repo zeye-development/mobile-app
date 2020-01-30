@@ -79,7 +79,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Principal",
+    initialRouteName: "Loading",
     headerMode: "none",
     navigationOptions: {
       headerVisible: false,

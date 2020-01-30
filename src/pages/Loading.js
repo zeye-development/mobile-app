@@ -8,8 +8,10 @@ export default class Loading extends Component {
   }
 
   async componentDidMount() {
+     let token = await AsyncStorage.getItem("token");
+     if(!token) this.props.navigation.replace("Principal")
     try {
-      let token = await AsyncStorage.getItem("token");
+     
 
       let toke = token.replace(/['"]+/g, "");
       token = toke;
