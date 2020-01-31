@@ -24,7 +24,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "zeye.services.recognaixer",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "package": "com.zeye.zeyemobileapp"

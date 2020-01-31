@@ -28,8 +28,7 @@ export default class Formulario extends React.Component{
       this.setState({wanted:true})
     }}
     catch{
-      this.props.navigation.navigate("BuscarCoincidencia")
-      Alert.alert("Ocurrio un error inesperado")
+      
     }
       }
   render(){

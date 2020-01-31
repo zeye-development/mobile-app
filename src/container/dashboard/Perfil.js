@@ -116,14 +116,15 @@ const styles = StyleSheet.create({
   },
   styleButtom: {
     justifyContent: "center",
-    paddingVertical: 6,
     paddingHorizontal: 10
   },
   optionButtom: {
-    paddingHorizontal: 12,
-    paddingVertical: 9,
+    justifyContent:'center',
+    alignItems:'center',
+    paddingHorizontal: 7,
+    paddingVertical: 7,
     fontFamily: "PoppinsRegular",
-    fontSize: 14
+    fontSize: 12
   },
   containerOptionButtom: {
     position: "absolute",
@@ -131,7 +132,8 @@ const styles = StyleSheet.create({
     top: 0
   },
   containerButtom: {
-    height: 90,
+    top:-10,
+    height: 70,
     width: 180,
     backgroundColor: "#fff",
     borderRadius: 2,

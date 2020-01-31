@@ -121,7 +121,7 @@ export default class Formulario extends Component {
         Math.floor(
           Math.random() *
             100 *
-            Math.floor(Math.random() * 10000000000 * 1458102)
+            Math.floor(Math.random() * 10000000000 * 1458102*Math.random()*Math.random()*Math.random())
         )
     );
     var licenceS = licence.toString();
@@ -180,7 +180,7 @@ export default class Formulario extends Component {
       <View style={styles.container}>
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Email"
+            placeholder="Correo Electronico"
             value={this.state.email}
             onChangeText={item => {
               const email = item.trim();
@@ -192,7 +192,7 @@ export default class Formulario extends Component {
 
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Password"
+            placeholder="Contraseña"
             secureTextEntry={true}
             value={this.state.pass}
             onChangeText={item => {
@@ -205,7 +205,7 @@ export default class Formulario extends Component {
 
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Repeat Password"
+            placeholder="Repetir Contraseña"
             secureTextEntry={true}
             value={this.state.pass_v}
             onChangeText={item => {

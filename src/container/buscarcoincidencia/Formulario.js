@@ -97,6 +97,7 @@ export default class Formulario extends React.Component {
     let result = await ImagePicker.launchImageLibraryAsync(options);
 
     if (!result.cancelled) {
+      this.setState({base64:null})
       this.setState({ base64: result.base64 });
       this.setState({ image: result.uri });
     }
@@ -112,6 +113,7 @@ export default class Formulario extends React.Component {
       let result = await this._cameraInstance.takePictureAsync(options);
 
       if (!result.cancelled) {
+        this.setState({base64:null})
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri });
         this.setState({ modalVisible: !this.state.modalVisible });
@@ -119,11 +121,12 @@ export default class Formulario extends React.Component {
     }
   };
   handleUploadPhoto = () => {
+   
     // this.guardar();
     try{
     let { image, base64 } = this.state;
-
-    if (image === null || base64 === null) {
+      base64=null
+    if (image === null) {
       // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
@@ -566,7 +569,7 @@ const styles = StyleSheet.create({
   },
   camera: {
     height: "100%",
-    width: "100%"
+    width: "130%"
   },
 
   controls: {

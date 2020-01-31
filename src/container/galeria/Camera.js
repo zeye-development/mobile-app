@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
   Modal,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from "react-native";
 import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -21,6 +22,7 @@ export default class Formulario extends Component {
       modalVisibleAlert: false,
       mensajeAlert: "",
       mainFoto: null,
+      modalLoading:false,
       id: "",
       token: "",
       images: []
@@ -53,12 +55,18 @@ export default class Formulario extends Component {
   }
 
   handleUploadPhoto = () => {
+    
+    console.log('A')
+    console.log(this.state.foto)
+    if (this.state.foto != 'image') {
+    try{
     let { foto, base64 } = this.state;
     console.log(this.state.foto);
 
     if (this.state.foto != null) {
     console.log('venezuela')
     console.log(this.props.id)
+    this.setState({modalLoading:true})
     fetch("http://189.213.227.211:8443/person-query", {
       method: "PUT",
       body: JSON.stringify({
@@ -76,7 +84,8 @@ export default class Formulario extends Component {
         console.log("upload succes", response);
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Foto añadida a la galleria"
+          mensajeAlert: "Foto añadida a la galeria",
+          modalLoading:true
         });
         setTimeout(() => {
           this.setState({ uri: null });
@@ -88,11 +97,24 @@ export default class Formulario extends Component {
 
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Ocurrió un error al añadir la foto"
+          mensajeAlert: "Ocurrió un error al añadir la foto",
+          modalLoading:true
         });        
         // alert("Upload failed!");
       });
-    }
+    }}
+    catch{
+      this.setState({
+        modalVisibleAlert: true,
+        mensajeAlert: "Ocurrió un error al añadir la foto",
+        modalLoading:true})
+    }}  
+  else{
+     this.setState({
+        modalVisibleAlert: true,
+        mensajeAlert: "El campo de la Imagen no puede estar vacio"
+      });
+  }
   };
 
   render() {
@@ -218,6 +240,33 @@ export default class Formulario extends Component {
                 </Text>
               </TouchableOpacity>
             </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalLoading}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "45%"
+            }}
+          >
+            {this.state.modalLoading ? (
+              <ActivityIndicator size={30} color="#fff" />
+            ) : null}
           </View>
         </Modal>
       </Container>

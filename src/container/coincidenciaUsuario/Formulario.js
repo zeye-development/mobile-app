@@ -116,8 +116,8 @@ export default class Formulario extends React.Component {
     this.setState({ birth: birth });
     }
     catch{
-      this.props.navigation.replace("BuscarCoincidencia")
-      Alert.alert('Error', 'Ocurrio un error inesperado')
+      this.props.navigation.goBack()
+      Alert.alert('Error', 'No se detecto ningun rostro en la foto')
     }
   };
   render() {

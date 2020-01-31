@@ -484,7 +484,7 @@ const styles = StyleSheet.create({
   },
   camera: {
     height: "100%",
-    width: "100%"
+    width: "130%"
   },
 
   controls: {

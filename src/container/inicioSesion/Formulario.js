@@ -117,7 +117,7 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             style={[styles.input, styles.font]}
-            placeholder="User"
+            placeholder="Correo"
             value={this.state.email}
             onChangeText={item => {
               // console.log("email:  ", item);
@@ -131,7 +131,7 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             secureTextEntry={true}
-            placeholder="Password"
+            placeholder="Correo Electronico"
             value={this.state.pass}
             onChangeText={item => {
               const pass = item.trim();
