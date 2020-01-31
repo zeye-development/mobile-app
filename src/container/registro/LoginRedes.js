@@ -30,7 +30,7 @@ export default class LoginRedes extends React.Component {
                 source={require("../../../assets/google.png")}
                 style={{ width: 18, height: 18 }}
               />{" "}
-              Login with Google
+              Iniciar con Google
             </Text>
           </View>
         </TouchableOpacity>
@@ -42,7 +42,7 @@ export default class LoginRedes extends React.Component {
             }}
           >
             <Text style={styles.facebook}>
-              <FontAwesome name="facebook" size={20} color="#fff" /> Login with
+              <FontAwesome name="facebook" size={20} color="#fff" /> Iniciar con
               Facebook
             </Text>
           </TouchableOpacity>
@@ -56,7 +56,7 @@ export default class LoginRedes extends React.Component {
               fontFamily: "PoppinsRegular"
             }}
           >
-            or
+            o
           </Text>
         </View>
         <Modal
@@ -94,7 +94,7 @@ export default class LoginRedes extends React.Component {
                   fontFamily: "PoppinsBold"
                 }}
               >
-                We are sorry, this function is not avilable.
+                Lo sentimos, esta funcion no se encuentra disponible.
               </Text>
             </View>
             <View>
@@ -116,7 +116,7 @@ export default class LoginRedes extends React.Component {
                   }}
                 >
                   {" "}
-                  Ok
+                  Entendido
                 </Text>
               </TouchableOpacity>
             </View>

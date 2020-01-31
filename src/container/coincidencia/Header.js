@@ -12,7 +12,7 @@ export default class Dashboard extends Component {
             <Ionicons name="md-arrow-back" size={18} color="#fff" />{" "}
           </Text>
         </TouchableOpacity>
-        <Text style={styles.headerText}>Coincidence</Text>
+        <Text style={styles.headerText}>Coincidencias</Text>
 
         <Text style={styles.icon}> </Text>
       </View>

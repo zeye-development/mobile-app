@@ -98,6 +98,7 @@ export default class Formulario extends React.Component {
     let result = await ImagePicker.launchImageLibraryAsync(options);
 
     if (!result.cancelled) {
+      this.setState({base64:null})
       this.setState({ base64: result.base64 });
       this.setState({ image: result.uri });
     }
@@ -113,6 +114,7 @@ export default class Formulario extends React.Component {
       let result = await this._cameraInstance.takePictureAsync(options);
 
       if (!result.cancelled) {
+        this.setState({base64:null})
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri });
         this.setState({ modalVisible: !this.state.modalVisible });
@@ -120,15 +122,20 @@ export default class Formulario extends React.Component {
     }
   };
   handleUploadPhoto = () => {
+<<<<<<< HEAD
     try{
+=======
+   
+>>>>>>> master
     // this.guardar();
+    try{
     let { image, base64 } = this.state;
-
-    if (image === null || base64 === null) {
+      base64=null
+    if (image === null) {
       // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Image field is empty"
+        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
       });
       return;
     }
@@ -165,7 +172,7 @@ export default class Formulario extends React.Component {
           this.setState({
             modalLoading: false,
             modalVisibleAlert: !this.state.modalVisibleAlert,
-            mensajeAlert: 'Not found matches'
+            mensajeAlert: "No se encontraron coincidencias en la base de datos"
           });
         }
         else {
@@ -183,13 +190,23 @@ export default class Formulario extends React.Component {
         this.setState({
           modalLoading: false,
           modalVisibleAlert: !this.state.modalVisibleAlert,
-          mensajeAlert: "Not found matches"
+          mensajeAlert: "No se encontraron coincidencias en la base de datos"
         });
         
       });}
+<<<<<<< HEAD
       catch{
         Alert.alert('Error', 'Unespected Error')
       }
+=======
+    catch{
+      this.setState({
+        modalLoading: false,
+        modalVisibleAlert: !this.state.modalVisibleAlert,
+        mensajeAlert: "Ocurrio un error inesperado, intentelo de nuevo"
+    })
+  }
+>>>>>>> master
   };
   render() {
     let { image } = this.state;
@@ -212,6 +229,8 @@ export default class Formulario extends React.Component {
               height: '100%',
               resizeMode:"stretch",
               marginRight:'-10%',
+              
+              
               position: "absolute"
             }}
             source={{ uri: image }}
@@ -250,14 +269,14 @@ export default class Formulario extends React.Component {
             }}
           >
             <Text style={styles.inputButtom}>
-              Take a Picture <Ionicons name="ios-camera" size={18} color="#fff" />
+              Capturar <Ionicons name="ios-camera" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
         </LinearGradient>
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
-              Upload{" "}
+              Cargar{" "}
               <Ionicons name="md-cloud-upload" size={18} color="#00425A" />
             </Text>
           </TouchableOpacity>
@@ -278,7 +297,7 @@ export default class Formulario extends React.Component {
             onPress={this.handleUploadPhoto}
           >
             <Ionicons name="md-search" size={18} color="white" />
-            <Text style={styles.inputButtom}>Search</Text>
+            <Text style={styles.inputButtom}>Buscar</Text>
           </TouchableOpacity>
         </LinearGradient>
         {/* ============================modalLoading======= */}
@@ -475,7 +494,7 @@ export default class Formulario extends React.Component {
                   }}
                 >
                   {" "}
-                  Ok
+                  Entendido
                 </Text>
               </TouchableOpacity>
             </View>

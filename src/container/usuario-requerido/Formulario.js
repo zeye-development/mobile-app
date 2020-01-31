@@ -10,6 +10,7 @@ export default function Formulario(props) {
     _id,
     names,
     surnames,
+    images,
     nationality,
     sex,
     birth_date
@@ -18,33 +19,33 @@ export default function Formulario(props) {
   return (
     <View style={styles.container}>
       <View style={styles.viewContainer}>
-        <Text style={[styles.input, { fontWeight: "bold" }]}>Names: </Text>
+        <Text style={[styles.input, { fontWeight: "bold" }]}>Nombre: </Text>
         <Text style={styles.input}>{names[0]}</Text>
       </View>
       <View style={styles.viewContainer}>
-        <Text style={[styles.input, { fontWeight: "bold" }]}>Surnames: </Text>
+        <Text style={[styles.input, { fontWeight: "bold" }]}>Apellido: </Text>
         <Text style={styles.input}>{surnames[0]}</Text>
       </View>
       <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: "bold" }]}>
-          ID:{" "}
+          Identificacion:{" "}
         </Text>
         <Text style={styles.input}>{_id}</Text>
       </View>
       <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: "bold" }]}>
-          Country:{" "}
+          Nacionalidad:{" "}
         </Text>
         <Text style={styles.input}>{nationality}</Text>
       </View>
 
       <View style={styles.viewContainer}>
-        <Text style={[styles.input, { fontWeight: "bold" }]}>Sex: </Text>
+        <Text style={[styles.input, { fontWeight: "bold" }]}>Sexo: </Text>
         <Text style={styles.input}>{sex}</Text>
       </View>
       <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: "bold" }]}>
-          Birth Date:{" "}
+          Fecha de Nacimiento:{" "}
         </Text>
         <Text style={styles.input}>{birth_date}</Text>
       </View>

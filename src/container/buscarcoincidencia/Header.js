@@ -12,7 +12,7 @@ export default function Header(props) {
         </Text>
       </TouchableOpacity>
 
-      <Text style={styles.headerText}>Face Capture</Text>
+      <Text style={styles.headerText}>Captura de rostro</Text>
       <TouchableOpacity onPress={() => props.navigation.goBack()}>
         <Text style={styles.icon}>
           <Ionicons name="md-close" size={18} color="#00425A" />

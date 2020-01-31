@@ -128,7 +128,7 @@ export default class Formulario extends React.Component {
     if (image === null) {
       // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
       this.setState({
-        mensajeAlert: "Image field can't be empty",
+        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO",
         modalVisibleAlert: true
       })
     } else if(this.props.navigation.state.params.id) {
@@ -209,14 +209,14 @@ export default class Formulario extends React.Component {
             }}
           >
             <Text style={styles.inputButtom}>
-              Take a Picture <Ionicons name="ios-camera" size={18} color="#fff" />
+              Capturar <Ionicons name="ios-camera" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
         </LinearGradient>
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
-              Upload{" "}
+              Cargar{" "}
               <Ionicons name="md-cloud-upload" size={18} color="#00425A" />
             </Text>
           </TouchableOpacity>
@@ -236,7 +236,7 @@ export default class Formulario extends React.Component {
             onPress={this.guardar}
           >
             <Ionicons name="md-download" size={18} color="white" />
-            <Text style={styles.inputButtom}>Save</Text>
+            <Text style={styles.inputButtom}>Guardar</Text>
           </TouchableOpacity>
         </LinearGradient>
         {/* modal camera ========= */}

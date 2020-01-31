@@ -30,7 +30,7 @@ export default class LoginRedes extends Component {
                 source={require("../../../assets/google.png")}
                 style={{ width: 18, height: 18 }}
               />{" "}
-              Login with Google
+              Iniciar con Google
             </Text>
           </View>
         </TouchableOpacity>
@@ -42,7 +42,7 @@ export default class LoginRedes extends Component {
             }}
           >
             <Text style={styles.facebook}>
-              <FontAwesome name="facebook" size={20} color="#fff" /> Login with
+              <FontAwesome name="facebook" size={20} color="#fff" /> Iniciar con
               Facebook
             </Text>
           </TouchableOpacity>
@@ -56,7 +56,7 @@ export default class LoginRedes extends Component {
               color: "#00425A"
             }}
           >
-            or
+            o
           </Text>
         </View>
 
@@ -96,7 +96,7 @@ export default class LoginRedes extends Component {
                   fontFamily: "PoppinsBold"
                 }}
               >
-                We are sorry, this function is not avilable.
+                Lo sentimos, esta funcion no se encuentra disponible.
               </Text>
             </View>
             <View>
@@ -118,7 +118,7 @@ export default class LoginRedes extends Component {
                   }}
                 >
                   {" "}
-                  Ok
+                  Entendido
                 </Text>
               </TouchableOpacity>
             </View>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 30,
     marginBottom: 10,
     alignItems: "stretch",
     maxWidth: 450,

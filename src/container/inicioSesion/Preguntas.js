@@ -9,17 +9,17 @@ export default function Preguntas(props) {
         onPress={() => props.navigation.navigate("RecuperarPaso1")}
       >
         <View style={styles.viewContainer}>
-          <Text style={styles.font}>¿Do you forget your password?</Text>
+          <Text style={styles.font}>¿Has olvidado tu contraseña?</Text>
         </View>
       </TouchableOpacity>
       <View style={styles.viewContainer}>
-        <Text style={styles.font1}>¿Do you still whitout account?</Text>
+        <Text style={styles.font1}>¿Aun no tienes cuenta?</Text>
       </View>
 
       <TouchableOpacity onPress={() => props.navigation.navigate("Registro")}>
         <View style={styles.viewContainer}>
           <Text style={styles.font2}>
-            Sign in{" "}
+            Registrate{" "}
             <Ionicons name="md-arrow-forward" size={16} color="#00425A" />
           </Text>
         </View>

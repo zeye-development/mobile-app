@@ -39,14 +39,14 @@ export default class Formulario extends Component {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "email is required for sign in"
+        mensajeAlert: "El Usuario es requerido para iniciar Sesion"
       });
       return;
     } else if (email) {
       if (!validatorEmail(email)) {
         this.setState({
           error: true,
-          msjError: "Please enter a valid email address"
+          msjError: "Introduzca un email valido"
         });
         setTimeout(() => {
           this.setState({
@@ -61,14 +61,14 @@ export default class Formulario extends Component {
       // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "Password is required for sign in"
+        mensajeAlert: "El Contraseña es requerido para iniciar Sesion"
       });
       return;
     } else if (pass) {
       if (pass.length < 6) {
         this.setState({
           error: true,
-          msjError: "Password must contain more than 6 characters"
+          msjError: "La Contraseña debe ser mayor a 6 caracteres"
         });
         setTimeout(() => {
           this.setState({
@@ -83,14 +83,14 @@ export default class Formulario extends Component {
       // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "Password is required for sign in"
+        mensajeAlert: "El Contraseña es requerido para iniciar Sesion"
       });
       return;
     } else if (pass_v) {
       if (pass_v.length < 6) {
         this.setState({
           error: true,
-          msjError: "Password must contain more than 6 characters"
+          msjError: "La Contraseña debe ser mayor a 6 caracteres"
         });
         setTimeout(() => {
           this.setState({
@@ -104,7 +104,7 @@ export default class Formulario extends Component {
     if (pass_v != pass) {
       this.setState({
         error: true,
-        msjError: "Passwords doesn't match"
+        msjError: "Las Contraseñas no coinciden"
       });
       setTimeout(() => {
         this.setState({
@@ -121,7 +121,7 @@ export default class Formulario extends Component {
         Math.floor(
           Math.random() *
             100 *
-            Math.floor(Math.random() * 10000000000 * 1458102)
+            Math.floor(Math.random() * 10000000000 * 1458102*Math.random()*Math.random()*Math.random())
         )
     );
     var licenceS = licence.toString();
@@ -154,7 +154,7 @@ export default class Formulario extends Component {
         this.setState({
           modalLoading: false,
           modalVisible2: !this.state.modalVisible2,
-          mensajeAlert: "Success register!"
+          mensajeAlert: "El Registro se Completo de Manera Exitosa!"
         });
       } else {
         // Alert.alert("Error", "El Correo o la contraseña no son correctos");
@@ -162,7 +162,7 @@ export default class Formulario extends Component {
         this.setState({
           modalLoading: false,
           modalVisible: !this.state.modalVisible,
-          mensajeAlert: "This email address is already registered"
+          mensajeAlert: "Este correo ya se encuentra registrado"
         });
       }
     } catch (error) {
@@ -170,7 +170,7 @@ export default class Formulario extends Component {
       this.setState({
         modalLoading: false,
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: 'Internet connection is no available'
+        mensajeAlert: "Usted no dispone de una conexion a internet"
       });
     }
   }
@@ -180,7 +180,7 @@ export default class Formulario extends Component {
       <View style={styles.container}>
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Email"
+            placeholder="Correo Electronico"
             value={this.state.email}
             onChangeText={item => {
               const email = item.trim();
@@ -192,7 +192,7 @@ export default class Formulario extends Component {
 
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Password"
+            placeholder="Contraseña"
             secureTextEntry={true}
             value={this.state.pass}
             onChangeText={item => {
@@ -205,7 +205,7 @@ export default class Formulario extends Component {
 
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Repeat Password"
+            placeholder="Repetir Contraseña"
             secureTextEntry={true}
             value={this.state.pass_v}
             onChangeText={item => {
@@ -235,7 +235,7 @@ export default class Formulario extends Component {
             }}
           >
             <Text style={styles.inputButtom}>
-              Sign in{" "}
+              Registrar{" "}
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
@@ -329,7 +329,7 @@ export default class Formulario extends Component {
                   }}
                 >
                   {" "}
-                  Ok
+                  Entendido
                 </Text>
               </TouchableOpacity>
             </View>
@@ -393,7 +393,7 @@ export default class Formulario extends Component {
                   }}
                 >
                   {" "}
-                  Login
+                  Iniciar Sesion
                 </Text>
               </TouchableOpacity>
             </View>
