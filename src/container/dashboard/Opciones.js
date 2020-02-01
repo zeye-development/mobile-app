@@ -34,7 +34,8 @@ export default class Opciones extends React.Component {
                     color: "rgb(255, 255, 255)",
                     alignContent: "center",
                     fontFamily: "PoppinsSemiBold",
-                    fontSize: 14
+                    fontSize: 14,
+                    padding:8,
                   }}
                 >
                   <Foundation
@@ -42,7 +43,7 @@ export default class Opciones extends React.Component {
                     size={18}
                     color="rgb(255, 255, 255)"
                   />{" "}
-                  Solicitados
+                    Requested
                 </Text>
               ) : (
                 <Text
@@ -51,7 +52,8 @@ export default class Opciones extends React.Component {
                     color: "rgba(255, 255, 255, 0.5)",
                     alignContent: "center",
                     fontFamily: "PoppinsSemiBold",
-                    fontSize: 14
+                    fontSize: 14,
+                    padding:8,
                   }}
                 >
                   <Foundation
@@ -59,7 +61,7 @@ export default class Opciones extends React.Component {
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
                   />{" "}
-                  Solicitados
+                  Requested
                 </Text>
               )}
             </View>
@@ -81,7 +83,8 @@ export default class Opciones extends React.Component {
                     color: "rgba(255, 255, 255, 0.5)",
                     alignContent: "center",
                     fontFamily: "PoppinsSemiBold",
-                    fontSize: 14
+                    fontSize: 14, 
+                    padding:8,
                   }}
                 >
                   <Entypo
@@ -89,7 +92,7 @@ export default class Opciones extends React.Component {
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
                   />{" "}
-                  Usuarios
+                  Users
                 </Text>
               ) : (
                 <Text
@@ -98,11 +101,12 @@ export default class Opciones extends React.Component {
                     color: "rgb(255, 255, 255)",
                     alignContent: "center",
                     fontFamily: "PoppinsSemiBold",
-                    fontSize: 14
+                    fontSize: 14,
+                     padding:8,
                   }}
                 >
                   <Entypo name="users" size={18} color="rgb(255, 255, 255)" />{" "}
-                  Usuarios
+                  Users
                 </Text>
               )}
             </View>

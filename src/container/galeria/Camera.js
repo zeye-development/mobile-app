@@ -7,6 +7,7 @@ import {
   Image,
   Modal,
   AsyncStorage,
+  Alert,
   ActivityIndicator
 } from "react-native";
 import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
@@ -21,8 +22,8 @@ export default class Formulario extends Component {
       base64: null,
       modalVisibleAlert: false,
       mensajeAlert: "",
-      mainFoto: null,
       modalLoading:false,
+      mainFoto: null,
       id: "",
       token: "",
       images: []
@@ -56,17 +57,14 @@ export default class Formulario extends Component {
 
   handleUploadPhoto = () => {
     
-    console.log('A')
-    console.log(this.state.foto)
-    if (this.state.foto != 'image') {
-    try{
+  try{
     let { foto, base64 } = this.state;
     console.log(this.state.foto);
 
-    if (this.state.foto != null) {
+    if (this.state.foto != "image") {
+      this.setState({modalLoading:true})
     console.log('venezuela')
     console.log(this.props.id)
-    this.setState({modalLoading:true})
     fetch("http://189.213.227.211:8443/person-query", {
       method: "PUT",
       body: JSON.stringify({
@@ -82,39 +80,51 @@ export default class Formulario extends Component {
       .then(response => response.json())
       .then(response => {
         console.log("upload succes", response);
+        console.log(response.msg)
+        if(response.msg=="The picture must contain just a people"){
+          this.setState({
+            modalVisibleAlert: true,
+            mensajeAlert: "The Picture must contain just a people"
+          });
+          this.setState({modalLoading:false})
+        }
+        else if(response.status==500){
+          this.setState({
+            modalVisibleAlert: true,
+            mensajeAlert: "The Picture must contain just a people"
+          });
+          this.setState({modalLoading:false})
+        }
+        else{
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Foto añadida a la galeria",
-          modalLoading:true
+          mensajeAlert: "Upload Picture Succes"
         });
+        this.setState({modalLoading:false})
         setTimeout(() => {
           this.setState({ uri: null });
           this.props.navigation.replace("Loading");
-        }, 1000);
+        }, 1000);}
       })
       .catch(error => {
         console.log("upload error picture:", error);
 
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Ocurrió un error al añadir la foto",
-          modalLoading:true
+          mensajeAlert: "upload picture failed"
         });        
         // alert("Upload failed!");
       });
-    }}
-    catch{
+    }
+    else{
       this.setState({
         modalVisibleAlert: true,
-        mensajeAlert: "Ocurrió un error al añadir la foto",
-        modalLoading:true})
-    }}  
-  else{
-     this.setState({
-        modalVisibleAlert: true,
-        mensajeAlert: "El campo de la Imagen no puede estar vacio"
-      });
-  }
+        mensajeAlert: "The Picture field can`t be Empty"
+      })
+      this.setState({modalLoading:false})}}
+      catch{
+        Alert.alert('Error', 'Unexpected Error')
+      }
   };
 
   render() {
@@ -172,7 +182,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
+              <Ionicons name="md-person-add" size={16} color="#fff" /> Add{" "}
             </Text>
           </TouchableOpacity>
         </LinearGradient>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Modal, Dimensions, Alert } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Dimensions } from "react-native";
 import Imagen from "./Imagen";
 import styled from 'styled-components/native';
 
@@ -14,12 +14,8 @@ export default class Imagenes extends React.Component {
   }
 
   componentDidMount(){
-    try{
     let { images } = this.props.navigation.state.params;
-    this.setState({ images });}
-    catch{
-      Alert.alert("Ocurrio un error inesperado")
-    }
+    this.setState({ images });
   }
 
   render() {

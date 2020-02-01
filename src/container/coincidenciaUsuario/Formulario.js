@@ -8,7 +8,6 @@ export default class Formulario extends React.Component {
       id: null,
       name: null,
       surname: null,
-
       url: null
     };
   }
@@ -88,7 +87,7 @@ export default class Formulario extends React.Component {
     if (wanted === "false") {
       this.setState({ wanted: "No" });
     } else {
-      this.setState({ wanted: "Si" });
+      this.setState({ wanted: "Yes" });
     }
     console.log(wanted);
     let nacionality = JSON.stringify(
@@ -116,13 +115,6 @@ export default class Formulario extends React.Component {
     this.setState({ birth: birth });
     }
     catch{
-<<<<<<< HEAD
-      this.props.navigation.replace("BuscarCoincidencia")
-      Alert.alert('Error', 'Unespected Error')
-=======
-      this.props.navigation.goBack()
-      Alert.alert('Error', 'No se detecto ningun rostro en la foto')
->>>>>>> master
     }
   };
   render() {
@@ -131,31 +123,31 @@ export default class Formulario extends React.Component {
       <View style={styles.container}>
         <View style={styles.viewContainer}>
           <View style={styles.containerInfo}>
-            <Text style={styles.inputTitle}>Solicitado: </Text>
+            <Text style={styles.inputTitle}>Request: </Text>
             <Text style={styles.input}>{wanted}</Text>
           </View>
           <View style={styles.containerInfo}>
-            <Text style={styles.inputTitle}>Nombres: </Text>
+            <Text style={styles.inputTitle}>Names: </Text>
             <Text style={styles.input}>{name}</Text>
           </View>
           <View style={styles.containerInfo}>
-            <Text style={styles.inputTitle}>Apellidos: </Text>
+            <Text style={styles.inputTitle}>Surnames: </Text>
             <Text style={styles.input}>{surname}</Text>
           </View>
           <View style={styles.containerInfo}>
-            <Text style={styles.inputTitle}>Identificacion: </Text>
+            <Text style={styles.inputTitle}>ID: </Text>
             <Text style={styles.input}>{id}</Text>
           </View>
           <View style={styles.containerInfo}>
-            <Text style={styles.inputTitle}>Nacionalidad: </Text>
+            <Text style={styles.inputTitle}>Country: </Text>
             <Text style={styles.input}>{nacionality}</Text>
           </View>
           <View style={styles.containerInfo}>
-            <Text style={styles.inputTitle}>Sexo: </Text>
+            <Text style={styles.inputTitle}>Sex: </Text>
             <Text style={styles.input}>{sex}</Text>
           </View>
           <View style={styles.containerInfo}>
-            <Text style={styles.inputTitle}>Fecha Nacimiento: </Text>
+            <Text style={styles.inputTitle}>Date of Birth: </Text>
             <Text style={styles.input}>{birth}</Text>
           </View>
         </View>

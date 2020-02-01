@@ -5,19 +5,15 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Alert,
   AsyncStorage,
   Modal,
-  Button,
-  Image,
-  TouchableHighlight,
   ActivityIndicator
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { validatorEmail } from "../../helpers/validatorEmail";
 import md5 from "md5";
 import { LinearGradient } from "expo-linear-gradient";
-import * as LocalAuthentication from "expo-local-authentication";
+
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -41,14 +37,14 @@ export default class Formulario extends Component {
       // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Usuario es requerido para iniciar Sesion"
+        mensajeAlert: "Email is required for login"
       });
       return;
     } else if (email) {
       if (!validatorEmail(email)) {
         this.setState({
           error: true,
-          msjError: "Introduzca un email valido"
+          msjError: "Please enter a valid email address"
         });
         setTimeout(() => {
           this.setState({
@@ -63,7 +59,7 @@ export default class Formulario extends Component {
       // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "La Contraseña es requerida para Iniciar Sesion"
+        mensajeAlert: "Password is required for login"
       });
       return;
     }
@@ -98,7 +94,7 @@ export default class Formulario extends Component {
         this.setState({
           modalLoading: false,
           modalVisible: !this.state.modalVisible,
-          mensajeAlert: "El Usuario o la Contraseña no son correctos"
+          mensajeAlert: "Invalid credentials, please check it and make login again"
         });
       }
     } catch (error) {
@@ -106,7 +102,7 @@ export default class Formulario extends Component {
       this.setState({
         modalLoading: false,
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "Usted no dispone de una conexion a internet"
+        mensajeAlert: 'Internet connection is no available'
       });
     }
   }
@@ -117,7 +113,7 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             style={[styles.input, styles.font]}
-            placeholder="Correo"
+            placeholder="Email"
             value={this.state.email}
             onChangeText={item => {
               // console.log("email:  ", item);
@@ -131,7 +127,7 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             secureTextEntry={true}
-            placeholder="Correo Electronico"
+            placeholder="Password"
             value={this.state.pass}
             onChangeText={item => {
               const pass = item.trim();
@@ -157,7 +153,7 @@ export default class Formulario extends Component {
             onPress={() => { this.login(this.state.email, this.state.pass); }}
           >
             <Text style={[styles.inputButtom, styles.font]}>
-              Iniciar Sesion{" "}
+              Login{" "}
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
@@ -248,7 +244,7 @@ export default class Formulario extends Component {
                   }}
                 >
                   {" "}
-                  Entendido
+                  Ok
                 </Text>
               </TouchableOpacity>
             </View>

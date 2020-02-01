@@ -13,21 +13,21 @@ export default class Perfiles extends Component {
   }
   
  componentDidMount() {
-  let usersWantedFalse= [];
-  let users = [];
-  let cant = JSON.stringify(
-    this.props.navigation.getParam("cantidad", "cantidad")
-  );
-  cant = cant.replace(/['"]+/g, "");
-  if(cant!='cantidad') {
-    users = this.props.navigation.state.params.users;
-    usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
+    let usersWantedFalse= [];
+    let users = [];
+    let cant = JSON.stringify(
+      this.props.navigation.getParam("cantidad", "cantidad")
+    );
+    cant = cant.replace(/['"]+/g, "");
+    if(cant!='cantidad') {
+      users = this.props.navigation.state.params.users;
+      usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true )
+    }
+    this.setState({
+      users,
+      usersWantedFalse
+    })
   }
-  this.setState({
-    users,
-    usersWantedFalse
-  })
-}
 
   separator = () =>
     <View
@@ -56,7 +56,7 @@ export default class Perfiles extends Component {
           <Text
             style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
           >
-            No hay usuarios
+          No Users
           </Text>
         }
       />):(
@@ -72,7 +72,7 @@ export default class Perfiles extends Component {
           <Text
             style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
           >
-            No hay usuarios
+            No Users
           </Text>
         }
       />

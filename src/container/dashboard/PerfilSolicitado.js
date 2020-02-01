@@ -85,7 +85,7 @@ render(){
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("UsuarioRequerido", {user: this.props.usuario})}
             >
-              <Text style={styles.optionButtom}>Perfil</Text>
+              <Text style={styles.optionButtom}>Profile</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity>
               <Text style={styles.optionButtom}>Eliminar</Text>

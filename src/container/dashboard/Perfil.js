@@ -83,12 +83,12 @@ render(){
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("UsuarioRequerido", {user: this.props.usuario})}
             >
-              <Text style={styles.optionButtom}>Perfil</Text>
+              <Text style={styles.optionButtom}>Profile</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('Galeria', {id: _id, images})}
               >
-              <Text style={styles.optionButtom}>Galería</Text>
+              <Text style={styles.optionButtom}>Gallery</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -116,13 +116,13 @@ const styles = StyleSheet.create({
   },
   styleButtom: {
     justifyContent: "center",
+    paddingVertical: 3,
     paddingHorizontal: 10
   },
   optionButtom: {
-    justifyContent:'center',
-    alignItems:'center',
-    paddingHorizontal: 7,
-    paddingVertical: 7,
+    marginTop:-5,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
     fontFamily: "PoppinsRegular",
     fontSize: 12
   },
@@ -132,8 +132,7 @@ const styles = StyleSheet.create({
     top: 0
   },
   containerButtom: {
-    top:-10,
-    height: 70,
+    height: 60,
     width: 180,
     backgroundColor: "#fff",
     borderRadius: 2,

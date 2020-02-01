@@ -98,7 +98,7 @@ export default class Formulario extends React.Component {
     let result = await ImagePicker.launchImageLibraryAsync(options);
 
     if (!result.cancelled) {
-      this.setState({base64:null})
+      this.setState({ base64: null, image: null });
       this.setState({ base64: result.base64 });
       this.setState({ image: result.uri });
     }
@@ -114,7 +114,7 @@ export default class Formulario extends React.Component {
       let result = await this._cameraInstance.takePictureAsync(options);
 
       if (!result.cancelled) {
-        this.setState({base64:null})
+        this.setState({ base64: null, image: null });
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri });
         this.setState({ modalVisible: !this.state.modalVisible });
@@ -122,20 +122,15 @@ export default class Formulario extends React.Component {
     }
   };
   handleUploadPhoto = () => {
-<<<<<<< HEAD
     try{
-=======
-   
->>>>>>> master
     // this.guardar();
-    try{
-    let { image, base64 } = this.state;
-      base64=null
+    let { image} = this.state;
+
     if (image === null) {
       // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+        mensajeAlert: "Image field is empty"
       });
       return;
     }
@@ -152,7 +147,23 @@ export default class Formulario extends React.Component {
       .then(response => response.json())
       .then(response => {
         console.log("upload succes", response);
-        console.log(response)
+        console.log(response.persons_length)
+        if(response.persons_length==0){
+          this.setState({
+            modalVisibleAlert: true,
+            mensajeAlert: "The Picture must contain just a people",
+            modalLoading:false
+          });
+        }
+        else if(response.status==500){
+          this.setState({
+            modalVisibleAlert: true,
+            mensajeAlert: "The Picture must contain just a people",
+            modalLoading:false
+          });
+
+        }
+        else{
         
         this.setState({ uri: null });
             response.people.forEach(element =>this.setState({id:element._id}))
@@ -172,16 +183,18 @@ export default class Formulario extends React.Component {
           this.setState({
             modalLoading: false,
             modalVisibleAlert: !this.state.modalVisibleAlert,
-            mensajeAlert: "No se encontraron coincidencias en la base de datos"
+            mensajeAlert: 'Not found matches'
           });
         }
         else {
-          this.setState({modalLoading:false})
-            this.props.navigation.navigate('CoincidenciaUsuario',
+          this.setState({modalLoading:false, base64: null})
+            this.props.navigation.replace('CoincidenciaUsuario',
             {id:this.state.id,name:this.state.name,face:this.state.face,
             surnames:this.state.surname,rface:this.state.rface,wanted:this.state.wanted,
-            nationality:this.state.nationality,sex:this.state.sex,birth:this.state.birth })}
-          
+            nationality:this.state.nationality,sex:this.state.sex,birth:this.state.birth })
+
+          }
+        }
       })
       .catch(error => {
         console.log("upload error", error);
@@ -190,23 +203,13 @@ export default class Formulario extends React.Component {
         this.setState({
           modalLoading: false,
           modalVisibleAlert: !this.state.modalVisibleAlert,
-          mensajeAlert: "No se encontraron coincidencias en la base de datos"
+          mensajeAlert: "Not found matches"
         });
         
       });}
-<<<<<<< HEAD
       catch{
-        Alert.alert('Error', 'Unespected Error')
+        Alert.alert('Error', 'Unexpected Error')
       }
-=======
-    catch{
-      this.setState({
-        modalLoading: false,
-        modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Ocurrio un error inesperado, intentelo de nuevo"
-    })
-  }
->>>>>>> master
   };
   render() {
     let { image } = this.state;
@@ -227,10 +230,8 @@ export default class Formulario extends React.Component {
             style={{
               width: '100%',
               height: '100%',
-              resizeMode:"stretch",
+              resizeMode:"cover",
               marginRight:'-10%',
-              
-              
               position: "absolute"
             }}
             source={{ uri: image }}
@@ -269,14 +270,14 @@ export default class Formulario extends React.Component {
             }}
           >
             <Text style={styles.inputButtom}>
-              Capturar <Ionicons name="ios-camera" size={18} color="#fff" />
+              Take a Picture <Ionicons name="ios-camera" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
         </LinearGradient>
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
-              Cargar{" "}
+              Upload{" "}
               <Ionicons name="md-cloud-upload" size={18} color="#00425A" />
             </Text>
           </TouchableOpacity>
@@ -297,7 +298,7 @@ export default class Formulario extends React.Component {
             onPress={this.handleUploadPhoto}
           >
             <Ionicons name="md-search" size={18} color="white" />
-            <Text style={styles.inputButtom}>Buscar</Text>
+            <Text style={styles.inputButtom}>Search</Text>
           </TouchableOpacity>
         </LinearGradient>
         {/* ============================modalLoading======= */}
@@ -396,10 +397,7 @@ export default class Formulario extends React.Component {
                           {" "}
                           <MaterialIcons name="flash-off" size={35} color="#fff" />{" "}
                         </Text>
-
-
                     }
-
                   </TouchableOpacity>
                 )}
            
@@ -494,7 +492,7 @@ export default class Formulario extends React.Component {
                   }}
                 >
                   {" "}
-                  Entendido
+                  Ok
                 </Text>
               </TouchableOpacity>
             </View>

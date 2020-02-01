@@ -21,7 +21,7 @@ export default class Header extends Component {
     // if (this.state.base64 != null) {
     this.setState({
       modalVisibleAlert: true,
-      mensajeAlert: "Se perderan los datos una vez salga de la vista"
+      mensajeAlert: "Are you sure, data fields will be lost"
     });
     // console.log(this.state.base64);
     // }
@@ -41,7 +41,7 @@ export default class Header extends Component {
           </Text>
         </TouchableOpacity>
 
-        <Text style={styles.headerText}>Nuevo Usuario</Text>
+        <Text style={styles.headerText}>New User</Text>
         <Text style={styles.icon}> </Text>
         <Modal
           animationType="none"
@@ -109,8 +109,8 @@ export default class Header extends Component {
                     // marginBottom: 20
                   }}
                 >
-                  {" "}
-                  CANCELAR
+                 {" "} 
+                  CANCEL{"        "} 
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -138,7 +138,7 @@ export default class Header extends Component {
                   }}
                 >
                   {" "}
-                  SI, REALIZAR
+                  YES, PERFOM
                 </Text>
               </TouchableOpacity>
             </View>

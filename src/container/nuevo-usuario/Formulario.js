@@ -8,7 +8,9 @@ import {
   Image,
   Picker,
   Modal,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator,
+  Alert
 } from "react-native";
 import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -25,13 +27,14 @@ export default class Formulario extends Component {
       mensajeAlert: "",
       isDateTimePickerVisible: false,
       sex: "Male",
-      nationality: "VE",
+      nationality: "US",
       mainFoto: null,
       birth: "",
       name: "",
       surname: "",
       imagenes: [],
-      id: ""
+      id: "",
+      modalLoading: false
     };
   }
   async componentDidMount() {
@@ -44,6 +47,10 @@ export default class Formulario extends Component {
     let perfil = JSON.stringify(
       this.props.navigation.getParam("item", "image")
     );
+    
+    
+
+
     console.log(perfil);
     let pfoto = perfil.replace(/['"]+/g, "");
     console.log("fotot", pfoto);
@@ -73,34 +80,35 @@ export default class Formulario extends Component {
   }
 
   handleUploadPhoto = () => {
+    try{
     // let { foto, base64 } = this.state;
     console.log(this.state.estado);
     console.log(this.state.foto);
     if (this.state.foto === "image") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+        mensajeAlert: "Image field can't be empty"
       });
       return;
     }
     if (this.state.name === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Nombre no puede estar vacio"
+        mensajeAlert: "Name field can't be empty"
       });
       return;
     }
     if (this.state.surname === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Apellido no puede estar vacio"
+        mensajeAlert: "Surname field can't be empty"
       });
       return;
     }
     if (this.state.birth === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Por favor ingrese una fecha"
+        mensajeAlert: "Please enter a Birth Date"
       });
       return;
     }
@@ -110,6 +118,7 @@ export default class Formulario extends Component {
     // let base64 = parabase64.replace(/['"]+/g, "");
 
     // if (this.state.foto != null) {
+      this.setState({modalLoading:!this.state.modalLoading})
     fetch("http://189.213.227.211:8443/register-face", {
       method: "POST",
       body: JSON.stringify({
@@ -132,9 +141,29 @@ export default class Formulario extends Component {
         console.log(this.state.sex);
         console.log(this.state.sex);
         console.log("upload succes", response);
+        if(response.msg=="It should register people once at time"){
+          this.setState({
+            modalVisibleAlert: true,
+            modalLoading:!this.state.modalLoading,
+            mensajeAlert: "The Picture must contain just a people"
+          });
+          return 
+        }
+        else if(response.status==500){
+          this.setState({
+            modalVisibleAlert: true,
+            modalLoading:!this.state.modalLoading,
+            mensajeAlert: "The Picture must contain just a people"
+          });
+
+          return 
+        }
+        
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Usuario Registrado Exitosamente"
+          modalLoading:!this.state.modalLoading,
+          mensajeAlert: "Success register!"
+          
         });
         setTimeout(() => {
           this.setState({ uri: null });
@@ -144,12 +173,17 @@ export default class Formulario extends Component {
       .catch(error => {
         console.log("upload error", error);
 
-        console.log(this.state.estado);
+        this.setState({modalLoading:!this.state.modalLoading})
 
         alert("Upload failed!");
       });
     // }
+    }
+    catch{
+      Alert.alert("Error", "Unexpected Error")
+    }
   };
+
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
   };
@@ -267,14 +301,14 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             style={styles.input1}
-            placeholder="Nombres"
+            placeholder="Names"
             value={this.name}
             onChangeText={name => this.setState({ name })}
           />
         </View>
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Apellidos"
+            placeholder="Surnames"
             value={this.surname}
             onChangeText={surname => this.setState({ surname })}
             style={styles.input1}
@@ -282,7 +316,7 @@ export default class Formulario extends Component {
         </View>
         <View style={styles.viewContainer}>
           <TextInput
-            placeholder="Identidad"
+            placeholder="ID"
             value={this.id}
             onChangeText={id => this.setState({ id })}
             style={styles.input1}
@@ -298,7 +332,7 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Seleccionar Pais
+          Select Country
         </Text>
         <View style={styles.containerpicker}>
           <Picker
@@ -309,6 +343,7 @@ export default class Formulario extends Component {
             style={[styles.picker]}
             itemStyle={styles.pickerItem}
           >
+            <Picker.Item label="United States" value="US" />
             <Picker.Item label="Venezuela" value="VE" />
             <Picker.Item label="Bolivia" value="BO" />
           </Picker>
@@ -324,7 +359,7 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Seleccionar Sexo
+          Select Sex
         </Text>
         <View style={styles.containerpicker}>
           <Picker
@@ -333,8 +368,8 @@ export default class Formulario extends Component {
             style={[styles.picker]}
             itemStyle={styles.pickerItem}
           >
-            <Picker.Item label="Masculino" value="Male" />
-            <Picker.Item label="Femenino" value="Female" />
+            <Picker.Item label="Male" value="Male" />
+            <Picker.Item label="Female" value="Female" />
           </Picker>
         </View>
         <Text
@@ -347,14 +382,14 @@ export default class Formulario extends Component {
           }}
         >
           {" "}
-          Fecha de Nacimiento
+          Birth Date
         </Text>
         <DatePicker
           style={{ width: "100%", height: 40, marginTop: 6 }}
           // style={styles.input1}
           date={this.state.birth}
           mode="date"
-          placeholder="Fecha de Nacimiento"
+          placeholder="Birth Date"
           format="DD-MM-YYYY"
           minDate="01-05-1920"
           maxDate="01-10-2025"
@@ -385,7 +420,7 @@ export default class Formulario extends Component {
               fontFamily: "PoppinsSemiBold"
             }}
           >
-            Añadir a solicitados
+            Add to request
           </Text>
         </View>
 
@@ -397,7 +432,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
+              <Ionicons name="md-person-add" size={16} color="#fff" /> Add{" "}
             </Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -461,10 +496,37 @@ export default class Formulario extends Component {
                   }}
                 >
                   {" "}
-                  Entendido
+                  Ok
                 </Text>
               </TouchableOpacity>
             </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalLoading}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              // opacity: 0.9
+            }}
+          ></View>
+
+          <View
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "45%"
+            }}
+          >
+            {this.state.modalLoading ? (
+              <ActivityIndicator size={30} color="#fff" />
+            ) : null}
           </View>
         </Modal>
       </View>

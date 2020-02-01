@@ -12,7 +12,7 @@ export default function Header(props) {
         </Text>
       </TouchableOpacity>
 
-      <Text style={styles.headerText}>Coincidencia</Text>
+      <Text style={styles.headerText}>Coincidence</Text>
       <Text style={styles.icon}> </Text>
     </View>
   );

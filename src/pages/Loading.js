@@ -12,6 +12,7 @@ export default class Loading extends Component {
      if(!token) this.props.navigation.replace("Principal")
     try {
      
+
       let toke = token.replace(/['"]+/g, "");
       token = toke;
       fetch("http://189.213.227.211:8443/known_person", {
