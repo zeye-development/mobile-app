@@ -24,11 +24,11 @@ export default class Loading extends Component {
       })
         .then(response => response.json())
         .then(responseJson => {
-          // console.log(responseJson);
+          console.log(responseJson);
           this.setState({
             data: responseJson
           });
-
+          
           if (responseJson.data.length != 0) {
             this.setState({ users: responseJson.data });
 
