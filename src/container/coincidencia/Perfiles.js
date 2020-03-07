@@ -2,73 +2,11 @@ import React from "react";
 import { View, StyleSheet, FlatList, Text, Image } from "react-native";
 
 import Perfil from "./Perfil";
+
 export default function Perfiles(props) {
-  const usuarios = [
-    {
-      nombre: "Jhon Doe",
-      edad: "28 Years",
-      img: "../../../assets/perfil.png",
-      conectado: "15889623",
-      key: "0",
-      solicitado: "si"
-    },
-    {
-      nombre: "Jhon Doe",
-      edad: "28 Years",
-      img: "../../../assets/perfil.png",
-      conectado: "15889623",
-      key: "1",
-      solicitado: "si"
-    },
-    {
-      nombre: "Jhon Doe",
-      edad: "28 Years",
-      img: "../../../assets/perfil.png",
-      conectado: "15889623",
-      key: "2",
-      solicitado: "no"
-    },
-    {
-      nombre: "Jhon Doe",
-      edad: "28 Years",
-      img: "../../../assets/perfil.png",
-      conectado: "15889623",
-      key: "3",
-      solicitado: "no"
-    },
-    {
-      nombre: "Jhon Doe",
-      edad: "28 Years",
-      img: "../../../assets/perfil.png",
-      conectado: "15889623",
-      key: "4",
-      solicitado: "no"
-    },
-    {
-      nombre: "Jhon Doe",
-      edad: "28 Years",
-      img: "../../../assets/perfil.png",
-      conectado: "15889623",
-      key: "6",
-      solicitado: "no"
-    },
-    {
-      nombre: "Jhon Doe",
-      edad: "28 Years",
-      img: "../../../assets/perfil.png",
-      conectado: "15889623",
-      key: "7",
-      solicitado: "no"
-    },
-    {
-      nombre: "Jhon Doe",
-      edad: "28 Years",
-      img: "../../../assets/perfil.png",
-      conectado: "15889623",
-      key: "8",
-      solicitado: "si"
-    }
-  ];
+  // console.log('Users Coincidence: ', props.users);
+
+  let { users } = props;
 
   separador = () => {
     return (
@@ -85,11 +23,11 @@ export default function Perfiles(props) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={usuarios}
+        data={users.people}
         renderItem={({ item }) => (
-          <Perfil navigation={props.navigation} usuario={item} />
+          <Perfil navigation={props.navigation} user={item} />
         )}
-        keyExtractor={item => item.key}
+        keyExtractor={item => item._id}
         horizontal={false}
         ItemSeparatorComponent={separador}
         ListEmptyComponent={
@@ -99,8 +37,26 @@ export default function Perfiles(props) {
             No se encontraron coincidencias
           </Text>
         }
-      />
+      />   
     </View>
+  //   <View style={styles.container}>
+  //   <FlatList
+  //     data={usuarios}
+  //     renderItem={({ item }) => (
+  //       <Perfil navigation={props.navigation} usuario={item} />
+  //     )}
+  //     keyExtractor={item => item.key}
+  //     horizontal={false}
+  //     ItemSeparatorComponent={separador}
+  //     ListEmptyComponent={
+  //       <Text
+  //         style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
+  //       >
+  //         No se encontraron coincidencias
+  //       </Text>
+  //     }
+  //   />
+  // </View>    
   );
 }
 

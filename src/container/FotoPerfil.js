@@ -1,27 +1,33 @@
 import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import styled from 'styled-components/native';
 
 export default function FotoPerfil() {
   return (
-    <View style={styles.container}>
+    <Container>
       <View style={styles.viewContainer}>
         <Image
           style={{ width: 220, height: 220 }}
           source={require("../../../assets/captura.png")}
         />
       </View>
-    </View>
+    </Container>
   );
 }
 
+const Container = styled.View`
+  align-items: center;
+  margin-top: 50px;  
+  margin-bottom: 5px;
+  max-width: 450px;
+  padding: 0 30px;
+`;
+
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     alignItems: "center",
     marginTop: 50,
     marginBottom: 5,
-    // alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30
   },

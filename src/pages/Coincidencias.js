@@ -6,6 +6,9 @@ import Header from "../container/coincidencia/Header";
 import Perfiles from "../container/coincidencia/Perfiles";
 
 export default function Coincidencia(props) {
+  // console.log(props.navigation.state.params);
+  let { users } = props.navigation.state.params;
+
   return (
     <View>
       <ScrollView>
@@ -18,17 +21,16 @@ export default function Coincidencia(props) {
           <Header navigation={props.navigation} />
         </LinearGradient>
         <View>
-          <Perfiles navigation={props.navigation} />
+          <Perfiles navigation={props.navigation} users={users} />
         </View>
       </ScrollView>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   containerSuperior: {
-    // backgroundColor: "#0097CD",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10
-    // paddingLeft: 5
   }
 });

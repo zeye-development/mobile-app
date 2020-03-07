@@ -14,16 +14,17 @@ export default class Imagenes extends React.Component {
   }
 
   componentDidMount(){
-    try{
-    let { images } = this.props.navigation.state.params;
-    this.setState({ images });}
-    catch{
+    try {
+      let { images } = this.props.navigation.state.params;
+      this.setState({ images });
+    } catch{
       Alert.alert("Ocurrio un error inesperado")
     }
   }
 
   render() {
-    console.log(this.props.navigation.state.params)
+    // console.log(this.props.navigation.state.params)
+
     if(!this.state.images.length) return false;
 
     return (

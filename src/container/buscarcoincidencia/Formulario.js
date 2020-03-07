@@ -127,7 +127,6 @@ export default class Formulario extends React.Component {
     let { image, base64 } = this.state;
       base64=null
     if (image === null) {
-      // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
         mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
@@ -138,7 +137,8 @@ export default class Formulario extends React.Component {
     fetch("http://189.213.227.211:8443/person-query", {
       method: "POST",
       body: JSON.stringify({
-        picture: this.state.base64}),
+        picture: this.state.base64
+      }),
       headers: {
         "Content-Type": "application/json",
          key:this.state.token
@@ -146,8 +146,7 @@ export default class Formulario extends React.Component {
     })
       .then(response => response.json())
       .then(response => {
-        console.log("upload succes", response);
-        console.log(response)
+        // console.log("Search Coincidence: ", response);
         
         this.setState({ uri: null });
             response.people.forEach(element =>this.setState({id:element._id}))
@@ -159,37 +158,65 @@ export default class Formulario extends React.Component {
             response.people.forEach(element =>this.setState({nationality:element.nationality}))
             response.people.forEach(element =>this.setState({sex:element.sex}))
             response.people.forEach(element =>this.setState({birth:element.birth}))
-            console.log(this.state.id)
-            console.log(this.state.face)
-            console.log(this.state.name)
-            
-        if (this.state.rface === null) {
+            console.log('Face: ', this.state.rface);
+
+        if(response.status == 200 && response.persons_length == 0){
           this.setState({
             modalLoading: false,
             modalVisibleAlert: !this.state.modalVisibleAlert,
             mensajeAlert: "No se encontraron coincidencias en la base de datos"
+          });          
+        } else if(response.status == 200 && response.persons_length == 1){
+          this.setState({ modalLoading: false });
+
+          this.props.navigation.navigate('CoincidenciaUsuario', {
+              id: this.state.id,
+              name: this.state.name,
+              face:this.state.face,
+              surnames: this.state.surname,
+              rface: this.state.rface,
+              wanted: this.state.wanted,
+              nationality: this.state.nationality,
+              sex: this.state.sex,
+              birth: this.state.birth
+            }
+          )
+        } else if(response.status == 200 && response.persons_length > 1) {
+          this.setState({ modalLoading: false });
+
+          this.props.navigation.navigate('Coincidencias', {
+            users: response
           });
         }
-        else {
-          this.setState({modalLoading:false})
-            this.props.navigation.navigate('CoincidenciaUsuario',
-            {id:this.state.id,name:this.state.name,face:this.state.face,
-            surnames:this.state.surname,rface:this.state.rface,wanted:this.state.wanted,
-            nationality:this.state.nationality,sex:this.state.sex,birth:this.state.birth })}
+
+        
+
+        // if (this.state.rface === null) {
+        //   this.setState({
+        //     modalLoading: false,
+        //     modalVisibleAlert: !this.state.modalVisibleAlert,
+        //     mensajeAlert: "No se encontraron coincidencias en la base de datos"
+        //   });
+        // } else {
+        //   this.setState({modalLoading:false})
+        //     this.props.navigation.navigate('CoincidenciaUsuario',
+        //     {id:this.state.id,name:this.state.name,face:this.state.face,
+        //     surnames:this.state.surname,rface:this.state.rface,wanted:this.state.wanted,
+        //     nationality:this.state.nationality,sex:this.state.sex,birth:this.state.birth 
+        //   })}
           
       })
       .catch(error => {
-        console.log("upload error", error);
+        console.log("Error Search Coincidence: ", error);
 
-        // Alert.alert("ERROR","No se encontraron coincidencias");
         this.setState({
           modalLoading: false,
           modalVisibleAlert: !this.state.modalVisibleAlert,
           mensajeAlert: "No se encontraron coincidencias en la base de datos"
         });
         
-      });}
-    catch{
+      });
+    } catch {
       this.setState({
         modalLoading: false,
         modalVisibleAlert: !this.state.modalVisibleAlert,
@@ -416,12 +443,8 @@ export default class Formulario extends React.Component {
               </TouchableOpacity>
               )}
               
-              
-              
             </View>
-              
-              
-              
+
             </View>
           </View>
         </Modal>

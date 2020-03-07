@@ -22,11 +22,8 @@ export default class Dashboard extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: '#0097CD',
     maxWidth: 450,
     flexDirection: "row",
-    // alignItems: 'flex-start',
     justifyContent: "space-between",
     paddingTop: 50,
     paddingLeft: 30,

@@ -12,7 +12,7 @@ export default function Inicio() {
           }
         ]}
       >
-        Recognaixer
+        Zeye Cloud ®
       </Text>
     </View>
   );

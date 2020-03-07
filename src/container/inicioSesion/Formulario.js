@@ -20,6 +20,7 @@ import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as LocalAuthentication from 'expo-local-authentication';
+import styled from 'styled-components/native';
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -48,14 +49,16 @@ export default class Formulario extends Component {
   }
 
   async login(email, pass) {
-    // email = 'lewis@gmail.com'
-    // pass = '123456'
+    // email = 'lewis@gmail.com';
+    // pass = '123456';
+    // email = 'troconisbaltar@gmail.com';
+    // pass = '18138899';
+    
 
     if (!email) {
-      // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: 'El Usuario es requerido para iniciar Sesion'
+        mensajeAlert: 'El Email es requerido para iniciar Sesion'
       });
       return;
     } else if (email) {
@@ -74,7 +77,6 @@ export default class Formulario extends Component {
       }
     }
     if (!pass) {
-      // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
         mensajeAlert: 'La Contraseña es requerida para Iniciar Sesion'
@@ -113,7 +115,6 @@ export default class Formulario extends Component {
         this.setState({ modalLoading: false });
         this.props.navigation.replace('Loading', { token: token });
       } else {
-        // Alert.alert("Error", "El Correo o la contraseña no son correctos");
         this.setState({
           modalLoading: false,
           modalVisible: !this.state.modalVisible,
@@ -121,7 +122,6 @@ export default class Formulario extends Component {
         });
       }
     } catch (error) {
-      // Alert.alert("Error", "Usted no dispone de una conexion a internet");
       this.setState({
         modalLoading: false,
         modalVisible: !this.state.modalVisible,
@@ -136,13 +136,10 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             style={[styles.input, styles.font]}
-            placeholder="Correo"
+            placeholder="Correo Electronico"
             value={this.state.email}
             onChangeText={item => {
-              // console.log("email:  ", item);
               const email = item.trim();
-
-              // console.log("email despues:", item);
               this.setState({ email });
             }}
           />
@@ -150,7 +147,7 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             secureTextEntry={true}
-            placeholder="Correo Electronico"
+            placeholder="Password"
             value={this.state.pass}
             onChangeText={item => {
               const pass = item.trim();
@@ -183,22 +180,14 @@ export default class Formulario extends Component {
             </Text>
           </TouchableOpacity>
         </LinearGradient>
-        {/* ============================modalLoading======= */}
 
+        {/* ============================modalLoading======= */}
         <Modal
           animationType="none"
           transparent={true}
           visible={this.state.modalLoading}
         >
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: 'rgba(0, 66, 90, 0.5)'
-              // opacity: 0.9
-            }}
-          ></View>
+          <ModalView />
 
           <View
             style={{
@@ -212,20 +201,13 @@ export default class Formulario extends Component {
             ) : null}
           </View>
         </Modal>
+        
         <Modal
           animationType="none"
           transparent={true}
           visible={this.state.modalVisible}
         >
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: 'rgba(0, 66, 90, 0.5)'
-              // opacity: 0.9
-            }}
-          ></View>
+          <ModalView />
 
           <View
             style={{
@@ -238,17 +220,9 @@ export default class Formulario extends Component {
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: '#00425A',
-                  textAlign: 'center',
-                  textShadowRadius: 2,
-                  fontFamily: 'PoppinsBold'
-                }}
-              >
+              <ModalTitle>
                 {this.state.mensajeAlert}
-              </Text>
+              </ModalTitle>
             </View>
             <View>
               <TouchableOpacity
@@ -256,21 +230,10 @@ export default class Formulario extends Component {
                   this.setState({ modalVisible: !this.state.modalVisible });
                 }}
               >
-                <Text
-                  style={{
-                    fontSize: 16,
-                    // padding: 13,
-                    color: '#01B8E2',
-                    textAlign: 'right',
-                    fontFamily: 'PoppinsRegular',
-                    marginTop: 40,
-                    marginHorizontal: 20,
-                    marginBottom: 20
-                  }}
-                >
+                <TextConfirm>
                   {' '}
-                  Entendido
-                </Text>
+                  Entendido                  
+                </TextConfirm>
               </TouchableOpacity>
             </View>
           </View>
@@ -280,9 +243,31 @@ export default class Formulario extends Component {
   }
 }
 
+const ModalView = styled.View`
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 66, 90, 0.5);
+`;
+
+const ModalTitle = styled.Text`
+  font-size: 18px;
+  color: #00425A;
+  text-align: center;
+  font-family: 'PoppinsBold';
+`;
+/* textShadowRadius: 2; */
+
+const TextConfirm = styled.Text`
+  font-size: 16px;
+  color: #01B8E2;
+  text-align: right;
+  font-family: 'PoppinsRegular';
+  margin: 40px 20px 20px 20px;
+`;
+
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     alignItems: 'center',
     marginBottom: 20,
     alignItems: 'stretch',

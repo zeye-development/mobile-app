@@ -5,7 +5,6 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Alert,
   Modal,
   ActivityIndicator
 } from "react-native";
@@ -36,10 +35,9 @@ export default class Formulario extends Component {
     console.log(email);
 
     if (!email) {
-      // Alert.alert("Error", "El correo es Requerido para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Usuario es requerido para iniciar Sesion"
+        mensajeAlert: "El Email es requerido para iniciar Sesion"
       });
       return;
     } else if (email) {
@@ -58,10 +56,9 @@ export default class Formulario extends Component {
       }
     }
     if (!pass) {
-      // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Contraseña es requerido para iniciar Sesion"
+        mensajeAlert: "La Contraseña es requerida para iniciar Sesion"
       });
       return;
     } else if (pass) {
@@ -80,10 +77,9 @@ export default class Formulario extends Component {
       }
     }
     if (!pass_v) {
-      // Alert.alert("Error", "La contraseña es requerida para iniciar Sesion");
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Contraseña es requerido para iniciar Sesion"
+        mensajeAlert: "La Contraseña es requerida para iniciar Sesion"
       });
       return;
     } else if (pass_v) {
@@ -141,8 +137,8 @@ export default class Formulario extends Component {
           email: email,
           password: md5(pass),
           password_validate: md5(pass_v),
-          names: "Keyberth",
-          surnames: "Pe",
+          names: "",
+          surnames: "",
           license_key: lic
         })
       });
@@ -157,8 +153,6 @@ export default class Formulario extends Component {
           mensajeAlert: "El Registro se Completo de Manera Exitosa!"
         });
       } else {
-        // Alert.alert("Error", "El Correo o la contraseña no son correctos");
-
         this.setState({
           modalLoading: false,
           modalVisible: !this.state.modalVisible,
@@ -166,7 +160,6 @@ export default class Formulario extends Component {
         });
       }
     } catch (error) {
-      // Alert.alert("Error", "Usted no dispone de una conexion a internet");
       this.setState({
         modalLoading: false,
         modalVisible: !this.state.modalVisible,
@@ -383,7 +376,6 @@ export default class Formulario extends Component {
                 <Text
                   style={{
                     fontSize: 16,
-                    // padding: 13,
                     color: "#01B8E2",
                     textAlign: "right",
                     fontFamily: "PoppinsRegular",
@@ -403,10 +395,9 @@ export default class Formulario extends Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // alignItems: "center",
     marginBottom: 10,
     alignItems: "stretch",
     maxWidth: 450,

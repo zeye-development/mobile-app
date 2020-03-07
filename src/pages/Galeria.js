@@ -19,6 +19,7 @@ export default function Galeria(props) {
     </View>
   );
 }
+
 const style = StyleSheet.create({
   container: {
     flex: 6,

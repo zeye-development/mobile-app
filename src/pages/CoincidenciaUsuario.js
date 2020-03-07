@@ -16,6 +16,7 @@ export default function CoincidenciaUsuario(props) {
     </View>
   );
 }
+
 const style = StyleSheet.create({
   container: {
     flex: 6,
