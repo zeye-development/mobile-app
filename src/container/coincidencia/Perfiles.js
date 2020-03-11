@@ -7,6 +7,11 @@ export default function Perfiles(props) {
   // console.log('Users Coincidence: ', props.users);
 
   let { users } = props;
+  for(let i = 0; i < users.people.length; i++){
+    if(users.people[i]._id == ''){
+        users.people[i]._id = (new Date().getTime()).toString(36) + i;
+    }
+  }  
 
   separador = () => {
     return (
@@ -20,6 +25,7 @@ export default function Perfiles(props) {
       ></View>
     );
   };
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -39,24 +45,6 @@ export default function Perfiles(props) {
         }
       />   
     </View>
-  //   <View style={styles.container}>
-  //   <FlatList
-  //     data={usuarios}
-  //     renderItem={({ item }) => (
-  //       <Perfil navigation={props.navigation} usuario={item} />
-  //     )}
-  //     keyExtractor={item => item.key}
-  //     horizontal={false}
-  //     ItemSeparatorComponent={separador}
-  //     ListEmptyComponent={
-  //       <Text
-  //         style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
-  //       >
-  //         No se encontraron coincidencias
-  //       </Text>
-  //     }
-  //   />
-  // </View>    
   );
 }
 

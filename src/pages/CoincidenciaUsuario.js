@@ -6,12 +6,15 @@ import FotoPerfil from "../container/coincidenciaUsuario/FotoPerfil";
 import Formulario from "../container/coincidenciaUsuario/Formulario";
 
 export default function CoincidenciaUsuario(props) {
+
+  let { user } = props.navigation.state.params;
+
   return (
     <View style={style.container}>
       <ScrollView>
         <Header navigation={props.navigation} />
-        <FotoPerfil navigation={props.navigation} />
-        <Formulario navigation={props.navigation} />
+        <FotoPerfil navigation={props.navigation} user={user} />
+        <Formulario navigation={props.navigation} user={user} />
       </ScrollView>
     </View>
   );

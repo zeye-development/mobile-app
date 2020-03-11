@@ -246,7 +246,6 @@ export default class Formulario extends Component {
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
             }}
           ></View>
 
@@ -273,7 +272,6 @@ export default class Formulario extends Component {
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
             }}
           ></View>
 
@@ -312,7 +310,6 @@ export default class Formulario extends Component {
                   }}
                   style={{
                     fontSize: 16,
-                    // padding: 13,
                     color: "#01B8E2",
                     textAlign: "right",
                     fontFamily: "PoppinsRegular",
@@ -339,7 +336,6 @@ export default class Formulario extends Component {
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
             }}
           ></View>
 

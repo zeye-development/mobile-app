@@ -6,7 +6,6 @@ import Header from "../container/coincidencia/Header";
 import Perfiles from "../container/coincidencia/Perfiles";
 
 export default function Coincidencia(props) {
-  // console.log(props.navigation.state.params);
   let { users } = props.navigation.state.params;
 
   return (

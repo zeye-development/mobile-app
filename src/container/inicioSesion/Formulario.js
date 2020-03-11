@@ -5,12 +5,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Alert,
   AsyncStorage,
   Modal,
-  Button,
-  Image,
-  TouchableHighlight,
   ActivityIndicator
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,7 +15,6 @@ import md5 from 'md5';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as LocalAuthentication from 'expo-local-authentication';
 import styled from 'styled-components/native';
 
 export default class Formulario extends Component {
@@ -53,7 +48,6 @@ export default class Formulario extends Component {
     // pass = '123456';
     // email = 'troconisbaltar@gmail.com';
     // pass = '18138899';
-    
 
     if (!email) {
       this.setState({
@@ -107,7 +101,7 @@ export default class Formulario extends Component {
 
       let responseJson = await response.json();
       console.info('Response - Login');      
-      console.log(responseJson);
+      // console.log(responseJson);
 
       const token = await JSON.stringify(responseJson.token);
       if (responseJson.status === 200) {

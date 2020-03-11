@@ -23,7 +23,6 @@ export default class Imagenes extends React.Component {
   }
 
   render() {
-    // console.log(this.props.navigation.state.params)
 
     if(!this.state.images.length) return false;
 
