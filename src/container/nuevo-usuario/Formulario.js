@@ -34,6 +34,7 @@ export default class Formulario extends Component {
       id: ""
     };
   }
+
   async componentDidMount() {
     // console.log(this.props.navigation.getParam("mainFoto"));
     let token = await AsyncStorage.getItem("token");
@@ -130,7 +131,6 @@ export default class Formulario extends Component {
       .then(response => response.json())
       .then(response => {
         console.log(this.state.sex);
-        console.log(this.state.sex);
         console.log("upload succes", response);
         this.setState({
           modalVisibleAlert: true,
@@ -210,58 +210,6 @@ export default class Formulario extends Component {
             </View>
           </View>
         </View>
-
-        {/* ==================subida muntiples de imagenes ============== */}
-        {/* <View style={{ alignItems: "center" }}>
-          <View
-            style={{
-              flexDirection: "row",
-              maxWidth: 350,
-              flexWrap: "wrap"
-            }}
-          >
-            {this.state.imagenes.length >= 0
-              ? this.state.imagenes.map(item => (
-                  <TouchableOpacity
-                    // onPress={() => this.props.navigation.navigate("Captura")}
-                    key={item.key}
-                    style={[
-                      styles.imagenesSubir,
-                      {
-                        borderRadius: 10,
-                        backgroundColor: "#000",
-                        marginBottom: 5
-                      }
-                    ]}
-                  >
-                    <Entypo name="user" size={32} color="white" />
-                  </TouchableOpacity>
-                ))
-              : null}
-
-            <TouchableOpacity
-              // onPress={() => this.props.navigation.navigate("Captura")}
-              onPress={() => {
-                this.props.navigation.replace("Captura", { mainFoto: false });
-                this.setState({
-                  imagenes: [...this.state.imagenes, { key: 1 }]
-                });
-              }}
-              style={[styles.imagenesSubir, { borderRadius: 25 }]}
-            >
-              <AntDesign name="plus" size={32} color="white" />
-            </TouchableOpacity>
-          </View>
-          <Text
-            style={{
-              margin: 5,
-              fontFamily: "PoppinsSemiBold",
-              fontSize: 12
-            }}
-          >
-            Debe seleccionar un minimo de 3 imagenes
-          </Text>
-        </View> */}
 
         {/* ========================================================== */}
         <View style={styles.viewContainer}>
@@ -351,7 +299,6 @@ export default class Formulario extends Component {
         </Text>
         <DatePicker
           style={{ width: "100%", height: 40, marginTop: 6 }}
-          // style={styles.input1}
           date={this.state.birth}
           mode="date"
           placeholder="Fecha de Nacimiento"
@@ -413,7 +360,6 @@ export default class Formulario extends Component {
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
             }}
           ></View>
 
@@ -451,7 +397,6 @@ export default class Formulario extends Component {
                 <Text
                   style={{
                     fontSize: 16,
-                    // padding: 13,
                     color: "#01B8E2",
                     textAlign: "right",
                     fontFamily: "PoppinsRegular",
@@ -474,8 +419,6 @@ export default class Formulario extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // alignItems: 'center',
     marginBottom: 10,
     alignItems: "stretch",
     maxWidth: 450,
@@ -542,13 +485,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#EBF2F4",
     marginBottom: 5
   },
-
   picker: {
     width: "100%",
     height: 50,
     marginLeft: "2%",
     color: "black",
-
     alignItems: "center"
   },
   imagenesSubir: {
@@ -556,7 +497,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 3,
     height: 50,
     backgroundColor: "#EBF2F4",
-    // borderRadius: 25,
     alignItems: "center",
     justifyContent: "center"
   }

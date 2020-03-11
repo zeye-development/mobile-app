@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 
-import Header from "../container/galeria/Header";
+import Header from './../components/Header';
+
 import Camera from "../container/galeria/Camera";
 import Imagenes from "../container/galeria/Imagenes";
 
@@ -12,7 +13,7 @@ export default function Galeria(props) {
   return (
     <View style={style.container}>
       <ScrollView>
-        <Header navigation={props.navigation} />
+        <Header navigation={props.navigation} title='Galeria' />
         <Camera navigation={props.navigation} id={ id } images={images} />
         <Imagenes navigation={props.navigation} images={images} />
       </ScrollView>

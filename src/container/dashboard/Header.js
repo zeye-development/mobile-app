@@ -47,9 +47,7 @@ export default class Dashboard extends Component {
         <Text style={styles.headerText}>Dashboard</Text>
 
         <TouchableOpacity
-          onPress={() => {
-            this.logOut();
-          }}
+          onPress={() => { this.logOut(); }}
         >
           <Text style={styles.icon}>
             {"      "}
@@ -83,10 +81,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignContent: "center",
-
     padding: 8
   },
-
   text: {
     alignSelf: "center",
     fontSize: 22,

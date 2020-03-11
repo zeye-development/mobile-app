@@ -133,8 +133,6 @@ export default class Header extends Component {
                     backgroundColor: "#EBF0F2",
                     padding: 10,
                     borderRadius: 15
-                    // marginHorizontal: 20,
-                    // marginBottom: 20
                   }}
                 >
                   {" "}
@@ -151,11 +149,9 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     backgroundColor: "#fff",
     maxWidth: 450,
     flexDirection: "row",
-    // alignItems: 'flex-start',
     justifyContent: "space-between",
     marginTop: 20,
     marginBottom: 10,

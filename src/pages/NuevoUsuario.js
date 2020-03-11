@@ -18,6 +18,7 @@ export default function NuevoUsuario(props) {
     </SafeAreaView>
   );
 }
+
 const style = StyleSheet.create({
   container: {
     flex: 6,

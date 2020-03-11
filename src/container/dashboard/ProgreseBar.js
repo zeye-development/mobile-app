@@ -66,8 +66,6 @@ export default class ProgreseBar extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // alignItems: 'center',
     marginTop: 18,
     paddingLeft: 35,
     paddingRight: 35,

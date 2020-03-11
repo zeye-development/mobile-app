@@ -9,10 +9,12 @@ export default class Loading extends Component {
   }
 
   async componentDidMount() {
-     let token = await AsyncStorage.getItem("token");
-     if(!token) this.props.navigation.replace("Principal")
+    let token = await AsyncStorage.getItem("token");
+
+    if (!token) this.props.navigation.replace("Principal");
+
     try {
-     
+
       let toke = token.replace(/['"]+/g, "");
       token = toke;
       fetch("http://189.213.227.211:8443/known_person", {
@@ -26,19 +28,12 @@ export default class Loading extends Component {
         .then(response => response.json())
         .then(responseJson => {
           // console.log(responseJson);
-          this.setState({
-            data: responseJson
-          });
-          
-          if (responseJson.data.length != 0) {
-            this.setState({ users: responseJson.data });
 
-            cantidad = responseJson.persons_length;
-
+          if (responseJson.status == 200 && responseJson.data.length != 0) {
             if (token) {
               this.props.navigation.replace("Dashboard", {
-                users: this.state.users,
-                cantidad: cantidad
+                users: responseJson.data,
+                cantidad: responseJson.persons_length
               });
             } else {
               this.props.navigation.replace("InicioSesion");
@@ -47,10 +42,10 @@ export default class Loading extends Component {
             this.props.navigation.replace("Dashboard");
           }
         })
-        .catch(error => {
-          console.error(error);
-        });
-    } catch (error) {}
+        .catch(error => console.error('Loading Error: ', error));
+    } catch (error) {
+
+    }
   }
 
   render() {
@@ -70,7 +65,7 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-`; 
+`;
 
 const styles = StyleSheet.create({
   splash: {

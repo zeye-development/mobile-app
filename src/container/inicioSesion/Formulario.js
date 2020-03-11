@@ -45,7 +45,7 @@ export default class Formulario extends Component {
 
   async login(email, pass) {
     // email = 'lewis@gmail.com';
-    // pass = '123456';
+    // pass = '889900';
     // email = 'troconisbaltar@gmail.com';
     // pass = '18138899';
 
@@ -70,6 +70,7 @@ export default class Formulario extends Component {
         return;
       }
     }
+
     if (!pass) {
       this.setState({
         modalVisible: !this.state.modalVisible,

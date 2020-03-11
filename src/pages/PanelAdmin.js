@@ -28,11 +28,10 @@ export default function PanelAdmin(props) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   containerSuperior: {
-    // backgroundColor: "#0097CD",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10
-    // paddingLeft: 5
   }
 });

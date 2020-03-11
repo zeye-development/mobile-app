@@ -31,8 +31,6 @@ export default class Formulario extends Component {
   }
 
   async login(email, pass, pass_v) {
-    email = email.toLowerCase();
-    console.log(email);
 
     if (!email) {
       this.setState({
@@ -55,6 +53,10 @@ export default class Formulario extends Component {
         return;
       }
     }
+
+    email = email.toLowerCase();
+    console.log(email);
+
     if (!pass) {
       this.setState({
         modalVisible: !this.state.modalVisible,
