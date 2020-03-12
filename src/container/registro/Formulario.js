@@ -21,6 +21,8 @@ export default class Formulario extends Component {
       email: null,
       pass: null,
       pass_v: null,
+      names: '',
+      surnames: '',
       modalVisible: false,
       modalVisible2: false,
       mensajeAlert: "",
@@ -57,10 +59,26 @@ export default class Formulario extends Component {
     email = email.toLowerCase();
     console.log(email);
 
+    if (!names) {
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "El Nombre es requerido para registrar una cuenta"
+      });
+      return;
+    }
+
+    if (!surnames) {
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "El Apellido es requerido para registrar una cuenta"
+      });
+      return;
+    }
+
     if (!pass) {
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "La Contraseña es requerida para iniciar Sesion"
+        mensajeAlert: "La Contraseña es requerida para registrar una cuenta"
       });
       return;
     } else if (pass) {
@@ -78,6 +96,7 @@ export default class Formulario extends Component {
         return;
       }
     }
+
     if (!pass_v) {
       this.setState({
         modalVisible: !this.state.modalVisible,
@@ -99,6 +118,7 @@ export default class Formulario extends Component {
         return;
       }
     }
+    
     if (pass_v != pass) {
       this.setState({
         error: true,
@@ -122,6 +142,7 @@ export default class Formulario extends Component {
             Math.floor(Math.random() * 10000000000 * 1458102*Math.random()*Math.random()*Math.random())
         )
     );
+    
     var licenceS = licence.toString();
     let lic = licenceS.replace(/['"]+/g, "");
     console.log(licenceS);
@@ -184,6 +205,24 @@ export default class Formulario extends Component {
             style={styles.input}
           />
         </View>
+
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Nombres"
+            value={this.state.names}
+            onChangeText={surnames => this.setState({ surnames }) }
+            style={styles.input}
+          />
+        </View>
+
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Apellidos"
+            value={this.state.names}
+            onChangeText={surnames => this.setState({ surnames }) }
+            style={styles.input}
+          />
+        </View>        
 
         <View style={styles.viewContainer}>
           <TextInput
@@ -308,7 +347,8 @@ export default class Formulario extends Component {
               >
                 <Text
                   onPress={() => {
-                    this.props.navigation.replace("InicioSesion");
+                    this.setState({ modalVisible: !this.state.modalVisible });                    
+                    // this.props.navigation.replace("InicioSesion");
                   }}
                   style={{
                     fontSize: 16,
