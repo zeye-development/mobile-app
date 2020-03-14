@@ -113,11 +113,12 @@ export default class Formulario extends React.Component {
       const options = { quality: 0.1, base64: true };
 
       let result = await this._cameraInstance.takePictureAsync(options);
+    
 
       if (!result.cancelled) {
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri });
-        this.setState({ modalVisible: !this.state.modalVisible });
+        this.setState({ modalVisible: false});
       }
     }
   };
@@ -330,10 +331,12 @@ export default class Formulario extends React.Component {
                 
                 this.setState({type: Camera.Constants.Type.front,estadocamara:false}):
                 this.setState({type: Camera.Constants.Type.back,estadocamara:true})}>
-                <Text style={styles.icon}>
-                  {" "}
-                  <Ionicons name="md-reverse-camera" size={35} color="#fff" />{" "}
-                </Text>
+               
+                 
+                  <View style={{padding:10, marginBottom:10, width:50}}>
+                  <Ionicons name="md-reverse-camera" size={35} color="#fff" />
+                  </View>
+             
               </TouchableOpacity>
               )}
               

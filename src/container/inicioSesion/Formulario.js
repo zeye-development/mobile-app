@@ -94,7 +94,7 @@ export default class Formulario extends Component {
           mimeType: 'application/json'
         },
         body: JSON.stringify({
-          expoID: 'sasdasdasdas',
+          expoID: 'ExponentPushToken[i4B7PfDNj5EUTHY2J_UUYL]',
           email: email,
           password: md5(pass)
         })
