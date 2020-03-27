@@ -1,20 +1,41 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function Formulario(props) {
-  console.log("profile");
-  // console.log(props.navigation.state.params.user)
+
+  const deleteUser = async () => {
+    const id = props.navigation.state.params.user._id
+    let token = await AsyncStorage.getItem('token');
+    console.log('Id: ', id);
+    console.log('Token: ', token);
+
+    try {
+      fetch(`http://189.213.227.211:8443/person-query?dni=${id}`, {
+        method: 'DELETE',
+        headers: {
+          key: token.replace(/['"]+/g, '')          
+        }
+      })
+      .then(response => response.json())
+      .then(response => console.log('Success Delete User: ', response));
+
+      props.navigation.replace("Loading");
+    } catch (error) {
+      console.log('Error Delete User: ', error);
+    }
+  }
+
   let {
     _id,
     names,
     surnames,
-    images,
     nationality,
     sex,
     birth_date
   } = props.navigation.state.params.user;
+  let { user } = props.navigation.state.params;
 
   return (
     <View style={styles.container}>
@@ -89,13 +110,48 @@ export default function Formulario(props) {
           </TouchableOpacity>
         </LinearGradient>
       </View> */}
+
+      <View style={styles.viewContainerGrup}>
+        <View style={styles.viewContainerButtom}>
+          <TouchableOpacity>
+            <Text
+              onPress={deleteUser}
+              style={{
+                fontSize: 16,
+                padding: 13,
+                color: "#150578",
+                textAlign: "center",
+                fontFamily: "PoppinsRegular"
+              }}
+            >
+              <Ionicons name="md-trash" size={18} color="#150578" /> Eliminar{" "}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.viewContainerButtom1}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("EditarUsuario", {user})}
+          >
+            <Text
+              style={{
+                fontSize: 16,
+                padding: 13,
+                color: "#fff",
+                textAlign: "center",
+                fontFamily: "PoppinsRegular"
+              }}
+            >
+              <Ionicons name="md-create" size={18} color="#fff" /> Editar{" "}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     alignItems: "center",
     marginBottom: 10,
     alignItems: "stretch",
@@ -105,7 +161,6 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 16,
     paddingVertical: 13,
-    // paddingHorizontal: 33,
     marginRight: 5,
     fontFamily: "PoppinsRegular"
   },
@@ -133,14 +188,12 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: "#D9E3E6",
     width: 140,
-    // padding: 6,
     alignItems: "stretch"
   },
   viewContainerButtom1: {
     borderRadius: 15,
     backgroundColor: "#01B8E2",
     width: 140,
-    // padding: 6,
     alignItems: "stretch"
   }
 });

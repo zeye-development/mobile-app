@@ -32,7 +32,7 @@ export default class Formulario extends Component {
     };
   }
 
-  async login(email, pass, pass_v) {
+  async login(email, pass, pass_v, names, surnames) {
 
     if (!email) {
       this.setState({
@@ -210,7 +210,7 @@ export default class Formulario extends Component {
           <TextInput
             placeholder="Nombres"
             value={this.state.names}
-            onChangeText={surnames => this.setState({ surnames }) }
+            onChangeText={names => this.setState({ names }) }
             style={styles.input}
           />
         </View>
@@ -218,7 +218,7 @@ export default class Formulario extends Component {
         <View style={styles.viewContainer}>
           <TextInput
             placeholder="Apellidos"
-            value={this.state.names}
+            value={this.state.surnames}
             onChangeText={surnames => this.setState({ surnames }) }
             style={styles.input}
           />
@@ -265,7 +265,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity
             onPress={() => {
-              this.login(this.state.email, this.state.pass, this.state.pass_v);
+              this.login(this.state.email, this.state.pass, this.state.pass_v, this.state.names, this.state.surnames);
             }}
           >
             <Text style={styles.inputButtom}>

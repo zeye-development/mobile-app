@@ -49,11 +49,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingHorizontal: 30    
   },
-  headerText: {
-    color: "#00425A",
-    fontSize: 14,
-    fontFamily: "PoppinsSemiBold"
-  },
   icon: {
     padding: 6
   }

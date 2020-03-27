@@ -145,7 +145,7 @@ export default class Formulario extends React.Component {
       })
         .then(response => response.json())
         .then(response => {
-          // console.log("Search Coincidence: ", response);
+          console.log("Search Coincidence: ", response);
 
           this.setState({ uri: null });
           response.people.forEach(element => this.setState({ id: element._id }))

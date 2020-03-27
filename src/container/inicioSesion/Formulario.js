@@ -17,6 +17,8 @@ import * as Permissions from 'expo-permissions';
 import { LinearGradient } from 'expo-linear-gradient';
 import styled from 'styled-components/native';
 
+import ModalLoading from './../../components/ModalLoading';
+
 export default class Formulario extends Component {
   constructor(props) {
     super(props);
@@ -177,7 +179,7 @@ export default class Formulario extends Component {
         </LinearGradient>
 
         {/* ============================modalLoading======= */}
-        <Modal
+        {/* <Modal
           animationType="none"
           transparent={true}
           visible={this.state.modalLoading}
@@ -195,8 +197,10 @@ export default class Formulario extends Component {
               <ActivityIndicator size={30} color="#fff" />
             ) : null}
           </View>
-        </Modal>
+        </Modal> */}
         
+        <ModalLoading modalLoading={this.state.modalLoading} />
+
         <Modal
           animationType="none"
           transparent={true}

@@ -14,9 +14,7 @@ export default class Loading extends Component {
     if (!token) this.props.navigation.replace("Principal");
 
     try {
-
-      let toke = token.replace(/['"]+/g, "");
-      token = toke;
+      token = token.replace(/['"]+/g, "");
       fetch("http://189.213.227.211:8443/known_person", {
         method: "GET",
         headers: {
@@ -27,7 +25,6 @@ export default class Loading extends Component {
       })
         .then(response => response.json())
         .then(responseJson => {
-          // console.log(responseJson);
 
           if (responseJson.status == 200 && responseJson.data.length != 0) {
             if (token) {
