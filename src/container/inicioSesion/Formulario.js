@@ -29,7 +29,7 @@ export default class Formulario extends Component {
       modalVisible: false,
       modalLoading: false,
       error: false,
-      msjError: ''
+      msjError: '',
     };
   }
 
@@ -41,7 +41,7 @@ export default class Formulario extends Component {
     try {
       const token = await Notifications.getExpoPushTokenAsync();
       AsyncStorage.setItem('tokenPush', token);
-      console.log(token);
+      console.log('Set Token: ', token);
     } catch {}
   }
 
@@ -84,9 +84,9 @@ export default class Formulario extends Component {
     email = email.toLowerCase();
 
     try {
-      const tokenPush = await AsyncStorage.getItem('tokenPush ')
+      const tokenPush = await AsyncStorage.getItem('tokenPush')
       console.info('Form - Login');
-      console.log(tokenPush)
+      console.log('Get Token: ',tokenPush)
       this.setState({ modalLoading: true });
       let response = await fetch('http://189.213.227.211:8443/login', {
         method: 'POST',
@@ -96,7 +96,7 @@ export default class Formulario extends Component {
           mimeType: 'application/json'
         },
         body: JSON.stringify({
-          expoID: 'ExponentPushToken[i4B7PfDNj5EUTHY2J_UUYL]',
+          expoID: tokenPush,
           email: email,
           password: md5(pass)
         })
