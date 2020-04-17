@@ -1,19 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import * as Font from "expo-font";
+import { AppLoading } from "expo";
+
+import Router from "./Router";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+  const fetchFonts = () => {
+    return Font.loadAsync({
+      PoppinsMedium: require("./assets/fonts/Poppins-Medium.ttf"),
+      PoppinsBold: require("./assets/fonts/Poppins-Bold.ttf"),
+      PoppinsSemiBold: require("./assets/fonts/Poppins-SemiBold.ttf"),
+      PoppinsRegular: require("./assets/fonts/Poppins-Regular.ttf")
+    });
+  };
+  const [dataLoaded, setDataLoaded] = useState(false);
+  if (!dataLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setDataLoaded(true)}
+      />
+    );
+  }
+  return <Router />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

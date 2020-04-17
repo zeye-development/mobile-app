@@ -1,0 +1,488 @@
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Modal,
+  ActivityIndicator
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import md5 from "md5";
+import { LinearGradient } from "expo-linear-gradient";
+import { validatorEmail } from "../../helpers/validatorEmail";
+
+export default class Formulario extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      email: null,
+      pass: null,
+      pass_v: null,
+      names: '',
+      surnames: '',
+      modalVisible: false,
+      modalVisible2: false,
+      mensajeAlert: "",
+      modalLoading: false,
+      error: false,
+      msjError: ""
+    };
+  }
+
+  async login(email, pass, pass_v, names, surnames) {
+
+    if (!email) {
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "El Email es requerido para iniciar Sesion"
+      });
+      return;
+    } else if (email) {
+      if (!validatorEmail(email)) {
+        this.setState({
+          error: true,
+          msjError: "Introduzca un email valido"
+        });
+        setTimeout(() => {
+          this.setState({
+            error: false,
+            msjError: ""
+          });
+        }, 2000);
+        return;
+      }
+    }
+
+    email = email.toLowerCase();
+    console.log(email);
+
+    if (!names) {
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "El Nombre es requerido para registrar una cuenta"
+      });
+      return;
+    }
+
+    if (!surnames) {
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "El Apellido es requerido para registrar una cuenta"
+      });
+      return;
+    }
+
+    if (!pass) {
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "La Contraseña es requerida para registrar una cuenta"
+      });
+      return;
+    } else if (pass) {
+      if (pass.length < 6) {
+        this.setState({
+          error: true,
+          msjError: "La Contraseña debe ser mayor a 6 caracteres"
+        });
+        setTimeout(() => {
+          this.setState({
+            error: false,
+            msjError: ""
+          });
+        }, 2000);
+        return;
+      }
+    }
+
+    if (!pass_v) {
+      this.setState({
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "La Contraseña es requerida para iniciar Sesion"
+      });
+      return;
+    } else if (pass_v) {
+      if (pass_v.length < 6) {
+        this.setState({
+          error: true,
+          msjError: "La Contraseña debe ser mayor a 6 caracteres"
+        });
+        setTimeout(() => {
+          this.setState({
+            error: false,
+            msjError: ""
+          });
+        }, 2000);
+        return;
+      }
+    }
+    
+    if (pass_v != pass) {
+      this.setState({
+        error: true,
+        msjError: "Las Contraseñas no coinciden"
+      });
+      setTimeout(() => {
+        this.setState({
+          error: false,
+          msjError: ""
+        });
+      }, 2000);
+      return;
+    }
+
+    const licence = Math.floor(
+      Math.random() *
+        1000 *
+        Math.floor(
+          Math.random() *
+            100 *
+            Math.floor(Math.random() * 10000000000 * 1458102*Math.random()*Math.random()*Math.random())
+        )
+    );
+    
+    var licenceS = licence.toString();
+    let lic = licenceS.replace(/['"]+/g, "");
+    console.log(licenceS);
+
+    try {
+      this.setState({ modalLoading: true });
+      let response = await fetch("http://189.213.227.211:8443/user", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          mimeType: "application/json"
+        },
+        body: JSON.stringify({
+          email: email,
+          password: md5(pass),
+          password_validate: md5(pass_v),
+          names: "",
+          surnames: "",
+          license_key: lic
+        })
+      });
+
+      let responseJson = await response.json();
+      console.log(responseJson);
+
+      if (responseJson.status === 200) {
+        this.setState({
+          modalLoading: false,
+          modalVisible2: !this.state.modalVisible2,
+          mensajeAlert: "El Registro se Completo de Manera Exitosa!"
+        });
+      } else {
+        this.setState({
+          modalLoading: false,
+          modalVisible: !this.state.modalVisible,
+          mensajeAlert: "Este correo ya se encuentra registrado"
+        });
+      }
+    } catch (error) {
+      this.setState({
+        modalLoading: false,
+        modalVisible: !this.state.modalVisible,
+        mensajeAlert: "Usted no dispone de una conexion a internet"
+      });
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Correo Electronico"
+            value={this.state.email}
+            onChangeText={item => {
+              const email = item.trim();
+              this.setState({ email });
+            }}
+            style={styles.input}
+          />
+        </View>
+
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Nombres"
+            value={this.state.names}
+            onChangeText={names => this.setState({ names }) }
+            style={styles.input}
+          />
+        </View>
+
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Apellidos"
+            value={this.state.surnames}
+            onChangeText={surnames => this.setState({ surnames }) }
+            style={styles.input}
+          />
+        </View>        
+
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Contraseña"
+            secureTextEntry={true}
+            value={this.state.pass}
+            onChangeText={item => {
+              const pass = item.trim();
+              this.setState({ pass });
+            }}
+            style={styles.input}
+          />
+        </View>
+
+        <View style={styles.viewContainer}>
+          <TextInput
+            placeholder="Repetir Contraseña"
+            secureTextEntry={true}
+            value={this.state.pass_v}
+            onChangeText={item => {
+              const pass_v = item.trim();
+              this.setState({ pass_v });
+            }}
+            style={styles.input}
+          />
+        </View>
+        {this.state.error ? (
+          <View style={styles.error}>
+            <Text style={[styles.font, { color: "#fff" }]}>
+              {this.state.msjError}
+            </Text>
+          </View>
+        ) : null}
+
+        <LinearGradient
+          colors={["#0097CD", "#01B8E2"]}
+          start={[0, 0.8]}
+          end={[0.8, 0.5]}
+          style={styles.styleButtom}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              this.login(this.state.email, this.state.pass, this.state.pass_v, this.state.names, this.state.surnames);
+            }}
+          >
+            <Text style={styles.inputButtom}>
+              Registrar{" "}
+              <Ionicons name="md-arrow-forward" size={18} color="#fff" />
+            </Text>
+          </TouchableOpacity>
+        </LinearGradient>
+        {/* ============================modalLoading======= */}
+
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalLoading}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+            }}
+          ></View>
+
+          <View
+            style={{
+              position: "absolute",
+              top: "45%",
+              left: "45%"
+            }}
+          >
+            {this.state.modalLoading ? (
+              <ActivityIndicator size={30} color="#fff" />
+            ) : null}
+          </View>
+        </Modal>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalVisible}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+            }}
+          ></View>
+
+          <View
+            style={{
+              width: 290,
+              backgroundColor: "#fff",
+              borderRadius: 15,
+              position: "absolute",
+              marginTop: "45%",
+              marginHorizontal: "10%"
+            }}
+          >
+            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#00425A",
+                  textAlign: "center",
+                  textShadowRadius: 2,
+                  fontFamily: "PoppinsBold"
+                }}
+              >
+                {this.state.mensajeAlert}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ modalVisible: !this.state.modalVisible });
+                }}
+              >
+                <Text
+                  onPress={() => {
+                    this.setState({ modalVisible: !this.state.modalVisible });                    
+                    // this.props.navigation.replace("InicioSesion");
+                  }}
+                  style={{
+                    fontSize: 16,
+                    color: "#01B8E2",
+                    textAlign: "right",
+                    fontFamily: "PoppinsRegular",
+                    marginTop: 40,
+                    marginHorizontal: 20,
+                    marginBottom: 20
+                  }}
+                >
+                  {" "}
+                  Entendido
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalVisible2}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 66, 90, 0.5)"
+            }}
+          ></View>
+
+          <View
+            style={{
+              width: 290,
+              backgroundColor: "#fff",
+              borderRadius: 15,
+              position: "absolute",
+              marginTop: "45%",
+              marginHorizontal: "10%"
+            }}
+          >
+            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#00425A",
+                  textAlign: "center",
+                  textShadowRadius: 2,
+                  fontFamily: "PoppinsBold"
+                }}
+              >
+                {this.state.mensajeAlert}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ modalVisible2: !this.state.modalVisible2 });
+                  this.props.navigation.replace("InicioSesion");
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 16,
+                    color: "#01B8E2",
+                    textAlign: "right",
+                    fontFamily: "PoppinsRegular",
+                    marginTop: 40,
+                    marginHorizontal: 20,
+                    marginBottom: 20
+                  }}
+                >
+                  {" "}
+                  Iniciar Sesion
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 10,
+    alignItems: "stretch",
+    maxWidth: 450,
+    paddingHorizontal: 30
+  },
+  input: {
+    fontSize: 16,
+    paddingVertical: 13,
+    paddingHorizontal: 33,
+    borderWidth: 2,
+    borderColor: "transparent",
+    fontFamily: "PoppinsRegular"
+  },
+  inputButtom: {
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
+    padding: 13,
+    color: "#fff",
+    textAlign: "center"
+  },
+  viewContainer: {
+    borderRadius: 15,
+    backgroundColor: "#EBF2F4",
+    marginVertical: 5
+  },
+  styleButtom: {
+    borderRadius: 15,
+    marginVertical: 5,
+    alignItems: "stretch",
+    backgroundColor: "#0097CD"
+  },
+  error: {
+    borderRadius: 15,
+    backgroundColor: "#FE6363",
+    alignItems: "center",
+    padding: 10,
+    marginVertical: 5
+  },
+  usuario: {
+    padding: 13,
+    backgroundColor: "red",
+    textAlign: "center",
+    color: "#fff",
+    borderRadius: 15,
+    marginTop: 5
+  },
+  font: {
+    fontFamily: "PoppinsRegular"
+  }
+});

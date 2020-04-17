@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Mobile App - Zeye",
-    "slug": "mobile-app-zeye",
+    "name": "Zeye",
+    "slug": "zeye",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/quantic.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/zeye.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "bundleIdentifier": "zeye.services.zeye",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.zeye.zeyemobileapp"
+    }    
   }
 }
