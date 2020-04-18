@@ -5,6 +5,10 @@ import { createStackNavigator } from "react-navigation-stack";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 
+// Redux
+import { Provider } from 'react-redux';
+import generateStore from './src/redux/store';
+
 import Principal from "./src/pages/Principal";
 import InicioSesion from "./src/pages/InicioSesion";
 import Registro from "./src/pages/Registro";
@@ -87,7 +91,7 @@ const AppNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: "Events",
+    initialRouteName: "Principal",
     headerMode: "none",
     navigationOptions: {
       headerVisible: false,
@@ -96,4 +100,15 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-export default createAppContainer(AppNavigator);
+let Navigation = createAppContainer(AppNavigator);
+let store = generateStore()
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
+    );
+  }
+}

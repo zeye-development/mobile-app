@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   Text,
@@ -19,7 +20,9 @@ import styled from 'styled-components/native';
 
 import ModalLoading from './../../components/ModalLoading';
 
-export default class Formulario extends Component {
+import { loginAction } from './../../redux/userDuck';
+
+class Formulario extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +37,7 @@ export default class Formulario extends Component {
   }
 
   async componentDidMount() {
+    console.log('Props Login Redux: ', this.props)
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
     if (status !== 'granted') {
       return;
@@ -84,7 +88,7 @@ export default class Formulario extends Component {
     email = email.toLowerCase();
 
     try {
-      const tokenPush = await AsyncStorage.getItem('tokenPush')
+      const tokenPush = await AsyncStorage.getItem('tokenPush');
       console.info('Form - Login');
       console.log('Get Token: ',tokenPush)
       this.setState({ modalLoading: true });
@@ -127,6 +131,25 @@ export default class Formulario extends Component {
     }
   }
 
+  handleSubmit =  async () => {
+    const tokenPush = await AsyncStorage.getItem('tokenPush');
+    
+    this.props.loginAction({ 
+      email: 'lewis@gmail.com',
+      password: md5('889900'),
+      expoID: tokenPush
+    })
+    .then(response => {
+      if(response.status === 200) {
+
+        let { token } = response.data;
+        AsyncStorage.setItem('token', token);
+        this.props.navigation.replace('Loading', { token });
+      }
+    })
+    .catch(error => console.log(error))
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -167,9 +190,7 @@ export default class Formulario extends Component {
           style={styles.styleButtom}
         >
           <TouchableOpacity
-            onPress={() => {
-              this.login(this.state.email, this.state.pass);
-            }}
+            onPress={this.handleSubmit}
           >
             <Text style={[styles.inputButtom, styles.font]}>
               Iniciar Sesion{' '}
@@ -241,6 +262,12 @@ export default class Formulario extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user.user
+});
+
+export default connect(mapStateToProps, { loginAction })(Formulario)
 
 const ModalView = styled.View`
 	flex: 1;
