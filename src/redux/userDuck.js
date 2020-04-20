@@ -78,7 +78,7 @@ export const registerAction = (form) => async (dispatch, getState) => {
     dispatch({
       type: REGISTER_SUCCESS,
       payload: {
-        user: response.data.data.user,
+        user: response.data.data.account_data,
         token: response.data.data.token
       }
     })
