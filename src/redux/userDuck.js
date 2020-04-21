@@ -5,9 +5,7 @@ import config from './../../config';
 let initialData = {
   loggedIn: false,
   fetching: false,
-  user: {
-    name: 'Carl'
-  }
+  user: {}
 }
 
 let LOGIN             = "LOGIN";
@@ -50,7 +48,7 @@ export const loginAction = (form) => async (dispatch, getState) => {
     dispatch({
       type: LOGIN_SUCCESS,
       payload: {
-        user: response.data.account_data,
+        user: response.data,
         token: response.data.token
       }
     })

@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { StyleSheet, View, ScrollView } from "react-native";
 
 import Header from './../components/Header';
@@ -7,6 +8,9 @@ import Camera from "../container/galeria/Camera";
 import Imagenes from "../container/galeria/Imagenes";
 
 export default function Galeria(props) {
+
+  const { user } = useSelector(state => state.user);
+  console.log('Data User From Gallery: ', user);
 
   let { id, images } = props.navigation.state.params;
 

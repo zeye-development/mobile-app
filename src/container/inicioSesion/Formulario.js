@@ -37,7 +37,7 @@ class Formulario extends Component {
   }
 
   async componentDidMount() {
-    console.log('Props Login Redux: ', this.props)
+    // console.log('Props Login Redux: ', this.props)
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
     if (status !== 'granted') {
       return;
@@ -141,7 +141,6 @@ class Formulario extends Component {
     })
     .then(response => {
       if(response.status === 200) {
-
         let { token } = response.data;
         AsyncStorage.setItem('token', token);
         this.props.navigation.replace('Loading', { token });
