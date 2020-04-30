@@ -17,6 +17,7 @@ import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
 import { LinearGradient } from "expo-linear-gradient";
 import styled from "styled-components/native";
+const io = require('socket.io-client');
 
 import ModalLoading from "./../../components/ModalLoading";
 
@@ -40,10 +41,11 @@ class Formulario extends Component {
     // console.log('Props Login Redux: ', this.props)
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
     if (status !== "granted") {
-      return;
+      return
     }
     try {
       const token = await Notifications.getExpoPushTokenAsync();
+      console.log(token)
       AsyncStorage.setItem("tokenPush", token);
       console.log("Set Token: ", token);
     } catch {}
@@ -85,12 +87,13 @@ class Formulario extends Component {
 
   handleSubmit = async () => {
     const tokenPush = await AsyncStorage.getItem("tokenPush");
+    console.log(tokenPush)
     try {
       this.props
         .loginAction({
           email: this.state.email,
           password: md5(this.state.pass),
-          expoID: tokenPush,
+          expoID: 'asdasoasodqko',
         })
         .then((response) => {
           if (response.status === 200) {

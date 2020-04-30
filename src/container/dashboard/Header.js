@@ -27,14 +27,16 @@ export default class Dashboard extends Component {
     return (
       <View style={styles.container}>
         <View style={{ flexDirection: "row" }}>
-          {/* <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("PanelAdmin")}
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Menu")}
           >
             <Text style={styles.icon}>
               {" "}
               <Feather name="settings" size={18} color="#fff" />{" "}
             </Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity> 
+          
+          
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("BuscarCoincidencia")}
           >

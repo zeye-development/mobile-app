@@ -27,7 +27,8 @@ import Loading from "./src/pages/Loading";
 import Galeria from "./src/pages/Galeria";
 import Deployments from "./src/pages/Deployments";
 import Events from "./src/pages/Eventos";
-
+import socketTest from "./src/pages/socketTest"
+import Menu from "./src/pages/Menu"
 import Camera from "./Camera";
 
 const AppNavigator = createStackNavigator(
@@ -89,9 +90,15 @@ const AppNavigator = createStackNavigator(
     Events: {
       screen: Events,
     },
+    socketTest:{
+      screen: socketTest
+    },
+    Menu:{
+      screen: Menu
+    }
   },
   {
-    initialRouteName: "Principal",
+    initialRouteName: 'Principal',
     headerMode: "none",
     navigationOptions: {
       headerVisible: false,

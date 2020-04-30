@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, AsyncStorage, StyleSheet } from "react-native";
+import { Image, AsyncStorage, StyleSheet } from "react-native";
 import styled from 'styled-components/native';
 
 export default class Loading extends Component {
@@ -40,6 +40,7 @@ export default class Loading extends Component {
           }
         })
         .catch(error => console.error('Loading Error: ', error));
+
     } catch (error) {
 
     }
