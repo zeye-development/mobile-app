@@ -5,16 +5,20 @@ import config from './../../config';
 let initialData = {
   loggedIn: false,
   fetching: false,
-  user: {}
+  user: {},
+  users: []
 }
 
-let LOGIN             = "LOGIN";
-let LOGIN_SUCCESS     = "LOGIN_SUCCESS";
-let LOGIN_ERROR       = "LOGIN_ERROR";
+const LOGIN             = "LOGIN";
+const LOGIN_SUCCESS     = "LOGIN_SUCCESS";
+const LOGIN_ERROR       = "LOGIN_ERROR";
 
-let REGISTER          = "REGISTER";
-let REGISTER_SUCCESS  = "REGISTER_SUCCESS";
-let REGISTER_ERROR    = "REGISTER_ERROR";
+const REGISTER          = "REGISTER";
+const REGISTER_SUCCESS  = "REGISTER_SUCCESS";
+const REGISTER_ERROR    = "REGISTER_ERROR";
+
+const SAVE_USERS_STORE  = "SAVE_USERS_STORE";
+
 
 // reducer
 export default function reducer(state = initialData, action){
@@ -32,6 +36,9 @@ export default function reducer(state = initialData, action){
       return { ...state, fetching: false, ...action.payload }      
     case REGISTER_ERROR:
       return { ...state, fetching: false, error: action.payload }
+
+    case SAVE_USERS_STORE:
+      return { ...state, users: action.payload }
 
       default:
       return state
@@ -91,4 +98,11 @@ export const registerAction = (form) => async (dispatch, getState) => {
 
     return error;
   }
+}
+
+export const saveUsersToStoreAction = (data) => (dispatch) => {
+  dispatch({
+    type: SAVE_USERS_STORE,
+    payload: data
+  })  
 }

@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import { Image, AsyncStorage, StyleSheet } from "react-native";
+=======
+import { connect } from 'react-redux';
+import { View, Image, AsyncStorage, StyleSheet } from "react-native";
+>>>>>>> aac0f07ea49a5baa2d83977b726299bc72525673
 import styled from 'styled-components/native';
 
-export default class Loading extends Component {
+import { saveUsersToStoreAction } from './../redux/userDuck';
+
+class Loading extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -28,6 +35,8 @@ export default class Loading extends Component {
 
           if (responseJson.status == 200 && responseJson.data.length != 0) {
             if (token) {
+              this.props.saveUsersToStoreAction(responseJson.data)
+
               this.props.navigation.replace("Dashboard", {
                 users: responseJson.data,
                 cantidad: responseJson.persons_length
@@ -58,6 +67,12 @@ export default class Loading extends Component {
     );
   }
 }
+
+const mapDispatchToProps = ({
+  saveUsersToStoreAction
+})
+
+export default connect(null, mapDispatchToProps)(Loading);
 
 const Container = styled.View`
   flex: 1;

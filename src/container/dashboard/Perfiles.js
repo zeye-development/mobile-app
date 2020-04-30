@@ -1,10 +1,11 @@
 import React, { Component, useState } from 'react';
+import { connect } from 'react-redux';
 import { View, StyleSheet, FlatList, Text, Image, AsyncStorage } from "react-native";
 import Perfil from "./Perfil";
 import PerfilSolicitado from "./PerfilSolicitado"
 import Separator from './../../components/Separator';
 
-export default class Perfiles extends Component {
+class Perfiles extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +15,7 @@ export default class Perfiles extends Component {
   }
 
   componentDidMount() {
+    console.log('User From Store: ', this.props.users)
     let usersWantedFalse = [];
     let users = [];
     let cant = JSON.stringify(
@@ -72,6 +74,12 @@ export default class Perfiles extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  users: state.user.users,
+})
+
+export default connect(mapStateToProps)(Perfiles)
 
 const styles = StyleSheet.create({
   container: {
