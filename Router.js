@@ -87,7 +87,7 @@ const AppNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: "Events",
+    initialRouteName: "Principal",
     headerMode: "none",
     navigationOptions: {
       headerVisible: false,

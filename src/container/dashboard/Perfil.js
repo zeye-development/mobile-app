@@ -6,20 +6,14 @@ export default class Perfil extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      click: false
-    }
+      click: false,
+    };
   }
 
   OnClickTrue = () => {
-    if (this.state.click) {
+    this.setState({ click: !this.state.click });
+  };
 
-      this.setState({ click: false })
-    };
-    if (!this.state.click) {
-      this.setState({ click: true })
-    };
-  }
-  
   render() {
     let { _id, names, surnames, images, birth_date } = this.props.usuario;
 
@@ -30,7 +24,9 @@ export default class Perfil extends React.Component {
             <View style={styles.img}>
               <Image
                 style={{ width: 50, height: 50, borderRadius: 100 }}
-                source={{ uri: `http://189.213.227.211:8443/file=${images[0]}` }}
+                source={{
+                  uri: `http://189.213.227.211:8443/file=${images[0]}`,
+                }}
               />
             </View>
             <View style={{ justifyContent: "center", paddingLeft: 10 }}>
@@ -38,21 +34,22 @@ export default class Perfil extends React.Component {
                 style={[
                   styles.textColor,
                   {
-                    fontFamily: "PoppinsSemiBold"
-                  }
+                    fontFamily: "PoppinsSemiBold",
+                  },
                 ]}
               >
-                {names[0]}{" "} {surnames[0]}
+                {names[0]} {surnames[0]}
               </Text>
               <Text
                 style={[
                   styles.textColor2,
                   {
-                    fontFamily: "PoppinsRegular"
-                  }
+                    fontFamily: "PoppinsRegular",
+                  },
                 ]}
               >
-                {" "}{_id} {birth_date}
+                {" "}
+                {_id} {birth_date}
               </Text>
             </View>
           </View>
@@ -64,23 +61,29 @@ export default class Perfil extends React.Component {
               </View>
             </TouchableOpacity>
           ) : (
-              <TouchableOpacity onPress={this.OnClickTrue}>
-                <View style={styles.styleButtom}>
-                  <Ionicons name="md-close" size={18} color="#00425A" />
-                </View>
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity onPress={this.OnClickTrue}>
+              <View style={styles.styleButtom}>
+                <Ionicons name="md-close" size={18} color="#00425A" />
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
         {this.state.click ? (
           <View style={styles.containerOptionButtom}>
             <View style={styles.containerButtom}>
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("UsuarioRequerido", { user: this.props.usuario })}
+                onPress={() =>
+                  this.props.navigation.navigate("UsuarioRequerido", {
+                    user: this.props.usuario,
+                  })
+                }
               >
                 <Text style={styles.optionButtom}>Perfil</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Galeria', { id: _id, images })}
+                onPress={() =>
+                  this.props.navigation.navigate("Galeria", { id: _id, images })
+                }
               >
                 <Text style={styles.optionButtom}>Galería</Text>
               </TouchableOpacity>
@@ -95,36 +98,36 @@ export default class Perfil extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   img: {
     justifyContent: "center",
-    borderRadius: 100
+    borderRadius: 100,
   },
   textColor: {
     color: "#00425A",
-    fontSize: 14
+    fontSize: 14,
   },
   textColor2: {
     color: "#00425A",
-    fontSize: 15
+    fontSize: 15,
   },
   styleButtom: {
     justifyContent: "center",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   optionButtom: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingHorizontal: 7,
     paddingVertical: 7,
     fontFamily: "PoppinsRegular",
-    fontSize: 12
+    fontSize: 12,
   },
   containerOptionButtom: {
     position: "absolute",
     right: 25,
-    top: 0
+    top: 0,
   },
   containerButtom: {
     top: -10,
@@ -135,10 +138,10 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
-  }
+    elevation: 5,
+  },
 });

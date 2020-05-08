@@ -15,7 +15,7 @@ export default function Deployments(props) {
           end={[0.8, 0.5]}
           style={styles.containerSuperior}
         >
-          <Header />
+          <Header navigation={props.navigation} />
         </LinearGradient>
         <View>
           <Servers />
