@@ -1,6 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
-import { Ionicons, Foundation } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+
+import config from './../../../config';
 
 export default class Perfil extends React.Component {
   constructor(props) {
@@ -30,7 +32,7 @@ export default class Perfil extends React.Component {
             <View style={styles.img}>
               <Image
                 style={{ width: 50, height: 50, borderRadius: 100 }}
-                source={{ uri: `http://189.213.227.211:8443/file=${images[0]}` }}
+                source={{ uri: `${config.API_URL}/file=${images[0]}` }}
               />
             </View>
             <View style={{ justifyContent: "center", paddingLeft: 10 }}>
