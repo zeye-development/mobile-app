@@ -14,6 +14,8 @@ import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import DatePicker from "react-native-datepicker";
 
+import config from './../../../config';
+
 export default class Formulario extends Component {
   constructor(props) {
     super(props);
@@ -111,7 +113,7 @@ export default class Formulario extends Component {
     // let base64 = parabase64.replace(/['"]+/g, "");
 
     // if (this.state.foto != null) {
-    fetch("http://189.213.227.211:8443/register-face", {
+    fetch(`${config.API_URL}/register-face`, {
       method: "POST",
       body: JSON.stringify({
         names: this.state.name,

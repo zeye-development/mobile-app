@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
+import { connect } from "react-redux";
 import { Image, AsyncStorage, StyleSheet } from "react-native";
-=======
-import { connect } from 'react-redux';
-import { View, Image, AsyncStorage, StyleSheet } from "react-native";
->>>>>>> aac0f07ea49a5baa2d83977b726299bc72525673
 import styled from 'styled-components/native';
 
 import { saveUsersToStoreAction } from './../redux/userDuck';
+import config from './../../config';
 
 class Loading extends Component {
   constructor(props) {
@@ -22,7 +19,7 @@ class Loading extends Component {
 
     try {
       token = token.replace(/['"]+/g, "");
-      fetch("http://189.213.227.211:8443/known_person", {
+      fetch(`${config.API_URL}/known_person`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

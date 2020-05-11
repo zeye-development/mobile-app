@@ -17,6 +17,8 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
 
+import config from './../../../config';
+
 export default class Formulario extends React.Component {
   constructor(props) {
     super(props);
@@ -133,7 +135,7 @@ export default class Formulario extends React.Component {
 
       this.setState({ modalLoading: true });
 
-      fetch("http://189.213.227.211:8443/person-query", {
+      fetch(`${config.API_URL}/person-query`, {
         method: "POST",
         body: JSON.stringify({
           picture: this.state.base64

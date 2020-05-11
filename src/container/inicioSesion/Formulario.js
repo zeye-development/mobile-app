@@ -22,6 +22,7 @@ const io = require('socket.io-client');
 import ModalLoading from "./../../components/ModalLoading";
 
 import { loginAction } from "./../../redux/userDuck";
+import * as Config from '../../../config';
 
 class Formulario extends Component {
   constructor(props) {
@@ -38,7 +39,6 @@ class Formulario extends Component {
   }
 
   async componentDidMount() {
-    // console.log('Props Login Redux: ', this.props)
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
     if (status !== "granted") {
       return
@@ -52,35 +52,35 @@ class Formulario extends Component {
   }
 
   async login(email, pass) {
-    if (!email) {
-      this.setState({
-        modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Email es requerido para iniciar Sesion",
-      });
-      return;
-    } else if (email) {
-      if (!validatorEmail(email)) {
-        this.setState({
-          error: true,
-          msjError: "Introduzca un email valido",
-        });
-        setTimeout(() => {
-          this.setState({
-            error: false,
-            msjError: "",
-          });
-        }, 2000);
-        return;
-      }
-    }
+    // if (!email) {
+    //   this.setState({
+    //     modalVisible: !this.state.modalVisible,
+    //     mensajeAlert: "El Email es requerido para iniciar Sesion",
+    //   });
+    //   return;
+    // } else if (email) {
+    //   if (!validatorEmail(email)) {
+    //     this.setState({
+    //       error: true,
+    //       msjError: "Introduzca un email valido",
+    //     });
+    //     setTimeout(() => {
+    //       this.setState({
+    //         error: false,
+    //         msjError: "",
+    //       });
+    //     }, 2000);
+    //     return;
+    //   }
+    // }
 
-    if (!pass) {
-      this.setState({
-        modalVisible: !this.state.modalVisible,
-        mensajeAlert: "La Contraseña es requerida para Iniciar Sesion",
-      });
-      return;
-    }
+    // if (!pass) {
+    //   this.setState({
+    //     modalVisible: !this.state.modalVisible,
+    //     mensajeAlert: "La Contraseña es requerida para Iniciar Sesion",
+    //   });
+    //   return;
+    // }
     this.handleSubmit();
     email = email.toLowerCase();
   }
@@ -88,11 +88,15 @@ class Formulario extends Component {
   handleSubmit = async () => {
     const tokenPush = await AsyncStorage.getItem("tokenPush");
     console.log(tokenPush)
+    // email: this.state.email,
+    // password: md5(this.state.pass),
+    // email: 'lewistest@gmail.com',
+    // password: md5('123456'),        
     try {
       this.props
         .loginAction({
-          email: this.state.email,
-          password: md5(this.state.pass),
+    email: this.state.email,
+    password: md5(this.state.pass),
           expoID: 'asdasoasodqko',
         })
         .then((response) => {

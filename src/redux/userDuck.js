@@ -17,6 +17,10 @@ const REGISTER          = "REGISTER";
 const REGISTER_SUCCESS  = "REGISTER_SUCCESS";
 const REGISTER_ERROR    = "REGISTER_ERROR";
 
+const GET_USERS          = "GET_USERS";
+const GET_USERS_SUCCESS  = "GET_USERS_SUCCESS";
+const GET_USERS_ERROR    = "GET_USERS_ERROR";
+
 const SAVE_USERS_STORE  = "SAVE_USERS_STORE";
 
 
@@ -59,10 +63,10 @@ export const loginAction = (form) => async (dispatch, getState) => {
         token: response.data.token
       }
     })
-
+    console.log('response login: ', response);
     return response;
   } catch (error) {
-    console.log('Error Login: ', error);
+    console.log('Error Login: ', error.response);
     dispatch({
       type: LOGIN_ERROR,
       payload: error.message
@@ -71,8 +75,37 @@ export const loginAction = (form) => async (dispatch, getState) => {
   }
 }
 
-export const registerAction = (form) => async (dispatch, getState) => {
-  console.log('Register: ', form)
+export const registerAccountZeyeAction = (form) => async (dispatch, getState) => {
+  console.log('registerAccountZeyeAction: ', form)
+  dispatch({
+    type: REGISTER,
+  })
+
+  try {
+    const response = await axios.post(`${config.API_URL}/user`, form);
+    console.log('Success registerAccountZeyeAction: ', response.data)
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: {
+        user: response.data.data.account_data,
+        token: response.data.data.token
+      }
+    })
+
+    return response;
+  } catch (error) {
+    console.log('Error registerAccountZeyeAction: ', error);
+    dispatch({
+      type: REGISTER_ERROR,
+      payload: error.message
+    })
+
+    return error;
+  }
+}
+
+export const getUsersAction = () => async (dispatch, getState) => {
+  console.log('Get All users: ', )
   dispatch({
     type: REGISTER,
   })

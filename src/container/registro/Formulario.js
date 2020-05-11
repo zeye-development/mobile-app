@@ -11,7 +11,9 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import md5 from "md5";
 import { LinearGradient } from "expo-linear-gradient";
+
 import { validatorEmail } from "../../helpers/validatorEmail";
+import config from './../../../config';
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -149,7 +151,7 @@ export default class Formulario extends Component {
 
     try {
       this.setState({ modalLoading: true });
-      let response = await fetch("http://189.213.227.211:8443/user", {
+      let response = await fetch(`${config.API_URL}/user`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -160,8 +162,8 @@ export default class Formulario extends Component {
           email: email,
           password: md5(pass),
           password_validate: md5(pass_v),
-          names: "",
-          surnames: "",
+          names: names,
+          surnames: surnames,
           license_key: lic
         })
       });
