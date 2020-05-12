@@ -104,30 +104,30 @@ export const registerAccountZeyeAction = (form) => async (dispatch, getState) =>
   }
 }
 
-export const getUsersAction = () => async (dispatch, getState) => {
-  console.log('Get All users: ', )
-  dispatch({
-    type: REGISTER,
-  })
+export const getUsersAction = () => async (dispatch) => {
+  // console.log('Get All users: ', )
+  // dispatch({
+  //   type: GET_USERS,
+  // })
 
   try {
-    const response = await axios.post(`${config.API_URL}/register`, form);
-    console.log('Success Register: ', response.data)
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: {
-        user: response.data.data.account_data,
-        token: response.data.data.token
-      }
-    })
+    const response = await axios.get(`${config.API_URL}/known`, form);
+    console.log('Get All users: ', response.data)
+    // dispatch({
+    //   type: GET_USERS_SUCCESS,
+    //   payload: {
+    //     user: response.data.data.account_data,
+    //     token: response.data.data.token
+    //   }
+    // })
 
     return response;
   } catch (error) {
-    console.log('Error Register: ', error);
-    dispatch({
-      type: REGISTER_ERROR,
-      payload: error.message
-    })
+    console.log('Error All users: ', error);
+    // dispatch({
+    //   type: GET_USERS_ERROR,
+    //   payload: error.message
+    // })
 
     return error;
   }

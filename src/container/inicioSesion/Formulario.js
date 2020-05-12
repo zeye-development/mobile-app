@@ -95,8 +95,8 @@ class Formulario extends Component {
     try {
       this.props
         .loginAction({
-    email: this.state.email,
-    password: md5(this.state.pass),
+    email: 'lewistest@gmail.com',
+    password: md5('123456'),  
           expoID: 'asdasoasodqko',
         })
         .then((response) => {
@@ -249,7 +249,6 @@ const ModalTitle = styled.Text`
   text-align: center;
   font-family: "PoppinsBold";
 `;
-/* textShadowRadius: 2; */
 
 const TextConfirm = styled.Text`
   font-size: 16px;

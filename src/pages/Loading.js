@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Image, AsyncStorage, StyleSheet } from "react-native";
 import styled from 'styled-components/native';
 
-import { saveUsersToStoreAction } from './../redux/userDuck';
+import { saveUsersToStoreAction, getUsersAction } from './../redux/userDuck';
 import config from './../../config';
 
 class Loading extends Component {
@@ -48,7 +48,6 @@ class Loading extends Component {
         .catch(error => console.error('Loading Error: ', error));
 
     } catch (error) {
-
     }
   }
 

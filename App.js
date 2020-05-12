@@ -3,6 +3,7 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 
 import Router from "./Router";
+import HttpClient from './config/HttpClient';
 
 export default function App() {
   const fetchFonts = () => {

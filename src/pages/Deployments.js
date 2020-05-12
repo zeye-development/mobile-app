@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Header from "../container/deployments/Header";
 import Servers from "../container/deployments/Servers";
 
-export default function Deployments(props) {
+export default function Deployments() {
   return (
     <View>
       <ScrollView>

@@ -2,11 +2,11 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Login(props) {
+export default function Login({ navigation }) {
   return (
     <View style={style.container}>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("InicioSesion")}
+        onPress={() => navigation.navigate("InicioSesion")}
       >
         <View style={style.styleButtonInt}>
           <Text style={[style.buttonInit, style.font]}>Iniciar Sesion</Text>
@@ -14,7 +14,7 @@ export default function Login(props) {
       </TouchableOpacity>
 
       <View style={style.styleButtonReg}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Registro")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Registro")}>
           <Text style={[style.buttonReg, style.font]}>
             Registrarme{" "}
             <Ionicons name="md-arrow-forward" size={16} color="#0097CD" />{" "}
