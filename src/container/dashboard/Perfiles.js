@@ -31,6 +31,8 @@ class Perfiles extends Component {
     let cant = JSON.stringify(
       this.props.navigation.getParam("cantidad", "cantidad")
     );
+
+    const numberUsers = this.props.users.length;
     cant = cant.replace(/['"]+/g, "");
     if (this.props.users) {
       // users = this.props.navigation.state.params.users;
