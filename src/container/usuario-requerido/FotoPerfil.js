@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
+import config from './../../../config';
+
 export default function FotoPerfil(props) {
   const [solicitado, setSolicitado] = useState({ solicitado: false });
 
@@ -12,11 +14,12 @@ export default function FotoPerfil(props) {
       <View style={{ alignItems: "center" }}>
         <View style={styles.viewContainer}>
           <Image
-            source={{ uri: `http://189.213.227.211:8443/file=${imagen[0]}` }}
+            source={{ uri: `${config.API_URL}/file=${imagen[0]}` }}
             style={styles.imageBackground}
           />
         </View>
       </View>
+      
       {wanted == false ? (
         <TouchableOpacity
           onPress={() => setSolicitado({ solicitado: true })}

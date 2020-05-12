@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from "react-na
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
+import config from './../../../config';
+
 export default function Formulario(props) {
 
   const deleteUser = async () => {
@@ -12,7 +14,7 @@ export default function Formulario(props) {
     console.log('Token: ', token);
 
     try {
-      fetch(`http://189.213.227.211:8443/person-query?dni=${id}`, {
+      fetch(`${config.API_URL}/person-query?dni=${id}`, {
         method: 'DELETE',
         headers: {
           key: token.replace(/['"]+/g, '')          

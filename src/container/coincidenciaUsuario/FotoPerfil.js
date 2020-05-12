@@ -1,6 +1,8 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, Alert } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+
+import config from './../../../config';
 
 export default class Formulario extends React.Component {
   constructor(props) {
@@ -26,7 +28,7 @@ export default class Formulario extends React.Component {
       <View style={styles.container}>
         <View style={styles.viewContainer1}>
           <Image
-            source={{uri:`http://189.213.227.211:8443/file=${current_face}`}}
+            source={{uri:`${config.API_URL}/file=${current_face}`}}
             style={styles.imageBackground}
           />
         </View>
@@ -34,12 +36,12 @@ export default class Formulario extends React.Component {
         { wanted ?
           <View style={[styles.viewContainer, styles.solicitado]}>
             <Image
-              source={{uri:`http://189.213.227.211:8443/file=${registered_face}`}}
+              source={{uri:`${config.API_URL}/file=${registered_face}`}}
               style={styles.imageBackground}
             />
           </View> : <View style={[styles.viewContainer, styles.noSolicitado]}>
             <Image
-              source={{uri:`http://189.213.227.211:8443/file=${registered_face}`}}
+              source={{uri:`${config.API_URL}/file=${registered_face}`}}
               style={styles.imageBackground}
             />
           </View>

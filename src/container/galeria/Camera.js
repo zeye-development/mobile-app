@@ -9,9 +9,11 @@ import {
   AsyncStorage,
   ActivityIndicator
 } from "react-native";
-import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import styled from 'styled-components/native';
+
+import config from './../../../config';
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -67,7 +69,7 @@ export default class Formulario extends Component {
     console.log('venezuela')
     console.log(this.props.id)
     this.setState({modalLoading:true})
-    fetch("http://189.213.227.211:8443/person-query", {
+    fetch(`${config.API_URL}/person-query`, {
       method: "PUT",
       body: JSON.stringify({
         picture: this.state.base64,

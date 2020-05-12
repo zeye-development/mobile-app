@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, Platform, Button, Image } from "react-native";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
 
+import config from './config';
+
 export default class App extends React.Component {
   state = {
     hasCameraPermission: false,
@@ -157,7 +159,7 @@ export default class App extends React.Component {
   };
 
   handleUploadPhoto = () => {
-    fetch("http://189.213.227.211:8080/send_image", {
+    fetch(`${config.API_URL}/send_image`, {
       method: "POST",
       body: JSON.stringify(this.createFormData2(this.state.photo)),
       headers: {

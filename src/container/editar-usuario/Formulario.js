@@ -10,8 +10,9 @@ import {
   AsyncStorage,
   ActivityIndicator
 } from "react-native";
-import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
 import DatePicker from "react-native-datepicker";
+
+import config from './../../../config';
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -105,7 +106,7 @@ export default class Formulario extends Component {
 
     // if (this.state.foto != null) {
     this.setState({modalLoading:true})
-    fetch("http://189.213.227.211:8443/register-face", {
+    fetch(`${config.API_URL}/register-face`, {
       method: "POST",
       body: JSON.stringify({
         names: this.state.name,
@@ -161,7 +162,7 @@ export default class Formulario extends Component {
   handleSendForm = () => {
     this.setState({ modalLoading: true })
 
-    fetch("http://189.213.227.211:8443/known_person", {
+    fetch(`${config.API_URL}/known_person`, {
       method: "PUT",
       body: JSON.stringify({
         dni: this.state.id,        

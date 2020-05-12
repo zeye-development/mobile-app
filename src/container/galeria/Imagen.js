@@ -1,13 +1,15 @@
 import React from "react";
 import styled from 'styled-components/native';
 
+import config from './../../../config';
+
 export default function Imagen(props) {
   
   let { url } = props;
 
   return (
     <ContainerImagen>
-      <Img source={{uri:`http://189.213.227.211:8443/file=${url}`}}></Img>
+      <Img source={{uri:`${config.API_URL}/file=${url}`}}></Img>
     </ContainerImagen>
   );
 }

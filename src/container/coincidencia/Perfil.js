@@ -2,6 +2,8 @@ import React from "react";
 import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
+import config from './../../../config';
+
 export default function Perfil(props) {
   let {_id, names, surnames, current_face, class: classC, images, birth, wanted } = props.user;
 
@@ -16,7 +18,7 @@ export default function Perfil(props) {
             <View style={styles.img}>
               <Image
                 style={{ width: 40, height: 40 }}
-                source={{uri:`http://189.213.227.211:8443/file=${current_face}`}}
+                source={{uri:`${config.API_URL}/file=${current_face}`}}
               />
             </View>
             <View
@@ -33,8 +35,8 @@ export default function Perfil(props) {
                 <Image
                   style={{ width: 40, height: 40 }}
                   source={{
-                    uri: classC == 'known' ? `http://189.213.227.211:8443/file=${images[0]}`:
-                        `http://189.213.227.211:8443/file=${current_face}`
+                    uri: classC == 'known' ? `${config.API_URL}/file=${images[0]}`:
+                        `${config.API_URL}/file=${current_face}`
                   }}
                 />
               </View>
@@ -43,8 +45,8 @@ export default function Perfil(props) {
                 <Image
                   style={{ width: 40, height: 40 }}
                   source={{
-                    uri: classC == 'known' ? `http://189.213.227.211:8443/file=${images[0]}`:
-                        `http://189.213.227.211:8443/file=${current_face}`
+                    uri: classC == 'known' ? `${config.API_URL}/file=${images[0]}`:
+                        `${config.API_URL}/file=${current_face}`
                   }}
                 />
               </View>
@@ -77,7 +79,7 @@ export default function Perfil(props) {
             <View style={styles.img}>
               <Image
                 style={{ width: 40, height: 40 }}
-                source={{uri:`http://189.213.227.211:8443/file=${current_face}`}}
+                source={{uri:`${config.API_URL}/file=${current_face}`}}
               />
             </View>
             <View
@@ -94,8 +96,8 @@ export default function Perfil(props) {
                 <Image
                   style={{ width: 40, height: 40 }}
                   source={{
-                    uri: classC == 'known' ? `http://189.213.227.211:8443/file=${images[0]}`:
-                        `http://189.213.227.211:8443/file=${current_face}`
+                    uri: classC == 'known' ? `${config.API_URL}/file=${images[0]}`:
+                        `${config.API_URL}/file=${current_face}`
                   }}
                 />
               </View>
@@ -104,8 +106,8 @@ export default function Perfil(props) {
                 <Image
                   style={{ width: 40, height: 40 }}
                   source={{
-                    uri: classC == 'known' ? `http://189.213.227.211:8443/file=${images[0]}`:
-                        `http://189.213.227.211:8443/file=${current_face}`
+                    uri: classC == 'known' ? `${config.API_URL}/file=${images[0]}`:
+                        `${config.API_URL}/file=${current_face}`
                   }}
                 />
               </View>
