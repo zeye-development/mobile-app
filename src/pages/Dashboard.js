@@ -1,49 +1,45 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 import Header from "../container/dashboard/Header";
 import ProgreseBar from "../container/dashboard/ProgreseBar";
 import Opciones from "../container/dashboard/Opciones";
 import Perfiles from "../container/dashboard/Perfiles";
-import { LinearGradient } from "expo-linear-gradient";
 
-export default class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const Dashboard = ({ navigation  }) => {
 
-  render() {
-    return (
-      <View>
-        <ScrollView>
-          <LinearGradient
-            colors={["#0097CD", "#01B8E2"]}
-            start={[0, 0.8]}
-            end={[0.8, 0.5]}
-            style={styles.containerSuperior}
-          >
-            <Header navigation={this.props.navigation} />
-            <ProgreseBar navigation={this.props.navigation} />
-            <Opciones
-              navigation={this.props.navigation}
-              CambiarEstado={estado => {
-                this.setState({ estado: estado });
-              }}
-            />
-          </LinearGradient>
+  const [state, setState] = useState(false);
 
-          <View>
-            <Perfiles
-              navigation={this.props.navigation}
-              estado={this.state.estado}
-            />
-          </View>
-        </ScrollView>
-      </View>
-    );
-  }
+  return (
+    <View>
+      <ScrollView>
+        <LinearGradient
+          colors={["#0097CD", "#01B8E2"]}
+          start={[0, 0.8]}
+          end={[0.8, 0.5]}
+          style={styles.containerSuperior}
+        >
+          <Header navigation={navigation} />
+          <ProgreseBar navigation={navigation} />
+          <Opciones
+            navigation={navigation}
+            CambiarEstado={state => setState(state)}
+          />
+        </LinearGradient>
+
+        <View>
+          <Perfiles
+            navigation={navigation}
+            estado={state}
+          />
+        </View>
+      </ScrollView>
+    </View>    
+  )
 }
+
+export default Dashboard;
 
 const styles = StyleSheet.create({
   containerSuperior: {

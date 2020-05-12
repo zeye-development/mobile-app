@@ -1,9 +1,19 @@
 import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet, FlatList, Text, Image, AsyncStorage } from "react-native";
+import { View, StyleSheet, FlatList, Text } from "react-native";
 import Perfil from "./Perfil";
 import PerfilSolicitado from "./PerfilSolicitado"
 import Separator from './../../components/Separator';
+
+
+// const Profiles = () => {
+
+//   return (
+
+//   )
+// }
+
+// export default Profiles;
 
 class Perfiles extends Component {
   constructor(props) {
@@ -22,9 +32,12 @@ class Perfiles extends Component {
       this.props.navigation.getParam("cantidad", "cantidad")
     );
     cant = cant.replace(/['"]+/g, "");
-    if (cant != 'cantidad') {
-      users = this.props.navigation.state.params.users;
-      usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true)
+    if (this.props.users) {
+      // users = this.props.navigation.state.params.users;
+      // usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true)      
+      users = this.props.users;
+      usersWantedFalse = this.props.users.filter(user => user.wanted == true)
+      console.log('holis users: ', users)
     }
     this.setState({
       users,
@@ -50,7 +63,7 @@ class Perfiles extends Component {
                 style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
               >
                 No hay usuarios
-          </Text>
+              </Text>
             }
           />) : (
             <FlatList

@@ -15,6 +15,12 @@ import styled from 'styled-components/native';
 
 import config from './../../../config';
 
+import { 
+  ContainerTransparent,
+  TextHeaderModal, 
+  TextConfirmModal 
+} from './styles';
+
 export default class Formulario extends Component {
   constructor(props) {
     super(props);
@@ -178,21 +184,15 @@ export default class Formulario extends Component {
             </Text>
           </TouchableOpacity>
         </LinearGradient>
+
         {/* modal aLert ================ */}
+
         <Modal
           animationType="none"
           transparent={true}
           visible={this.state.modalVisibleAlert}
         >
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
-            }}
-          ></View>
+          <ContainerTransparent />
 
           <View
             style={{
@@ -205,18 +205,11 @@ export default class Formulario extends Component {
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
-                  textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
-                }}
-              >
+              <TextHeaderModal>
                 {this.state.mensajeAlert}
-              </Text>
+              </TextHeaderModal>
             </View>
+
             <View>
               <TouchableOpacity
                 onPress={() => {
@@ -225,39 +218,20 @@ export default class Formulario extends Component {
                   });
                 }}
               >
-                <Text
-                  style={{
-                    fontSize: 16,
-                    // padding: 13,
-                    color: "#01B8E2",
-                    textAlign: "right",
-                    fontFamily: "PoppinsRegular",
-                    marginTop: 40,
-                    marginHorizontal: 20,
-                    marginBottom: 20
-                  }}
-                >
-                  {" "}
-                  Entendido
-                </Text>
+                <TextConfirmModal>
+                  {" "} Entendido
+                </TextConfirmModal>
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
+
         <Modal
           animationType="none"
           transparent={true}
           visible={this.state.modalLoading}
         >
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
-            }}
-          ></View>
+          <ContainerTransparent />
 
           <View
             style={{

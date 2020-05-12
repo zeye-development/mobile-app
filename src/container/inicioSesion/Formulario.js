@@ -95,9 +95,9 @@ class Formulario extends Component {
     try {
       this.props
         .loginAction({
-    email: 'lewistest@gmail.com',
-    password: md5('123456'),  
-          expoID: 'asdasoasodqko',
+          email: 'carllewis@gmail.com',
+          password: md5('123456'),
+          expoID: tokenPush,
         })
         .then((response) => {
           if (response.status === 200) {

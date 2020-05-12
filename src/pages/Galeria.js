@@ -8,12 +8,11 @@ import Camera from "../container/galeria/Camera";
 import Imagenes from "../container/galeria/Imagenes";
 
 export default function Galeria(props) {
-
   const { user } = useSelector(state => state.user);
-  console.log('Data User From Gallery: ', user);
+  // console.log('Data User From Gallery: ', user);
 
   let { id, images } = props.navigation.state.params;
-
+  console.log('Data User From Gallery: ', props.navigation.state.params);
   return (
     <View style={style.container}>
       <ScrollView>

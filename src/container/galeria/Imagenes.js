@@ -36,6 +36,7 @@ export default class Imagenes extends React.Component {
             style={styles.imagen}
           />
         ))}
+
         {/* modal alert============= */}
         <Modal
           animationType="none"
@@ -48,7 +49,6 @@ export default class Imagenes extends React.Component {
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
             }}
           ></View>
 
@@ -83,20 +83,9 @@ export default class Imagenes extends React.Component {
                   });
                 }}
               >
-                <Text
-                  style={{
-                    fontSize: 16,
-                    color: "#01B8E2",
-                    textAlign: "right",
-                    fontFamily: "PoppinsRegular",
-                    marginTop: 40,
-                    marginHorizontal: 20,
-                    marginBottom: 20
-                  }}
-                >
-                  {" "}
-                  Entendido
-                </Text>
+                <TextConfirmModal>
+                  {" "} Entendido
+                </TextConfirmModal>
               </TouchableOpacity>
             </View>
           </View>
@@ -107,6 +96,14 @@ export default class Imagenes extends React.Component {
 }
 
 const Container = styled.View`
+`;
+
+const TextConfirmModal = styled.Text`
+  font-size: 16px;
+  color: #01B8E2;
+  text-align: right;
+  font-family: 'PoppinsRegular';
+  margin: 40px 20px;
 `;
 
 let { width } = Dimensions.get('window');

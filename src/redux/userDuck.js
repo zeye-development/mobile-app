@@ -1,11 +1,13 @@
 import axios from 'axios';
 import config from './../../config';
+import { AsyncStorage } from 'react-native';
 
 // constanst
 let initialData = {
   loggedIn: false,
   fetching: false,
   user: {},
+  userDetail: {},
   users: []
 }
 
@@ -21,8 +23,8 @@ const GET_USERS          = "GET_USERS";
 const GET_USERS_SUCCESS  = "GET_USERS_SUCCESS";
 const GET_USERS_ERROR    = "GET_USERS_ERROR";
 
+const SAVE_USER_STORE  = "SAVE_USER_STORE";
 const SAVE_USERS_STORE  = "SAVE_USERS_STORE";
-
 
 // reducer
 export default function reducer(state = initialData, action){
@@ -40,6 +42,9 @@ export default function reducer(state = initialData, action){
       return { ...state, fetching: false, ...action.payload }      
     case REGISTER_ERROR:
       return { ...state, fetching: false, error: action.payload }
+
+    case SAVE_USER_STORE:
+      return { ...state, userDetail: action.payload }
 
     case SAVE_USERS_STORE:
       return { ...state, users: action.payload }
@@ -63,10 +68,11 @@ export const loginAction = (form) => async (dispatch, getState) => {
         token: response.data.token
       }
     })
-    console.log('response login: ', response);
+    AsyncStorage.setItem("token", response.data.token);
+    // console.log('response login: ', response);
     return response;
   } catch (error) {
-    console.log('Error Login: ', error.response);
+    // console.log('Error Login: ', error.response);
     dispatch({
       type: LOGIN_ERROR,
       payload: error.message
@@ -111,7 +117,7 @@ export const getUsersAction = () => async (dispatch) => {
   // })
 
   try {
-    const response = await axios.get(`${config.API_URL}/known`, form);
+    const response = await axios.get(`${config.API_URL}/known`);
     console.log('Get All users: ', response.data)
     // dispatch({
     //   type: GET_USERS_SUCCESS,
@@ -120,7 +126,10 @@ export const getUsersAction = () => async (dispatch) => {
     //     token: response.data.data.token
     //   }
     // })
-
+    dispatch({
+      type: SAVE_USERS_STORE,
+      payload: response.data.data
+    });
     return response;
   } catch (error) {
     console.log('Error All users: ', error);
@@ -129,8 +138,15 @@ export const getUsersAction = () => async (dispatch) => {
     //   payload: error.message
     // })
 
-    return error;
+    return error.response;
   }
+}
+
+export const saveUserToStoreAction = (data) => (dispatch) => {
+  dispatch({
+    type: SAVE_USER_STORE,
+    payload: data
+  })  
 }
 
 export const saveUsersToStoreAction = (data) => (dispatch) => {
