@@ -4,8 +4,8 @@ import { AntDesign } from "@expo/vector-icons";
 
 import config from './../../../config';
 
-export default function Perfil(props) {
-  let {_id, names, surnames, current_face, class: classC, images, birth, wanted } = props.user;
+export default function Profile(props) {
+  let { _id, names, surnames, current_face, class: classC, images, birth, wanted } = props.user;
 
   return (
     classC == 'known' ? 

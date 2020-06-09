@@ -1,61 +1,42 @@
-import React, { Component, useState } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector } from "react-redux";
 import { View, StyleSheet, FlatList, Text } from "react-native";
 import Perfil from "./Perfil";
 import PerfilSolicitado from "./PerfilSolicitado"
 import Separator from './../../components/Separator';
 
+const Profiles = ({ state, navigation }) => {
+  const { users } = useSelector(state => state.user);
 
-// const Profiles = () => {
+  let usersWantedFalse = [];
 
-//   return (
-
-//   )
-// }
-
-// export default Profiles;
-
-class Perfiles extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-      usersWantedFalse: []
-    }
+  if (users) {
+    usersWantedFalse = users.filter(user => user.wanted == true);
   }
 
-  componentDidMount() {
-    console.log('User From Store: ', this.props.users)
-    let usersWantedFalse = [];
-    let users = [];
-    let cant = JSON.stringify(
-      this.props.navigation.getParam("cantidad", "cantidad")
-    );
-
-    const numberUsers = this.props.users.length;
-    cant = cant.replace(/['"]+/g, "");
-    if (this.props.users) {
-      // users = this.props.navigation.state.params.users;
-      // usersWantedFalse = this.props.navigation.state.params.users.filter(user => user.wanted == true)      
-      users = this.props.users;
-      usersWantedFalse = this.props.users.filter(user => user.wanted == true)
-      console.log('holis users: ', users)
-    }
-    this.setState({
-      users,
-      usersWantedFalse
-    })
-  }
-
-  render() {
-
-    return (
-      <View style={styles.container}>
-        {this.props.estado ? (
+  return (
+    <View style={styles.container}>
+      { state ? (
+        <FlatList
+          data={usersWantedFalse}
+          renderItem={({ item }) => (
+            <PerfilSolicitado navigation={navigation} usuario={item} />
+          )}
+          keyExtractor={item => item._id}
+          horizontal={false}
+          ItemSeparatorComponent={Separator}
+          ListEmptyComponent={
+            <Text
+              style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
+            >
+              No hay usuarios
+            </Text>
+          }
+        /> ) : (
           <FlatList
-            data={this.state.usersWantedFalse}
+            data={users}
             renderItem={({ item }) => (
-              <PerfilSolicitado navigation={this.props.navigation} usuario={item} />
+              <Perfil navigation={navigation} usuario={item} />
             )}
             keyExtractor={item => item._id}
             horizontal={false}
@@ -67,34 +48,13 @@ class Perfiles extends Component {
                 No hay usuarios
               </Text>
             }
-          />) : (
-            <FlatList
-              data={this.state.users}
-              renderItem={({ item }) => (
-                <Perfil navigation={this.props.navigation} usuario={item} />
-              )}
-              keyExtractor={item => item._id}
-              horizontal={false}
-              ItemSeparatorComponent={Separator}
-              ListEmptyComponent={
-                <Text
-                  style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
-                >
-                  No hay usuarios
-                </Text>
-              }
-            />
-          )}
-      </View>
-    );
-  }
+          />
+        )}
+    </View>
+  )
 }
 
-const mapStateToProps = (state) => ({
-  users: state.user.users,
-})
-
-export default connect(mapStateToProps)(Perfiles)
+export default Profiles;
 
 const styles = StyleSheet.create({
   container: {

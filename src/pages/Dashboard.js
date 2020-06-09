@@ -31,7 +31,7 @@ const Dashboard = ({ navigation  }) => {
         <View>
           <Perfiles
             navigation={navigation}
-            estado={state}
+            state={state}
           />
         </View>
       </ScrollView>

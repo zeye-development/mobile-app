@@ -1,99 +1,79 @@
-import * as React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Modal, Dimensions, Alert } from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Dimensions } from "react-native";
 import Imagen from "./Imagen";
 import styled from 'styled-components/native';
 
-export default class Imagenes extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalVisibleAlert: false,
-      mensajeAlert: "",
-      images: []
-    };
-  }
+const Images = ({ images, navigation }) => {
+  const [modalVisibleAlert, setModalVisibleAlert] = useState(false);
+  const [messageAlert, setMessageAlert] = useState('');
 
-  componentDidMount(){
-    try {
-      let { images } = this.props.navigation.state.params;
-      this.setState({ images });
-    } catch{
-      Alert.alert("Ocurrio un error inesperado")
-    }
-  }
+  if(images.length === 0) return false;
+  
+  return(
+    <Container style={styles.container}>
+      { images.map((url, key) => (
+        <Imagen
+          navigation={navigation}
+          key={key}
+          url={url}
+          style={styles.imagen}
+        />
+      ))}
 
-  render() {
+      {/* modal alert============= */}
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisibleAlert}
+      >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "rgba(0, 66, 90, 0.5)"
+          }}
+        ></View>
 
-    if(!this.state.images.length) return false;
-
-    return (
-      <Container style={styles.container}>
-        {this.state.images.map((url, key) => (
-          <Imagen
-            navigation={this.props.navigation}
-            key={key}
-            url={url}
-            style={styles.imagen}
-          />
-        ))}
-
-        {/* modal alert============= */}
-        <Modal
-          animationType="none"
-          transparent={true}
-          visible={this.state.modalVisibleAlert}
+        <View
+          style={{
+            width: 290,
+            backgroundColor: "#fff",
+            borderRadius: 15,
+            position: "absolute",
+            marginTop: "45%",
+            marginHorizontal: "10%"
+          }}
         >
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
-            }}
-          ></View>
-
-          <View
-            style={{
-              width: 290,
-              backgroundColor: "#fff",
-              borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%"
-            }}
-          >
-            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
-                  textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
-                }}
-              >
-                {this.state.mensajeAlert} - holis
-              </Text>
-            </View>
-            <View>
-              <TouchableOpacity
-                onPress={() => {
-                  this.setState({
-                    modalVisibleAlert: !this.state.modalVisibleAlert
-                  });
-                }}
-              >
-                <TextConfirmModal>
-                  {" "} Entendido
-                </TextConfirmModal>
-              </TouchableOpacity>
-            </View>
+          <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+            <Text
+              style={{
+                fontSize: 18,
+                color: "#00425A",
+                textAlign: "center",
+                textShadowRadius: 2,
+                fontFamily: "PoppinsBold"
+              }}
+            >
+              { messageAlert } - holis
+            </Text>
           </View>
-        </Modal>
-      </Container>
-    );
-  }
+          <View>
+            <TouchableOpacity
+              onPress={() => setModalVisibleAlert(!modalVisibleAlert)}
+            >
+              <TextConfirmModal>
+                {" "} Entendido
+              </TextConfirmModal>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </Container>
+  )
 }
+
+export default Images;
 
 const Container = styled.View`
 `;
