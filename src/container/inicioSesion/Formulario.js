@@ -82,25 +82,27 @@ class Formulario extends Component {
     //   return;
     // }
     this.handleSubmit();
-    email = email.toLowerCase();
+    // email = email.toLowerCase();
   }
 
   handleSubmit = async () => {
     const tokenPush = await AsyncStorage.getItem("tokenPush");
-    console.log(tokenPush)
+    console.log('Toke: ', tokenPush)
     // email: this.state.email,
     // password: md5(this.state.pass),
     // email: 'lewistest@gmail.com',
     // password: md5('123456'),        
     try {
-      this.props
+      this.props  
         .loginAction({
-    email: this.state.email,
-    password: md5(this.state.pass),
+          email: this.state.email,
+          password: md5(this.state.pass),
           expoID: tokenPush,
         })
         .then((response) => {
+          console.log('Response ', response)
           if (response.status === 200) {
+            console.log('Response ', response)
             let { token } = response.data;
             AsyncStorage.setItem("token", token);
             this.props.navigation.replace("Loading", { token });
