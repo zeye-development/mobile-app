@@ -95,16 +95,18 @@ class Formulario extends Component {
     try {
       this.props  
         .loginAction({
-    email: this.state.email,
-    password: md5(this.state.pass),          
+    // email: this.state.email,
+    // password: md5(this.state.pass),          
     // email: 'adriancito@gmail.com',
-    // password: md5('18138899'),   
+    // password: md5('18138899'),
+    email: 'lewistest@gmail.com',
+    password: md5('123456'),            
           expoID: tokenPush,
         })
         .then((response) => {
-          console.log('Response ', response)
+          // console.log('Response ', response)
           if (response.status === 200) {
-            console.log('Response ', response)
+            // console.log('Response ', response)
             let { token } = response.data;
             AsyncStorage.setItem("token", token);
             this.props.navigation.replace("Loading", { token });

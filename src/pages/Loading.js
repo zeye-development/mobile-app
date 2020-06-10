@@ -3,20 +3,20 @@ import { useDispatch } from "react-redux";
 import { Image, StyleSheet } from "react-native";
 import styled from 'styled-components/native';
 
-import { getUsersAction } from './../redux/userDuck';
+import { getVehiclesAction } from './../redux/vehicleDuck';
 
 const Loading = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsersAction())
+    dispatch(getVehiclesAction())
       .then(data => {
         if(data.status === 200) {
           navigation.replace("Dashboard");
         }
       })
       .catch(() => navigation.replace("InicioSesion"))
-  }, [])
+  }, [])  
 
   return (
     <Container>

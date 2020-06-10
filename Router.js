@@ -31,6 +31,8 @@ import socketTest from "./src/pages/socketTest"
 import Menu from "./src/pages/Menu"
 import Camera from "./Camera";
 
+import NewVehicle from "./src/pages/NewVehicle";
+
 const AppNavigator = createStackNavigator(
   {
     Principal: {
@@ -95,7 +97,10 @@ const AppNavigator = createStackNavigator(
     },
     Menu:{
       screen: Menu
-    }
+    },
+    NewVehicle: {
+      screen: NewVehicle
+    }    
   },
   {
     initialRouteName: 'Principal',

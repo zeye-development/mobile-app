@@ -37,14 +37,14 @@ export default class Dashboard extends Component {
           </TouchableOpacity> 
           
           
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => this.props.navigation.navigate("BuscarCoincidencia")}
           >
             <Text style={styles.icon}>
               {" "}
               <FontAwesome name="search" size={18} color="#fff" />
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <Text style={styles.headerText}>Dashboard</Text>
 

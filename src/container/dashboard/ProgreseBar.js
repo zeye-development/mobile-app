@@ -29,7 +29,7 @@ export default class ProgreseBar extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.viewContainer}>
+        {/* <View style={styles.viewContainer}>
           <ProgressBarAndroid
             styleAttr="Horizontal"
             indeterminate={false}
@@ -48,14 +48,14 @@ export default class ProgreseBar extends React.Component {
             {" "}
             <Entypo name="users" size={18} color="#fff" /> {this.state.cant} de {this.state.max} Usuarios
           </Text>
-        </View>
+        </View> */}
         <View style={styles.styleButtom}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("NuevoUsuario")}
+            onPress={() => this.props.navigation.navigate("NewVehicle")}
           >
             <Text style={styles.inputButtom}>
               <Ionicons name="md-person-add" size={18} color="#0097CD" /> Añadir
-              Usuario{" "}
+              Vehículo{" "}
             </Text>
           </TouchableOpacity>
         </View>

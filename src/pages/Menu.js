@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import styled from 'styled-components/native';
 
 export default class Menu extends Component {
   constructor(props) {
@@ -122,20 +123,26 @@ export default class Menu extends Component {
           <Ionicons name="md-contact" size={18} color="#0097CD" />{' '}
           Cuentas
         </Text>
-        <Text
+        <TextTitle
           onPress={() => this.props.navigation.navigate("Dashboard")}
-          style={{
-            fontFamily: "PoppinsRegular",
-            marginTop: 15,
-            paddingHorizontal: 30,
-            paddingVertical: 10,
-            fontSize: 17,
-          }}
+        >
+          <Ionicons name="md-contact" size={18} color="#0097CD" />{' '}
+          Perfil
+        </TextTitle>
+        <TextTitle
+          onPress={() => this.props.navigation.navigate("Dashboard")}
         >
           <Ionicons name="md-log-out" size={18} color="#0097CD" />{' '}
           Salir
-        </Text>
+        </TextTitle>
       </View>
     );
   }
 }
+
+const TextTitle = styled.Text`
+  font-family: 'PoppinsRegular';
+  margin-top: 15px;
+  padding: 10px 30px;
+  font-size: 17px;
+`;

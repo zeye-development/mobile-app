@@ -25,7 +25,7 @@ export default class Opciones extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.viewContainerGrup}>
-          <View style={styles.viewContainerInput}>
+          {/* <View style={styles.viewContainerInput}>
             <View style={{ alignItems: "center" }}>
               {this.state.estado ? (
                 <Text
@@ -70,7 +70,7 @@ export default class Opciones extends React.Component {
               color="#fff"
               progress={this.state.Barra}
             />
-          </View>
+          </View> */}
 
           <View style={styles.viewContainerInput}>
             <View style={{ alignItems: "center" }}>
