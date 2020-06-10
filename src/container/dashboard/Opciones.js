@@ -89,7 +89,7 @@ export default class Opciones extends React.Component {
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
                   />{" "}
-                  Usuarios
+                  Vehículos
                 </Text>
               ) : (
                 <Text
@@ -102,7 +102,7 @@ export default class Opciones extends React.Component {
                   }}
                 >
                   <Entypo name="users" size={18} color="rgb(255, 255, 255)" />{" "}
-                  Usuarios
+                  Vehículos
                 </Text>
               )}
             </View>

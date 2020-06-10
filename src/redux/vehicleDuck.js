@@ -49,9 +49,9 @@ export const getVehiclesAction = () => async (dispatch, getState) => {
     const response = await axios.get(`${config.API_URL}/vehicle`);
     dispatch({
       type: GET_VEHICLES_SUCCESS,
-      payload: response.data,
+      payload: response.data.data,
     })
-    console.log('Response Get vehicles: ', response.data);
+    // console.log('Response Get vehicles: ', response.data);
     return response;
   } catch (error) {
     console.log('Error Get vehicles: ', error);

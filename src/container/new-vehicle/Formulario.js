@@ -19,9 +19,8 @@ const Form =  ({ navigation }) => {
   const [vtype, setVtype] = useState('');
   const [manufacturer, setManufacturer] = useState('');
   const [model, setModel] = useState('');
-  const [year, setYear] = useState('0');
+  const [year, setYear] = useState('');
 
-  setYear(parseInt(year))
   const handleSubmit = () => {
     dispatch(registerVehicleAction({
       plate,

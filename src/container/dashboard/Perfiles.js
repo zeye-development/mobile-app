@@ -6,13 +6,10 @@ import PerfilSolicitado from "./PerfilSolicitado"
 import Separator from './../../components/Separator';
 
 const Profiles = ({ state, navigation }) => {
-  const { users } = useSelector(state => state.user);
+  const { vehicles } = useSelector(state => state.vehicle);
+  console.log('asdasd, ', vehicles)
 
-  let usersWantedFalse = [];
-
-  if (users) {
-    usersWantedFalse = users.filter(user => user.wanted == true);
-  }
+  if(!vehicles.length) return false;
 
   return (
     <View style={styles.container}>
@@ -29,23 +26,23 @@ const Profiles = ({ state, navigation }) => {
             <Text
               style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
             >
-              No hay usuarios
+              No tienes vehículos registrados
             </Text>
           }
         /> ) : (
           <FlatList
-            data={users}
+            data={vehicles}
             renderItem={({ item }) => (
               <Perfil navigation={navigation} usuario={item} />
             )}
-            keyExtractor={item => item._id}
+            keyExtractor={item => item._id.$oid}
             horizontal={false}
             ItemSeparatorComponent={Separator}
             ListEmptyComponent={
               <Text
                 style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
               >
-                No hay usuarios
+                No tienes vehículos registrados
               </Text>
             }
           />

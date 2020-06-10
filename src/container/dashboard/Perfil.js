@@ -23,18 +23,23 @@ export default class Perfil extends React.Component {
   }
   
   render() {
-    let { _id, names, surnames, images, birth_date } = this.props.usuario;
+    let { _id, model, plate, vtype, year } = this.props.usuario;
+    // "model": "FIESTA",
+    // "owner": "lewistest@gmail.com",
+    // "plate": "AA56GH1",
+    // "vtype": "CAR",
+    // "year": 2002,
 
     return (
       <View>
         <View style={styles.container}>
           <View style={styles.container}>
-            <View style={styles.img}>
+            {/* <View style={styles.img}>
               <Image
                 style={{ width: 50, height: 50, borderRadius: 100 }}
                 source={{ uri: `${config.API_URL}/file=${images[0]}` }}
               />
-            </View>
+            </View> */}
             <View style={{ justifyContent: "center", paddingLeft: 10 }}>
               <Text
                 style={[
@@ -44,7 +49,7 @@ export default class Perfil extends React.Component {
                   }
                 ]}
               >
-                {names[0]}{" "} {surnames[0]}
+                Vehículo: {model}{" "} Placa: {plate}
               </Text>
               <Text
                 style={[
@@ -54,7 +59,7 @@ export default class Perfil extends React.Component {
                   }
                 ]}
               >
-                {" "}{_id} {birth_date}
+                Año del Vehículo{" "} {year}
               </Text>
             </View>
           </View>
