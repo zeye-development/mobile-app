@@ -102,9 +102,9 @@ class Formulario extends Component {
           expoID: tokenPush,
         })
         .then((response) => {
-          console.log('Response ', response)
+          // console.log('Response ', response)
           if (response.status === 200) {
-            console.log('Response ', response)
+            // console.log('Response ', response)
             let { token } = response.data;
             AsyncStorage.setItem("token", token);
             this.props.navigation.replace("Loading", { token });
