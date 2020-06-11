@@ -70,13 +70,13 @@ export const registerVehicleAction = (form) => async (dispatch, getState) => {
     type: SAVE_VEHICLE,
   })
 
-  let form = {
-    'plate':'AA56GH1', 
-     'vtype':'CAR',
-     'manufacturer':'FORD',
-     'model':'FIESTA',
-     'year':2002
-  }
+  // let form = {
+  //   'plate':'AA56GH1', 
+  //    'vtype':'CAR',
+  //    'manufacturer':'FORD',
+  //    'model':'FIESTA',
+  //    'year':2002
+  // }
 
   try {
     const response = await axios.post(`${config.API_URL}/vehicle`, form);
@@ -88,7 +88,7 @@ export const registerVehicleAction = (form) => async (dispatch, getState) => {
 
     return response;
   } catch (error) {
-    console.log('Success error vehicle: ', error.response)    
+    // console.log('Success error vehicle: ', error.response)    
     dispatch({
       type: SAVE_VEHICLE_ERROR,
       payload: error.message

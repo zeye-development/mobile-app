@@ -7,7 +7,7 @@ import Separator from './../../components/Separator';
 
 const Profiles = ({ state, navigation }) => {
   const { vehicles } = useSelector(state => state.vehicle);
-  console.log('asdasd, ', vehicles)
+  // console.log('asdasd, ', vehicles)
 
   if(!vehicles.length) return false;
 

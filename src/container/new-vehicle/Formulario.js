@@ -30,7 +30,7 @@ const Form =  ({ navigation }) => {
       year
     }))
     .then(data => {
-      if(data.status === 200) {
+      if(data.status === 201) {
         navigation.navigate("Loading");
       }
     })
