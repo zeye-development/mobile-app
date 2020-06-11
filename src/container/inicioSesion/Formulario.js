@@ -99,7 +99,7 @@ class Formulario extends Component {
     password: md5(this.state.pass),          
     // email: 'adriancito@gmail.com',
     // password: md5('18138899'),
-    // email: 'lewistest@gmail.com',
+    // email: 'user@gmail.com',
     // password: md5('123456'),            
           expoID: tokenPush,
         })

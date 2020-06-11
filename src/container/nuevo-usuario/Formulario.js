@@ -40,10 +40,24 @@ export default class Formulario extends Component {
   async componentDidMount() {
     // console.log(this.props.navigation.getParam("mainFoto"));
     let token = await AsyncStorage.getItem("token");
-    console.log(token);
+    // console.log(token);
 
-    let toke = token.replace(/['"]+/g, "");
-    this.setState({ token: toke });
+    let value = await AsyncStorage.getItem('user');
+    if (value !== null) {
+        // We have data!!
+      // console.log(JSON.parse(value));
+      value = JSON.parse(value)
+      this.setState({
+        name: value.account_data.names[0],
+        surname: value.account_data.surnames[0]
+      })
+    }
+    // this.setState({ 
+      
+    //  });
+
+    // let toke = token.replace(/['"]+/g, "");
+    this.setState({ token });
     let perfil = JSON.stringify(
       this.props.navigation.getParam("item", "image")
     );
@@ -86,24 +100,10 @@ export default class Formulario extends Component {
       });
       return;
     }
-    if (this.state.name === "") {
+    if (this.state.id === "") {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Nombre no puede estar vacio"
-      });
-      return;
-    }
-    if (this.state.surname === "") {
-      this.setState({
-        modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Apellido no puede estar vacio"
-      });
-      return;
-    }
-    if (this.state.birth === "") {
-      this.setState({
-        modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Por favor ingrese una fecha"
+        mensajeAlert: "El campo ID no puede estar vacio"
       });
       return;
     }
@@ -118,12 +118,12 @@ export default class Formulario extends Component {
       body: JSON.stringify({
         names: this.state.name,
         surnames: this.state.surname,
-        nationality: this.state.nationality,
+        nationality: 'VE',
         dni: this.state.id,
-        sex: this.state.sex,
+        sex: 'Male',
         picture: this.state.base64,
-        wanted: this.state.estado,
-        birth: this.state.birth
+        wanted: false,
+        birth: '01-01-2020'
       }),
       headers: {
         "Content-Type": "application/json",
@@ -214,7 +214,7 @@ export default class Formulario extends Component {
         </View>
 
         {/* ========================================================== */}
-        <View style={styles.viewContainer}>
+        {/* <View style={styles.viewContainer}>
           <TextInput
             style={styles.input1}
             placeholder="Nombres"
@@ -229,7 +229,7 @@ export default class Formulario extends Component {
             onChangeText={surname => this.setState({ surname })}
             style={styles.input1}
           />
-        </View>
+        </View> */}
         <View style={styles.viewContainer}>
           <TextInput
             placeholder="Identidad"
@@ -238,7 +238,7 @@ export default class Formulario extends Component {
             style={styles.input1}
           />
         </View>
-        <Text
+        {/* <Text
           style={{
             fontSize: 15,
             color: "black",
@@ -262,9 +262,9 @@ export default class Formulario extends Component {
             <Picker.Item label="Venezuela" value="VE" />
             <Picker.Item label="Bolivia" value="BO" />
           </Picker>
-        </View>
+        </View> */}
 
-        <Text
+        {/* <Text
           style={{
             fontSize: 15,
             color: "black",
@@ -286,8 +286,8 @@ export default class Formulario extends Component {
             <Picker.Item label="Masculino" value="Male" />
             <Picker.Item label="Femenino" value="Female" />
           </Picker>
-        </View>
-        <Text
+        </View> */}
+        {/* <Text
           style={{
             fontSize: 15,
             color: "black",
@@ -312,8 +312,8 @@ export default class Formulario extends Component {
           onDateChange={date => {
             this.setState({ birth: date });
           }}
-        />
-        <View style={styles.viewContainerCheck}>
+        /> */}
+        {/* <View style={styles.viewContainerCheck}>
           <TouchableOpacity
             style={{ width: 45, height: 45, marginTop: 15, marginRight: -10 }}
             onPress={() => {
@@ -336,7 +336,7 @@ export default class Formulario extends Component {
           >
             Añadir a solicitados
           </Text>
-        </View>
+        </View> */}
 
         <LinearGradient
           colors={["#0097CD", "#01B8E2"]}
@@ -346,7 +346,7 @@ export default class Formulario extends Component {
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
+              <Ionicons name="md-person-add" size={16} color="#fff" /> Guardar{" "}
             </Text>
           </TouchableOpacity>
         </LinearGradient>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import config from './../../config';
 import { AsyncStorage } from 'react-native';
+import { getVehiclesAction } from './vehicleDuck';
 
 // constanst
 let initialData = {
@@ -69,7 +70,7 @@ export const loginAction = (form) => async (dispatch, getState) => {
       }
     })
     AsyncStorage.setItem("token", response.data.token);
-    // console.log('response login: ', response);
+    // console.log('response login: ', response.data);
     return response;
   } catch (error) {
     // console.log('Error Login: ', error);
@@ -130,6 +131,7 @@ export const getUsersAction = () => async (dispatch) => {
       type: SAVE_USERS_STORE,
       payload: response.data.data
     });
+    dispatch(getVehiclesAction());
     return response;
   } catch (error) {
     console.log('Error All users: ', error);

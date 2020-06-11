@@ -12,7 +12,7 @@ export default function Inicio() {
           }
         ]}
       >
-        Zeye Cloud ®
+        PDVSA ®
       </Text>
     </View>
   );

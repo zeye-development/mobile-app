@@ -54,7 +54,7 @@ export const getVehiclesAction = () => async (dispatch, getState) => {
     // console.log('Response Get vehicles: ', response.data);
     return response;
   } catch (error) {
-    console.log('Error Get vehicles: ', error);
+    console.log('Error Get vehicles: ', error.response);
     dispatch({
       type: GET_VEHICLES_ERROR,
       payload: error.message

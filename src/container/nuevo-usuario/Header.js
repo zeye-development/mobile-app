@@ -41,7 +41,7 @@ export default class Header extends Component {
           </Text>
         </TouchableOpacity>
 
-        <Text style={styles.headerText}>Nuevo Usuario</Text>
+        <Text style={styles.headerText}>Registra tu rostro</Text>
         <Text style={styles.icon}> </Text>
         <Modal
           animationType="none"
