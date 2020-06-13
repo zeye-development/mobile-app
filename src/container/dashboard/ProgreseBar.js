@@ -54,7 +54,7 @@ export default class ProgreseBar extends React.Component {
             onPress={() => this.props.navigation.navigate("NewVehicle")}
           >
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={18} color="#0097CD" /> Añadir
+              <Ionicons name="md-person-add" size={18} color="#fe5627" /> Añadir
               Vehículo{" "}
             </Text>
           </TouchableOpacity>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   inputButtom: {
     fontSize: 16,
     padding: 13,
-    color: "#0097CD",
+    color: "#fe5627",
     textAlign: "center",
     fontFamily: "PoppinsRegular"
   },
