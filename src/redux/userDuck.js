@@ -73,7 +73,7 @@ export const loginAction = (form) => async (dispatch, getState) => {
     // console.log('response login: ', response.data);
     return response;
   } catch (error) {
-    // console.log('Error Login: ', error);
+    console.log('Error Login: ', error.response);
     dispatch({
       type: LOGIN_ERROR,
       payload: error.message

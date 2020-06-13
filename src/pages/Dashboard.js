@@ -7,6 +7,8 @@ import ProgreseBar from "../container/dashboard/ProgreseBar";
 import Opciones from "../container/dashboard/Opciones";
 import Perfiles from "../container/dashboard/Perfiles";
 
+import LinearGradientComponent from "../components/shared/LinearGradient";
+
 const Dashboard = ({ navigation  }) => {
 
   const [state, setState] = useState(false);
@@ -15,7 +17,7 @@ const Dashboard = ({ navigation  }) => {
     <View>
       <ScrollView>
         <LinearGradient
-          colors={["#0097CD", "#01B8E2"]}
+          colors={["#fe5627", "#fe5627"]}
           start={[0, 0.8]}
           end={[0.8, 0.5]}
           style={styles.containerSuperior}
@@ -27,6 +29,15 @@ const Dashboard = ({ navigation  }) => {
             CambiarEstado={state => setState(state)}
           />
         </LinearGradient>
+
+        <LinearGradientComponent
+          styles={styles.containerSuperior}
+        >
+          <Opciones
+            navigation={navigation}
+            CambiarEstado={state => setState(state)}
+          />          
+        </LinearGradientComponent>
 
         <View>
           <Perfiles
