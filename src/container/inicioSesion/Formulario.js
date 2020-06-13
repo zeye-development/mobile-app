@@ -20,6 +20,7 @@ import styled from "styled-components/native";
 const io = require('socket.io-client');
 
 import ModalLoading from "./../../components/ModalLoading";
+import LinearGradientComponent from './../../components/shared/LinearGradient';
 
 import { loginAction } from "./../../redux/userDuck";
 import * as Config from '../../../config';
@@ -96,7 +97,9 @@ class Formulario extends Component {
       this.props  
         .loginAction({
     email: this.state.email,
-    password: md5(this.state.pass),          
+    password: md5(this.state.pass),     
+    // email: 'lewistest@gmail.com',
+    // password: md5('123456'),            
     // email: 'adriancito@gmail.com',
     // password: md5('18138899'),   
           expoID: tokenPush,
@@ -159,11 +162,9 @@ class Formulario extends Component {
             </Text>
           </View>
         ) : null}
-        <LinearGradient
-          colors={["#0097CD", "#01B8E2"]}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.styleButtom}
+
+        <LinearGradientComponent
+          styles={styles.styleButtom}          
         >
           <TouchableOpacity
             onPress={() => this.login(this.state.email, this.state.pass)}
@@ -173,7 +174,7 @@ class Formulario extends Component {
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </LinearGradientComponent>
 
         {/* ============================modalLoading======= */}
         {/* <Modal
