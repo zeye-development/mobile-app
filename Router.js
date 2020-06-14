@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { Component } from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import * as Font from "expo-font";
 import { AppLoading } from "expo";
 
 // Redux
@@ -27,9 +25,8 @@ import Loading from "./src/pages/Loading";
 import Galeria from "./src/pages/Galeria";
 import Deployments from "./src/pages/Deployments";
 import Events from "./src/pages/Eventos";
-import socketTest from "./src/pages/socketTest"
-import Menu from "./src/pages/Menu"
-import Camera from "./Camera";
+import socketTest from "./src/pages/socketTest";
+import Menu from "./src/pages/Menu";
 
 const AppNavigator = createStackNavigator(
   {
@@ -110,7 +107,7 @@ const AppNavigator = createStackNavigator(
 let Navigation = createAppContainer(AppNavigator);
 let store = generateStore()
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
       <Provider store={store}>

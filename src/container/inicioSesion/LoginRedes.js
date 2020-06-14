@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
@@ -8,161 +7,132 @@ import {
   Modal
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import styled from 'styled-components/native';
 
-export default class LoginRedes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalVisible: false
-    };
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={() => {
-            this.setState({ modalVisible: !this.state.modalVisible });
-          }}
-        >
-          <View style={styles.viewContainer}>
-            <Text style={styles.google}>
+const SocialNetworks = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  return (
+    <Container>
+      <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+        <ContainerSocialNetwork borderWidth="1px" borderColor="#00425A">
+          <SocialNetwork textColor="#00425A">
               <Image
                 source={require("../../../assets/google.png")}
                 style={{ width: 18, height: 18 }}
               />{" "}
               Iniciar con Google
+            </SocialNetwork>          
+        </ContainerSocialNetwork>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+        <ContainerSocialNetwork backgroundColor="#3b5998">
+          <SocialNetwork>
+            <FontAwesome name="facebook" size={20} color="#fff" /> 
+            Iniciar con Facebook              
+          </SocialNetwork>   
+        </ContainerSocialNetwork>
+      </TouchableOpacity>
+
+      <View style={{ alignItems: "center", margin: 5 }}>
+        <Text
+          style={{
+            fontSize: 16,
+            fontFamily: "PoppinsRegular",
+            color: "#00425A"
+          }}
+        >
+          o
+        </Text>
+      </View>
+
+      {/* //////Modal de alerta ===========================*/}
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+      >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "rgba(0, 66, 90, 0.5)"
+            // opacity: 0.9
+          }}
+        ></View>
+
+        <View
+          style={{
+            width: 290,
+            backgroundColor: "#fff",
+            borderRadius: 15,
+            position: "absolute",
+            marginTop: "45%",
+            marginHorizontal: "10%"
+          }}
+        >
+          <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+            <Text
+              style={{
+                fontSize: 18,
+                color: "#00425A",
+                textAlign: "center",
+                textShadowRadius: 2,
+                fontFamily: "PoppinsBold"
+              }}
+            >
+              Lo sentimos, esta funcion no se encuentra disponible.
             </Text>
           </View>
-        </TouchableOpacity>
-
-        <View style={styles.viewContainerF}>
-          <TouchableOpacity
-            onPress={() => {
-              this.setState({ modalVisible: !this.state.modalVisible });
-            }}
-          >
-            <Text style={styles.facebook}>
-              <FontAwesome name="facebook" size={20} color="#fff" /> Iniciar con
-              Facebook
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={{ alignItems: "center", margin: 5 }}>
-          <Text
-            style={{
-              fontSize: 16,
-              fontFamily: "PoppinsRegular",
-              color: "#00425A"
-            }}
-          >
-            o
-          </Text>
-        </View>
-
-        {/* //////Modal de alerta ===========================*/}
-        <Modal
-          animationType="none"
-          transparent={true}
-          visible={this.state.modalVisible}
-        >
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
-              // opacity: 0.9
-            }}
-          ></View>
-
-          <View
-            style={{
-              width: 290,
-              backgroundColor: "#fff",
-              borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%"
-            }}
-          >
-            <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+          <View>
+            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
               <Text
                 style={{
-                  fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
-                  textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
+                  fontSize: 16,
+                  // padding: 13,
+                  color: "#01B8E2",
+                  textAlign: "right",
+                  fontFamily: "PoppinsRegular",
+                  marginTop: 40,
+                  marginHorizontal: 20,
+                  marginBottom: 20
                 }}
               >
-                Lo sentimos, esta funcion no se encuentra disponible.
+                {" "}
+                Entendido
               </Text>
-            </View>
-            <View>
-              <TouchableOpacity
-                onPress={() => {
-                  this.setState({ modalVisible: !this.state.modalVisible });
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 16,
-                    // padding: 13,
-                    color: "#01B8E2",
-                    textAlign: "right",
-                    fontFamily: "PoppinsRegular",
-                    marginTop: 40,
-                    marginHorizontal: 20,
-                    marginBottom: 20
-                  }}
-                >
-                  {" "}
-                  Entendido
-                </Text>
-              </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
           </View>
-        </Modal>
-      </View>
-    );
-  }
+        </View>
+      </Modal>
+    </Container>
+  );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    alignItems: "center",
-    marginTop: 30,
-    marginBottom: 10,
-    alignItems: "stretch",
-    maxWidth: 450,
-    paddingHorizontal: 30
-  },
-  google: {
-    color: "#00425A",
-    fontSize: 16,
-    paddingVertical: 13,
-    fontFamily: "PoppinsRegular"
-  },
-  viewContainer: {
-    borderWidth: 1,
-    borderRadius: 15,
-    borderColor: "#00425A",
-    marginVertical: 5,
-    alignItems: "center"
-  },
-  viewContainerF: {
-    borderRadius: 15,
-    backgroundColor: "#3b5998",
-    marginVertical: 5,
-    alignItems: "stretch"
-  },
-  facebook: {
-    color: "#fff",
-    fontSize: 16,
-    paddingVertical: 13,
-    textAlign: "center",
-    fontFamily: "PoppinsRegular"
-  }
-});
+export default SocialNetworks;
+
+const Container = styled.View`
+  align-items: stretch;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  max-width: 450px;
+  padding: 0 30px;
+`;
+
+const ContainerSocialNetwork = styled.View`
+  border-width: ${props => props.borderWidth || 0};
+  border-radius: 15px;
+  border-color: ${props => props.borderColor || 0};
+  background-color: ${props => props.backgroundColor || '#fff'};
+  margin: 5px 0;
+  align-items: center;
+`;
+
+const SocialNetwork = styled.Text`
+  color: ${props => props.textColor || "#fff"};
+  font-size: 16px;
+  padding: 13px 0;
+  font-family: 'PoppinsRegular';
+`;

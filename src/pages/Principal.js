@@ -1,17 +1,13 @@
 import React from "react";
-import { StyleSheet, SectionList, ScrollView, View, Text } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet } from "react-native";
 
 import Inicio from "../container/principal/Inicio";
 import Login from "../container/principal/Login";
+import LinearGradient from './../components/shared/LinearGradient';
+
 export default function Principal(props) {
   return (
-    <LinearGradient
-      style={styles.container}
-      colors={["#0097CD", "#01B8E2"]}
-      start={[0, 0.8]}
-      end={[0.8, 0.5]}
-    >
+    <LinearGradient styles={styles.container}>
       <Inicio />
       <Login navigation={props.navigation} />
     </LinearGradient>

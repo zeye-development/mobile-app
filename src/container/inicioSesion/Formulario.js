@@ -15,7 +15,6 @@ import { validatorEmail } from "../../helpers/validatorEmail";
 import md5 from "md5";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
-import { LinearGradient } from "expo-linear-gradient";
 import styled from "styled-components/native";
 const io = require('socket.io-client');
 
@@ -265,7 +264,6 @@ const TextConfirm = styled.Text`
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     marginBottom: 20,
     alignItems: "stretch",
     maxWidth: 450,

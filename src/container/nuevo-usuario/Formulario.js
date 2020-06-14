@@ -10,7 +10,7 @@ import {
   Modal,
   AsyncStorage
 } from "react-native";
-import { Ionicons, AntDesign, Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import DatePicker from "react-native-datepicker";
 

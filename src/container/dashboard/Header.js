@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -8,58 +8,49 @@ import {
 } from "react-native";
 import { Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
 
-export default class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      uri: null
-    };
-  }
+const HeaderDashboard = ({ navigation }) => {
 
-  async logOut() {
+  const handleLogout = async () => {
     try {
       await AsyncStorage.clear();
-      this.props.navigation.replace("Principal");
-    } catch (error) {}
+      navigation.replace("Principal");
+    } catch (error) {
+      console.log('Error Handle Logout: ', error);
+    }
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Menu")}
-          >
-            <Text style={styles.icon}>
-              {" "}
-              <Feather name="settings" size={18} color="#fff" />{" "}
-            </Text>
-          </TouchableOpacity> 
-          
-          
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("BuscarCoincidencia")}
-          >
-            <Text style={styles.icon}>
-              {" "}
-              <FontAwesome name="search" size={18} color="#fff" />
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.headerText}>Dashboard</Text>
-
-        <TouchableOpacity
-          onPress={() => { this.logOut(); }}
-        >
+  return (
+    <View style={styles.container}>
+      <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
           <Text style={styles.icon}>
-            {"      "}
-            <Ionicons name="ios-log-in" size={20} color="#fff" />{" "}
+            {" "}
+            <Feather name="settings" size={18} color="#fff" />{" "}
+          </Text>
+        </TouchableOpacity> 
+        
+        
+        <TouchableOpacity onPress={() => navigation.navigate("BuscarCoincidencia")}>
+          <Text style={styles.icon}>
+            {" "}
+            <FontAwesome name="search" size={18} color="#fff" />
           </Text>
         </TouchableOpacity>
       </View>
-    );
-  }
+      <Text style={styles.headerText}>Dashboard</Text>
+
+      <TouchableOpacity onPress={() => handleLogout()}>
+        <Text style={styles.icon}>
+          {"      "}
+          <Ionicons name="ios-log-in" size={20} color="#fff" />{" "}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
 }
+
+export default HeaderDashboard;
 
 const styles = StyleSheet.create({
   container: {

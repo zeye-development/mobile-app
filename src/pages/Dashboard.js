@@ -14,9 +14,7 @@ const Dashboard = ({ navigation  }) => {
   return (
     <View>
       <ScrollView>
-        <LinearGradientComponent
-          styles={styles.containerSuperior}          
-        >
+        <LinearGradientComponent styles={styles.containerSuperior}>
           <Header navigation={navigation} />
           <ProgreseBar navigation={navigation} />
           <Opciones

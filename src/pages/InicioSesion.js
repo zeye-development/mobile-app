@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ScrollView,KeyboardAvoidingView,SafeAreaView } from "react-native";
+import { StyleSheet, View, ScrollView, KeyboardAvoidingView, SafeAreaView } from "react-native";
 
 import Header from './../components/Header';
 
@@ -10,7 +10,7 @@ import Preguntas from "../container/inicioSesion/Preguntas";
 export default function InicioSesion(props) {
   return (
     <SafeAreaView>
-      <KeyboardAvoidingView  behavior="height" enabled>
+      <KeyboardAvoidingView behavior="height" enabled>
         <ScrollView>
           <View style={style.container}>
             <Header navigation={props.navigation} title='Iniciar Sesion' btnClose={false} />

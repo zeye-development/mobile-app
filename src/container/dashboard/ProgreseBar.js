@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
+import { Btn, TextBtn } from './../../styles/ui';
+
 const ProgreseBar = ({ navigation }) => {
   const { users } = useSelector((state) => state.user);
   const maxUsers = 100;
@@ -37,16 +39,15 @@ const ProgreseBar = ({ navigation }) => {
           { users.length && users.length } de { maxUsers } Usuarios
         </Text>
       </View>
-      <View style={styles.styleButtom}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("NuevoUsuario")}
-        >
-          <Text style={styles.inputButtom}>
-            <Ionicons name="md-person-add" size={18} color="#0097CD" /> Añadir
-            Usuario{" "}
-          </Text>
+
+      <Btn>
+        <TouchableOpacity onPress={() => navigation.navigate("NuevoUsuario")}>
+          <TextBtn color="#0097CD">
+            <Ionicons name="md-person-add" size={18} color="#0097CD" /> 
+            Añadir Usuario{" "}
+          </TextBtn>
         </TouchableOpacity>
-      </View>
+      </Btn>
     </View>
   );  
 }
@@ -56,26 +57,13 @@ export default ProgreseBar;
 const styles = StyleSheet.create({
   container: {
     marginTop: 18,
+    marginBottom: 10,    
     paddingLeft: 35,
     paddingRight: 35,
-    marginBottom: 10,
     alignItems: "stretch",
     maxWidth: 450
   },
   viewContainer: {
     paddingBottom: 20
-  },
-  inputButtom: {
-    fontSize: 16,
-    padding: 13,
-    color: "#0097CD",
-    textAlign: "center",
-    fontFamily: "PoppinsRegular"
-  },
-  styleButtom: {
-    borderRadius: 15,
-    marginVertical: 15,
-    alignItems: "stretch",
-    backgroundColor: "#fff"
   }
 });
