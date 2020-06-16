@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, ProgressBarAndroid } from "react-native";
-import { Entypo, Foundation } from "@expo/vector-icons";
+import { FontAwesome, Entypo, Foundation } from "@expo/vector-icons";
 
 export default class Opciones extends React.Component {
   constructor(props) {
@@ -84,11 +84,7 @@ export default class Opciones extends React.Component {
                     fontSize: 14
                   }}
                 >
-                  <Entypo
-                    name="users"
-                    size={18}
-                    color="rgba(255, 255, 255, 0.5)"
-                  />{" "}
+                  <FontAwesome name="car" size={24} color="white" />
                   Vehículos
                 </Text>
               ) : (
@@ -101,7 +97,7 @@ export default class Opciones extends React.Component {
                     fontSize: 14
                   }}
                 >
-                  <Entypo name="users" size={18} color="rgb(255, 255, 255)" />{" "}
+                  <FontAwesome name="car" size={24} color="white" />
                   Vehículos
                 </Text>
               )}

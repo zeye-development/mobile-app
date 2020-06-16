@@ -6,7 +6,7 @@ import {
   Text,
   TouchableOpacity
 } from "react-native";
-import { Ionicons, Entypo } from "@expo/vector-icons";
+import { FontAwesome, Ionicons, Entypo } from "@expo/vector-icons";
 
 export default class ProgreseBar extends React.Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export default class ProgreseBar extends React.Component {
             onPress={() => this.props.navigation.navigate("NewVehicle")}
           >
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={18} color="#fe5627" /> Añadir
+              <FontAwesome name="car" size={24} color="red" /> Añadir
               Vehículo{" "}
             </Text>
           </TouchableOpacity>

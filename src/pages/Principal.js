@@ -8,7 +8,7 @@ export default function Principal(props) {
   return (
     <LinearGradient
       style={styles.container}
-      colors={["#fe5627", "#fe5627"]}
+      colors={["#d51c28", "#d51c28"]}
       start={[0, 0.8]}
       end={[0.8, 0.5]}
     >
@@ -21,7 +21,7 @@ export default function Principal(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fe5627",
+    backgroundColor: "#d51c28",
     padding: 30
   }
 });

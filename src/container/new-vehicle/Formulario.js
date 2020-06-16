@@ -5,8 +5,7 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity,
-  Button
+  TouchableOpacity
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as yup from 'yup';
@@ -131,33 +130,20 @@ const Form =  ({ navigation }) => {
               <Text style={{ fontSize: 10, color: 'red' }}>{errors.year}</Text>
             }
 
-            <Button
-              title='Sign In'
-              disabled={!isValid}
-              onPress={handleSubmit}
-            />
             <LinearGradientComponent
               styles={styles.styleButtom}
             >
               <TouchableOpacity onPress={handleSubmit} disabled={!isValid}>
                 <Text style={styles.inputButtom}>
-                  <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
+                  { !isValid ? 'Todos los campos son requeridos' : 
+                    (<><Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}</>)
+                  }
                 </Text>
               </TouchableOpacity>        
             </LinearGradientComponent>              
           </>
         )}
       </Formik>
-
-      <LinearGradientComponent
-        styles={styles.styleButtom}
-      >
-        <TouchableOpacity onPress={handleSubmitAction}>
-          <Text style={styles.inputButtom}>
-            <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
-          </Text>
-        </TouchableOpacity>        
-      </LinearGradientComponent>  
     </View>
   );
 }
