@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/quantic.png",
+    "icon": "./assets/patria_logo_login.png",
     "splash": {
-      "image": "./assets/zeye.png",
+      "image": "./assets/patria_logo_login.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
