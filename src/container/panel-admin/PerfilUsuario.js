@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import React from 'react';
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 export default function PerfilUsuario(props) {
   return (
@@ -10,22 +10,22 @@ export default function PerfilUsuario(props) {
           <View style={styles.img}>
             <Image
               style={{ width: 60, height: 60 }}
-              source={require("../../../assets/perfil.png")}
+              source={require('../../../assets/perfil.png')}
             />
           </View>
-          <View style={{ justifyContent: "center", paddingLeft: 10 }}>
+          <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
             <Text
               style={[
                 styles.textColor,
                 {
-                  fontFamily: "PoppinsBold",
+                  fontFamily: 'PoppinsBold',
                   fontSize: 20
                 }
               ]}
             >
-              Jhon Doe{" "}
+              Jhon Doe{' '}
             </Text>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={styles.textColor}>Plan - </Text>
               <Text style={styles.plan}>Premium</Text>
             </View>
@@ -36,12 +36,12 @@ export default function PerfilUsuario(props) {
         <View style={styles.cambioPlan}>
           <Text
             style={{
-              color: "#fff",
-              fontFamily: "PoppinsRegular",
+              color: '#fff',
+              fontFamily: 'PoppinsRegular',
               fontSize: 14
             }}
           >
-            Upgrade your plan{"  "}
+            Upgrade your plan{'  '}
           </Text>
           <Feather name="refresh-cw" size={14} color="#fff" />
         </View>
@@ -53,7 +53,7 @@ export default function PerfilUsuario(props) {
 const styles = StyleSheet.create({
   containerPadre: {
     // flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 10,
     paddingLeft: 35,
     paddingRight: 35,
@@ -61,35 +61,35 @@ const styles = StyleSheet.create({
     maxWidth: 450
   },
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between"
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   img: {
-    justifyContent: "center",
+    justifyContent: 'center',
     borderRadius: 100,
-    borderColor: "#fff",
+    borderColor: '#fff',
     borderWidth: 2
   },
   textColor: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 14,
-    fontFamily: "PoppinsRegular"
+    fontFamily: 'PoppinsRegular'
   },
   plan: {
-    backgroundColor: "#00DFAA",
+    backgroundColor: '#00DFAA',
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderRadius: 5,
-    color: "#fff",
-    textAlign: "center",
+    color: '#fff',
+    textAlign: 'center',
     fontSize: 12,
-    fontFamily: "PoppinsSemiBold"
+    fontFamily: 'PoppinsSemiBold'
   },
   cambioPlan: {
     marginTop: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "rgba(255,255,255, 0.1)",
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255, 0.1)',
     borderRadius: 5,
     paddingVertical: 3,
     paddingHorizontal: 5

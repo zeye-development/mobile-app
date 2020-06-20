@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, Modal, View, ActivityIndicator } from "react-native";
+import React from 'react';
+import { Text, Modal, View, ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 
 export default function ModalLoading({ modalLoading = false }) {
@@ -17,7 +17,7 @@ export default function ModalLoading({ modalLoading = false }) {
           left: '45%'
         }}
       >
-        { modalLoading ? 
+        { modalLoading ?
           <ActivityIndicator size={30} color="#fff" /> : null
         }
       </View>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   StyleSheet,
@@ -6,8 +6,8 @@ import {
   ProgressBarAndroid,
   Text,
   TouchableOpacity
-} from "react-native";
-import { Ionicons, Entypo } from "@expo/vector-icons";
+} from 'react-native';
+import { Ionicons, Entypo } from '@expo/vector-icons';
 
 import { Btn, TextBtn } from './../../styles/ui';
 
@@ -26,30 +26,30 @@ const ProgreseBar = ({ navigation }) => {
           progress={percentage}
         />
       </View>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: 'center' }}>
         <Text
           style={{
-            color: "#fff",
+            color: '#fff',
             fontSize: 16,
-            fontFamily: "PoppinsSemiBold"
+            fontFamily: 'PoppinsSemiBold'
           }}
         >
-          {" "}
-          <Entypo name="users" size={18} color="#fff" /> 
+          {' '}
+          <Entypo name="users" size={18} color="#fff" />
           { users.length && users.length } de { maxUsers } Usuarios
         </Text>
       </View>
 
       <Btn>
-        <TouchableOpacity onPress={() => navigation.navigate("NuevoUsuario")}>
+        <TouchableOpacity onPress={() => navigation.navigate('NuevoUsuario')}>
           <TextBtn color="#0097CD">
-            <Ionicons name="md-person-add" size={18} color="#0097CD" /> 
-            Añadir Usuario{" "}
+            <Ionicons name="md-person-add" size={18} color="#0097CD" />
+            Añadir Usuario{' '}
           </TextBtn>
         </TouchableOpacity>
       </Btn>
     </View>
-  );  
+  );
 }
 
 export default ProgreseBar;
@@ -57,10 +57,10 @@ export default ProgreseBar;
 const styles = StyleSheet.create({
   container: {
     marginTop: 18,
-    marginBottom: 10,    
+    marginBottom: 10,
     paddingLeft: 35,
     paddingRight: 35,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450
   },
   viewContainer: {

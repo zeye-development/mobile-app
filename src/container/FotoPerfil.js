@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import React from 'react';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import styled from 'styled-components/native';
 
 export default function FotoPerfil() {
@@ -8,7 +8,7 @@ export default function FotoPerfil() {
       <View style={styles.viewContainer}>
         <Image
           style={{ width: 220, height: 220 }}
-          source={require("../../../assets/captura.png")}
+          source={require('../../../assets/captura.png')}
         />
       </View>
     </Container>
@@ -25,7 +25,7 @@ const Container = styled.View`
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 50,
     marginBottom: 5,
     maxWidth: 450,
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
   viewContainer: {
     marginTop: 10,
     marginBottom: 5,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     width: 225,
     height: 225,
     borderRadius: 25

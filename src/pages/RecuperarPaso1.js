@@ -1,9 +1,9 @@
-import React from "react";
-import { StyleSheet, View, ScrollView, SafeAreaView, KeyboardAvoidingView } from "react-native";
+import React from 'react';
+import { StyleSheet, View, ScrollView, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 
-import Header from "../container/recuperarPaso1/Header";
-import BodyMensaje from "../container/recuperarPaso1/BodyMensaje";
-import Formulario from "../container/recuperarPaso1/Formulario";
+import Header from '../container/recuperarPaso1/Header';
+import BodyMensaje from '../container/recuperarPaso1/BodyMensaje';
+import Formulario from '../container/recuperarPaso1/Formulario';
 
 export default function RecuperarPaso1(props) {
   return (
@@ -24,7 +24,7 @@ export default function RecuperarPaso1(props) {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingVertical: 30,
     marginLeft: 5
   }

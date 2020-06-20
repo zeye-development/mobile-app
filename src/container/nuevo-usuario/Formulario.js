@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,10 +9,10 @@ import {
   Picker,
   Modal,
   AsyncStorage
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
-import DatePicker from "react-native-datepicker";
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import DatePicker from 'react-native-datepicker';
 
 import config from './../../../config';
 
@@ -24,38 +24,38 @@ export default class Formulario extends Component {
       base64: null,
       estado: true,
       modalVisibleAlert: false,
-      mensajeAlert: "",
+      mensajeAlert: '',
       isDateTimePickerVisible: false,
-      sex: "Male",
-      nationality: "VE",
+      sex: 'Male',
+      nationality: 'VE',
       mainFoto: null,
-      birth: "",
-      name: "",
-      surname: "",
+      birth: '',
+      name: '',
+      surname: '',
       imagenes: [],
-      id: ""
+      id: ''
     };
   }
 
   async componentDidMount() {
     // console.log(this.props.navigation.getParam("mainFoto"));
-    let token = await AsyncStorage.getItem("token");
+    let token = await AsyncStorage.getItem('token');
     console.log(token);
 
-    let toke = token.replace(/['"]+/g, "");
+    let toke = token.replace(/['"]+/g, '');
     this.setState({ token: toke });
     let perfil = JSON.stringify(
-      this.props.navigation.getParam("item", "image")
+      this.props.navigation.getParam('item', 'image')
     );
     console.log(perfil);
-    let pfoto = perfil.replace(/['"]+/g, "");
-    console.log("fotot", pfoto);
+    let pfoto = perfil.replace(/['"]+/g, '');
+    console.log('fotot', pfoto);
 
     this.setState({ foto: pfoto });
     let parabase64 = JSON.stringify(
-      this.props.navigation.getParam("base", "base64")
+      this.props.navigation.getParam('base', 'base64')
     );
-    let base64 = parabase64.replace(/['"]+/g, "");
+    let base64 = parabase64.replace(/['"]+/g, '');
     this.setState({ base64: base64 });
     //   //guardar fotos en cache
     //   //aun no me funciona esto que hago
@@ -79,31 +79,31 @@ export default class Formulario extends Component {
     // let { foto, base64 } = this.state;
     console.log(this.state.estado);
     console.log(this.state.foto);
-    if (this.state.foto === "image") {
+    if (this.state.foto === 'image') {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+        mensajeAlert: 'EL CAMPO DE IMAGEN ESTA VACIO'
       });
       return;
     }
-    if (this.state.name === "") {
+    if (this.state.name === '') {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Nombre no puede estar vacio"
+        mensajeAlert: 'El campo Nombre no puede estar vacio'
       });
       return;
     }
-    if (this.state.surname === "") {
+    if (this.state.surname === '') {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "El campo Apellido no puede estar vacio"
+        mensajeAlert: 'El campo Apellido no puede estar vacio'
       });
       return;
     }
-    if (this.state.birth === "") {
+    if (this.state.birth === '') {
       this.setState({
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Por favor ingrese una fecha"
+        mensajeAlert: 'Por favor ingrese una fecha'
       });
       return;
     }
@@ -114,7 +114,7 @@ export default class Formulario extends Component {
 
     // if (this.state.foto != null) {
     fetch(`${config.API_URL}/register-face`, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         names: this.state.name,
         surnames: this.state.surname,
@@ -126,29 +126,29 @@ export default class Formulario extends Component {
         birth: this.state.birth
       }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         key: this.state.token
       }
     })
       .then(response => response.json())
       .then(response => {
         console.log(this.state.sex);
-        console.log("upload succes", response);
+        console.log('upload succes', response);
         this.setState({
           modalVisibleAlert: true,
-          mensajeAlert: "Usuario Registrado Exitosamente"
+          mensajeAlert: 'Usuario Registrado Exitosamente'
         });
         setTimeout(() => {
           this.setState({ uri: null });
-          this.props.navigation.replace("Loading");
+          this.props.navigation.replace('Loading');
         }, 1000);
       })
       .catch(error => {
-        console.log("upload error", error);
+        console.log('upload error', error);
 
         console.log(this.state.estado);
 
-        alert("Upload failed!");
+        alert('Upload failed!');
       });
     // }
   };
@@ -161,7 +161,7 @@ export default class Formulario extends Component {
   };
 
   handleDatePicked = date => {
-    console.log("A date has been picked: ", date);
+    console.log('A date has been picked: ', date);
     this.hideDateTimePicker();
   };
   render() {
@@ -169,25 +169,25 @@ export default class Formulario extends Component {
       <View style={styles.container}>
         <View
           style={{
-            flexDirection: "row",
-            width: "100%",
+            flexDirection: 'row',
+            width: '100%',
             height: 100,
-            justifyContent: "center",
-            alignItems: "center",
+            justifyContent: 'center',
+            alignItems: 'center',
             marginTop: 20,
             marginBottom: 20
           }}
         >
           <TouchableOpacity
             onPress={() =>
-              this.props.navigation.replace("Captura", { mainFoto: true })
+              this.props.navigation.replace('Captura', { mainFoto: true })
             }
             style={{
               width: 120,
               height: 120,
-              backgroundColor: "#EBF2F4",
+              backgroundColor: '#EBF2F4',
               borderRadius: 100,
-              position: "absolute"
+              position: 'absolute'
             }}
           >
             <Image
@@ -198,16 +198,16 @@ export default class Formulario extends Component {
 
           <View
             style={{
-              backgroundColor: "#01B8D2",
-              height: "45%",
-              width: "16%",
-              marginLeft: "30%",
-              marginTop: "20%",
+              backgroundColor: '#01B8D2',
+              height: '45%',
+              width: '16%',
+              marginLeft: '30%',
+              marginTop: '20%',
               borderRadius: 30,
-              alignItems: "center"
+              alignItems: 'center'
             }}
           >
-            <View style={{ marginTop: "20%" }}>
+            <View style={{ marginTop: '20%' }}>
               <Ionicons name="md-camera" size={25} color="white" />
             </View>
           </View>
@@ -241,13 +241,13 @@ export default class Formulario extends Component {
         <Text
           style={{
             fontSize: 15,
-            color: "black",
-            textAlign: "center",
-            fontFamily: "PoppinsRegular",
+            color: 'black',
+            textAlign: 'center',
+            fontFamily: 'PoppinsRegular',
             margin: 5
           }}
         >
-          {" "}
+          {' '}
           Seleccionar Pais
         </Text>
         <View style={styles.containerpicker}>
@@ -256,7 +256,7 @@ export default class Formulario extends Component {
             onValueChange={itemValue =>
               this.setState({ nationality: itemValue })
             }
-            style={[styles.picker]}
+            style={styles.picker}
             itemStyle={styles.pickerItem}
           >
             <Picker.Item label="Venezuela" value="VE" />
@@ -267,20 +267,20 @@ export default class Formulario extends Component {
         <Text
           style={{
             fontSize: 15,
-            color: "black",
-            textAlign: "center",
-            fontFamily: "PoppinsRegular",
+            color: 'black',
+            textAlign: 'center',
+            fontFamily: 'PoppinsRegular',
             margin: 5
           }}
         >
-          {" "}
+          {' '}
           Seleccionar Sexo
         </Text>
         <View style={styles.containerpicker}>
           <Picker
             selectedValue={this.state.sex}
             onValueChange={Value => this.setState({ sex: Value })}
-            style={[styles.picker]}
+            style={styles.picker}
             itemStyle={styles.pickerItem}
           >
             <Picker.Item label="Masculino" value="Male" />
@@ -290,17 +290,17 @@ export default class Formulario extends Component {
         <Text
           style={{
             fontSize: 15,
-            color: "black",
-            textAlign: "center",
-            fontFamily: "PoppinsRegular",
+            color: 'black',
+            textAlign: 'center',
+            fontFamily: 'PoppinsRegular',
             margin: 5
           }}
         >
-          {" "}
+          {' '}
           Fecha de Nacimiento
         </Text>
         <DatePicker
-          style={{ width: "100%", height: 40, marginTop: 6 }}
+          style={{ width: '100%', height: 40, marginTop: 6 }}
           date={this.state.birth}
           mode="date"
           placeholder="Fecha de Nacimiento"
@@ -328,10 +328,10 @@ export default class Formulario extends Component {
           </TouchableOpacity>
           <Text
             style={{
-              color: "#00425A",
+              color: '#00425A',
               fontSize: 14,
               marginLeft: -10,
-              fontFamily: "PoppinsSemiBold"
+              fontFamily: 'PoppinsSemiBold'
             }}
           >
             Añadir a solicitados
@@ -339,14 +339,14 @@ export default class Formulario extends Component {
         </View>
 
         <LinearGradient
-          colors={["#0097CD", "#01B8E2"]}
+          colors={['#0097CD', '#01B8E2']}
           start={[0, 0.8]}
           end={[0.8, 0.5]}
           style={styles.styleButtom}
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
-              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{" "}
+              <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{' '}
             </Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -359,30 +359,30 @@ export default class Formulario extends Component {
           <View
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 66, 90, 0.5)'
             }}
           ></View>
 
           <View
             style={{
               width: 290,
-              backgroundColor: "#fff",
+              backgroundColor: '#fff',
               borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%"
+              position: 'absolute',
+              marginTop: '45%',
+              marginHorizontal: '10%'
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
               <Text
                 style={{
                   fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
+                  color: '#00425A',
+                  textAlign: 'center',
                   textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
+                  fontFamily: 'PoppinsBold'
                 }}
               >
                 {this.state.mensajeAlert}
@@ -399,15 +399,15 @@ export default class Formulario extends Component {
                 <Text
                   style={{
                     fontSize: 16,
-                    color: "#01B8E2",
-                    textAlign: "right",
-                    fontFamily: "PoppinsRegular",
+                    color: '#01B8E2',
+                    textAlign: 'right',
+                    fontFamily: 'PoppinsRegular',
                     marginTop: 40,
                     marginHorizontal: 20,
                     marginBottom: 20
                   }}
                 >
-                  {" "}
+                  {' '}
                   Entendido
                 </Text>
               </TouchableOpacity>
@@ -422,7 +422,7 @@ export default class Formulario extends Component {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30
   },
@@ -430,76 +430,76 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 13,
     paddingHorizontal: 33,
-    fontFamily: "PoppinsRegular"
+    fontFamily: 'PoppinsRegular'
   },
   input1: {
     fontSize: 16,
     paddingVertical: 13,
     paddingHorizontal: 20,
     marginRight: 13,
-    fontFamily: "PoppinsRegular"
+    fontFamily: 'PoppinsRegular'
   },
   inputButtom: {
     fontSize: 16,
     padding: 13,
-    color: "#fff",
-    textAlign: "center",
-    fontFamily: "PoppinsRegular"
+    color: '#fff',
+    textAlign: 'center',
+    fontFamily: 'PoppinsRegular'
   },
   viewContainer: {
     borderRadius: 15,
-    backgroundColor: "#EBF2F4",
+    backgroundColor: '#EBF2F4',
     marginVertical: 5
   },
   viewContainerGrup: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20,
     marginBottom: 10,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 15
   },
   viewContainerInput: {
     borderRadius: 15,
-    backgroundColor: "#EBF2F4",
+    backgroundColor: '#EBF2F4',
     width: 140
   },
   styleButtom: {
     borderRadius: 15,
     marginVertical: 5,
-    alignItems: "stretch",
-    backgroundColor: "#0097CD"
+    alignItems: 'stretch',
+    backgroundColor: '#0097CD'
   },
   viewContainerCheck: {
-    flexDirection: "row",
+    flexDirection: 'row',
     padding: 13,
-    color: "#EBF2F4",
-    alignItems: "center",
-    justifyContent: "center",
+    color: '#EBF2F4',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 7,
     marginBottom: 15
   },
   containerpicker: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderRadius: 15,
-    backgroundColor: "#EBF2F4",
+    backgroundColor: '#EBF2F4',
     marginBottom: 5
   },
   picker: {
-    width: "100%",
+    width: '100%',
     height: 50,
-    marginLeft: "2%",
-    color: "black",
-    alignItems: "center"
+    marginLeft: '2%',
+    color: 'black',
+    alignItems: 'center'
   },
   imagenesSubir: {
     width: 50,
     marginHorizontal: 3,
     height: 50,
-    backgroundColor: "#EBF2F4",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#EBF2F4',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });

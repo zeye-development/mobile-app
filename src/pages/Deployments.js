@@ -1,16 +1,16 @@
-import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import React from 'react';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
-import Header from "../container/deployments/Header";
-import Servers from "../container/deployments/Servers";
+import Header from '../container/deployments/Header';
+import Servers from '../container/deployments/Servers';
 
 export default function Deployments() {
   return (
     <View>
       <ScrollView>
         <LinearGradient
-          colors={["#0097CD", "#01B8E2"]}
+          colors={['#0097CD', '#01B8E2']}
           start={[0, 0.8]}
           end={[0.8, 0.5]}
           style={styles.containerSuperior}

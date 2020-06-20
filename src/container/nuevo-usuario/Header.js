@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Modal } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class Header extends Component {
   constructor(props) {
@@ -10,18 +10,18 @@ export default class Header extends Component {
       base64: null,
       estado: true,
       modalVisibleAlert: false,
-      mensajeAlert: ""
+      mensajeAlert: ''
     };
   }
   Retroceder() {
     let parabase64 = JSON.stringify(
-      this.props.navigation.getParam("base", "base64")
+      this.props.navigation.getParam('base', 'base64')
     );
     this.setState({ foto: true, base64: parabase64 });
     // if (this.state.base64 != null) {
     this.setState({
       modalVisibleAlert: true,
-      mensajeAlert: "Se perderan los datos una vez salga de la vista"
+      mensajeAlert: 'Se perderan los datos una vez salga de la vista'
     });
     // console.log(this.state.base64);
     // }
@@ -36,8 +36,8 @@ export default class Header extends Component {
           }}
         >
           <Text style={styles.icon}>
-            {" "}
-            <Ionicons name="md-arrow-back" size={20} color="#00425A" />{" "}
+            {' '}
+            <Ionicons name="md-arrow-back" size={20} color="#00425A" />{' '}
           </Text>
         </TouchableOpacity>
 
@@ -51,9 +51,9 @@ export default class Header extends Component {
           <View
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 66, 90, 0.5)'
               // opacity: 0.9
             }}
           ></View>
@@ -61,21 +61,21 @@ export default class Header extends Component {
           <View
             style={{
               width: 290,
-              backgroundColor: "#fff",
+              backgroundColor: '#fff',
               borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%"
+              position: 'absolute',
+              marginTop: '45%',
+              marginHorizontal: '10%'
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
               <Text
                 style={{
                   fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
+                  color: '#00425A',
+                  textAlign: 'center',
                   textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
+                  fontFamily: 'PoppinsBold'
                 }}
               >
                 {this.state.mensajeAlert}
@@ -83,9 +83,9 @@ export default class Header extends Component {
             </View>
             <View
               style={{
-                flexDirection: "row",
+                flexDirection: 'row',
                 marginHorizontal: 20,
-                justifyContent: "flex-end",
+                justifyContent: 'flex-end',
                 marginBottom: 10
               }}
             >
@@ -100,16 +100,16 @@ export default class Header extends Component {
                   style={{
                     fontSize: 16,
                     // padding: 13,
-                    color: "#00425A",
+                    color: '#00425A',
                     // textAlign: "right",
-                    fontFamily: "PoppinsRegular",
+                    fontFamily: 'PoppinsRegular',
                     marginTop: 40,
                     padding: 10
                     // marginHorizontal: 20,
                     // marginBottom: 20
                   }}
                 >
-                  {" "}
+                  {' '}
                   CANCELAR
                 </Text>
               </TouchableOpacity>
@@ -126,16 +126,16 @@ export default class Header extends Component {
                   style={{
                     fontSize: 16,
                     // padding: 13,
-                    color: "#01B8E2",
+                    color: '#01B8E2',
                     // textAlign: "right",
-                    fontFamily: "PoppinsRegular",
+                    fontFamily: 'PoppinsRegular',
                     marginTop: 40,
-                    backgroundColor: "#EBF0F2",
+                    backgroundColor: '#EBF0F2',
                     padding: 10,
                     borderRadius: 15
                   }}
                 >
-                  {" "}
+                  {' '}
                   SI, REALIZAR
                 </Text>
               </TouchableOpacity>
@@ -149,18 +149,18 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     maxWidth: 450,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20,
     marginBottom: 10,
     paddingHorizontal: 30
   },
   headerText: {
-    color: "#00425A",
+    color: '#00425A',
     fontSize: 14,
-    fontFamily: "PoppinsSemiBold"
+    fontFamily: 'PoppinsSemiBold'
   },
   icon: {
     padding: 6

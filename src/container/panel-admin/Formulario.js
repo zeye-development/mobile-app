@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity
-} from "react-native";
-import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
+} from 'react-native';
+import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Formulario(props) {
   return (
@@ -18,7 +18,7 @@ export default function Formulario(props) {
           style={[
             styles.viewContainer,
             styles.containerInput,
-            { justifyContent: "space-between" }
+            { justifyContent: 'space-between' }
           ]}
         >
           <View style={styles.containerInput}>
@@ -27,7 +27,7 @@ export default function Formulario(props) {
           </View>
           <TouchableOpacity>
             <LinearGradient
-              colors={["#0097CD", "#01B8E2"]}
+              colors={['#0097CD', '#01B8E2']}
               start={[0, 0.8]}
               end={[0.8, 0.5]}
               style={styles.buttomInputRight}
@@ -44,7 +44,7 @@ export default function Formulario(props) {
           style={[
             styles.viewContainer,
             styles.containerInput,
-            { justifyContent: "space-between" }
+            { justifyContent: 'space-between' }
           ]}
         >
           <View style={styles.containerInput}>
@@ -53,7 +53,7 @@ export default function Formulario(props) {
           </View>
           <TouchableOpacity>
             <LinearGradient
-              colors={["#0097CD", "#01B8E2"]}
+              colors={['#0097CD', '#01B8E2']}
               start={[0, 0.8]}
               end={[0.8, 0.5]}
               style={styles.buttomInputRight}
@@ -86,7 +86,7 @@ export default function Formulario(props) {
         </View>
       </View>
       <LinearGradient
-        colors={["#0097CD", "#01B8E2"]}
+        colors={['#0097CD', '#01B8E2']}
         start={[0, 0.8]}
         end={[0.8, 0.5]}
         style={styles.styleButtom}
@@ -104,57 +104,57 @@ export default function Formulario(props) {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30,
     paddingBottom: 20
   },
   input: {
     fontSize: 16,
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     paddingVertical: 10,
     paddingHorizontal: 15,
     width: 200
   },
   inputButtom: {
     fontSize: 16,
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     padding: 13,
-    color: "#fff",
-    textAlign: "center"
+    color: '#fff',
+    textAlign: 'center'
   },
   viewContainer: {
     borderRadius: 15,
-    backgroundColor: "#EBF2F4",
+    backgroundColor: '#EBF2F4',
     marginVertical: 5,
     paddingLeft: 15
   },
   styleButtom: {
     borderRadius: 15,
     marginVertical: 5,
-    alignItems: "stretch",
-    backgroundColor: "#0097CD"
+    alignItems: 'stretch',
+    backgroundColor: '#0097CD'
   },
   tituloInput: {
-    color: "#00425A",
+    color: '#00425A',
     marginVertical: 5,
     fontSize: 14,
-    fontFamily: "PoppinsSemiBold"
+    fontFamily: 'PoppinsSemiBold'
   },
   usuario: {
     padding: 13,
-    backgroundColor: "red",
-    textAlign: "center",
-    color: "#fff",
+    backgroundColor: 'red',
+    textAlign: 'center',
+    color: '#fff',
     borderRadius: 15,
     marginTop: 5
   },
   containerInput: {
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   buttomInputRight: {
-    backgroundColor: "#0097CD",
+    backgroundColor: '#0097CD',
     paddingHorizontal: 15,
     paddingVertical: 10,
     height: 50,

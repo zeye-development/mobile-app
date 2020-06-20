@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   Text,
@@ -9,19 +9,19 @@ import {
   AsyncStorage,
   Modal,
   ActivityIndicator,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { validatorEmail } from "../../helpers/validatorEmail";
-import md5 from "md5";
-import { Notifications } from "expo";
-import * as Permissions from "expo-permissions";
-import styled from "styled-components/native";
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { validatorEmail } from '../../helpers/validatorEmail';
+import md5 from 'md5';
+import { Notifications } from 'expo';
+import * as Permissions from 'expo-permissions';
+import styled from 'styled-components/native';
 const io = require('socket.io-client');
 
-import ModalLoading from "./../../components/ModalLoading";
+import ModalLoading from './../../components/ModalLoading';
 import LinearGradientComponent from './../../components/shared/LinearGradient';
 
-import { loginAction } from "./../../redux/userDuck";
+import { loginAction } from './../../redux/userDuck';
 import * as Config from '../../../config';
 
 class Formulario extends Component {
@@ -34,20 +34,20 @@ class Formulario extends Component {
       modalVisible: false,
       modalLoading: false,
       error: false,
-      msjError: "",
+      msjError: '',
     };
   }
 
   async componentDidMount() {
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-    if (status !== "granted") {
+    if (status !== 'granted') {
       return
     }
     try {
       const token = await Notifications.getExpoPushTokenAsync();
       console.log(token)
-      AsyncStorage.setItem("tokenPush", token);
-      console.log("Set Token: ", token);
+      AsyncStorage.setItem('tokenPush', token);
+      console.log('Set Token: ', token);
     } catch {}
   }
 
@@ -86,21 +86,21 @@ class Formulario extends Component {
   }
 
   handleSubmit = async () => {
-    const tokenPush = await AsyncStorage.getItem("tokenPush");
+    const tokenPush = await AsyncStorage.getItem('tokenPush');
     console.log('Toke: ', tokenPush)
     // email: this.state.email,
     // password: md5(this.state.pass),
     // email: 'lewistest@gmail.com',
-    // password: md5('123456'),        
+    // password: md5('123456'),
     try {
-      this.props  
+      this.props
         .loginAction({
-    email: this.state.email,
-    password: md5(this.state.pass),     
-    // email: 'lewistest@gmail.com',
-    // password: md5('123456'),            
-    // email: 'adriancito@gmail.com',
-    // password: md5('18138899'),   
+          email: this.state.email,
+          password: md5(this.state.pass),
+          // email: 'lewistest@gmail.com',
+          // password: md5('123456'),
+          // email: 'adriancito@gmail.com',
+          // password: md5('18138899'),
           expoID: tokenPush,
         })
         .then((response) => {
@@ -108,13 +108,13 @@ class Formulario extends Component {
           if (response.status === 200) {
             // console.log('Response ', response)
             let { token } = response.data;
-            AsyncStorage.setItem("token", token);
-            this.props.navigation.replace("Loading", { token });
+            AsyncStorage.setItem('token', token);
+            this.props.navigation.replace('Loading', { token });
           } else {
             this.setState({
               modalLoading: false,
               modalVisible: !this.state.modalVisible,
-              mensajeAlert: "El Usuario o la Contraseña no son correctos",
+              mensajeAlert: 'El Usuario o la Contraseña no son correctos',
             });
           }
         })
@@ -123,7 +123,7 @@ class Formulario extends Component {
       this.setState({
         modalLoading: false,
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "Usted no dispone de una conexion a internet",
+        mensajeAlert: 'Usted no dispone de una conexion a internet',
       });
     }
   };
@@ -156,20 +156,20 @@ class Formulario extends Component {
         </View>
         {this.state.error ? (
           <View style={styles.error}>
-            <Text style={[styles.font, { color: "#fff" }]}>
+            <Text style={[styles.font, { color: '#fff' }]}>
               {this.state.msjError}
             </Text>
           </View>
         ) : null}
 
         <LinearGradientComponent
-          styles={styles.styleButtom}          
+          styles={styles.styleButtom}
         >
           <TouchableOpacity
             onPress={() => this.login(this.state.email, this.state.pass)}
           >
             <Text style={[styles.inputButtom, styles.font]}>
-              Iniciar Sesion{" "}
+              Iniciar Sesion{' '}
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
@@ -208,11 +208,11 @@ class Formulario extends Component {
           <View
             style={{
               width: 290,
-              backgroundColor: "#fff",
+              backgroundColor: '#fff',
               borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%",
+              position: 'absolute',
+              marginTop: '45%',
+              marginHorizontal: '10%',
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
@@ -265,7 +265,7 @@ const TextConfirm = styled.Text`
 const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30,
   },
@@ -274,54 +274,54 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     paddingHorizontal: 33,
     borderWidth: 2,
-    borderColor: "transparent",
+    borderColor: 'transparent',
   },
   inputButtom: {
     fontSize: 16,
     padding: 13,
-    color: "#fff",
-    textAlign: "center",
+    color: '#fff',
+    textAlign: 'center',
   },
   viewContainer: {
     borderRadius: 15,
-    backgroundColor: "#EBF2F4",
+    backgroundColor: '#EBF2F4',
     marginVertical: 5,
   },
   styleButtom: {
     borderRadius: 15,
     marginVertical: 5,
-    alignItems: "stretch",
-    backgroundColor: "#0097CD",
+    alignItems: 'stretch',
+    backgroundColor: '#0097CD',
   },
   usuario: {
     padding: 13,
-    backgroundColor: "red",
-    textAlign: "center",
-    color: "#fff",
+    backgroundColor: 'red',
+    textAlign: 'center',
+    color: '#fff',
     borderRadius: 15,
     marginTop: 5,
   },
   font: {
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
   },
   modal: {
     flex: 1,
-    marginTop: "90%",
-    backgroundColor: "#E5E5E5",
-    justifyContent: "center",
-    alignItems: "center",
+    marginTop: '90%',
+    backgroundColor: '#E5E5E5',
+    justifyContent: 'center',
+    alignItems: 'center',
     opacity: 0.9,
   },
   innerContainer: {
-    marginTop: "30%",
+    marginTop: '30%',
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   error: {
     borderRadius: 15,
-    backgroundColor: "#FE6363",
-    alignItems: "center",
+    backgroundColor: '#FE6363',
+    alignItems: 'center',
     padding: 10,
     marginVertical: 5,
   },

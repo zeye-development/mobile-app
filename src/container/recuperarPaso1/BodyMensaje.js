@@ -1,20 +1,20 @@
-import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
+import React from 'react';
+import { StyleSheet, View, Image, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function BodyMensaje() {
   return (
     <View style={styles.container}>
       <View style={styles.text}>
         <Text
-          style={{ fontSize: 20, color: "#00425A", fontFamily: "PoppinsBold" }}
+          style={{ fontSize: 20, color: '#00425A', fontFamily: 'PoppinsBold' }}
         >
           Paso 1
         </Text>
       </View>
       <LinearGradient
-        colors={["#0097CD", "#01B8E2"]}
+        colors={['#0097CD', '#01B8E2']}
         start={[0, 0.8]}
         end={[0.8, 0.5]}
         style={styles.viewContainer}
@@ -23,7 +23,7 @@ export default function BodyMensaje() {
       </LinearGradient>
       <View style={styles.text}>
         <Text
-          style={{ fontSize: 20, color: "#00425A", fontFamily: "PoppinsBold" }}
+          style={{ fontSize: 20, color: '#00425A', fontFamily: 'PoppinsBold' }}
         >
           Solicitar recuperacion
         </Text>
@@ -40,7 +40,7 @@ export default function BodyMensaje() {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 45,
     marginBottom: 10,
     // alignItems: 'stretch',
@@ -49,20 +49,20 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     marginVertical: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#0097CD",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0097CD',
     width: 150,
     height: 150,
     borderRadius: 100
   },
   text: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 15
   },
   text1: {
     fontSize: 16,
-    color: "#00425A",
-    fontFamily: "PoppinsRegular"
+    color: '#00425A',
+    fontFamily: 'PoppinsRegular'
   }
 });

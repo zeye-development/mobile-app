@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,12 +7,12 @@ import {
   TouchableOpacity,
   Modal,
   ActivityIndicator
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import md5 from "md5";
-import { LinearGradient } from "expo-linear-gradient";
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import md5 from 'md5';
+import { LinearGradient } from 'expo-linear-gradient';
 
-import { validatorEmail } from "../../helpers/validatorEmail";
+import { validatorEmail } from '../../helpers/validatorEmail';
 import config from './../../../config';
 
 export default class Formulario extends Component {
@@ -27,10 +27,10 @@ export default class Formulario extends Component {
       surnames: '',
       modalVisible: false,
       modalVisible2: false,
-      mensajeAlert: "",
+      mensajeAlert: '',
       modalLoading: false,
       error: false,
-      msjError: ""
+      msjError: ''
     };
   }
 
@@ -39,19 +39,19 @@ export default class Formulario extends Component {
     if (!email) {
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Email es requerido para iniciar Sesion"
+        mensajeAlert: 'El Email es requerido para iniciar Sesion'
       });
       return;
     } else if (email) {
       if (!validatorEmail(email)) {
         this.setState({
           error: true,
-          msjError: "Introduzca un email valido"
+          msjError: 'Introduzca un email valido'
         });
         setTimeout(() => {
           this.setState({
             error: false,
-            msjError: ""
+            msjError: ''
           });
         }, 2000);
         return;
@@ -64,7 +64,7 @@ export default class Formulario extends Component {
     if (!names) {
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Nombre es requerido para registrar una cuenta"
+        mensajeAlert: 'El Nombre es requerido para registrar una cuenta'
       });
       return;
     }
@@ -72,7 +72,7 @@ export default class Formulario extends Component {
     if (!surnames) {
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "El Apellido es requerido para registrar una cuenta"
+        mensajeAlert: 'El Apellido es requerido para registrar una cuenta'
       });
       return;
     }
@@ -80,19 +80,19 @@ export default class Formulario extends Component {
     if (!pass) {
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "La Contraseña es requerida para registrar una cuenta"
+        mensajeAlert: 'La Contraseña es requerida para registrar una cuenta'
       });
       return;
     } else if (pass) {
       if (pass.length < 6) {
         this.setState({
           error: true,
-          msjError: "La Contraseña debe ser mayor a 6 caracteres"
+          msjError: 'La Contraseña debe ser mayor a 6 caracteres'
         });
         setTimeout(() => {
           this.setState({
             error: false,
-            msjError: ""
+            msjError: ''
           });
         }, 2000);
         return;
@@ -102,19 +102,19 @@ export default class Formulario extends Component {
     if (!pass_v) {
       this.setState({
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "La Contraseña es requerida para iniciar Sesion"
+        mensajeAlert: 'La Contraseña es requerida para iniciar Sesion'
       });
       return;
     } else if (pass_v) {
       if (pass_v.length < 6) {
         this.setState({
           error: true,
-          msjError: "La Contraseña debe ser mayor a 6 caracteres"
+          msjError: 'La Contraseña debe ser mayor a 6 caracteres'
         });
         setTimeout(() => {
           this.setState({
             error: false,
-            msjError: ""
+            msjError: ''
           });
         }, 2000);
         return;
@@ -124,12 +124,12 @@ export default class Formulario extends Component {
     if (pass_v != pass) {
       this.setState({
         error: true,
-        msjError: "Las Contraseñas no coinciden"
+        msjError: 'Las Contraseñas no coinciden'
       });
       setTimeout(() => {
         this.setState({
           error: false,
-          msjError: ""
+          msjError: ''
         });
       }, 2000);
       return;
@@ -146,17 +146,17 @@ export default class Formulario extends Component {
     );
     
     var licenceS = licence.toString();
-    let lic = licenceS.replace(/['"]+/g, "");
+    let lic = licenceS.replace(/['"]+/g, '');
     console.log(licenceS);
 
     try {
       this.setState({ modalLoading: true });
       let response = await fetch(`${config.API_URL}/user`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          mimeType: "application/json"
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          mimeType: 'application/json'
         },
         body: JSON.stringify({
           email: email,
@@ -175,20 +175,20 @@ export default class Formulario extends Component {
         this.setState({
           modalLoading: false,
           modalVisible2: !this.state.modalVisible2,
-          mensajeAlert: "El Registro se Completo de Manera Exitosa!"
+          mensajeAlert: 'El Registro se Completo de Manera Exitosa!'
         });
       } else {
         this.setState({
           modalLoading: false,
           modalVisible: !this.state.modalVisible,
-          mensajeAlert: "Este correo ya se encuentra registrado"
+          mensajeAlert: 'Este correo ya se encuentra registrado'
         });
       }
     } catch (error) {
       this.setState({
         modalLoading: false,
         modalVisible: !this.state.modalVisible,
-        mensajeAlert: "Usted no dispone de una conexion a internet"
+        mensajeAlert: 'Usted no dispone de una conexion a internet'
       });
     }
   }
@@ -224,7 +224,7 @@ export default class Formulario extends Component {
             onChangeText={surnames => this.setState({ surnames }) }
             style={styles.input}
           />
-        </View>        
+        </View>
 
         <View style={styles.viewContainer}>
           <TextInput
@@ -253,14 +253,14 @@ export default class Formulario extends Component {
         </View>
         {this.state.error ? (
           <View style={styles.error}>
-            <Text style={[styles.font, { color: "#fff" }]}>
+            <Text style={[styles.font, { color: '#fff' }]}>
               {this.state.msjError}
             </Text>
           </View>
         ) : null}
 
         <LinearGradient
-          colors={["#0097CD", "#01B8E2"]}
+          colors={['#0097CD', '#01B8E2']}
           start={[0, 0.8]}
           end={[0.8, 0.5]}
           style={styles.styleButtom}
@@ -271,7 +271,7 @@ export default class Formulario extends Component {
             }}
           >
             <Text style={styles.inputButtom}>
-              Registrar{" "}
+              Registrar{' '}
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
@@ -286,17 +286,17 @@ export default class Formulario extends Component {
           <View
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 66, 90, 0.5)'
             }}
           ></View>
 
           <View
             style={{
-              position: "absolute",
-              top: "45%",
-              left: "45%"
+              position: 'absolute',
+              top: '45%',
+              left: '45%'
             }}
           >
             {this.state.modalLoading ? (
@@ -312,30 +312,30 @@ export default class Formulario extends Component {
           <View
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 66, 90, 0.5)'
             }}
           ></View>
 
           <View
             style={{
               width: 290,
-              backgroundColor: "#fff",
+              backgroundColor: '#fff',
               borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%"
+              position: 'absolute',
+              marginTop: '45%',
+              marginHorizontal: '10%'
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
               <Text
                 style={{
                   fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
+                  color: '#00425A',
+                  textAlign: 'center',
                   textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
+                  fontFamily: 'PoppinsBold'
                 }}
               >
                 {this.state.mensajeAlert}
@@ -349,20 +349,20 @@ export default class Formulario extends Component {
               >
                 <Text
                   onPress={() => {
-                    this.setState({ modalVisible: !this.state.modalVisible });                    
+                    this.setState({ modalVisible: !this.state.modalVisible });
                     // this.props.navigation.replace("InicioSesion");
                   }}
                   style={{
                     fontSize: 16,
-                    color: "#01B8E2",
-                    textAlign: "right",
-                    fontFamily: "PoppinsRegular",
+                    color: '#01B8E2',
+                    textAlign: 'right',
+                    fontFamily: 'PoppinsRegular',
                     marginTop: 40,
                     marginHorizontal: 20,
                     marginBottom: 20
                   }}
                 >
-                  {" "}
+                  {' '}
                   Entendido
                 </Text>
               </TouchableOpacity>
@@ -377,30 +377,30 @@ export default class Formulario extends Component {
           <View
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 66, 90, 0.5)'
             }}
           ></View>
 
           <View
             style={{
               width: 290,
-              backgroundColor: "#fff",
+              backgroundColor: '#fff',
               borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%"
+              position: 'absolute',
+              marginTop: '45%',
+              marginHorizontal: '10%'
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
               <Text
                 style={{
                   fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
+                  color: '#00425A',
+                  textAlign: 'center',
                   textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
+                  fontFamily: 'PoppinsBold'
                 }}
               >
                 {this.state.mensajeAlert}
@@ -410,21 +410,21 @@ export default class Formulario extends Component {
               <TouchableOpacity
                 onPress={() => {
                   this.setState({ modalVisible2: !this.state.modalVisible2 });
-                  this.props.navigation.replace("InicioSesion");
+                  this.props.navigation.replace('InicioSesion');
                 }}
               >
                 <Text
                   style={{
                     fontSize: 16,
-                    color: "#01B8E2",
-                    textAlign: "right",
-                    fontFamily: "PoppinsRegular",
+                    color: '#01B8E2',
+                    textAlign: 'right',
+                    fontFamily: 'PoppinsRegular',
                     marginTop: 40,
                     marginHorizontal: 20,
                     marginBottom: 20
                   }}
                 >
-                  {" "}
+                  {' '}
                   Iniciar Sesion
                 </Text>
               </TouchableOpacity>
@@ -439,7 +439,7 @@ export default class Formulario extends Component {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30
   },
@@ -448,43 +448,43 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     paddingHorizontal: 33,
     borderWidth: 2,
-    borderColor: "transparent",
-    fontFamily: "PoppinsRegular"
+    borderColor: 'transparent',
+    fontFamily: 'PoppinsRegular'
   },
   inputButtom: {
     fontSize: 16,
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     padding: 13,
-    color: "#fff",
-    textAlign: "center"
+    color: '#fff',
+    textAlign: 'center'
   },
   viewContainer: {
     borderRadius: 15,
-    backgroundColor: "#EBF2F4",
+    backgroundColor: '#EBF2F4',
     marginVertical: 5
   },
   styleButtom: {
     borderRadius: 15,
     marginVertical: 5,
-    alignItems: "stretch",
-    backgroundColor: "#0097CD"
+    alignItems: 'stretch',
+    backgroundColor: '#0097CD'
   },
   error: {
     borderRadius: 15,
-    backgroundColor: "#FE6363",
-    alignItems: "center",
+    backgroundColor: '#FE6363',
+    alignItems: 'center',
     padding: 10,
     marginVertical: 5
   },
   usuario: {
     padding: 13,
-    backgroundColor: "red",
-    textAlign: "center",
-    color: "#fff",
+    backgroundColor: 'red',
+    textAlign: 'center',
+    color: '#fff',
     borderRadius: 15,
     marginTop: 5
   },
   font: {
-    fontFamily: "PoppinsRegular"
+    fontFamily: 'PoppinsRegular'
   }
 });

@@ -1,10 +1,10 @@
-import React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import React from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
 
 import Header from './../components/Header';
 
-import FotoPerfil from "../container/usuario-requerido/FotoPerfil";
-import Formulario from "../container/usuario-requerido/Formulario";
+import FotoPerfil from '../container/usuario-requerido/FotoPerfil';
+import Formulario from '../container/usuario-requerido/Formulario';
 
 export default function UsuarioRequerido(props) {
 
@@ -24,7 +24,7 @@ export default function UsuarioRequerido(props) {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingVertical: 30,
     marginLeft: 5
   }

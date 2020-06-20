@@ -1,6 +1,6 @@
-import React from "react";
-import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import config from './../../../config';
 
@@ -16,10 +16,10 @@ export default class Perfil extends React.Component {
     if (this.state.click) {
 
       this.setState({ click: false })
-    };
+    }
     if (!this.state.click) {
       this.setState({ click: true })
-    };
+    }
   }
   
   render() {
@@ -35,26 +35,26 @@ export default class Perfil extends React.Component {
                 source={{ uri: `${config.API_URL}/file=${images[0]}` }}
               />
             </View>
-            <View style={{ justifyContent: "center", paddingLeft: 10 }}>
+            <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
               <Text
                 style={[
                   styles.textColor,
                   {
-                    fontFamily: "PoppinsSemiBold"
+                    fontFamily: 'PoppinsSemiBold'
                   }
                 ]}
               >
-                {names[0]}{" "} {surnames[0]}
+                {names[0]}{' '} {surnames[0]}
               </Text>
               <Text
                 style={[
                   styles.textColor2,
                   {
-                    fontFamily: "PoppinsRegular"
+                    fontFamily: 'PoppinsRegular'
                   }
                 ]}
               >
-                {" "}{_id} {birth_date}
+                {' '}{_id} {birth_date}
               </Text>
             </View>
           </View>
@@ -66,18 +66,18 @@ export default class Perfil extends React.Component {
               </View>
             </TouchableOpacity>
           ) : (
-              <TouchableOpacity onPress={this.OnClickTrue}>
-                <View style={styles.styleButtom}>
-                  <Ionicons name="md-close" size={18} color="#00425A" />
-                </View>
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity onPress={this.OnClickTrue}>
+              <View style={styles.styleButtom}>
+                <Ionicons name="md-close" size={18} color="#00425A" />
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
         {this.state.click ? (
           <View style={styles.containerOptionButtom}>
             <View style={styles.containerButtom}>
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("UsuarioRequerido", { user: this.props.usuario })}
+                onPress={() => this.props.navigation.navigate('UsuarioRequerido', { user: this.props.usuario })}
               >
                 <Text style={styles.optionButtom}>Perfil</Text>
               </TouchableOpacity>
@@ -96,23 +96,23 @@ export default class Perfil extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between"
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   img: {
-    justifyContent: "center",
+    justifyContent: 'center',
     borderRadius: 100
   },
   textColor: {
-    color: "#00425A",
+    color: '#00425A',
     fontSize: 14
   },
   textColor2: {
-    color: "#00425A",
+    color: '#00425A',
     fontSize: 15
   },
   styleButtom: {
-    justifyContent: "center",
+    justifyContent: 'center',
     paddingHorizontal: 10
   },
   optionButtom: {
@@ -120,11 +120,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 7,
     paddingVertical: 7,
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     fontSize: 12
   },
   containerOptionButtom: {
-    position: "absolute",
+    position: 'absolute',
     right: 25,
     top: 0
   },
@@ -132,9 +132,9 @@ const styles = StyleSheet.create({
     top: -10,
     height: 70,
     width: 180,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 2,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2

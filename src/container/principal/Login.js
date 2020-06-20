@@ -1,12 +1,12 @@
-import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Login({ navigation }) {
   return (
     <View style={style.container}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("InicioSesion")}
+        onPress={() => navigation.navigate('InicioSesion')}
       >
         <View style={style.styleButtonInt}>
           <Text style={[style.buttonInit, style.font]}>Iniciar Sesion</Text>
@@ -14,10 +14,10 @@ export default function Login({ navigation }) {
       </TouchableOpacity>
 
       <View style={style.styleButtonReg}>
-        <TouchableOpacity onPress={() => navigation.navigate("Registro")}>
+        <TouchableOpacity onPress={() => navigation.navigate('Registro')}>
           <Text style={[style.buttonReg, style.font]}>
-            Registrarme{" "}
-            <Ionicons name="md-arrow-forward" size={16} color="#0097CD" />{" "}
+            Registrarme{' '}
+            <Ionicons name="md-arrow-forward" size={16} color="#0097CD" />{' '}
           </Text>
         </TouchableOpacity>
       </View>
@@ -27,16 +27,16 @@ export default function Login({ navigation }) {
 
 const style = StyleSheet.create({
   container: {
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450
   },
   styleButtonInt: {
-    alignItems: "center",
+    alignItems: 'center',
     marginVertical: 8
   },
   styleButtonReg: {
-    alignItems: "stretch",
-    backgroundColor: "#fff",
+    alignItems: 'stretch',
+    backgroundColor: '#fff',
     borderRadius: 15,
     marginTop: 10,
     marginBottom: 20
@@ -45,16 +45,16 @@ const style = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 13,
     paddingHorizontal: 33,
-    color: "#fff"
+    color: '#fff'
   },
   buttonReg: {
     fontSize: 16,
-    textAlign: "center",
+    textAlign: 'center',
     paddingVertical: 13,
     paddingHorizontal: 33,
-    color: "#0097CD"
+    color: '#0097CD'
   },
   font: {
-    fontFamily: "PoppinsRegular"
+    fontFamily: 'PoppinsRegular'
   }
 });

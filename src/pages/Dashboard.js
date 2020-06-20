@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import React, { useState } from 'react';
+import { View, StyleSheet, ScrollView } from 'react-native';
 
-import Header from "../container/dashboard/Header";
-import ProgreseBar from "../container/dashboard/ProgreseBar";
-import Opciones from "../container/dashboard/Opciones";
-import Perfiles from "../container/dashboard/Perfiles";
+import Header from '../container/dashboard/Header';
+import ProgreseBar from '../container/dashboard/ProgreseBar';
+import Opciones from '../container/dashboard/Opciones';
+import Perfiles from '../container/dashboard/Perfiles';
 import LinearGradientComponent from './../components/shared/LinearGradient';
 
 const Dashboard = ({ navigation  }) => {
@@ -20,7 +20,7 @@ const Dashboard = ({ navigation  }) => {
           <Opciones
             navigation={navigation}
             CambiarEstado={state => setState(state)}
-          />        
+          />
         </LinearGradientComponent>
 
         <View>
@@ -30,7 +30,7 @@ const Dashboard = ({ navigation  }) => {
           />
         </View>
       </ScrollView>
-    </View>    
+    </View>
   )
 }
 

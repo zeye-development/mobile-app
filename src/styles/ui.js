@@ -9,12 +9,24 @@ export const Btn = styled.View`
 
 /**
  * @param {string} color - Color Text
- * @param {string} fontFamily - Font Family Text 
+ * @param {string} fontFamily - Font Family Text
  */
 export const TextBtn = styled.Text`
+  color: ${props => props.color || '#fff'};
+  font-family: ${props => props.fontFamily || 'PoppinsRegular'};  
   font-size: 16px;
   padding: 13px;
-  color: ${props => props.color || '#fff'};
   text-align: center;
+`;
+
+/**
+ * @param {string} color      - Color Text
+ * @param {string} fontFamily - Font Family Text
+ * @param {string} fontSize   - Font Size Text
+ */
+export const Text = styled.Text`
+  color: ${props => props.color || '#fff'};
   font-family: ${props => props.fontFamily || 'PoppinsRegular'};
+  font-size: ${props => props.fontSize || '16px'};
+  text-align: center;
 `;

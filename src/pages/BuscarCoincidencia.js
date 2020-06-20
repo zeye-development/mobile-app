@@ -1,9 +1,9 @@
-import React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import React from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
 
 import Header from './../components/Header';
 
-import Formulario from "../container/buscarcoincidencia/Formulario";
+import Formulario from '../container/buscarcoincidencia/Formulario';
 
 export default function buscarcoincidencia(props) {
   return (
@@ -20,6 +20,6 @@ export default function buscarcoincidencia(props) {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   }
 });

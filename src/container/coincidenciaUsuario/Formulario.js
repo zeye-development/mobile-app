@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class Formulario extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Formulario extends React.Component {
   componentDidMount = () => {
     this.setState({
       user: this.props.user
-    });  
+    });
   };
 
   render() {
@@ -61,24 +61,24 @@ export default class Formulario extends React.Component {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30
   },
   input: {
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     fontSize: 16,
     paddingHorizontal: 33
   },
   inputTitle: {
-    fontFamily: "PoppinsSemiBold",
+    fontFamily: 'PoppinsSemiBold',
     fontSize: 16,
     paddingTop: 5,
     paddingHorizontal: 33
   },
   viewContainer: {
     borderRadius: 15,
-    backgroundColor: "#EBF2F4",
+    backgroundColor: '#EBF2F4',
     marginVertical: 5
   },
   containerInfo: {

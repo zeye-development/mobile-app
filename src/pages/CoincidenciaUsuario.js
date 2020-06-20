@@ -1,9 +1,9 @@
-import React from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import React from 'react';
+import { StyleSheet, ScrollView, View } from 'react-native';
 
-import Header from "../container/coincidenciaUsuario/Header";
-import FotoPerfil from "../container/coincidenciaUsuario/FotoPerfil";
-import Formulario from "../container/coincidenciaUsuario/Formulario";
+import Header from '../container/coincidenciaUsuario/Header';
+import FotoPerfil from '../container/coincidenciaUsuario/FotoPerfil';
+import Formulario from '../container/coincidenciaUsuario/Formulario';
 
 export default function CoincidenciaUsuario(props) {
 
@@ -23,7 +23,7 @@ export default function CoincidenciaUsuario(props) {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingVertical: 30,
     marginLeft: 5
   }

@@ -1,33 +1,28 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 
 export default function Inicio() {
   return (
     <View style={style.container}>
-      <Text
-        style={[
-          style.text,
-          {
-            fontFamily: "PoppinsMedium"
-          }
-        ]}
-      >
+      <Text>
         Zeye Cloud ®
       </Text>
     </View>
   );
 }
 
+const Text = styled.Text`
+  font-size: 32px;
+  text-align: center;
+  color: #fff;
+  font-family: 'PoppinsMedium';
+`;
+
 const style = StyleSheet.create({
   container: {
     flex: 2,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  text: {
-    fontSize: 32,
-    textAlign: "center",
-    color: "#fff",
-    padding: 5
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

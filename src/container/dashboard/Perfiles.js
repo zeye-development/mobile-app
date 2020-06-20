@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSelector } from "react-redux";
-import { View, StyleSheet, FlatList, Text } from "react-native";
-import Perfil from "./Perfil";
-import PerfilSolicitado from "./PerfilSolicitado"
+import { useSelector } from 'react-redux';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
+import Perfil from './Perfil';
+import PerfilSolicitado from './PerfilSolicitado'
 import Separator from './../../components/Separator';
 
 const Profiles = ({ state, navigation }) => {
@@ -27,29 +27,29 @@ const Profiles = ({ state, navigation }) => {
           ItemSeparatorComponent={Separator}
           ListEmptyComponent={
             <Text
-              style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
+              style={{ marginVertical: 20, fontSize: 20, textAlign: 'center' }}
             >
               No hay usuarios
             </Text>
           }
         /> ) : (
-          <FlatList
-            data={users}
-            renderItem={({ item }) => (
-              <Perfil navigation={navigation} usuario={item} />
-            )}
-            keyExtractor={item => item._id}
-            horizontal={false}
-            ItemSeparatorComponent={Separator}
-            ListEmptyComponent={
-              <Text
-                style={{ marginVertical: 20, fontSize: 20, textAlign: "center" }}
-              >
+        <FlatList
+          data={users}
+          renderItem={({ item }) => (
+            <Perfil navigation={navigation} usuario={item} />
+          )}
+          keyExtractor={item => item._id}
+          horizontal={false}
+          ItemSeparatorComponent={Separator}
+          ListEmptyComponent={
+            <Text
+              style={{ marginVertical: 20, fontSize: 20, textAlign: 'center' }}
+            >
                 No hay usuarios
-              </Text>
-            }
-          />
-        )}
+            </Text>
+          }
+        />
+      )}
     </View>
   )
 }
@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   containerPerfil: {
-    flexDirection: "row",
-    justifyContent: "space-between"
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   img: {
-    justifyContent: "center",
+    justifyContent: 'center',
     borderRadius: 100
   },
   textColor: {
-    color: "#E1868F"
+    color: '#E1868F'
   }
 });

@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as ImagePicker from "expo-image-picker";
-import Constants from "expo-constants";
-import * as Permissions from "expo-permissions";
+import * as React from 'react';
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 import {
   StyleSheet,
   Text,
@@ -12,10 +12,10 @@ import {
   Platform,
   AsyncStorage,
   ActivityIndicator
-} from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { Camera } from "expo-camera";
-import { LinearGradient } from "expo-linear-gradient";
+} from 'react-native';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Camera } from 'expo-camera';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import config from './../../../config';
 
@@ -28,14 +28,14 @@ export default class Formulario extends React.Component {
       modalVisible: false,
       hasCameraPermission: false,
       modalVisibleAlert: false,
-      mensajeAlert: "",
+      mensajeAlert: '',
       type: Camera.Constants.Type.back,
       flashMode: Camera.Constants.FlashMode.off,
       autoFocus: Camera.Constants.AutoFocus.on,
       zoom: 0,
       whiteBalance: Camera.Constants.WhiteBalance.auto,
       focusDepth: 0,
-      ratio: "4:3",
+      ratio: '4:3',
       estadocamara: true,
       modalLoading: false
     };
@@ -45,38 +45,38 @@ export default class Formulario extends React.Component {
     try {
       const { status } = await Permissions.askAsync(Permissions.CAMERA);
 
-      this.setState({ hasCameraPermission: status === "granted" });
+      this.setState({ hasCameraPermission: status === 'granted' });
 
-      if (status !== "granted") {
+      if (status !== 'granted') {
         this.setState({
-          mensajeAlert: "Es posible que desee habilitar la cámara en la configuración de su teléfono",
+          mensajeAlert: 'Es posible que desee habilitar la cámara en la configuración de su teléfono',
           modalVisibleAlert: true
         })
       }
     } catch (err) {
-      console.log("err", err);
+      console.log('err', err);
     }
 
-    if (Platform.OS === "android") {
+    if (Platform.OS === 'android') {
       try {
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
-        this.setState({ hasCameraPermission: status === "granted" });
+        this.setState({ hasCameraPermission: status === 'granted' });
 
-        if (status !== "granted") {
+        if (status !== 'granted') {
           this.setState({
-            mensajeAlert: "Es posible que desee habilitar la cámara en la configuración de su teléfono",
+            mensajeAlert: 'Es posible que desee habilitar la cámara en la configuración de su teléfono',
             modalVisibleAlert: true
           })
         }
       } catch (err) {
-        console.log("err", err);
+        console.log('err', err);
       }
     }
     let token = await AsyncStorage.getItem('token');
     console.log(token)
 
-    let toke = token.replace(/['"]+/g, "");
+    let toke = token.replace(/['"]+/g, '');
     this.setState({ token: toke })
 
   }
@@ -84,10 +84,10 @@ export default class Formulario extends React.Component {
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== "granted") {
+      if (status !== 'granted') {
         this.setState({
           modalVisibleAlert: !this.state.modalVisibleAlert,
-          mensajeAlert: "Se necesitan los permisos de la cámara para que funcione"
+          mensajeAlert: 'Se necesitan los permisos de la cámara para que funcione'
         });
       }
     }
@@ -128,7 +128,7 @@ export default class Formulario extends React.Component {
       if (image === null) {
         this.setState({
           modalVisibleAlert: !this.state.modalVisibleAlert,
-          mensajeAlert: "EL CAMPO DE IMAGEN ESTA VACIO"
+          mensajeAlert: 'EL CAMPO DE IMAGEN ESTA VACIO'
         });
         return;
       }
@@ -136,18 +136,18 @@ export default class Formulario extends React.Component {
       this.setState({ modalLoading: true });
 
       fetch(`${config.API_URL}/person-query`, {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({
           picture: this.state.base64
         }),
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           key: this.state.token
         }
       })
         .then(response => response.json())
         .then(response => {
-          console.log("Search Coincidence: ", response);
+          console.log('Search Coincidence: ', response);
 
           this.setState({ uri: null });
           response.people.forEach(element => this.setState({ id: element._id }))
@@ -165,7 +165,7 @@ export default class Formulario extends React.Component {
             this.setState({
               modalLoading: false,
               modalVisibleAlert: !this.state.modalVisibleAlert,
-              mensajeAlert: "No se encontraron coincidencias en la base de datos"
+              mensajeAlert: 'No se encontraron coincidencias en la base de datos'
             });
           } else if (response.status == 200 && response.persons_length == 1) {
             this.setState({ modalLoading: false });
@@ -192,12 +192,12 @@ export default class Formulario extends React.Component {
 
         })
         .catch(error => {
-          console.log("Error Search Coincidence: ", error);
+          console.log('Error Search Coincidence: ', error);
 
           this.setState({
             modalLoading: false,
             modalVisibleAlert: !this.state.modalVisibleAlert,
-            mensajeAlert: "No se encontraron coincidencias en la base de datos"
+            mensajeAlert: 'No se encontraron coincidencias en la base de datos'
           });
 
         });
@@ -205,7 +205,7 @@ export default class Formulario extends React.Component {
       this.setState({
         modalLoading: false,
         modalVisibleAlert: !this.state.modalVisibleAlert,
-        mensajeAlert: "Ocurrio un error inesperado, intentelo de nuevo"
+        mensajeAlert: 'Ocurrio un error inesperado, intentelo de nuevo'
       })
     }
   };
@@ -227,9 +227,9 @@ export default class Formulario extends React.Component {
             style={{
               width: '100%',
               height: '100%',
-              resizeMode: "stretch",
+              resizeMode: 'stretch',
               marginRight: '-10%',
-              position: "absolute"
+              position: 'absolute'
             }}
             source={{ uri: image }}
           />
@@ -242,21 +242,21 @@ export default class Formulario extends React.Component {
             </View>
             <View style={{ height: '85%', width: '50%', justifyContent: 'center', marginLeft: '15%' }}>
 
-              <View style={{ width: "35%", height: "35%", borderColor: "white", borderTopWidth: 10, borderLeftWidth: 10 }}></View>
-              <View style={{ width: "35%", height: "30%" }}></View>
-              <View style={{ width: "35%", height: "35%", borderColor: "white", borderBottomWidth: 10, borderLeftWidth: 10 }}></View>
+              <View style={{ width: '35%', height: '35%', borderColor: 'white', borderTopWidth: 10, borderLeftWidth: 10 }}></View>
+              <View style={{ width: '35%', height: '30%' }}></View>
+              <View style={{ width: '35%', height: '35%', borderColor: 'white', borderBottomWidth: 10, borderLeftWidth: 10 }}></View>
             </View>
             <View style={{ height: '85%', width: '50%', justifyContent: 'center' }}>
 
-              <View style={{ width: "35%", height: "35%", borderColor: "white", borderTopWidth: 10, borderRightWidth: 10 }}></View>
-              <View style={{ width: "30%", height: "30%" }}></View>
-              <View style={{ width: "35%", height: "35%", borderColor: "white", borderBottomWidth: 10, borderRightWidth: 10 }}></View>
+              <View style={{ width: '35%', height: '35%', borderColor: 'white', borderTopWidth: 10, borderRightWidth: 10 }}></View>
+              <View style={{ width: '30%', height: '30%' }}></View>
+              <View style={{ width: '35%', height: '35%', borderColor: 'white', borderBottomWidth: 10, borderRightWidth: 10 }}></View>
             </View>
           </View>
         </View>
 
         <LinearGradient
-          colors={["#0097CD", "#01B8E2"]}
+          colors={['#0097CD', '#01B8E2']}
           start={[0, 0.8]}
           end={[0.8, 0.5]}
           style={styles.styleButtom}
@@ -274,23 +274,23 @@ export default class Formulario extends React.Component {
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
-              Cargar{" "}
+              Cargar{' '}
               <Ionicons name="md-cloud-upload" size={18} color="#00425A" />
             </Text>
           </TouchableOpacity>
         </View>
 
         <LinearGradient
-          colors={["#0097CD", "#01B8E2"]}
+          colors={['#0097CD', '#01B8E2']}
           start={[0, 0.8]}
           end={[0.8, 0.5]}
           style={styles.styleButtom}
         >
           <TouchableOpacity
             style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center"
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center'
             }}
             onPress={this.handleUploadPhoto}
           >
@@ -308,17 +308,17 @@ export default class Formulario extends React.Component {
           <View
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 66, 90, 0.5)'
             }}
           ></View>
 
           <View
             style={{
-              position: "absolute",
-              top: "45%",
-              left: "45%"
+              position: 'absolute',
+              top: '45%',
+              left: '45%'
             }}
           >
             {
@@ -338,8 +338,8 @@ export default class Formulario extends React.Component {
           <View style={styles.containermodal}>
             <TouchableOpacity onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
               <Text style={[styles.icon, { padding: 6, marginLeft: 30, marginTop: 20 }]}>
-                {" "}
-                <Ionicons name="md-arrow-back" size={35} color="#fff" />{" "}
+                {' '}
+                <Ionicons name="md-arrow-back" size={35} color="#fff" />{' '}
               </Text>
             </TouchableOpacity>
             <Camera
@@ -357,15 +357,15 @@ export default class Formulario extends React.Component {
 
                 <View style={{ height: '85%', width: '50%', justifyContent: 'center', marginLeft: '80%', marginTop: '15%' }}>
 
-                  <View style={{ width: "35%", height: "45%", borderColor: "white", borderTopWidth: 10, borderLeftWidth: 10 }}></View>
-                  <View style={{ width: "35%", height: "30%" }}></View>
-                  <View style={{ width: "35%", height: "45%", borderColor: "white", borderBottomWidth: 10, borderLeftWidth: 10 }}></View>
+                  <View style={{ width: '35%', height: '45%', borderColor: 'white', borderTopWidth: 10, borderLeftWidth: 10 }}></View>
+                  <View style={{ width: '35%', height: '30%' }}></View>
+                  <View style={{ width: '35%', height: '45%', borderColor: 'white', borderBottomWidth: 10, borderLeftWidth: 10 }}></View>
                 </View>
                 <View style={{ height: '85%', width: '50%', justifyContent: 'center', marginLeft: '20%', marginTop: '15%' }}>
 
-                  <View style={{ width: "35%", height: "45%", borderColor: "white", borderTopWidth: 10, borderRightWidth: 10 }}></View>
-                  <View style={{ width: "30%", height: "30%" }}></View>
-                  <View style={{ width: "35%", height: "45%", borderColor: "white", borderBottomWidth: 10, borderRightWidth: 10 }}></View>
+                  <View style={{ width: '35%', height: '45%', borderColor: 'white', borderTopWidth: 10, borderRightWidth: 10 }}></View>
+                  <View style={{ width: '30%', height: '30%' }}></View>
+                  <View style={{ width: '35%', height: '45%', borderColor: 'white', borderBottomWidth: 10, borderRightWidth: 10 }}></View>
                 </View>
               </View>
             </View>
@@ -384,13 +384,13 @@ export default class Formulario extends React.Component {
                       // this.setState({ modalVisible: !this.state.modalVisible });
                       this.state.flashMode ?
                         <Text style={styles.icon}>
-                          {" "}
-                          <MaterialIcons name="flash-auto" size={35} color="#fff" />{" "}
+                          {' '}
+                          <MaterialIcons name="flash-auto" size={35} color="#fff" />{' '}
                         </Text>
                         :
                         <Text style={styles.icon}>
-                          {" "}
-                          <MaterialIcons name="flash-off" size={35} color="#fff" />{" "}
+                          {' '}
+                          <MaterialIcons name="flash-off" size={35} color="#fff" />{' '}
                         </Text>
 
 
@@ -402,12 +402,12 @@ export default class Formulario extends React.Component {
 
                 {!photo && (
                   <TouchableOpacity style={{
-                    height: 40, width: '30%', backgroundColor: "#fff", alignItems: 'center'
+                    height: 40, width: '30%', backgroundColor: '#fff', alignItems: 'center'
                     , borderRadius: 10, justifyContent: 'center', marginLeft: '15%'
                   }}
-                    onPress={this._takePictureButtonPressed}>
+                  onPress={this._takePictureButtonPressed}>
                     <Text style={styles.icon}>
-                      {"TAKE PICTURE "}
+                      {'TAKE PICTURE '}
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -418,8 +418,8 @@ export default class Formulario extends React.Component {
                       this.setState({ type: Camera.Constants.Type.front, estadocamara: false }) :
                       this.setState({ type: Camera.Constants.Type.back, estadocamara: true })}>
                     <Text style={styles.icon}>
-                      {" "}
-                      <Ionicons name="md-reverse-camera" size={35} color="#fff" />{" "}
+                      {' '}
+                      <Ionicons name="md-reverse-camera" size={35} color="#fff" />{' '}
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -438,30 +438,30 @@ export default class Formulario extends React.Component {
           <View
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 66, 90, 0.5)'
             }}
           ></View>
 
           <View
             style={{
               width: 290,
-              backgroundColor: "#fff",
+              backgroundColor: '#fff',
               borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%"
+              position: 'absolute',
+              marginTop: '45%',
+              marginHorizontal: '10%'
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
               <Text
                 style={{
                   fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
+                  color: '#00425A',
+                  textAlign: 'center',
                   textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
+                  fontFamily: 'PoppinsBold'
                 }}
               >
                 {this.state.mensajeAlert}
@@ -476,15 +476,15 @@ export default class Formulario extends React.Component {
                 <Text
                   style={{
                     fontSize: 16,
-                    color: "#01B8E2",
-                    textAlign: "right",
-                    fontFamily: "PoppinsRegular",
+                    color: '#01B8E2',
+                    textAlign: 'right',
+                    fontFamily: 'PoppinsRegular',
                     marginTop: 40,
                     marginHorizontal: 20,
                     marginBottom: 20
                   }}
                 >
-                  {" "}
+                  {' '}
                   Entendido
                 </Text>
               </TouchableOpacity>
@@ -498,85 +498,85 @@ export default class Formulario extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 10,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30,
-    alignItems: "center"
+    alignItems: 'center'
   },
   containermodal: {
     flex: 1,
-    backgroundColor: "black",
-    position: "relative"
+    backgroundColor: 'black',
+    position: 'relative'
   },
   viewContainer: {
     marginTop: 10,
     marginBottom: 5,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     width: 225,
     height: 225,
     borderRadius: 25,
-    backgroundColor: "#CCE3EB"
+    backgroundColor: '#CCE3EB'
   },
   cuadro: {
-    width: "35%",
-    height: "30%",
-    borderColor: "white",
+    width: '35%',
+    height: '30%',
+    borderColor: 'white',
     borderWidth: 7,
   },
   cuadro2: {
-    marginLeft: "10%",
-    marginTop: "30%",
-    width: "80%",
-    height: "60%",
+    marginLeft: '10%',
+    marginTop: '30%',
+    width: '80%',
+    height: '60%',
     alignItems: 'center',
-    position: "absolute"
+    position: 'absolute'
   },
   inputButtom: {
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     fontSize: 16,
     padding: 13,
-    color: "#fff",
+    color: '#fff',
     paddingLeft: 10
   },
   styleButtom: {
     borderRadius: 15,
     marginTop: 30,
     marginVertical: 5,
-    alignItems: "center",
-    backgroundColor: "#0097CD",
+    alignItems: 'center',
+    backgroundColor: '#0097CD',
     paddingHorizontal: 70
   },
   inputButtom1: {
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     fontSize: 16,
     padding: 13,
-    color: "#00425A"
+    color: '#00425A'
   },
   styleButtom1: {
     borderRadius: 15,
     marginTop: 5,
-    alignItems: "center",
-    backgroundColor: "#CCE3EB",
+    alignItems: 'center',
+    backgroundColor: '#CCE3EB',
     marginBottom: 45,
     paddingHorizontal: 75
   },
   camera: {
-    height: "100%",
-    width: "130%"
+    height: '100%',
+    width: '130%'
   },
   controls: {
-    position: "absolute",
+    position: 'absolute',
     flexDirection: 'row',
     zIndex: 10,
     bottom: 0,
     left: 0,
     right: 0,
     height: 100,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   photo: {
     width: 100,
@@ -589,6 +589,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'black',
     fontWeight: 'bold',
-    fontFamily: "PoppinsSemiBold"
+    fontFamily: 'PoppinsSemiBold'
   }
 });

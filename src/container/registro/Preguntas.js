@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
 export default function Preguntas(props) {
@@ -11,11 +11,11 @@ export default function Preguntas(props) {
       </View>
 
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("InicioSesion")}
+        onPress={() => props.navigation.navigate('InicioSesion')}
       >
         <View style={styles.viewContainer}>
           <Text style={styles.font2}>
-            Iniciar Sesion{" "}
+            Iniciar Sesion{' '}
             <Ionicons name="md-arrow-forward" size={16} color="#00425A" />
           </Text>
         </View>
@@ -27,22 +27,22 @@ export default function Preguntas(props) {
 const styles = StyleSheet.create({
   container: {
     maxWidth: 450,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     paddingHorizontal: 30
   },
   viewContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingVertical: 3
   },
   font: {
     marginBottom: 5,
-    color: "#00425A",
+    color: '#00425A',
     fontSize: 14,
-    fontFamily: "PoppinsRegular"
+    fontFamily: 'PoppinsRegular'
   },
   font2: {
-    color: "#00425A",
+    color: '#00425A',
     fontSize: 16,
-    fontFamily: "PoppinsRegular"
+    fontFamily: 'PoppinsRegular'
   }
 });

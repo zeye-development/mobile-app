@@ -1,8 +1,8 @@
-import React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import React from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
 
-import Header from "../container/captura/Header";
-import Formulario from "../container/captura/Formulario";
+import Header from '../container/captura/Header';
+import Formulario from '../container/captura/Formulario';
 
 export default function Captura(props) {
   return (
@@ -19,6 +19,6 @@ export default function Captura(props) {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   }
 });

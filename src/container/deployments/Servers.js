@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   StyleSheet,
@@ -6,12 +6,12 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
-import { LinearGradient } from "expo-linear-gradient";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
-import Server from "./Server";
+import Server from './Server';
 export default function Servers(props) {
   const users = [1, 2, 3, 4];
 
@@ -30,17 +30,17 @@ export default function Servers(props) {
         <View
           style={{
             paddingHorizontal: 10,
-            flexDirection: "row",
-            justifyContent: "space-between",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             marginBottom: 10,
           }}
         >
           <View>
             <Text
               style={{
-                fontFamily: "PoppinsRegular",
+                fontFamily: 'PoppinsRegular',
                 fontSize: 20,
-                color: "#00425A",
+                color: '#00425A',
               }}
             >
               Deployments
@@ -48,15 +48,15 @@ export default function Servers(props) {
 
             <Text
               style={{
-                fontFamily: "PoppinsRegular",
+                fontFamily: 'PoppinsRegular',
                 fontSize: 16,
-                color: "#e2e2e2",
+                color: '#e2e2e2',
               }}
             >
               Instances
             </Text>
           </View>
-          <View style={{ justifyContent: "center" }}>
+          <View style={{ justifyContent: 'center' }}>
             <Text style={styles.icon}>
               <MaterialCommunityIcons
                 name="checkbox-multiple-blank-outline"
@@ -109,7 +109,7 @@ export default function Servers(props) {
             style={{
               marginVertical: 20,
               fontSize: 20,
-              textAlign: "center",
+              textAlign: 'center',
             }}
           >
             No se encuentran Servidores Activos en este momento
@@ -129,22 +129,22 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     padding: 10,
     width: 280,
   },
   containerInput: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   viewContainer: {
     borderRadius: 15,
-    backgroundColor: "#EBF2F4",
+    backgroundColor: '#EBF2F4',
     marginVertical: 5,
     paddingLeft: 10,
   },
   buttomInputRight: {
-    backgroundColor: "#0097CD",
+    backgroundColor: '#0097CD',
     paddingHorizontal: 15,
     paddingVertical: 10,
     height: 50,

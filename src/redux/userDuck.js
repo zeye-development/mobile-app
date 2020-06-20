@@ -11,46 +11,46 @@ let initialData = {
   users: []
 }
 
-const LOGIN             = "LOGIN";
-const LOGIN_SUCCESS     = "LOGIN_SUCCESS";
-const LOGIN_ERROR       = "LOGIN_ERROR";
+const LOGIN             = 'LOGIN';
+const LOGIN_SUCCESS     = 'LOGIN_SUCCESS';
+const LOGIN_ERROR       = 'LOGIN_ERROR';
 
-const REGISTER          = "REGISTER";
-const REGISTER_SUCCESS  = "REGISTER_SUCCESS";
-const REGISTER_ERROR    = "REGISTER_ERROR";
+const REGISTER          = 'REGISTER';
+const REGISTER_SUCCESS  = 'REGISTER_SUCCESS';
+const REGISTER_ERROR    = 'REGISTER_ERROR';
 
-const GET_USERS          = "GET_USERS";
-const GET_USERS_SUCCESS  = "GET_USERS_SUCCESS";
-const GET_USERS_ERROR    = "GET_USERS_ERROR";
+const GET_USERS          = 'GET_USERS';
+const GET_USERS_SUCCESS  = 'GET_USERS_SUCCESS';
+const GET_USERS_ERROR    = 'GET_USERS_ERROR';
 
-const SAVE_USER_STORE  = "SAVE_USER_STORE";
-const SAVE_USERS_STORE  = "SAVE_USERS_STORE";
+const SAVE_USER_STORE  = 'SAVE_USER_STORE';
+const SAVE_USERS_STORE  = 'SAVE_USERS_STORE';
 
 // reducer
 export default function reducer(state = initialData, action){
   switch(action.type){
-    case LOGIN_SUCCESS:
-      return { ...state, fetching: false, ...action.payload }
-    case LOGIN_ERROR:
-      return { ...state, fetching: false, error: action.payload }      
-    case LOGIN:
-      return { ...state, fetching: true }
+  case LOGIN_SUCCESS:
+    return { ...state, fetching: false, ...action.payload }
+  case LOGIN_ERROR:
+    return { ...state, fetching: false, error: action.payload }
+  case LOGIN:
+    return { ...state, fetching: true }
 
-    case REGISTER:
-      return { ...state, fetching: true }
-    case REGISTER_SUCCESS:
-      return { ...state, fetching: false, ...action.payload }      
-    case REGISTER_ERROR:
-      return { ...state, fetching: false, error: action.payload }
+  case REGISTER:
+    return { ...state, fetching: true }
+  case REGISTER_SUCCESS:
+    return { ...state, fetching: false, ...action.payload }
+  case REGISTER_ERROR:
+    return { ...state, fetching: false, error: action.payload }
 
-    case SAVE_USER_STORE:
-      return { ...state, userDetail: action.payload }
+  case SAVE_USER_STORE:
+    return { ...state, userDetail: action.payload }
 
-    case SAVE_USERS_STORE:
-      return { ...state, users: action.payload }
+  case SAVE_USERS_STORE:
+    return { ...state, users: action.payload }
 
-      default:
-      return state
+  default:
+    return state
   }
 }
 
@@ -68,7 +68,7 @@ export const loginAction = (form) => async (dispatch, getState) => {
         token: response.data.token
       }
     })
-    AsyncStorage.setItem("token", response.data.token);
+    AsyncStorage.setItem('token', response.data.token);
     // console.log('response login: ', response);
     return response;
   } catch (error) {
@@ -146,12 +146,12 @@ export const saveUserToStoreAction = (data) => (dispatch) => {
   dispatch({
     type: SAVE_USER_STORE,
     payload: data
-  })  
+  })
 }
 
 export const saveUsersToStoreAction = (data) => (dispatch) => {
   dispatch({
     type: SAVE_USERS_STORE,
     payload: data
-  })  
+  })
 }

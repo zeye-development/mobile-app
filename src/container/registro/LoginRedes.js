@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   Image,
   Modal
-} from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default class LoginRedes extends React.Component {
   constructor(props) {
@@ -27,9 +27,9 @@ export default class LoginRedes extends React.Component {
           <View style={styles.viewContainer}>
             <Text style={styles.google}>
               <Image
-                source={require("../../../assets/google.png")}
+                source={require('../../../assets/google.png')}
                 style={{ width: 18, height: 18 }}
-              />{" "}
+              />{' '}
               Iniciar con Google
             </Text>
           </View>
@@ -48,12 +48,12 @@ export default class LoginRedes extends React.Component {
           </TouchableOpacity>
         </View>
 
-        <View style={{ alignItems: "center", margin: 5 }}>
+        <View style={{ alignItems: 'center', margin: 5 }}>
           <Text
             style={{
               fontSize: 16,
-              color: "#00425A",
-              fontFamily: "PoppinsRegular"
+              color: '#00425A',
+              fontFamily: 'PoppinsRegular'
             }}
           >
             o
@@ -67,9 +67,9 @@ export default class LoginRedes extends React.Component {
           <View
             style={{
               flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 66, 90, 0.5)"
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 66, 90, 0.5)'
               // opacity: 0.9
             }}
           ></View>
@@ -77,21 +77,21 @@ export default class LoginRedes extends React.Component {
           <View
             style={{
               width: 290,
-              backgroundColor: "#fff",
+              backgroundColor: '#fff',
               borderRadius: 15,
-              position: "absolute",
-              marginTop: "45%",
-              marginHorizontal: "10%"
+              position: 'absolute',
+              marginTop: '45%',
+              marginHorizontal: '10%'
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
               <Text
                 style={{
                   fontSize: 18,
-                  color: "#00425A",
-                  textAlign: "center",
+                  color: '#00425A',
+                  textAlign: 'center',
                   textShadowRadius: 2,
-                  fontFamily: "PoppinsBold"
+                  fontFamily: 'PoppinsBold'
                 }}
               >
                 Lo sentimos, esta funcion no se encuentra disponible.
@@ -107,15 +107,15 @@ export default class LoginRedes extends React.Component {
                   style={{
                     fontSize: 16,
                     // padding: 13,
-                    color: "#01B8E2",
-                    textAlign: "right",
-                    fontFamily: "PoppinsRegular",
+                    color: '#01B8E2',
+                    textAlign: 'right',
+                    fontFamily: 'PoppinsRegular',
                     marginTop: 40,
                     marginHorizontal: 20,
                     marginBottom: 20
                   }}
                 >
-                  {" "}
+                  {' '}
                   Entendido
                 </Text>
               </TouchableOpacity>
@@ -130,37 +130,37 @@ export default class LoginRedes extends React.Component {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 30,
     marginBottom: 10,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30
   },
   google: {
-    color: "#00425A",
+    color: '#00425A',
     fontSize: 16,
     paddingVertical: 13,
-    fontFamily: "PoppinsRegular"
+    fontFamily: 'PoppinsRegular'
   },
   viewContainer: {
     borderWidth: 1,
     borderRadius: 15,
-    borderColor: "#00425A",
+    borderColor: '#00425A',
     marginVertical: 5,
-    alignItems: "center"
+    alignItems: 'center'
   },
   viewContainerF: {
     borderRadius: 15,
-    backgroundColor: "#3b5998",
+    backgroundColor: '#3b5998',
     marginVertical: 5,
-    alignItems: "stretch"
+    alignItems: 'stretch'
   },
   facebook: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 16,
     paddingVertical: 13,
-    textAlign: "center",
-    fontFamily: "PoppinsRegular"
+    textAlign: 'center',
+    fontFamily: 'PoppinsRegular'
   }
 });

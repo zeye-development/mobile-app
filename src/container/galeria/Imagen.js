@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components/native';
 
 import config from './../../../config';
@@ -9,7 +9,7 @@ export default function Imagen(props) {
 
   return (
     <ContainerImagen>
-      <Img source={{uri:`${config.API_URL}/file=${url}`}}></Img>
+      <Img source={{ uri:`${config.API_URL}/file=${url}` }}></Img>
     </ContainerImagen>
   );
 }

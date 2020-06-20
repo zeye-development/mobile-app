@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, ProgressBarAndroid } from "react-native";
-import { Entypo, Foundation } from "@expo/vector-icons";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, ProgressBarAndroid } from 'react-native';
+import { Entypo, Foundation } from '@expo/vector-icons';
 
 export default class Opciones extends React.Component {
   constructor(props) {
@@ -26,14 +26,14 @@ export default class Opciones extends React.Component {
       <View style={styles.container}>
         <View style={styles.viewContainerGrup}>
           <View style={styles.viewContainerInput}>
-            <View style={{ alignItems: "center" }}>
+            <View style={{ alignItems: 'center' }}>
               {this.state.estado ? (
                 <Text
                   onPress={this.Barra1}
                   style={{
-                    color: "rgb(255, 255, 255)",
-                    alignContent: "center",
-                    fontFamily: "PoppinsSemiBold",
+                    color: 'rgb(255, 255, 255)',
+                    alignContent: 'center',
+                    fontFamily: 'PoppinsSemiBold',
                     fontSize: 14
                   }}
                 >
@@ -41,16 +41,16 @@ export default class Opciones extends React.Component {
                     name="prohibited"
                     size={18}
                     color="rgb(255, 255, 255)"
-                  />{" "}
+                  />{' '}
                   Solicitados
                 </Text>
               ) : (
                 <Text
                   onPress={this.Barra1}
                   style={{
-                    color: "rgba(255, 255, 255, 0.5)",
-                    alignContent: "center",
-                    fontFamily: "PoppinsSemiBold",
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    alignContent: 'center',
+                    fontFamily: 'PoppinsSemiBold',
                     fontSize: 14
                   }}
                 >
@@ -58,7 +58,7 @@ export default class Opciones extends React.Component {
                     name="prohibited"
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
-                  />{" "}
+                  />{' '}
                   Solicitados
                 </Text>
               )}
@@ -73,14 +73,14 @@ export default class Opciones extends React.Component {
           </View>
 
           <View style={styles.viewContainerInput}>
-            <View style={{ alignItems: "center" }}>
+            <View style={{ alignItems: 'center' }}>
               {this.state.estado ? (
                 <Text
                   onPress={this.Barra2}
                   style={{
-                    color: "rgba(255, 255, 255, 0.5)",
-                    alignContent: "center",
-                    fontFamily: "PoppinsSemiBold",
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    alignContent: 'center',
+                    fontFamily: 'PoppinsSemiBold',
                     fontSize: 14
                   }}
                 >
@@ -88,20 +88,20 @@ export default class Opciones extends React.Component {
                     name="users"
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
-                  />{" "}
+                  />{' '}
                   Usuarios
                 </Text>
               ) : (
                 <Text
                   onPress={this.Barra2}
                   style={{
-                    color: "rgb(255, 255, 255)",
-                    alignContent: "center",
-                    fontFamily: "PoppinsSemiBold",
+                    color: 'rgb(255, 255, 255)',
+                    alignContent: 'center',
+                    fontFamily: 'PoppinsSemiBold',
                     fontSize: 14
                   }}
                 >
-                  <Entypo name="users" size={18} color="rgb(255, 255, 255)" />{" "}
+                  <Entypo name="users" size={18} color="rgb(255, 255, 255)" />{' '}
                   Usuarios
                 </Text>
               )}
@@ -122,15 +122,15 @@ export default class Opciones extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
     maxWidth: 450
   },
   viewContainerGrup: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     // alignItems: 'stretch',
     marginTop: 20,
     // marginBottom: 10,
@@ -141,6 +141,6 @@ const styles = StyleSheet.create({
     // borderRadius: 15,
     // backgroundColor: '#EBF2F4',
     width: 145,
-    alignItems: "stretch"
+    alignItems: 'stretch'
   }
 });

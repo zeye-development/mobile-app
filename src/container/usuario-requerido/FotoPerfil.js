@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 import config from './../../../config';
 
@@ -11,7 +11,7 @@ export default function FotoPerfil(props) {
 
   return (
     <View style={styles.container}>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: 'center' }}>
         <View style={styles.viewContainer}>
           <Image
             source={{ uri: `${config.API_URL}/file=${imagen[0]}` }}
@@ -29,7 +29,7 @@ export default function FotoPerfil(props) {
               name="ios-checkmark-circle-outline"
               size={16}
               color="#fff"
-            />{" "}
+            />{' '}
             Usuario no Requerido
           </Text>
         </TouchableOpacity>
@@ -51,36 +51,36 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 15,
     marginBottom: 10,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30
   },
   viewContainer: {
     marginVertical: 5,
-    justifyContent: "center",
+    justifyContent: 'center',
     width: 130,
     height: 130,
     borderRadius: 100,
-    textAlign: "center"
+    textAlign: 'center'
   },
   usuario: {
     paddingVertical: 13,
-    textAlign: "center",
-    color: "#fff",
+    textAlign: 'center',
+    color: '#fff',
     borderRadius: 15,
     marginTop: 5,
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     fontSize: 14
   },
   imageBackground: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center"
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center'
   },
   solicitado: {
-    backgroundColor: "#FE6363"
+    backgroundColor: '#FE6363'
   },
   noSolicitado: {
-    backgroundColor: "#00DFAA"
+    backgroundColor: '#00DFAA'
   }
 });

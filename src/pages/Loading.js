@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Image, StyleSheet } from "react-native";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Image, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 
 import { getUsersAction } from './../redux/userDuck';
@@ -12,16 +12,16 @@ const Loading = ({ navigation }) => {
     dispatch(getUsersAction())
       .then(data => {
         if(data.status === 200) {
-          navigation.replace("Dashboard");
+          navigation.replace('Dashboard');
         }
       })
-      .catch(() => navigation.replace("InicioSesion"))
+      .catch(() => navigation.replace('InicioSesion'))
   }, [])
 
   return (
     <Container>
       <Image
-        source={require("../../assets/quantic.jpg")}
+        source={require('../../assets/quantic.jpg')}
         resizeMode="contain"
         style={styles.splash}
       />
@@ -39,7 +39,7 @@ const Container = styled.View`
 
 const styles = StyleSheet.create({
   splash: {
-    width: "45%",
-    height: "45%"
+    width: '45%',
+    height: '45%'
   }
 });

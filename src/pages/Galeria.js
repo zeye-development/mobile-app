@@ -1,11 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { StyleSheet, View, ScrollView } from "react-native";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { StyleSheet, View, ScrollView } from 'react-native';
 
 import Header from './../components/Header';
 
-import Camera from "../container/galeria/Camera";
-import Imagenes from "../container/galeria/Imagenes";
+import Camera from '../container/galeria/Camera';
+import Imagenes from '../container/galeria/Imagenes';
 
 export default function Galeria(props) {
   const { user } = useSelector(state => state.user);
@@ -27,6 +27,6 @@ export default function Galeria(props) {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   }
 });

@@ -1,11 +1,11 @@
-import React from "react";
-import { StyleSheet, View, ScrollView, KeyboardAvoidingView, SafeAreaView } from "react-native";
+import React from 'react';
+import { StyleSheet, View, ScrollView, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 
 import Header from './../components/Header';
 
-import LoginRedes from "../container/inicioSesion/LoginRedes";
-import Formulario from "../container/inicioSesion/Formulario";
-import Preguntas from "../container/inicioSesion/Preguntas";
+import LoginRedes from '../container/inicioSesion/LoginRedes';
+import Formulario from '../container/inicioSesion/Formulario';
+import Preguntas from '../container/inicioSesion/Preguntas';
 
 export default function InicioSesion(props) {
   return (
@@ -18,16 +18,16 @@ export default function InicioSesion(props) {
             <Formulario navigation={props.navigation} />
             <Preguntas navigation={props.navigation} />
           </View>
-         </ScrollView>   
+        </ScrollView>
       </KeyboardAvoidingView>
-  </SafeAreaView>
+    </SafeAreaView>
   );
 }
 
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingVertical: 30,
     marginLeft: 5
   }

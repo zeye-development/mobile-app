@@ -1,11 +1,11 @@
-import React from "react";
-import { StyleSheet, View, ScrollView, KeyboardAvoidingView, SafeAreaView } from "react-native";
+import React from 'react';
+import { StyleSheet, View, ScrollView, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 
 import Header from './../components/Header';
 
-import LoginRedes from "../container/registro/LoginRedes";
-import Formulario from "../container/registro/Formulario";
-import Preguntas from "../container/registro/Preguntas";
+import LoginRedes from '../container/registro/LoginRedes';
+import Formulario from '../container/registro/Formulario';
+import Preguntas from '../container/registro/Preguntas';
 
 export default function Registro(props) {
   return (
@@ -28,7 +28,7 @@ export default function Registro(props) {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingVertical: 30,
     marginLeft: 5
   }

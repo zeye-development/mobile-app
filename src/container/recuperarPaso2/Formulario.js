@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Formulario() {
   return (
@@ -8,7 +8,7 @@ export default function Formulario() {
       <View style={styles.styleButtom}>
         <TouchableOpacity>
           <Text style={styles.inputButtom}>
-            Enviado{" "}
+            Enviado{' '}
             <Ionicons
               name="md-checkmark-circle-outline"
               size={18}
@@ -21,13 +21,13 @@ export default function Formulario() {
         <View style={styles.viewContainerCheck}>
           <Text
             style={{
-              color: "#00425A",
+              color: '#00425A',
               fontSize: 16,
-              fontFamily: "PoppinsRegular"
+              fontFamily: 'PoppinsRegular'
             }}
           >
-            Volver a enviar{" "}
-            <Ionicons name="md-arrow-forward" size={18} color="#00425A" />{" "}
+            Volver a enviar{' '}
+            <Ionicons name="md-arrow-forward" size={18} color="#00425A" />{' '}
           </Text>
         </View>
       </TouchableOpacity>
@@ -40,27 +40,27 @@ const styles = StyleSheet.create({
     // flex: 1,
     // alignItems: 'center',
     marginBottom: 10,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30
   },
   inputButtom: {
     fontSize: 16,
-    fontFamily: "PoppinsRegular",
+    fontFamily: 'PoppinsRegular',
     padding: 13,
-    color: "#fff",
-    textAlign: "center"
+    color: '#fff',
+    textAlign: 'center'
   },
   styleButtom: {
     borderRadius: 15,
     marginVertical: 5,
-    alignItems: "stretch",
-    backgroundColor: "#00DFAA"
+    alignItems: 'stretch',
+    backgroundColor: '#00DFAA'
   },
   viewContainerCheck: {
     padding: 13,
-    color: "#EBF2F4",
-    alignItems: "center",
+    color: '#EBF2F4',
+    alignItems: 'center',
     marginTop: 7,
     marginBottom: 15
   }

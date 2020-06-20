@@ -1,13 +1,13 @@
-import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { StyleSheet, View, Image, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function BodyMensaje() {
   return (
     <View style={styles.container}>
       <View style={styles.text}>
         <Text
-          style={{ fontSize: 20, color: "#00425A", fontFamily: "PoppinsBold" }}
+          style={{ fontSize: 20, color: '#00425A', fontFamily: 'PoppinsBold' }}
         >
           Paso 2
         </Text>
@@ -17,7 +17,7 @@ export default function BodyMensaje() {
       </View>
       <View style={styles.text}>
         <Text
-          style={{ fontSize: 20, color: "#00425A", fontFamily: "PoppinsBold" }}
+          style={{ fontSize: 20, color: '#00425A', fontFamily: 'PoppinsBold' }}
         >
           Revisa tu email
         </Text>
@@ -34,7 +34,7 @@ export default function BodyMensaje() {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 45,
     marginBottom: 10,
     // alignItems: 'stretch',
@@ -43,20 +43,20 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     marginVertical: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#00DFAA",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00DFAA',
     width: 150,
     height: 150,
     borderRadius: 100
   },
   text: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 15
   },
   text1: {
     fontSize: 16,
-    color: "#00425A",
-    fontFamily: "PoppinsRegular"
+    color: '#00425A',
+    fontFamily: 'PoppinsRegular'
   }
 });

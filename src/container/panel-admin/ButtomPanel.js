@@ -1,6 +1,6 @@
-import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 export default function ButtomPanel(props) {
   return (
@@ -12,15 +12,15 @@ export default function ButtomPanel(props) {
               styles.viewContainerInput,
               styles.containerButtom,
               {
-                backgroundColor: "#0097CD",
-                justifyContent: "center",
-                flexDirection: "row",
-                alignItems: "center"
+                backgroundColor: '#0097CD',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                alignItems: 'center'
               }
             ]}
           >
             <FontAwesome name="camera" size={12} color="#fff" />
-            <Text style={[styles.input1, { color: "#fff" }]}> Face Scan</Text>
+            <Text style={[styles.input1, { color: '#fff' }]}> Face Scan</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -29,16 +29,16 @@ export default function ButtomPanel(props) {
               styles.viewContainerInput,
               styles.containerButtom,
               {
-                backgroundColor: "#fff",
-                justifyContent: "center",
-                flexDirection: "row",
-                alignItems: "center"
+                backgroundColor: '#fff',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                alignItems: 'center'
               }
             ]}
           >
             <Ionicons name="md-finger-print" size={16} color="#0097CD" />
-            <Text style={[styles.input1, { color: "#0097CD" }]}>
-              {" "}
+            <Text style={[styles.input1, { color: '#0097CD' }]}>
+              {' '}
               Two Steps
             </Text>
           </View>
@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
   },
   input1: {
     fontSize: 16,
-    fontFamily: "PoppinsBold"
+    fontFamily: 'PoppinsBold'
   },
   viewContainerGrup: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20,
     marginBottom: 10,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 15
   },
   viewContainerInput: {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     width: 140
   },
   containerButtom: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2

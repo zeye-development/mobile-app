@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { View, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class Menu extends Component {
   constructor(props) {
@@ -10,33 +10,33 @@ export default class Menu extends Component {
 
   render() {
     return (
-      <View style={{ height: "100%", alignItems: "center" }}>
+      <View style={{ height: '100%', alignItems: 'center' }}>
         <View
           style={{
-            height: "10%",
-            width: "100%",
-            backgroundColor: "#0097CD",
-            alignItems: "center",
-            justifyContent: "center",
+            height: '10%',
+            width: '100%',
+            backgroundColor: '#0097CD',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <Text
             style={{
-              color: "white",
-              fontFamily: "PoppinsRegular",
+              color: 'white',
+              fontFamily: 'PoppinsRegular',
               marginTop: 30,
               fontSize:17
             }}
           >
-            {" "}
-            Menu{" "}
+            {' '}
+            Menu{' '}
           </Text>
         </View>
 
         <Text
-          onPress={() => this.props.navigation.navigate("Dashboard")}
+          onPress={() => this.props.navigation.navigate('Dashboard')}
           style={{
-            fontFamily: "PoppinsRegular",
+            fontFamily: 'PoppinsRegular',
             marginTop: '10%',
             paddingHorizontal: 30,
             paddingVertical: 10,
@@ -46,9 +46,9 @@ export default class Menu extends Component {
           <Ionicons name="md-list-box" size={18} color="#0097CD" /> Dashboard
         </Text>
         <Text
-          onPress={() => this.props.navigation.navigate("Dashboard")}
+          onPress={() => this.props.navigation.navigate('Dashboard')}
           style={{
-            fontFamily: "PoppinsRegular",
+            fontFamily: 'PoppinsRegular',
             marginTop: 15,
             paddingHorizontal: 30,
             paddingVertical: 10,
@@ -58,9 +58,9 @@ export default class Menu extends Component {
           <Ionicons name="md-contacts" size={18} color="#0097CD" /> Usuarios
         </Text>
         <Text
-          onPress={() => this.props.navigation.navigate("Dashboard")}
+          onPress={() => this.props.navigation.navigate('Dashboard')}
           style={{
-            fontFamily: "PoppinsRegular",
+            fontFamily: 'PoppinsRegular',
             marginTop: 15,
             paddingHorizontal: 30,
             paddingVertical: 10,
@@ -71,9 +71,9 @@ export default class Menu extends Component {
           Eventos
         </Text>
         <Text
-          onPress={() => this.props.navigation.navigate("Dashboard")}
+          onPress={() => this.props.navigation.navigate('Dashboard')}
           style={{
-            fontFamily: "PoppinsRegular",
+            fontFamily: 'PoppinsRegular',
             marginTop: 15,
             paddingHorizontal: 30,
             paddingVertical: 10,
@@ -84,9 +84,9 @@ export default class Menu extends Component {
           Camaras
         </Text>
         <Text
-          onPress={() => this.props.navigation.navigate("Dashboard")}
+          onPress={() => this.props.navigation.navigate('Dashboard')}
           style={{
-            fontFamily: "PoppinsRegular",
+            fontFamily: 'PoppinsRegular',
             marginTop: 15,
             paddingHorizontal: 30,
             paddingVertical: 10,
@@ -97,9 +97,9 @@ export default class Menu extends Component {
           Configuración
         </Text>
         <Text
-          onPress={() => this.props.navigation.navigate("Dashboard")}
+          onPress={() => this.props.navigation.navigate('Dashboard')}
           style={{
-            fontFamily: "PoppinsRegular",
+            fontFamily: 'PoppinsRegular',
             marginTop: 15,
             paddingHorizontal: 30,
             paddingVertical: 10,
@@ -110,9 +110,9 @@ export default class Menu extends Component {
           Dispositivos
         </Text>
         <Text
-          onPress={() => this.props.navigation.navigate("Dashboard")}
+          onPress={() => this.props.navigation.navigate('Dashboard')}
           style={{
-            fontFamily: "PoppinsRegular",
+            fontFamily: 'PoppinsRegular',
             marginTop: 15,
             paddingHorizontal: 30,
             paddingVertical: 10,
@@ -123,9 +123,9 @@ export default class Menu extends Component {
           Cuentas
         </Text>
         <Text
-          onPress={() => this.props.navigation.navigate("Dashboard")}
+          onPress={() => this.props.navigation.navigate('Dashboard')}
           style={{
-            fontFamily: "PoppinsRegular",
+            fontFamily: 'PoppinsRegular',
             marginTop: 15,
             paddingHorizontal: 30,
             paddingVertical: 10,
