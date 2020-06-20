@@ -12,6 +12,15 @@ export default function Preguntas(props) {
           <Text style={styles.font}>¿Has olvidado tu contraseña?</Text>
         </View>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("ChangeIp")}
+      >
+        <View style={styles.viewContainer}>
+          <Text style={styles.font}>Cambiar IP</Text>
+        </View>
+      </TouchableOpacity>
+      
       <View style={styles.viewContainer}>
         <Text style={styles.font1}>¿Aun no tienes cuenta?</Text>
       </View>

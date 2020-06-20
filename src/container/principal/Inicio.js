@@ -5,21 +5,11 @@ import styled from "styled-components/native";
 export default function Inicio() {
   return (
     <View style={style.container}>
-      {/* <Text
-        style={[
-          style.text,
-          {
-            fontFamily: "PoppinsMedium"
-          }
-        ]}
-      >
-        PDVSA ®
-      </Text> */}
       <Image
-          style={style.image}
-          resizeMode='contain'
-          source={require("./../../../assets/pdv_blanco.png")}
-        />     
+        style={style.image}
+        resizeMode='contain'
+        source={require("./../../../assets/pdv_blanco.png")}
+      />
     </View>
   );
 }

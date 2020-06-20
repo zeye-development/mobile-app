@@ -17,6 +17,8 @@ import EditarUsuario from "./src/pages/EditarUsuario";
 import UsuarioRequerido from "./src/pages/UsuarioRequerido";
 import RecuperarPaso1 from "./src/pages/RecuperarPaso1";
 import RecuperarPaso2 from "./src/pages/RecuperarPaso2";
+import ChangeIp from "./src/pages/ChangeIp";
+
 import Captura from "./src/pages/Captura";
 import Dashboard from "./src/pages/Dashboard";
 import PanelAdmin from "./src/pages/PanelAdmin";
@@ -62,6 +64,9 @@ const AppNavigator = createStackNavigator(
     RecuperarPaso2: {
       screen: RecuperarPaso2,
     },
+    ChangeIp: {
+      screen: ChangeIp,
+    },    
     Captura: {
       screen: Captura,
     },

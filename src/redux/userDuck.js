@@ -60,6 +60,7 @@ export const loginAction = (form) => async (dispatch, getState) => {
     type: LOGIN,
   })
 
+  console.log('url change ', config.API_URL)
   try {
     const response = await axios.post(`${config.API_URL}/login`, form);
     dispatch({
