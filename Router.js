@@ -95,7 +95,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Principal',
+    initialRouteName: 'InicioSesion',
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,

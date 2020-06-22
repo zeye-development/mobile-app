@@ -24,6 +24,8 @@ import LinearGradientComponent from './../../components/shared/LinearGradient';
 import { loginAction } from './../../redux/userDuck';
 import * as Config from '../../../config';
 
+import { TextBtn } from 'app/src/styles/ui';
+
 class Formulario extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +47,6 @@ class Formulario extends Component {
     }
     try {
       const token = await Notifications.getExpoPushTokenAsync();
-      console.log(token)
       AsyncStorage.setItem('tokenPush', token);
       console.log('Set Token: ', token);
     } catch {}
@@ -95,10 +96,10 @@ class Formulario extends Component {
     try {
       this.props
         .loginAction({
-          email: this.state.email,
-          password: md5(this.state.pass),
-          // email: 'lewistest@gmail.com',
-          // password: md5('123456'),
+          // email: this.state.email,
+          // password: md5(this.state.pass),
+          email: 'lewistest@gmail.com',
+          password: md5('123456'),
           // email: 'adriancito@gmail.com',
           // password: md5('18138899'),
           expoID: tokenPush,
@@ -168,10 +169,10 @@ class Formulario extends Component {
           <TouchableOpacity
             onPress={() => this.login(this.state.email, this.state.pass)}
           >
-            <Text style={[styles.inputButtom, styles.font]}>
+            <TextBtn>
               Iniciar Sesion{' '}
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
-            </Text>
+            </TextBtn>
           </TouchableOpacity>
         </LinearGradientComponent>
 
@@ -224,7 +225,7 @@ class Formulario extends Component {
                   this.setState({ modalVisible: !this.state.modalVisible });
                 }}
               >
-                <TextConfirm> Entendido</TextConfirm>
+                <TextConfirm>Entendido</TextConfirm>
               </TouchableOpacity>
             </View>
           </View>
@@ -293,14 +294,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: '#0097CD',
   },
-  usuario: {
-    padding: 13,
-    backgroundColor: 'red',
-    textAlign: 'center',
-    color: '#fff',
-    borderRadius: 15,
-    marginTop: 5,
-  },
   font: {
     fontFamily: 'PoppinsRegular',
   },
@@ -311,12 +304,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     opacity: 0.9,
-  },
-  innerContainer: {
-    marginTop: '30%',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   error: {
     borderRadius: 15,

@@ -72,7 +72,7 @@ export const loginAction = (form) => async (dispatch, getState) => {
     // console.log('response login: ', response);
     return response;
   } catch (error) {
-    // console.log('Error Login: ', error);
+    // console.log('Error Login: ', error.response);
     dispatch({
       type: LOGIN_ERROR,
       payload: error.message
@@ -154,4 +154,40 @@ export const saveUsersToStoreAction = (data) => (dispatch) => {
     type: SAVE_USERS_STORE,
     payload: data
   })
+}
+
+export const addPhotoToUser = (form) => async (dispatch) => {
+  // fetch(`${config.API_URL}/person-query`, {
+  //   method: 'PUT',
+  //   body: JSON.stringify({
+  //     picture: this.state.base64,
+  //     dni: this.props.id
+  //   }),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     dni: this.props.id,
+  //     key:this.state.token,
+  //   }
+  // })  
+
+  try {
+    const response = await axios.put(`${config.API_URL}/person-query`, form);
+
+    // dispatch({
+    //   type: REGISTER_SUCCESS,
+    //   payload: {
+    //     user: response.data.data.account_data,
+    //     token: response.data.data.token
+    //   }
+    // })
+
+    return response;
+  } catch (error) {
+    // dispatch({
+    //   type: REGISTER_ERROR,
+    //   payload: error.message
+    // })
+
+    return error;
+  }
 }

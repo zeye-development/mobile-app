@@ -11,10 +11,12 @@ import {
   AsyncStorage
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import DatePicker from 'react-native-datepicker';
+import styled from 'styled-components/native';
 
 import config from './../../../config';
+
+import LinearGradientComponent from 'app/src/components/shared/LinearGradient';
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -238,18 +240,9 @@ export default class Formulario extends Component {
             style={styles.input1}
           />
         </View>
-        <Text
-          style={{
-            fontSize: 15,
-            color: 'black',
-            textAlign: 'center',
-            fontFamily: 'PoppinsRegular',
-            margin: 5
-          }}
-        >
-          {' '}
-          Seleccionar Pais
-        </Text>
+        
+        <Label>{' '}Seleccionar País</Label>
+
         <View style={styles.containerpicker}>
           <Picker
             selectedValue={this.state.nationality}
@@ -264,18 +257,7 @@ export default class Formulario extends Component {
           </Picker>
         </View>
 
-        <Text
-          style={{
-            fontSize: 15,
-            color: 'black',
-            textAlign: 'center',
-            fontFamily: 'PoppinsRegular',
-            margin: 5
-          }}
-        >
-          {' '}
-          Seleccionar Sexo
-        </Text>
+        <Label>{' '}Seleccionar Sexo</Label>
         <View style={styles.containerpicker}>
           <Picker
             selectedValue={this.state.sex}
@@ -287,18 +269,8 @@ export default class Formulario extends Component {
             <Picker.Item label="Femenino" value="Female" />
           </Picker>
         </View>
-        <Text
-          style={{
-            fontSize: 15,
-            color: 'black',
-            textAlign: 'center',
-            fontFamily: 'PoppinsRegular',
-            margin: 5
-          }}
-        >
-          {' '}
-          Fecha de Nacimiento
-        </Text>
+
+        <Label>{' '}Fecha de Nacimiento</Label>
         <DatePicker
           style={{ width: '100%', height: 40, marginTop: 6 }}
           date={this.state.birth}
@@ -338,18 +310,15 @@ export default class Formulario extends Component {
           </Text>
         </View>
 
-        <LinearGradient
-          colors={['#0097CD', '#01B8E2']}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.styleButtom}
+        <LinearGradientComponent
+          styles={styles.styleButtom}
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
             <Text style={styles.inputButtom}>
               <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{' '}
             </Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </LinearGradientComponent>
         {/* modal aLert ================ */}
         <Modal
           animationType="none"
@@ -418,6 +387,14 @@ export default class Formulario extends Component {
     );
   }
 }
+
+const Label = styled.Text`
+  font-size: 15px;
+  color: black;
+  text-align: center;
+  font-family: 'PoppinsRegular';
+  margin: 5px;
+`;
 
 const styles = StyleSheet.create({
   container: {

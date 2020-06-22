@@ -8,11 +8,11 @@ export const Btn = styled.View`
 `;
 
 /**
- * @param {string} color - Color Text
+ * @param {string} color      - Color Text
  * @param {string} fontFamily - Font Family Text
  */
 export const TextBtn = styled.Text`
-  color: ${props => props.color || '#fff'};
+  color: ${props => props.color || '#FFF'};
   font-family: ${props => props.fontFamily || 'PoppinsRegular'};  
   font-size: 16px;
   padding: 13px;
@@ -25,7 +25,7 @@ export const TextBtn = styled.Text`
  * @param {string} fontSize   - Font Size Text
  */
 export const Text = styled.Text`
-  color: ${props => props.color || '#fff'};
+  color: ${props => props.color || '#FFF'};
   font-family: ${props => props.fontFamily || 'PoppinsRegular'};
   font-size: ${props => props.fontSize || '16px'};
   text-align: center;

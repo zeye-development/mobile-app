@@ -10,16 +10,24 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import styled from 'styled-components/native';
 
 import config from './../../../config';
+import LinearGradientComponent from 'app/src/components/shared/LinearGradient';
 
 import {
   ContainerTransparent,
   TextHeaderModal,
   TextConfirmModal
 } from './styles';
+import { TextBtn } from 'app/src/styles/ui';
+
+/*
+const Formulario = () => {
+
+}
+export default Formulario;
+*/
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -41,8 +49,6 @@ export default class Formulario extends Component {
     let token = await AsyncStorage.getItem('token');
 
     let { id: _id, images } = this.props;
-    // console.log(this.props.navigation.state.params.images)
-    console.log('id: camera', _id)
 
     let toke = token.replace(/['"]+/g, '');
     this.setState({
@@ -52,9 +58,7 @@ export default class Formulario extends Component {
     });
     
     let perfil = JSON.stringify(this.props.navigation.getParam('item', 'image'));
-    console.log(perfil);
     let pfoto = perfil.replace(/['"]+/g, '');
-    console.log('fotot', pfoto);
 
     this.setState({ foto: pfoto });
     let parabase64 = JSON.stringify(this.props.navigation.getParam('base', 'base64'));
@@ -63,17 +67,13 @@ export default class Formulario extends Component {
   }
 
   handleUploadPhoto = () => {
-    
-    console.log('A')
-    console.log(this.state.foto)
     if (this.state.foto != 'image') {
       try{
         let { foto, base64 } = this.state;
         console.log(this.state.foto);
 
         if (this.state.foto != null) {
-          console.log('venezuela')
-          console.log(this.props.id)
+
           this.setState({ modalLoading:true })
           fetch(`${config.API_URL}/person-query`, {
             method: 'PUT',
@@ -108,7 +108,6 @@ export default class Formulario extends Component {
                 mensajeAlert: 'Ocurrió un error al añadir la foto',
                 modalLoading:true
               });
-              // alert("Upload failed!");
             });
         }}
       catch{
@@ -172,19 +171,15 @@ export default class Formulario extends Component {
           </View>
         </Main>
 
-        <LinearGradient
-          colors={['#0097CD', '#01B8E2']}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.styleButtom}
+        <LinearGradientComponent
+          styles={styles.styleButtom}
         >
           <TouchableOpacity onPress={this.handleUploadPhoto}>
-            <Text style={styles.inputButtom}>
+            <TextBtn>
               <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{' '}
-            </Text>
+            </TextBtn>
           </TouchableOpacity>
-        </LinearGradient>
-
+        </LinearGradientComponent>
         {/* modal aLert ================ */}
 
         <Modal
@@ -269,78 +264,10 @@ const Main = styled.View`
 `;
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 10,
-    alignItems: 'stretch',
-    maxWidth: 450,
-    paddingHorizontal: 30
-  },
-  input: {
-    fontSize: 16,
-    paddingVertical: 13,
-    paddingHorizontal: 33,
-    fontFamily: 'PoppinsRegular'
-  },
-  input1: {
-    fontSize: 16,
-    paddingVertical: 13,
-    paddingHorizontal: 20,
-    marginRight: 13,
-    fontFamily: 'PoppinsRegular'
-  },
-  inputButtom: {
-    fontSize: 16,
-    padding: 13,
-    color: '#fff',
-    textAlign: 'center',
-    fontFamily: 'PoppinsRegular'
-  },
-  viewContainer: {
-    borderRadius: 15,
-    backgroundColor: '#EBF2F4',
-    marginVertical: 5
-  },
-  viewContainerGrup: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 20,
-    marginBottom: 10,
-    backgroundColor: '#fff',
-    borderRadius: 15
-  },
-  viewContainerInput: {
-    borderRadius: 15,
-    backgroundColor: '#EBF2F4',
-    width: 140
-  },
   styleButtom: {
     borderRadius: 15,
     marginVertical: 5,
     alignItems: 'stretch',
     backgroundColor: '#0097CD'
   },
-  viewContainerCheck: {
-    flexDirection: 'row',
-    padding: 13,
-    color: '#EBF2F4',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 7,
-    marginBottom: 15
-  },
-  containerpicker: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 15,
-    backgroundColor: '#EBF2F4',
-    marginBottom: 5
-  },
-  picker: {
-    width: '100%',
-    height: 50,
-    marginLeft: '2%',
-    color: 'black',
-    alignItems: 'center'
-  }
 });

@@ -27,8 +27,7 @@ export default function InicioSesion(props) {
 const style = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     paddingVertical: 30,
-    marginLeft: 5
   }
 });
