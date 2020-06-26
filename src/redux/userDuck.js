@@ -168,7 +168,7 @@ export const addPhotoToUser = (form) => async (dispatch) => {
   //     dni: this.props.id,
   //     key:this.state.token,
   //   }
-  // })  
+  // })
 
   try {
     const response = await axios.put(`${config.API_URL}/person-query`, form);

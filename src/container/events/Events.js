@@ -4,16 +4,14 @@ import {
   StyleSheet,
   FlatList,
   Text,
-  TextInput,
-  TouchableOpacity,
   Dimensions,
 } from 'react-native';
+const { width } = Dimensions.get('window');
+const headerTable = width / 4.5;
+import styled from 'styled-components/native';
 
-import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Event from './Event';
 
-const { width } = Dimensions.get('window');
 export default function Events(props) {
   const users = [
     {
@@ -41,28 +39,10 @@ export default function Events(props) {
       deteccion: '08/05/2020',
     },
   ];
-  const headerTable = width / 4.5;
 
-  separador = () => {
-    return (
-      <View
-        style={{
-          marginVertical: 10,
-        }}
-      ></View>
-    );
-  };
   return (
     <View style={styles.container}>
-      <View
-        style={
-          {
-            // paddingHorizontal: 10,
-            // marginBottom: 10,
-            // marginBottom: 15,
-          }
-        }
-      >
+      <View>
         <View
           style={{
             marginBottom: 10,
@@ -97,42 +77,18 @@ export default function Events(props) {
             backgroundColor: '#f2f2f2',
           }}
         >
-          <Text
-            style={{
-              width: headerTable,
-              fontSize: 16,
-              fontFamily: 'PoppinsRegular',
-            }}
-          >
+          <TextHeaderColumn>
             Codigo
-          </Text>
-          <Text
-            style={{
-              width: headerTable,
-              fontSize: 16,
-              fontFamily: 'PoppinsRegular',
-            }}
-          >
+          </TextHeaderColumn>
+          <TextHeaderColumn>
             Nombre
-          </Text>
-          <Text
-            style={{
-              width: headerTable,
-              fontSize: 16,
-              fontFamily: 'PoppinsRegular',
-            }}
-          >
+          </TextHeaderColumn>
+          <TextHeaderColumn>
             Cedula
-          </Text>
-          <Text
-            style={{
-              width: headerTable,
-              fontSize: 16,
-              fontFamily: 'PoppinsRegular',
-            }}
-          >
+          </TextHeaderColumn>
+          <TextHeaderColumn>
             Detección
-          </Text>
+          </TextHeaderColumn>
         </View>
       </View>
       <FlatList
@@ -140,22 +96,27 @@ export default function Events(props) {
         renderItem={({ item }) => <Event item={item} />}
         keyExtractor={(item) => item.id.toString()}
         horizontal={false}
-        // ItemSeparatorComponent={separador}
         ListEmptyComponent={
-          <Text
-            style={{
-              marginVertical: 20,
-              fontSize: 20,
-              textAlign: 'center',
-            }}
-          >
+          <TextEmpty>
             No existen usuarios registrados
-          </Text>
+          </TextEmpty>
         }
       />
     </View>
   );
 }
+
+const TextHeaderColumn = styled.Text`
+  width: ${headerTable}px;
+  font-size: 16px;
+  font-family: 'PoppinsRegular';
+`;
+
+const TextEmpty = styled.Text`
+  margin: 20px 0;
+  font-size: 20px;
+  text-align: center;
+`;
 
 const styles = StyleSheet.create({
   container: {
@@ -163,29 +124,5 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     paddingTop: 10,
     paddingBottom: 50,
-  },
-  input: {
-    fontSize: 16,
-    fontFamily: 'PoppinsRegular',
-    padding: 10,
-    width: 280,
-  },
-  containerInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  viewContainer: {
-    borderRadius: 15,
-    backgroundColor: '#EBF2F4',
-    marginVertical: 5,
-    paddingLeft: 10,
-  },
-  buttomInputRight: {
-    backgroundColor: '#0097CD',
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    height: 50,
-    borderTopRightRadius: 15,
-    borderBottomRightRadius: 15,
-  },
+  }
 });

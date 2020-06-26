@@ -8,7 +8,7 @@ export default class WebsocketSample extends Component {
       open: false,
     };
 
-    this.ws = new WebSocket('ws://189.213.227.211:8080');
+    this.ws = new WebSocket('ws://189.213.227.211:8089');
     this.emit = this.emit.bind(this);
 
     console.log('Constructor Called');

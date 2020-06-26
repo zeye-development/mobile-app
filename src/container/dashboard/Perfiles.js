@@ -61,16 +61,5 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 25,
     paddingTop: 10
-  },
-  containerPerfil: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  img: {
-    justifyContent: 'center',
-    borderRadius: 100
-  },
-  textColor: {
-    color: '#E1868F'
   }
 });

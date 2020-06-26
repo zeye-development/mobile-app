@@ -14,7 +14,17 @@ import {
 } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Camera } from 'expo-camera';
-import { LinearGradient } from 'expo-linear-gradient'
+
+import LinearGradientComponent from 'app/src/components/shared/LinearGradient';
+import { TextBtn, ContainerTransparent, TextHeaderModal, TextConfirmModal } from 'app/src/styles/ui';
+
+/*
+const Formulario = () => {
+
+}
+
+export default Formulario;
+*/
 
 export default class Formulario extends React.Component {
   constructor(props) {
@@ -38,16 +48,11 @@ export default class Formulario extends React.Component {
   }
 
   async componentWillMount() {
-    console.log('negial')
-    // console.log(this.props.navigation.state.params.id)
     try {
-      
       const { status } = await Permissions.askAsync(Permissions.CAMERA);
-
       this.setState({ hasCameraPermission: status === 'granted' });
 
       if (status !== 'granted') {
-        // alert("Hey! You might want to enable Camera in your phone settings.");
         this.setState({
           mensajeAlert: 'Es posible que desee habilitar la cámara en la configuración de su teléfono',
           modalVisibleAlert: true
@@ -60,11 +65,9 @@ export default class Formulario extends React.Component {
     if (Platform.OS === 'android') {
       try {
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-
         this.setState({ hasCameraPermission: status === 'granted' });
 
         if (status !== 'granted') {
-          // alert("Hey! You might want to enable Camera in your phone settings.");
           this.setState({
             mensajeAlert: 'Es posible que desee habilitar la cámara en la configuración de su teléfono',
             modalVisibleAlert: true
@@ -76,7 +79,6 @@ export default class Formulario extends React.Component {
     }
    
     let token= await AsyncStorage.getItem('token');
-    console.log(token)
     
     let toke = token.replace(/['"]+/g, '');
     this.setState({ token:toke })
@@ -86,7 +88,6 @@ export default class Formulario extends React.Component {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       if (status !== 'granted') {
-        // alert("Sorry, we need camera roll permissions to make this work!");
         this.setState({
           mensajeAlert: 'Se necesitan los permisos de la cámara para que funcione',
           modalVisibleAlert: true
@@ -107,14 +108,12 @@ export default class Formulario extends React.Component {
 
   _takePictureButtonPressed = async () => {
     if (this._cameraInstance) {
-      // console.log('')
 
       //const options = { quality: 0.5, base64: true };
       const options = { quality: 0.1, base64: true };
 
       let result = await this._cameraInstance.takePictureAsync(options);
     
-
       if (!result.cancelled) {
         this.setState({ base64: result.base64 });
         this.setState({ image: result.uri });
@@ -127,7 +126,6 @@ export default class Formulario extends React.Component {
     let { image, base64 } = this.state;
 
     if (image === null) {
-      // Alert.alert("ERROR", "EL CAMPO DE IMAGEN ESTA VACIO");
       this.setState({
         mensajeAlert: 'EL CAMPO DE IMAGEN ESTA VACIO',
         modalVisibleAlert: true
@@ -150,11 +148,10 @@ export default class Formulario extends React.Component {
   };
 
   render() {
-    let { image,modalVisible } = this.state;
+    let { image, modalVisible } = this.state;
 
     const {
       type,
-
       zoom,
       whiteBalance,
       focusDepth,
@@ -170,50 +167,43 @@ export default class Formulario extends React.Component {
               height: '100%',
               resizeMode:'stretch',
               marginRight:'-10%',
-              
-              
               position: 'absolute'
             }}
             source={{ uri: image }}
           />
-          <View style={{ flexDirection:'row',alignItems:'center', justifyContent:'center' }}>
+          <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'center' }}>
             <View style={{ height:'85%',width:'50%',justifyContent:'center' }}>
-          
               <View style={styles.cuadro}></View>
               <View style={styles.cuadro}></View>
               <View style={styles.cuadro}></View>
             </View>
             <View style={{ height:'85%',width:'50%',justifyContent:'center',marginLeft:'15%' }}>
-          
               <View style={{ width: '35%',height: '35%',borderColor: 'white',borderTopWidth:10, borderLeftWidth:10 }}></View>
               <View style={{ width: '35%',height: '30%' }}></View>
               <View style={{ width: '35%',height: '35%',borderColor: 'white',borderBottomWidth:10, borderLeftWidth:10 }}></View>
             </View>
             <View style={{ height:'85%',width:'50%',justifyContent:'center' }}>
-          
               <View style={{ width: '35%',height: '35%',borderColor: 'white',borderTopWidth:10, borderRightWidth:10 }}></View>
               <View style={{ width: '30%',height: '30%' }}></View>
               <View style={{ width: '35%',height: '35%',borderColor: 'white',borderBottomWidth:10, borderRightWidth:10 }}></View>
             </View>
           </View>
         </View>
-       
-        <LinearGradient
-          colors={['#0097CD', '#01B8E2']}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.styleButtom}
+
+        <LinearGradientComponent
+          styles={styles.styleButtom}
         >
           <TouchableOpacity
             onPress={() => {
               this.setState({ modalVisible: !this.state.modalVisible });
             }}
           >
-            <Text style={styles.inputButtom}>
+            <TextBtn>
               Capturar <Ionicons name="ios-camera" size={18} color="#fff" />
-            </Text>
+            </TextBtn>
           </TouchableOpacity>
-        </LinearGradient>
+        </LinearGradientComponent>
+
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
@@ -222,11 +212,8 @@ export default class Formulario extends React.Component {
             </Text>
           </TouchableOpacity>
         </View>
-        <LinearGradient
-          colors={['#0097CD', '#01B8E2']}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.styleButtom}
+        <LinearGradientComponent
+          styles={styles.styleButtom}
         >
           <TouchableOpacity
             style={{
@@ -239,16 +226,14 @@ export default class Formulario extends React.Component {
             <Ionicons name="md-download" size={18} color="white" />
             <Text style={styles.inputButtom}>Guardar</Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </LinearGradientComponent>
         {/* modal camera ========= */}
         <Modal
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
         >
-          
           <View style={styles.containermodal}>
-          
             <TouchableOpacity onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
               <Text style={[styles.icon, { padding: 6, marginLeft: 30, marginTop: 20 }]}>
                 {' '}
@@ -266,17 +251,13 @@ export default class Formulario extends React.Component {
             />
             
             <View style={styles.cuadro2}>
-        
               <View style={{ flexDirection:'row',alignItems:'center', justifyContent:'center' }}>
-          
                 <View style={{ height:'85%',width:'50%',justifyContent:'center',marginLeft:'80%',marginTop:'15%' }}>
-          
                   <View style={{ width: '35%',height: '45%',borderColor: 'white',borderTopWidth:10, borderLeftWidth:10 }}></View>
                   <View style={{ width: '35%',height: '30%' }}></View>
                   <View style={{ width: '35%',height: '45%',borderColor: 'white',borderBottomWidth:10, borderLeftWidth:10 }}></View>
                 </View>
                 <View style={{ height:'85%',width:'50%',justifyContent:'center',marginLeft:'20%',marginTop:'15%' }}>
-          
                   <View style={{ width: '35%',height: '45%',borderColor: 'white',borderTopWidth:10, borderRightWidth:10 }}></View>
                   <View style={{ width: '30%',height: '30%' }}></View>
                   <View style={{ width: '35%',height: '45%',borderColor: 'white',borderBottomWidth:10, borderRightWidth:10 }}></View>
@@ -293,23 +274,18 @@ export default class Formulario extends React.Component {
                       :
                       this.setState({ flashMode: Camera.Constants.FlashMode.on })
                     ;
-
                   }}>
                
                   {
                     // this.setState({ modalVisible: !this.state.modalVisible });
                     this.state.flashMode ?
                       <Text style={styles.icon}>
-                        {' '}
-                        <MaterialIcons name="flash-auto" size={35} color="#fff" />{' '}
+                        {' '} <MaterialIcons name="flash-auto" size={35} color="#fff" />{' '}
                       </Text>
                       :
                       <Text style={styles.icon}>
-                        {' '}
-                        <MaterialIcons name="flash-off" size={35} color="#fff" />{' '}
+                        {' '} <MaterialIcons name="flash-off" size={35} color="#fff" />{' '}
                       </Text>
-                    
-
                   }
                 
                 </TouchableOpacity>
@@ -328,7 +304,7 @@ export default class Formulario extends React.Component {
               {!photo && (
                 <TouchableOpacity style={{ height:35,width:35,marginLeft:'15%' }}
                   onPress={() => this.state.estadocamara?
-                
+
                     this.setState({ type: Camera.Constants.Type.front,estadocamara:false }):
                     this.setState({ type: Camera.Constants.Type.back,estadocamara:true })}>
                
@@ -336,12 +312,8 @@ export default class Formulario extends React.Component {
                   <View style={{ padding:10, marginBottom:10, width:50 }}>
                     <Ionicons name="md-reverse-camera" size={35} color="#fff" />
                   </View>
-             
                 </TouchableOpacity>
               )}
-              
-              
-              
             </View>
           </View>
         </Modal>
@@ -351,15 +323,7 @@ export default class Formulario extends React.Component {
           transparent={true}
           visible={this.state.modalVisibleAlert}
         >
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: 'rgba(0, 66, 90, 0.5)'
-              // opacity: 0.9
-            }}
-          ></View>
+          <ContainerTransparent />
 
           <View
             style={{
@@ -372,17 +336,9 @@ export default class Formulario extends React.Component {
             }}
           >
             <View style={{ marginHorizontal: 20, marginTop: 33 }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: '#00425A',
-                  textAlign: 'center',
-                  textShadowRadius: 2,
-                  fontFamily: 'PoppinsBold'
-                }}
-              >
+              <TextHeaderModal>
                 {this.state.mensajeAlert}
-              </Text>
+              </TextHeaderModal>
             </View>
             <View>
               <TouchableOpacity
@@ -390,21 +346,10 @@ export default class Formulario extends React.Component {
                   this.setState({ modalVisibleAlert: !this.state.modalVisibleAlert });
                 }}
               >
-                <Text
-                  style={{
-                    fontSize: 16,
-                    // padding: 13,
-                    color: '#01B8E2',
-                    textAlign: 'right',
-                    fontFamily: 'PoppinsRegular',
-                    marginTop: 40,
-                    marginHorizontal: 20,
-                    marginBottom: 20
-                  }}
-                >
+                <TextConfirmModal>
                   {' '}
                   Entendido
-                </Text>
+                </TextConfirmModal>
               </TouchableOpacity>
             </View>
           </View>
@@ -444,15 +389,13 @@ const styles = StyleSheet.create({
     height: '80%',
     borderColor: 'white',
     borderWidth: 7,
-
     position: 'absolute'
   },
   cuadro2: {
     marginLeft: '10%',
     marginTop: '30%',
     width: '80%',
-    height: '60%',
-    
+    height: '60%',  
     alignItems:'center',
 
     position: 'absolute'
@@ -489,7 +432,6 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '130%'
   },
-
   controls: {
     position: 'absolute',
     flexDirection:'row',
@@ -501,7 +443,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-
   photo: {
     width: 100,
     height: 100,

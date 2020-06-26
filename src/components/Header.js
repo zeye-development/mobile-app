@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
 export default function Header({ navigation, title, btnClose = true }) {
-
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
