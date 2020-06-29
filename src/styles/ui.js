@@ -1,5 +1,16 @@
 import styled from 'styled-components/native';
 
+/**
+ * @param {string} fontFamily - Font Family Text
+ */
+export const Input = styled.TextInput`
+  font-size: 16px;
+  padding: 13px 33px;
+  border-width: 2px;
+  border-color: transparent;
+  font-family: ${props => props.fontFamily || 'PoppinsRegular'};  
+`;
+
 export const Btn = styled.View`
   border-radius: 15px;
   margin: 15px 0;

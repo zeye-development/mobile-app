@@ -3,6 +3,9 @@ import styled from 'styled-components/native';
 
 import config from './../../../config';
 
+/**
+ * @param {string} url - URL 
+ */
 export default function Imagen(props) {
 
   let { url } = props;

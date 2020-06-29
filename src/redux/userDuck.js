@@ -58,7 +58,7 @@ export const loginAction = (form) => async (dispatch, getState) => {
   dispatch({
     type: LOGIN,
   })
-
+  console.log('response login form: ', form);
   try {
     const response = await axios.post(`${config.API_URL}/login`, form);
     dispatch({
@@ -69,7 +69,7 @@ export const loginAction = (form) => async (dispatch, getState) => {
       }
     })
     AsyncStorage.setItem('token', response.data.token);
-    // console.log('response login: ', response);
+    console.log('response login: ', response);
     return response;
   } catch (error) {
     // console.log('Error Login: ', error.response);

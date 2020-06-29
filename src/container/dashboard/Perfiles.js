@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
+import styled from 'styled-components/native';
+
 import Perfil from './Perfil';
 import PerfilSolicitado from './PerfilSolicitado'
 import Separator from './../../components/Separator';
@@ -26,11 +28,9 @@ const Profiles = ({ state, navigation }) => {
           horizontal={false}
           ItemSeparatorComponent={Separator}
           ListEmptyComponent={
-            <Text
-              style={{ marginVertical: 20, fontSize: 20, textAlign: 'center' }}
-            >
+            <TextArrayEmpty>
               No hay usuarios
-            </Text>
+            </TextArrayEmpty>
           }
         /> ) : (
         <FlatList
@@ -42,11 +42,9 @@ const Profiles = ({ state, navigation }) => {
           horizontal={false}
           ItemSeparatorComponent={Separator}
           ListEmptyComponent={
-            <Text
-              style={{ marginVertical: 20, fontSize: 20, textAlign: 'center' }}
-            >
-                No hay usuarios
-            </Text>
+            <TextArrayEmpty>
+              No hay usuarios
+            </TextArrayEmpty>
           }
         />
       )}
@@ -55,6 +53,12 @@ const Profiles = ({ state, navigation }) => {
 }
 
 export default Profiles;
+
+const TextArrayEmpty = styled.Text`
+  margin: 20px 0px;
+  font-size: 20px;
+  text-align: center;
+`;
 
 const styles = StyleSheet.create({
   container: {

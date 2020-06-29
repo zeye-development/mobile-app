@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Camera } from 'expo-camera';
+import styled from 'styled-components/native';
 
 import LinearGradientComponent from 'app/src/components/shared/LinearGradient';
 import { TextBtn, ContainerTransparent, TextHeaderModal, TextConfirmModal } from 'app/src/styles/ui';
@@ -161,15 +162,9 @@ export default class Formulario extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.viewContainer}>
-          <Image
-            style={{
-              width: '100%',
-              height: '100%',
-              resizeMode:'stretch',
-              marginRight:'-10%',
-              position: 'absolute'
-            }}
+          <ImagenHeader
             source={{ uri: image }}
+            resizeMode='stretch'
           />
           <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'center' }}>
             <View style={{ height:'85%',width:'50%',justifyContent:'center' }}>
@@ -268,7 +263,6 @@ export default class Formulario extends React.Component {
               {!photo && (
                 <TouchableOpacity style={{ height:35,width:35 }}
                   onPress={() => {
-                  
                     this.state.flashMode ?
                       this.setState({ flashMode: Camera.Constants.FlashMode.off })
                       :
@@ -287,7 +281,6 @@ export default class Formulario extends React.Component {
                         {' '} <MaterialIcons name="flash-off" size={35} color="#fff" />{' '}
                       </Text>
                   }
-                
                 </TouchableOpacity>
               )}
               
@@ -304,11 +297,8 @@ export default class Formulario extends React.Component {
               {!photo && (
                 <TouchableOpacity style={{ height:35,width:35,marginLeft:'15%' }}
                   onPress={() => this.state.estadocamara?
-
                     this.setState({ type: Camera.Constants.Type.front,estadocamara:false }):
                     this.setState({ type: Camera.Constants.Type.back,estadocamara:true })}>
-               
-                 
                   <View style={{ padding:10, marginBottom:10, width:50 }}>
                     <Ionicons name="md-reverse-camera" size={35} color="#fff" />
                   </View>
@@ -358,6 +348,15 @@ export default class Formulario extends React.Component {
     );
   }
 }
+
+const ImagenHeader = styled.Image`
+  width: 100%;
+  height: 100%;
+  margin-right: -10%;
+  position: absolute;
+`;
+
+
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
@@ -373,7 +372,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     position: 'relative'
   },
-
   viewContainer: {
     marginTop: 10,
     marginBottom: 5,
@@ -395,9 +393,8 @@ const styles = StyleSheet.create({
     marginLeft: '10%',
     marginTop: '30%',
     width: '80%',
-    height: '60%',  
+    height: '60%',
     alignItems:'center',
-
     position: 'absolute'
   },
   inputButtom: {

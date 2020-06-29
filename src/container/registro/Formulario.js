@@ -15,6 +15,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { validatorEmail } from '../../helpers/validatorEmail';
 import config from './../../../config';
 
+import { TextBtn } from './../../styles/ui';
+
 export default class Formulario extends Component {
   constructor(props) {
     super(props);
@@ -270,10 +272,10 @@ export default class Formulario extends Component {
               this.login(this.state.email, this.state.pass, this.state.pass_v, this.state.names, this.state.surnames);
             }}
           >
-            <Text style={styles.inputButtom}>
+            <TextBtn>
               Registrar{' '}
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
-            </Text>
+            </TextBtn>
           </TouchableOpacity>
         </LinearGradient>
         {/* ============================modalLoading======= */}
@@ -450,13 +452,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'transparent',
     fontFamily: 'PoppinsRegular'
-  },
-  inputButtom: {
-    fontSize: 16,
-    fontFamily: 'PoppinsRegular',
-    padding: 13,
-    color: '#fff',
-    textAlign: 'center'
   },
   viewContainer: {
     borderRadius: 15,

@@ -24,7 +24,7 @@ import LinearGradientComponent from './../../components/shared/LinearGradient';
 import { loginAction } from './../../redux/userDuck';
 import * as Config from '../../../config';
 
-import { TextBtn } from 'app/src/styles/ui';
+import { TextBtn, Input } from 'app/src/styles/ui';
 
 class Formulario extends Component {
   constructor(props) {
@@ -133,8 +133,7 @@ class Formulario extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.viewContainer}>
-          <TextInput
-            style={[styles.input, styles.font]}
+          <Input
             placeholder="Correo Electronico"
             value={this.state.email}
             onChangeText={(item) => {
@@ -144,7 +143,7 @@ class Formulario extends Component {
           />
         </View>
         <View style={styles.viewContainer}>
-          <TextInput
+          <Input
             secureTextEntry={true}
             placeholder="Password"
             value={this.state.pass}
@@ -152,7 +151,6 @@ class Formulario extends Component {
               const pass = item.trim();
               this.setState({ pass });
             }}
-            style={styles.input}
           />
         </View>
         {this.state.error ? (
@@ -269,19 +267,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     maxWidth: 450,
     paddingHorizontal: 30,
-  },
-  input: {
-    fontSize: 16,
-    paddingVertical: 13,
-    paddingHorizontal: 33,
-    borderWidth: 2,
-    borderColor: 'transparent',
-  },
-  inputButtom: {
-    fontSize: 16,
-    padding: 13,
-    color: '#fff',
-    textAlign: 'center',
   },
   viewContainer: {
     borderRadius: 15,

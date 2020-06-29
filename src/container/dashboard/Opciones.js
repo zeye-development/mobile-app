@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ProgressBarAndroid } from 'react-native';
+import { StyleSheet, View, ProgressBarAndroid } from 'react-native';
 import { Entypo, Foundation } from '@expo/vector-icons';
+import styled from 'styled-components/native';
 
 export default class Opciones extends React.Component {
   constructor(props) {
@@ -28,39 +29,23 @@ export default class Opciones extends React.Component {
           <View style={styles.viewContainerInput}>
             <View style={{ alignItems: 'center' }}>
               {this.state.estado ? (
-                <Text
-                  onPress={this.Barra1}
-                  style={{
-                    color: 'rgb(255, 255, 255)',
-                    alignContent: 'center',
-                    fontFamily: 'PoppinsSemiBold',
-                    fontSize: 14
-                  }}
-                >
+                <Label onPress={this.Barra1}>
                   <Foundation
                     name="prohibited"
                     size={18}
                     color="rgb(255, 255, 255)"
                   />{' '}
                   Solicitados
-                </Text>
+                </Label>
               ) : (
-                <Text
-                  onPress={this.Barra1}
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.5)',
-                    alignContent: 'center',
-                    fontFamily: 'PoppinsSemiBold',
-                    fontSize: 14
-                  }}
-                >
+                <Label onPress={this.Barra1}>
                   <Foundation
                     name="prohibited"
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
                   />{' '}
                   Solicitados
-                </Text>
+                </Label>
               )}
             </View>
 
@@ -75,35 +60,19 @@ export default class Opciones extends React.Component {
           <View style={styles.viewContainerInput}>
             <View style={{ alignItems: 'center' }}>
               {this.state.estado ? (
-                <Text
-                  onPress={this.Barra2}
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.5)',
-                    alignContent: 'center',
-                    fontFamily: 'PoppinsSemiBold',
-                    fontSize: 14
-                  }}
-                >
+                <Label onPress={this.Barra2}>
                   <Entypo
                     name="users"
                     size={18}
                     color="rgba(255, 255, 255, 0.5)"
                   />{' '}
                   Usuarios
-                </Text>
+                </Label>
               ) : (
-                <Text
-                  onPress={this.Barra2}
-                  style={{
-                    color: 'rgb(255, 255, 255)',
-                    alignContent: 'center',
-                    fontFamily: 'PoppinsSemiBold',
-                    fontSize: 14
-                  }}
-                >
+                <Label onPress={this.Barra2}>
                   <Entypo name="users" size={18} color="rgb(255, 255, 255)" />{' '}
                   Usuarios
-                </Text>
+                </Label>
               )}
             </View>
 
@@ -119,6 +88,13 @@ export default class Opciones extends React.Component {
     );
   }
 }
+
+const Label = styled.Text`
+  color: rgb(255, 255, 255);
+  align-content: center;
+  font-family: 'PoppinsSemiBold';
+  font-size: 14px;
+`;
 
 const styles = StyleSheet.create({
   container: {

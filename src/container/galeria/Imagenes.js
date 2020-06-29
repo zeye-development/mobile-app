@@ -59,9 +59,7 @@ const Images = ({ images, navigation }) => {
             </Text>
           </View>
           <View>
-            <TouchableOpacity
-              onPress={() => setModalVisibleAlert(!modalVisibleAlert)}
-            >
+            <TouchableOpacity onPress={() => setModalVisibleAlert(!modalVisibleAlert)}>
               <TextConfirmModal>
                 {' '} Entendido
               </TextConfirmModal>
