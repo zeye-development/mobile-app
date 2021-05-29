@@ -58,9 +58,9 @@ export const loginAction = (form) => async (dispatch, getState) => {
   dispatch({
     type: LOGIN,
   })
-  console.log('response login form: ', form);
+  // console.log('response login form: ', form);
   try {
-    const response = await axios.post(`${config.API_URL}/login`, form);
+    const response = await axios.post(`${config.API_URL}/account/login`, form);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: {
@@ -69,10 +69,10 @@ export const loginAction = (form) => async (dispatch, getState) => {
       }
     })
     AsyncStorage.setItem('token', response.data.token);
-    console.log('response login: ', response);
+    console.log('response login: ', response.data.token);
     return response;
   } catch (error) {
-    // console.log('Error Login: ', error.response);
+    console.log('Error Login: ', error.response);
     dispatch({
       type: LOGIN_ERROR,
       payload: error.message
@@ -117,7 +117,7 @@ export const getUsersAction = () => async (dispatch) => {
   // })
 
   try {
-    const response = await axios.get(`${config.API_URL}/known`);
+    const response = await axios.get(`${config.API_URL}/persons`);
     // console.log('Get All users: ', response.data)
     // dispatch({
     //   type: GET_USERS_SUCCESS,
@@ -132,7 +132,7 @@ export const getUsersAction = () => async (dispatch) => {
     });
     return response;
   } catch (error) {
-    console.log('Error All users: ', error);
+    // console.log('Error All users: ', error.response);
     // dispatch({
     //   type: GET_USERS_ERROR,
     //   payload: error.message
