@@ -1,98 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import config from './../../../config';
 
-export default class Perfil extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      click: false
+const Profile = ({ navigation, usuario }) => {
+
+  let { id, identification_number, names, surnames, face_encoding, birth_date } = usuario;
+
+  const [click, setClick] = useState(false)
+
+  onChangeMenu = () => {
+    if (click) {
+      setClick( false )
+    }
+    if (!click) {
+      setClick( true )
     }
   }
 
-  OnClickTrue = () => {
-    if (this.state.click) {
-
-      this.setState({ click: false })
-    }
-    if (!this.state.click) {
-      this.setState({ click: true })
-    }
-  }
-  
-  render() {
-    let { _id, names, surnames, images, birth_date } = this.props.usuario;
-
-    return (
-      <View>
+  return (
+    <View>
+      <View style={styles.container}>
         <View style={styles.container}>
-          <View style={styles.container}>
-            <View style={styles.img}>
-              <Image
-                style={{ width: 50, height: 50, borderRadius: 100 }}
-                source={{ uri: `${config.API_URL}/file=${images[0]}` }}
-              />
-            </View>
-            <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
-              <Text
-                style={[
-                  styles.textColor,
-                  {
-                    fontFamily: 'PoppinsSemiBold'
-                  }
-                ]}
-              >
-                {names[0]}{' '} {surnames[0]}
-              </Text>
-              <Text
-                style={[
-                  styles.textColor2,
-                  {
-                    fontFamily: 'PoppinsRegular'
-                  }
-                ]}
-              >
-                {' '}{_id} {birth_date}
-              </Text>
-            </View>
+          <View style={styles.img}>
+            <Image
+              style={{ width: 50, height: 50, borderRadius: 100 }}
+              source={{ uri: `${config.API_URL}/encodings/${face_encoding.id}/image` }}
+            />
           </View>
-
-          {!this.state.click ? (
-            <TouchableOpacity onPress={this.OnClickTrue}>
+          <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
+            <Text
+              style={[
+                styles.textColor,
+                {
+                  fontFamily: 'PoppinsSemiBold'
+                }
+              ]}
+            >
+              {names}{' '} {surnames}
+            </Text>
+            <Text
+              style={[
+                styles.textColor2,
+                {
+                  fontFamily: 'PoppinsRegular'
+                }
+              ]}
+            >
+              {identification_number} {birth_date}
+            </Text>
+          </View>
+        </View>
+        {!click ? (
+            <TouchableOpacity onPress={onChangeMenu}>
               <View style={styles.styleButtom}>
                 <Ionicons name="md-more" size={18} color="#00425A" />
               </View>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={this.OnClickTrue}>
+            <TouchableOpacity onPress={onChangeMenu}>
               <View style={styles.styleButtom}>
                 <Ionicons name="md-close" size={18} color="#00425A" />
               </View>
             </TouchableOpacity>
           )}
-        </View>
-        {this.state.click ? (
-          <View style={styles.containerOptionButtom}>
-            <View style={styles.containerButtom}>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('UsuarioRequerido', { user: this.props.usuario })}
-              >
-                <Text style={styles.optionButtom}>Perfil</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Galeria', { id: _id, images })}
-              >
-                <Text style={styles.optionButtom}>Galería</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        ) : null}
       </View>
-    );
-  }
+
+      {click ? (
+        <View style={styles.containerOptionButtom}>
+          <View style={styles.containerButtom}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('UsuarioRequerido', { user: usuario })}
+            >
+              <Text style={styles.optionButtom}>Perfil</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Galeria', { id, images: [] })}
+            >
+              <Text style={styles.optionButtom}>Galería</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        ) : null}
+    </View>
+  )
 }
+
+export default Profile
 
 const styles = StyleSheet.create({
   container: {

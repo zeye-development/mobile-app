@@ -24,7 +24,7 @@ const Profiles = ({ state, navigation }) => {
           renderItem={({ item }) => (
             <PerfilSolicitado navigation={navigation} usuario={item} />
           )}
-          keyExtractor={item => item._id}
+          keyExtractor={item => item.id}
           horizontal={false}
           ItemSeparatorComponent={Separator}
           ListEmptyComponent={
@@ -38,7 +38,7 @@ const Profiles = ({ state, navigation }) => {
           renderItem={({ item }) => (
             <Perfil navigation={navigation} usuario={item} />
           )}
-          keyExtractor={item => item._id}
+          keyExtractor={item => item.id}
           horizontal={false}
           ItemSeparatorComponent={Separator}
           ListEmptyComponent={
