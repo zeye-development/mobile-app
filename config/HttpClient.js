@@ -7,7 +7,7 @@ axios.interceptors.request.use(async config => {
     const token = await AsyncStorage.getItem("token"); 
 
     config['headers'] = {
-      key: token
+      Authorization: token
     };
     return config;    
   } catch (error) {
