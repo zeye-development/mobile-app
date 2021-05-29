@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 
 import Header from './../components/Header';
+import LoginWithSocialMedia from '../components/shared/LoginWithSocialMedia'
 
-import LoginRedes from '../container/registro/LoginRedes';
 import Formulario from '../container/registro/Formulario';
 import Preguntas from '../container/registro/Preguntas';
 
@@ -14,8 +14,7 @@ export default function Registro(props) {
         <ScrollView>
           <View style={style.container}>
             <Header navigation={props.navigation} title='Registrar' btnClose={false} />
- 
-            <LoginRedes />
+            <LoginWithSocialMedia />
             <Formulario navigation={props.navigation} />
             <Preguntas navigation={props.navigation} />
           </View>

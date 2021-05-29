@@ -9,7 +9,7 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
-const SocialNetworks = () => {
+const LoginWithSocialMedia = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -111,7 +111,7 @@ const SocialNetworks = () => {
   );
 }
 
-export default SocialNetworks;
+export default LoginWithSocialMedia;
 
 const Container = styled.View`
   align-items: stretch;
