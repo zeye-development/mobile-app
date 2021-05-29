@@ -5,7 +5,7 @@ import Header from './../components/Header';
 import LoginWithSocialMedia from '../components/shared/LoginWithSocialMedia'
 
 import Formulario from '../container/registro/Formulario';
-import Preguntas from '../container/registro/Preguntas';
+import { QuestionsRegister } from '../components/auth/Questions';
 
 export default function Registro(props) {
   return (
@@ -16,7 +16,7 @@ export default function Registro(props) {
             <Header navigation={props.navigation} title='Registrar' btnClose={false} />
             <LoginWithSocialMedia />
             <Formulario navigation={props.navigation} />
-            <Preguntas navigation={props.navigation} />
+            <QuestionsRegister navigation={props.navigation} />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { Text } from './../../styles/ui';
 
-export default function Preguntas(props) {
+export const QuestionsLogin = (props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -32,6 +32,27 @@ export default function Preguntas(props) {
   );
 }
 
+export const QuestionsRegister = (props) =>{
+  return (
+    <View style={styles.container}>
+      <View style={styles.viewContainer}>
+        <Text style={styles.font}>¿Ya tienes cuenta?</Text>
+      </View>
+
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate('InicioSesion')}
+      >
+        <View style={styles.viewContainer}>
+          <Text style={styles.font2}>
+            Iniciar Sesion{' '}
+            <Ionicons name="md-arrow-forward" size={16} color="#00425A" />
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     maxWidth: 450,
@@ -40,6 +61,17 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     alignItems: 'center',
-    padding: 8
+    paddingVertical: 3
+  },
+  font: {
+    marginBottom: 5,
+    color: '#00425A',
+    fontSize: 14,
+    fontFamily: 'PoppinsRegular'
+  },
+  font2: {
+    color: '#00425A',
+    fontSize: 16,
+    fontFamily: 'PoppinsRegular'
   }
 });

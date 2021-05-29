@@ -2,21 +2,24 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 
 import Header from './../components/Header';
+import LoginWithSocialMedia from '../components/shared/LoginWithSocialMedia'
 
-import LoginRedes from '../container/inicioSesion/LoginRedes';
 import Formulario from '../container/inicioSesion/Formulario';
-import Preguntas from '../container/inicioSesion/Preguntas';
+import Login from '../screens/Login';
+import { QuestionsLogin } from '../components/auth/Questions';
 
-export default function InicioSesion(props) {
+export default function InicioSesion({ navigation }) {
   return (
     <SafeAreaView>
       <KeyboardAvoidingView behavior="height" enabled>
         <ScrollView>
           <View style={style.container}>
-            <Header navigation={props.navigation} title='Iniciar Sesion' btnClose={false} />
-            <LoginRedes />
-            <Formulario navigation={props.navigation} />
-            <Preguntas navigation={props.navigation} />
+            <Header navigation={navigation} title='Iniciar Sesion' btnClose={false} />
+            <LoginWithSocialMedia />
+            {/* TODO: use component Formulario */}
+            {/* <Formulario navigation={navigation} /> */}
+            <Login navigation={navigation} />
+            <QuestionsLogin navigation={navigation} />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
