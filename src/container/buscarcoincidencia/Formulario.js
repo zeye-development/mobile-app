@@ -15,9 +15,9 @@ import {
 } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Camera } from 'expo-camera';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import config from './../../../config';
+import LinearGradientComponent from '../../components/shared/LinearGradient';
 
 export default class Formulario extends React.Component {
   constructor(props) {
@@ -255,12 +255,7 @@ export default class Formulario extends React.Component {
           </View>
         </View>
 
-        <LinearGradient
-          colors={['#0097CD', '#01B8E2']}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.styleButtom}
-        >
+        <LinearGradientComponent styles={styles.styleButtom}>
           <TouchableOpacity
             onPress={() => {
               this.setState({ modalVisible: !this.state.modalVisible });
@@ -270,7 +265,7 @@ export default class Formulario extends React.Component {
               Capturar <Ionicons name="ios-camera" size={18} color="#fff" />
             </Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </LinearGradientComponent>
         <View style={styles.styleButtom1}>
           <TouchableOpacity onPress={this._pickImage}>
             <Text style={styles.inputButtom1}>
@@ -280,12 +275,7 @@ export default class Formulario extends React.Component {
           </TouchableOpacity>
         </View>
 
-        <LinearGradient
-          colors={['#0097CD', '#01B8E2']}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.styleButtom}
-        >
+        <LinearGradientComponent styles={styles.styleButtom}>
           <TouchableOpacity
             style={{
               flexDirection: 'row',
@@ -297,7 +287,8 @@ export default class Formulario extends React.Component {
             <Ionicons name="md-search" size={18} color="white" />
             <Text style={styles.inputButtom}>Buscar</Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </LinearGradientComponent>
+        
         {/* ============================modalLoading======= */}
 
         <Modal

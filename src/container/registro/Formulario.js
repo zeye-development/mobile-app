@@ -10,12 +10,12 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import md5 from 'md5';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { validatorEmail } from '../../helpers/validatorEmail';
 import config from './../../../config';
 
 import { TextBtn } from './../../styles/ui';
+import LinearGradientComponent from '../../components/shared/LinearGradient';
 
 export default class Formulario extends Component {
   constructor(props) {
@@ -261,12 +261,7 @@ export default class Formulario extends Component {
           </View>
         ) : null}
 
-        <LinearGradient
-          colors={['#0097CD', '#01B8E2']}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.styleButtom}
-        >
+        <LinearGradientComponent styles={styles.styleButtom}>
           <TouchableOpacity
             onPress={() => {
               this.login(this.state.email, this.state.pass, this.state.pass_v, this.state.names, this.state.surnames);
@@ -276,8 +271,8 @@ export default class Formulario extends Component {
               Registrar{' '}
               <Ionicons name="md-arrow-forward" size={18} color="#fff" />
             </TextBtn>
-          </TouchableOpacity>
-        </LinearGradient>
+          </TouchableOpacity>   
+        </LinearGradientComponent>
         {/* ============================modalLoading======= */}
 
         <Modal

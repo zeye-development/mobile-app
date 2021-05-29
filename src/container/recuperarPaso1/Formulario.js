@@ -7,37 +7,32 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 
-export default function Formulario(props) {
+import LinearGradientComponent from '../../components/shared/LinearGradient';
+
+export default function Formulario({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.viewContainer}>
         <TextInput placeholder="Email" style={styles.input} />
       </View>
-      <LinearGradient
-        colors={['#0097CD', '#01B8E2']}
-        start={[0, 0.8]}
-        end={[0.8, 0.5]}
-        style={styles.styleButtom}
-      >
+
+      <LinearGradientComponent styles={styles.styleButtom}>
         <TouchableOpacity
-          onPress={() => props.navigation.navigate('RecuperarPaso2')}
+          onPress={() => navigation.navigate('RecuperarPaso2')}
         >
           <Text style={styles.inputButtom}>
             Continuar{' '}
             <Ionicons name="md-arrow-forward" size={18} color="#fff" />
           </Text>
         </TouchableOpacity>
-      </LinearGradient>
+      </LinearGradientComponent>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // alignItems: 'center',
     marginBottom: 10,
     alignItems: 'stretch',
     maxWidth: 450,
