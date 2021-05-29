@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import config from './../../../config';
 
 export default function Formulario(props) {
-
+  // TODO: implement delete user
   const deleteUser = async () => {
     const id = props.navigation.state.params.user._id
     let token = await AsyncStorage.getItem('token');
@@ -30,12 +29,11 @@ export default function Formulario(props) {
   }
 
   let {
-    _id,
     names,
     surnames,
     nationality,
-    sex,
-    birth_date
+    birth_date,
+    identification_number
   } = props.navigation.state.params.user;
   let { user } = props.navigation.state.params;
 
@@ -43,17 +41,17 @@ export default function Formulario(props) {
     <View style={styles.container}>
       <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: 'bold' }]}>Nombre: </Text>
-        <Text style={styles.input}>{names[0]}</Text>
+        <Text style={styles.input}>{names}</Text>
       </View>
       <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: 'bold' }]}>Apellido: </Text>
-        <Text style={styles.input}>{surnames[0]}</Text>
+        <Text style={styles.input}>{surnames}</Text>
       </View>
       <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: 'bold' }]}>
           Identificacion:{' '}
         </Text>
-        <Text style={styles.input}>{_id}</Text>
+        <Text style={styles.input}>{identification_number}</Text>
       </View>
       <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: 'bold' }]}>
@@ -63,55 +61,11 @@ export default function Formulario(props) {
       </View>
 
       <View style={styles.viewContainer}>
-        <Text style={[styles.input, { fontWeight: 'bold' }]}>Sexo: </Text>
-        <Text style={styles.input}>{sex}</Text>
-      </View>
-      <View style={styles.viewContainer}>
         <Text style={[styles.input, { fontWeight: 'bold' }]}>
           Fecha de Nacimiento:{' '}
         </Text>
         <Text style={styles.input}>{birth_date}</Text>
       </View>
-
-      {/* <View style={styles.viewContainerGrup}>
-        <View style={styles.viewContainerButtom}>
-          <TouchableOpacity>
-            <Text
-              style={{
-                fontSize: 16,
-                padding: 13,
-                color: "#01B8E2",
-                textAlign: "center",
-                fontFamily: "PoppinsRegular"
-              }}
-            >
-              <Ionicons name="md-trash" size={18} color="#01B8E2" /> Eliminar{" "}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <LinearGradient
-          colors={["#0097CD", "#01B8E2"]}
-          start={[0, 0.8]}
-          end={[0.8, 0.5]}
-          style={styles.viewContainerButtom1}
-        >
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate("EditarUsuario")}
-          >
-            <Text
-              style={{
-                fontSize: 16,
-                padding: 13,
-                color: "#fff",
-                textAlign: "center",
-                fontFamily: "PoppinsRegular"
-              }}
-            >
-              <Ionicons name="md-create" size={18} color="#fff" /> Editar{" "}
-            </Text>
-          </TouchableOpacity>
-        </LinearGradient>
-      </View> */}
 
       <View style={styles.viewContainerGrup}>
         <View style={styles.viewContainerButtom}>

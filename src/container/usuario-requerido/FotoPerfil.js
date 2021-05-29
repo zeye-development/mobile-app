@@ -1,48 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 import config from './../../../config';
 
 export default function FotoPerfil(props) {
-  const [solicitado, setSolicitado] = useState({ solicitado: false });
-
-  let { imagen, wanted } = props;
+  // TODO: use imagen
+  let { imagen } = props;
 
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'center' }}>
         <View style={styles.viewContainer}>
-          <Image
+          {/* <Image
             source={{ uri: `${config.API_URL}/file=${imagen[0]}` }}
             style={styles.imageBackground}
-          />
+          /> */}
         </View>
       </View>
-      
-      {wanted == false ? (
-        <TouchableOpacity
-          onPress={() => setSolicitado({ solicitado: true })}
-        >
-          <Text style={[styles.usuario, styles.noSolicitado]}>
-            <Ionicons
-              name="ios-checkmark-circle-outline"
-              size={16}
-              color="#fff"
-            />{' '}
-            Usuario no Requerido
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          onPress={() => setSolicitado({ solicitado: false })}
-        >
-          <Text style={[styles.usuario, styles.solicitado]}>
-            <AntDesign name="closecircleo" size={16} color="#fff" /> Usuario
-            Requerido
-          </Text>
-        </TouchableOpacity>
-      )}
+            
+      <TouchableOpacity>
+        <Text style={[styles.usuario, styles.noSolicitado]}>
+          <Ionicons
+            name="ios-checkmark-circle-outline"
+            size={16}
+            color="#fff"
+          />{' '}
+          Usuario no Requerido
+        </Text>
+      </TouchableOpacity>
+    
+      <TouchableOpacity>
+        <Text style={[styles.usuario, styles.solicitado]}>
+          <AntDesign name="closecircleo" size={16} color="#fff" /> Usuario
+          Requerido
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
