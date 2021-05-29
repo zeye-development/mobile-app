@@ -66,3 +66,13 @@ export const TextConfirmModal = styled.Text`
   font-family: 'PoppinsRegular';
   margin: 40px 20px;
 `;
+
+/**
+ * @param {string} backgroundColor  - Color Text
+ */
+export const ContainerScreen = styled.View`
+  flex: 1;
+  background-color: ${props => props.backgroundColor || '#FFF'};
+  padding-top: 30px;
+  padding-bottom: 30px;
+`

@@ -1,14 +1,19 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import Inicio from '../container/principal/Inicio';
 import Login from '../container/principal/Login';
+import { Text } from '../styles/ui';
 import LinearGradientComponent from './../components/shared/LinearGradient';
 
 export default function Principal(props) {
   return (
     <LinearGradientComponent styles={styles.container}>
-      <Inicio />
+      <View style={styles.containerHeader}>
+        <Text fontSize='32px' fontFamily='PoppinsMedium'>
+          Zeye Cloud ®
+        </Text>
+      </View>
+
       <Login navigation={props.navigation} />
     </LinearGradientComponent>
   );
@@ -17,7 +22,11 @@ export default function Principal(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#01B8E2',
     padding: 30
+  },
+  containerHeader: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
