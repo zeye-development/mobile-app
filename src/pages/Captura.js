@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { ScrollView, SafeAreaView } from 'react-native';
 
 import Header from './../components/Header';
 import Formulario from '../container/captura/Formulario';
 
-export default function Captura(props) {
+export default function Captura({ navigation }) {
   return (
-    <View>
+    <SafeAreaView>
       <ScrollView>
-        <Header navigation={props.navigation} title='Captura de rostro' />
-        <Formulario navigation={props.navigation} />
+        <Header navigation={navigation} title='Captura de rostro' />
+        <Formulario navigation={navigation} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
