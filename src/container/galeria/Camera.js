@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -22,14 +22,137 @@ import {
 } from './styles';
 import { TextBtn } from 'app/src/styles/ui';
 
-/*
-const Formulario = () => {
+// /*
+const Form = ({ navigation, id, images}) => {
 
+  const [photo, setPhoto] = useState(null)
+  const [modalLoading, setModalLoading] = useState(false)
+  const [modalVisibleAlert, setModalVisibleAlert] = useState(false)
+  const [messageAlert, setMessageAlert] = useState('')
+  
+
+  const handleUploadPhoto = () => {
+
+  }
+
+  return (
+    <Container>
+      <Main
+        style={{
+          flexDirection: 'row',
+          width: '100%',
+          height: 100,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <TouchableOpacity
+          onPress={() =>
+            navigation.replace('Captura', { id, images, mainFoto: true })
+          }
+          style={{
+            width: 120,
+            height: 120,
+            backgroundColor: '#EBF2F4',
+            borderRadius: 100,
+            position: 'absolute'
+          }}
+        >
+          <Image
+            source={{ uri: photo }}
+            style={{ width: 120, height: 120, borderRadius: 100 }}
+          />
+        </TouchableOpacity>
+
+        <View
+          style={{
+            backgroundColor: '#01B8D2',
+            height: '45%',
+            width: '16%',
+            marginLeft: '30%',
+            marginTop: '20%',
+            borderRadius: 30,
+            alignItems: 'center'
+          }}
+        >
+          <View style={{ marginTop: '20%' }}>
+            <Ionicons name="md-camera" size={25} color="white" />
+          </View>
+        </View>
+      </Main>
+
+      <LinearGradientComponent
+        styles={styles.styleButtom}
+      >
+        <TouchableOpacity onPress={handleUploadPhoto}>
+          <TextBtn>
+            <Ionicons name="md-person-add" size={16} color="#fff" /> Añadir{' '}
+          </TextBtn>
+        </TouchableOpacity>
+      </LinearGradientComponent>
+      {/* modal aLert ================ */}
+
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisibleAlert}
+      >
+        <ContainerTransparent />
+
+        <View
+          style={{
+            width: 290,
+            backgroundColor: '#fff',
+            borderRadius: 15,
+            position: 'absolute',
+            marginTop: '45%',
+            marginHorizontal: '10%'
+          }}
+        >
+          <View style={{ marginHorizontal: 20, marginTop: 33 }}>
+            <TextHeaderModal>
+              {messageAlert}
+            </TextHeaderModal>
+          </View>
+
+          <View>
+            <TouchableOpacity
+              onPress={() => setModalVisibleAlert(!modalVisibleAlert)}
+            >
+              <TextConfirmModal>
+                {' '} Entendido
+              </TextConfirmModal>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalLoading}
+      >
+        <ContainerTransparent />
+
+        <View
+          style={{
+            position: 'absolute',
+            top: '45%',
+            left: '45%'
+          }}
+        >
+          {modalLoading ? (
+            <ActivityIndicator size={30} color="#fff" />
+          ) : null}
+        </View>
+      </Modal>
+    </Container>
+  );
 }
-export default Formulario;
-*/
+export default Form;
+// */
 
-export default class Formulario extends Component {
+class Formulario extends Component {
   constructor(props) {
     super(props);
     this.state = {

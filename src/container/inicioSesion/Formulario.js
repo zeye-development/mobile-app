@@ -174,27 +174,6 @@ class Formulario extends Component {
           </TouchableOpacity>
         </LinearGradientComponent>
 
-        {/* ============================modalLoading======= */}
-        {/* <Modal
-          animationType="none"
-          transparent={true}
-          visible={this.state.modalLoading}
-        >
-          <ModalView />
-
-          <View
-            style={{
-              position: 'absolute',
-              top: '45%',
-              left: '45%'
-            }}
-          >
-            {this.state.modalLoading ? (
-              <ActivityIndicator size={30} color="#fff" />
-            ) : null}
-          </View>
-        </Modal> */}
-
         <ModalLoading modalLoading={this.state.modalLoading} />
 
         <Modal

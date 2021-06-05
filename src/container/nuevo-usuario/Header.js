@@ -18,13 +18,11 @@ export default class Header extends Component {
       this.props.navigation.getParam('base', 'base64')
     );
     this.setState({ foto: true, base64: parabase64 });
-    // if (this.state.base64 != null) {
+
     this.setState({
       modalVisibleAlert: true,
       mensajeAlert: 'Se perderan los datos una vez salga de la vista'
     });
-    // console.log(this.state.base64);
-    // }
   }
   render() {
     return (
@@ -54,7 +52,6 @@ export default class Header extends Component {
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: 'rgba(0, 66, 90, 0.5)'
-              // opacity: 0.9
             }}
           ></View>
 
@@ -99,14 +96,10 @@ export default class Header extends Component {
                 <Text
                   style={{
                     fontSize: 16,
-                    // padding: 13,
                     color: '#00425A',
-                    // textAlign: "right",
                     fontFamily: 'PoppinsRegular',
                     marginTop: 40,
                     padding: 10
-                    // marginHorizontal: 20,
-                    // marginBottom: 20
                   }}
                 >
                   {' '}
@@ -125,9 +118,7 @@ export default class Header extends Component {
                 <Text
                   style={{
                     fontSize: 16,
-                    // padding: 13,
                     color: '#01B8E2',
-                    // textAlign: "right",
                     fontFamily: 'PoppinsRegular',
                     marginTop: 40,
                     backgroundColor: '#EBF0F2',
